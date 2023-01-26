@@ -120,41 +120,38 @@ django-admin --version
 ```
 
 ```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
+# 4.1.5
 ```
 
 </details>
 
 <details>
-  <summary>4. sample </summary>
+  <summary>4. Create Django Project </summary>
 
 ```py
+django-admin startproject my_tennis_club
+```
 
+run django project -
+
+my_tennis_club/
+
+```py
+py manage.py runserver
 ```
 
 ```py
+# System check identified no issues (0 silenced).
 
+# You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+# Run 'python manage.py migrate' to apply them.
+# January 26, 2023 - 19:26:37
+# Django version 4.1.5, using settings 'my_tennis_club.settings'
+# Starting development server at http://127.0.0.1:8000/
+# Quit the server with CONTROL-C.
 ```
 
-```py
-
-```
-
-```py
-
-```
+127.0.0.1:8000:
 
 </details>
 
