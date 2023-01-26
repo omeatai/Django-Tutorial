@@ -219,7 +219,7 @@ urlpatterns = [
 /my_tennis_club:
 
 ```py
-# py manage.py runserver
+python manage.py runserver
 ```
 
 </details>
