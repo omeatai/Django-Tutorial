@@ -152,6 +152,9 @@ py manage.py runserver
 ```
 
 127.0.0.1:8000:
+  
+[005](https://user-images.githubusercontent.com/32337103/214931443-5581766b-920d-4ddb-ac99-c649421fa3d1.png)
+  
 
 </details>
 
