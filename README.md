@@ -96,6 +96,12 @@ pip --version
 # pip 21.2.4
 ```
 
+Upgrade pip:
+
+```py
+python -m pip install --upgrade pip
+```
+
 Install venv and activate the virtual environment:
 
 ```py
@@ -170,10 +176,16 @@ python manage.py startapp members
 </details>
 
 <details>
-  <summary>6. sample </summary>
+  <summary>6. Create Django View - return HttpResponse </summary>
+
+members/views.py:
 
 ```py
+from django.shortcuts import render
+from django.http import HttpResponse
 
+def members(request):
+    return HttpResponse("Hello world!")
 ```
 
 ```py
