@@ -285,10 +285,10 @@ python manage.py migrate
 ```py
 python manage.py runserver
 ```
+  
+127.0.0.1:8000/members:  
 
-```py
-
-```
+![004](https://user-images.githubusercontent.com/32337103/214960898-da8f5076-7b10-4112-a4cd-f9d12589fc5d.png)
 
 </details>
 
