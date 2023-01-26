@@ -227,7 +227,7 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>8. sample </summary>
+  <summary>8. Create HTML Template </summary>
 
 ```py
 
