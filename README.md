@@ -130,6 +130,7 @@ django-admin --version
 
 ```py
 django-admin startproject my_tennis_club
+django-admin startproject my_tennis_club .
 ```
 
 run django project -
@@ -152,28 +153,18 @@ py manage.py runserver
 ```
 
 127.0.0.1:8000:
-  
-![001](https://user-images.githubusercontent.com/32337103/214931443-5581766b-920d-4ddb-ac99-c649421fa3d1.png)  
+
+![001](https://user-images.githubusercontent.com/32337103/214931443-5581766b-920d-4ddb-ac99-c649421fa3d1.png)
 
 </details>
 
 <details>
-  <summary>5. sample </summary>
+  <summary>5. Create Django App </summary>
+
+my_tennis_club/
 
 ```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
+python manage.py startapp members
 ```
 
 </details>
