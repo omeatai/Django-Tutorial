@@ -223,46 +223,67 @@ python manage.py runserver
 ```
 
 127.0.0.1:8000/members:
-  
+
 ![002](https://user-images.githubusercontent.com/32337103/214957810-f91a2461-1028-4d23-bcd4-9ef782e741e4.png)
-  
 
 </details>
 
 <details>
-  <summary>8. Create HTML Template </summary>
+  <summary>8. Create and load HTML Template </summary>
 
-```py
+my_tennis_club/members/templates/myfirst.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello World!</h1>
+    <p>Welcome to my first Django project!</p>
+  </body>
+</html>
 ```
 
-```py
-
-```
+my_tennis_club/members/views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
-```
-
-```py
-
+def members(request):
+  template = loader.get_template('myfirst.html')
+  return HttpResponse(template.render())
 ```
 
 </details>
 
 <details>
-  <summary>9. sample </summary>
+  <summary>9. Register App in Settings </summary>
+
+my_tennis_club/my_tennis_club/settings.py:
 
 ```py
-
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'members'
+]
 ```
 
-```py
+Run Migrations:
 
+```py
+# python manage.py makemigrations
+python manage.py migrate
 ```
 
-```py
+/my_tennis_club
 
+```py
+python manage.py runserver
 ```
 
 ```py
