@@ -153,10 +153,7 @@ py manage.py runserver
 
 127.0.0.1:8000:
   
-![001](https://user-images.githubusercontent.com/32337103/214931443-5581766b-920d-4ddb-ac99-c649421fa3d1.png)
-  
-![proj004](https://user-images.githubusercontent.com/32337103/214823396-7b64ec32-7270-4c4c-9f6a-6f4f3ecb3fe0.png)  
-  
+![001](https://user-images.githubusercontent.com/32337103/214931443-5581766b-920d-4ddb-ac99-c649421fa3d1.png)  
 
 </details>
 
