@@ -62,28 +62,60 @@ URLs
 </details>
 
 <details>
-  <summary>2. sample </summary>
+  <summary>2. Install Python, pip and Venv </summary>
+
+Download Python:
 
 ```py
+https://www.python.org/
+```
 
+Check for Python Version:
+
+```py
+python --version
 ```
 
 ```py
+# Python 3.9.12
+```
 
+Install pip:
+
+```py
+https://pypi.org/project/pip/
+```
+
+Check pip version:
+
+```py
+pip --version
 ```
 
 ```py
-
+# pip 21.2.4
 ```
 
-```py
+Install venv and activate the virtual environment:
 
+```py
+python -m venv venv-w3django
+
+source venv-w3django/bin/activate
 ```
 
 </details>
 
 <details>
-  <summary>3. sample </summary>
+  <summary>3. Install Django </summary>
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
