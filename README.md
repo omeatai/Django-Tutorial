@@ -144,7 +144,7 @@ run django project -
 my_tennis_club/
 
 ```py
-py manage.py runserver
+python manage.py runserver
 ```
 
 ```py
@@ -188,37 +188,38 @@ def members(request):
     return HttpResponse("Hello world!")
 ```
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
 </details>
 
 <details>
-  <summary>7. sample </summary>
+  <summary>7. Create urls.py routes </summary>
+
+my_tennis_club/members/urls.py:
 
 ```py
+from django.urls import path
+from . import views
 
+urlpatterns = [
+    path('members/', views.members, name='members'),
+]
 ```
 
-```py
+my_tennis_club/my_tennis_club/urls.py:
 
+```py
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('', include('members.urls')),
+    path('admin/', admin.site.urls),
+]
 ```
 
-```py
-
-```
+/my_tennis_club:
 
 ```py
-
+# py manage.py runserver
 ```
 
 </details>
