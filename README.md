@@ -110,11 +110,13 @@ source venv-w3django/bin/activate
   <summary>3. Install Django </summary>
 
 ```py
-
+python -m pip install Django
 ```
 
-```py
+Check Django version:
 
+```py
+django-admin --version
 ```
 
 ```py
