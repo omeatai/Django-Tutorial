@@ -223,6 +223,9 @@ python manage.py runserver
 ```
 
 127.0.0.1:8000/members:
+  
+![002](https://user-images.githubusercontent.com/32337103/214957810-f91a2461-1028-4d23-bcd4-9ef782e741e4.png)
+  
 
 </details>
 
