@@ -490,46 +490,118 @@ Now delete the record:
 # {'id': 5, 'firstname': 'Stalikken', 'lastname': 'Refsnes'}]>
 ```
 
-</details>
-
-<details>
-  <summary>14. sample </summary>
-
 ```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
+>>> exit()
 ```
 
 </details>
 
 <details>
-  <summary>15. sample </summary>
+  <summary>14. Add Fields (Columns) to Model </summary>
+
+my_tennis_club/members/models.py:
 
 ```py
+from django.db import models
 
+class Member(models.Model):
+  firstname = models.CharField(max_length=255)
+  lastname = models.CharField(max_length=255)
+  phone = models.IntegerField()
+  joined_date = models.DateField()
+```
+
+Make Migrations:
+
+```py
+python manage.py makemigrations members
 ```
 
 ```py
+# You are trying to add a non-nullable field 'joined_date' to members without a default; we can't do that (the database needs something to populate existing rows).
+# Please select a fix:
+#  1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+#  2) Quit, and let me add a default in models.py
+# Select an option:
+```
 
+```bs
+Select option 2: allow NULL values for the two new fields.
+```
+
+my_tennis_club/members/models.py:
+
+```py
+from django.db import models
+
+class Member(models.Model):
+  firstname = models.CharField(max_length=255)
+  lastname = models.CharField(max_length=255)
+  phone = models.IntegerField(null=True)
+  joined_date = models.DateField(null=True)
+```
+
+Make Migrations:
+
+```py
+python manage.py makemigrations members
 ```
 
 ```py
+# Migrations for 'members':
+#   members/migrations/0002_member_joined_date_member_phone.py
+#     - Add field joined_date to member
+#     - Add field phone to member
+```
 
+Run the migrate command:
+
+```py
+python manage.py migrate
 ```
 
 ```py
+# Operations to perform:
+#   Apply all migrations: admin, auth, contenttypes, members, sessions
+# Running migrations:
+#   Applying members.0002_member_joined_date_member_phone... OK
+```
 
+</details>
+
+<details>
+  <summary>15. Insert Data to updated Model </summary>
+
+```py
+python manage.py shell
+```
+
+```py
+# Python 3.9.2 (tags/v3.9.2:1a79785, Feb 19 2021, 13:44:55) [MSC v.1928 64 bit (AMD64)] on win32
+# Type "help", "copyright", "credits" or "license" for more information.
+# (InteractiveConsole)
+# >>>
+```
+
+```py
+>>> from members.models import Member
+>>> x = Member.objects.all()[0]
+>>> x.phone = 5551234
+>>> x.joined_date = '2022-01-05'
+>>> x.save()
+```
+
+```py
+>>> Member.objects.all().values()
+```
+
+```py
+# <QuerySet [
+# {'id': 1, 'firstname': 'Emil', 'lastname': 'Refsnes', 'phone': 5551234, 'joined_date': datetime.date(2022, 1, 5)},
+# {'id': 2, 'firstname': 'Tobias', 'lastname': 'Refsnes', 'phone': None, 'joined_date': None},
+# {'id': 3, 'firstname': 'Linus', 'lastname': 'Refsnes', 'phone': None, 'joined_date': None},
+# {'id': 4, 'firstname': 'Lene', 'lastname': 'Refsnes', 'phone': None, 'joined_date': None},
+# {'id': 5, 'firstname': 'Stalikken', 'lastname': 'Refsnes', 'phone': None, 'joined_date': None}]>
 ```
 
 </details>
