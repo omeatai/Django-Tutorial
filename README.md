@@ -613,20 +613,43 @@ python manage.py shell
 <details>
   <summary>16. sample </summary>
 
-```py
+my_tennis_club/members/templates/all_members.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Members</h1>
+
+    <ul>
+      {% for x in mymembers %}
+      <li>{{ x.firstname }} {{ x.lastname }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
 ```
 
-```py
+my_tennis_club/members/views.py:
 
+```py
+from django.http import HttpResponse
+from django.template import loader
+from .models import Member
+
+def members(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('all_members.html')
+  context = {
+    'mymembers': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
-
-```
+my_tennis_club/
 
 ```py
-
+python manage.py runserver
 ```
 
 </details>
