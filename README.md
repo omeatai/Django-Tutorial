@@ -417,22 +417,38 @@ View added records in Model:
 </details>
 
 <details>
-  <summary>12. sample </summary>
+  <summary>12. Update Data Records </summary>
+
+Get the record for member at index 4, which is "Stale Refsnes":
 
 ```py
-
+>>> from members.models import Member
+>>> x = Member.objects.all()[4]
+>>> x.firstname
 ```
 
 ```py
+# 'Stale'
+```
 
+Now change the value of this record:
+
+```py
+>>> x.firstname = "Stalikken"
+>>> x.save()
 ```
 
 ```py
-
+>>> Member.objects.all().values()
 ```
 
 ```py
-
+# <QuerySet [{'id': 1, 'firstname': 'Emil', 'lastname': 'Refsnes'},
+# {'id': 2, 'firstname': 'Tobias', 'lastname': 'Refsnes'},
+# {'id': 3, 'firstname': 'Linus', 'lastname': 'Refsnes'},
+# {'id': 4, 'firstname': 'Lene', 'lastname': 'Refsnes'},
+# {'id': 5, 'firstname': 'Stalikken', 'lastname': 'Refsnes'},
+# {'id': 6, 'firstname': 'Jane', 'lastname': 'Doe'}]>
 ```
 
 </details>
