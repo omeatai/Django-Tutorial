@@ -1089,20 +1089,31 @@ python manage.py runserver
 ```
 
 127.0.0.1:8000/admin/:
-  
-![010](https://user-images.githubusercontent.com/32337103/215181307-965a93c3-1826-4fbb-bd20-fa431138fd49.png)  
-  
+
+![010](https://user-images.githubusercontent.com/32337103/215181307-965a93c3-1826-4fbb-bd20-fa431138fd49.png)
+
 ![011](https://user-images.githubusercontent.com/32337103/215182500-255292f3-54c8-4952-a79c-9ba658ac8a82.png)
-  
 
 </details>
 
 <details>
-  <summary>23. sample </summary>
+  <summary>23. Django Admin - Include Member Model </summary>
+
+- The Members model is missing, as it should be, you have to tell Django which models that should be visible in the admin interface.
+
+- This is done in a file called admin.py, and is located in your app's folder, which in our case is the members folder.
+
+my_tennis_club/members/admin.py:
 
 ```py
+from django.contrib import admin
+from .models import Member
 
+# Register your models here.
+admin.site.register(Member)
 ```
+
+127.0.0.1:8000/admin/:
 
 ```py
 
