@@ -334,7 +334,61 @@ python manage.py sqlmigrate members 0001
 </details>
 
 <details>
-  <summary>11. Django Insert Data </summary>
+  <summary>11. Django Get and Insert Data </summary>
+
+Enter Python Shell
+
+```py
+python manage.py shell
+```
+
+```py
+# Python 3.9.13 (v3.9.13:6de2ca5339, May 17 2022, 11:37:23)
+# [Clang 13.0.0 (clang-1300.0.29.30)] on darwin
+# Type "help", "copyright", "credits" or "license" for more information.
+# (InteractiveConsole)
+# >>>
+```
+
+GET Data from Members Table (Model):
+
+```py
+>>> from members.models import Member
+>>> Member.objects.all()
+```
+
+```py
+# <QuerySet []>
+```
+
+POST/Add a single Data record to Members Table (Model):
+
+```py
+>>> member = Member(firstname='Emil', lastname='Refsnes')
+>>> member.save()
+```
+
+View added record in Model:
+
+```py
+>>> Member.objects.all()
+```
+
+```py
+# <QuerySet [<Member: Member object (1)>]>
+```
+
+```py
+>>> Member.objects.all().values()
+```
+
+```py
+# <QuerySet [{'id': 1, 'firstname': 'Emil', 'lastname': 'Refsnes'}]>
+```
+
+```py
+
+```
 
 ```py
 
