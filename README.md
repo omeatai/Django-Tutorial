@@ -652,6 +652,9 @@ my_tennis_club/
 python manage.py runserver
 ```
 
+![004](https://user-images.githubusercontent.com/32337103/215118713-ad8cf2c0-cb2a-497d-b558-bc273b8245bc.png)
+
+
 </details>
 
 <details>
