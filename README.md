@@ -1062,17 +1062,33 @@ urlpatterns = [
 ```
 
 127.0.0.1:8000/admin/:
-  
+
 ![010](https://user-images.githubusercontent.com/32337103/215181307-965a93c3-1826-4fbb-bd20-fa431138fd49.png)
-  
+
+Django Admin - Create User
 
 ```py
-
+python manage.py createsuperuser
 ```
 
 ```py
+# Username: admin
+# Email address: admin@gmail.com
+# Password:
+# Password (again):
+# This password is too short. It must contain at least 8 characters.
+# This password is too common.
+# This password is entirely numeric.
+# Bypass password validation and create user anyway? [y/N]: y
 
+# Superuser created successfully.
 ```
+
+```py
+python manage.py runserver
+```
+
+127.0.0.1:8000/admin/:
 
 </details>
 
