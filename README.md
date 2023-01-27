@@ -1089,6 +1089,11 @@ python manage.py runserver
 ```
 
 127.0.0.1:8000/admin/:
+  
+![010](https://user-images.githubusercontent.com/32337103/215181307-965a93c3-1826-4fbb-bd20-fa431138fd49.png)  
+  
+![011](https://user-images.githubusercontent.com/32337103/215182500-255292f3-54c8-4952-a79c-9ba658ac8a82.png)
+  
 
 </details>
 
