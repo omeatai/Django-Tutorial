@@ -454,22 +454,40 @@ Now change the value of this record:
 </details>
 
 <details>
-  <summary>13. sample </summary>
+  <summary>13. Delete Data Records </summary>
+
+Get the record you want to delete:
 
 ```py
-
+>>> from members.models import Member
+>>> x = Member.objects.all()[5]
+>>> x.firstname
 ```
 
 ```py
+# 'Jane'
+```
 
+Now delete the record:
+
+```py
+>>> x.delete()
 ```
 
 ```py
-
+# (1, {'members.Member': 1})
 ```
 
 ```py
+>>> Member.objects.all().values()
+```
 
+```py
+# <QuerySet [{'id': 1, 'firstname': 'Emil', 'lastname': 'Refsnes'},
+# {'id': 2, 'firstname': 'Tobias', 'lastname': 'Refsnes'},
+# {'id': 3, 'firstname': 'Linus', 'lastname': 'Refsnes'},
+# {'id': 4, 'firstname': 'Lene', 'lastname': 'Refsnes'},
+# {'id': 5, 'firstname': 'Stalikken', 'lastname': 'Refsnes'}]>
 ```
 
 </details>
