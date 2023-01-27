@@ -1062,6 +1062,9 @@ urlpatterns = [
 ```
 
 127.0.0.1:8000/admin/:
+  
+![010](https://user-images.githubusercontent.com/32337103/215181307-965a93c3-1826-4fbb-bd20-fa431138fd49.png)
+  
 
 ```py
 
