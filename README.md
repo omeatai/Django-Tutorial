@@ -334,7 +334,7 @@ python manage.py sqlmigrate members 0001
 </details>
 
 <details>
-  <summary>11. Django Get and Insert Data </summary>
+  <summary>11. Get and Insert Data </summary>
 
 Enter Python Shell
 
