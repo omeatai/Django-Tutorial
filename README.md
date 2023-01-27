@@ -1035,6 +1035,9 @@ python manage.py runserver
 ```
 
 127.0.0.1:8000/testing/:
+  
+![009](https://user-images.githubusercontent.com/32337103/215180047-35033aa8-cbaa-4063-9344-c1e9580eabf0.png)
+  
 
 </details>
 
