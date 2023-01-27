@@ -611,7 +611,7 @@ python manage.py shell
 +DISPLAY TEMPLATE DATA
 
 <details>
-  <summary>16. sample </summary>
+  <summary>16. Prepare Template and View </summary>
 
 my_tennis_club/members/templates/all_members.html:
 
