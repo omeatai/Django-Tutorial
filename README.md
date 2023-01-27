@@ -920,7 +920,7 @@ py manage.py runserver
 </details>
 
 <details>
-  <summary>20. sample </summary>
+  <summary>20. Create 404 Page </summary>
 
 ```py
 
