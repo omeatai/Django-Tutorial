@@ -1035,22 +1035,33 @@ python manage.py runserver
 ```
 
 127.0.0.1:8000/testing/:
-  
+
 ![009](https://user-images.githubusercontent.com/32337103/215180047-35033aa8-cbaa-4063-9344-c1e9580eabf0.png)
-  
 
 </details>
 
++DJANGO ADMIN
+
 <details>
-  <summary>22. sample </summary>
+  <summary>22. Introduction to Django Admin </summary>
 
 ```py
-
+py manage.py runserver
 ```
+
+my_tennis_club/my_tennis_club/urls.py:
 
 ```py
+from django.contrib import admin
+from django.urls import include, path
 
+urlpatterns = [
+    path('', include('members.urls')),
+    path('admin/', admin.site.urls),
+]
 ```
+
+127.0.0.1:8000/admin/:
 
 ```py
 
