@@ -1114,7 +1114,7 @@ admin.site.register(Member)
 ```
 
 127.0.0.1:8000/admin/:
-  
+
 ![011](https://user-images.githubusercontent.com/32337103/215183560-c1d9f4e8-409e-48e9-b564-da01788c9dbd.png)
 
 ![012](https://user-images.githubusercontent.com/32337103/215183631-c7dc8b78-bb9e-41ce-8882-1ad9b3c74179.png)
@@ -1122,23 +1122,53 @@ admin.site.register(Member)
 </details>
 
 <details>
-  <summary>24. sample </summary>
+  <summary>24. Django Admin - Set Fields to Display </summary>
+
+Make the List Display More Reader-Friendly.
+
+- When you display a Model as a list, Django displays each record as the string representation of the record object, which in our case is "Member object (1)", "Member object(2)" etc.
+
+To change this to a more reader-friendly format, we have two choices:
+
+- Change the string representation function, _str_() of the Member Model.
+- Set the list_details property of the Member Model.
+
+To Change the String Representation Function -
+
+my_tennis_club/members/models.py:
 
 ```py
+from django.db import models
 
+class Member(models.Model):
+  firstname = models.CharField(max_length=255)
+  lastname = models.CharField(max_length=255)
+  phone = models.IntegerField(null=True)
+  joined_date = models.DateField(null=True)
+
+  def __str__(self):
+    return f"{self.firstname} {self.lastname}"
 ```
+
+127.0.0.1:8000/admin/:
+
+To Set list_display -
+
+my_tennis_club/members/admin.py:
 
 ```py
+from django.contrib import admin
+from .models import Member
 
+# Register your models here.
+
+class MemberAdmin(admin.ModelAdmin):
+  list_display = ("firstname", "lastname", "joined_date",)
+
+admin.site.register(Member, MemberAdmin)
 ```
 
-```py
-
-```
-
-```py
-
-```
+127.0.0.1:8000/admin/:
 
 </details>
 
