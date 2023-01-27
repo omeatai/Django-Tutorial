@@ -611,7 +611,7 @@ python manage.py shell
 +DISPLAY TEMPLATE DATA
 
 <details>
-  <summary>16. Prepare Template and View </summary>
+  <summary>16. Create All Members Page </summary>
 
 my_tennis_club/members/templates/all_members.html:
 
@@ -646,6 +646,17 @@ def members(request):
   return HttpResponse(template.render(context, request))
 ```
 
+my_tennis_club/members/urls.py:
+
+```py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('members/', views.members, name='members'),
+]
+```
+
 my_tennis_club/
 
 ```py
@@ -654,26 +665,84 @@ python manage.py runserver
 
 ![004](https://user-images.githubusercontent.com/32337103/215118713-ad8cf2c0-cb2a-497d-b558-bc273b8245bc.png)
 
-
 </details>
 
 <details>
-  <summary>17. sample </summary>
+  <summary>17. Create Details Page </summary>
+
+my_tennis_club/members/templates/details.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>{{ mymember.firstname }} {{ mymember.lastname }}</h1>
+
+    <p>Phone: {{ mymember.phone }}</p>
+    <p>Member since: {{ mymember.joined_date }}</p>
+
+    <p>Back to <a href="/members">Members</a></p>
+  </body>
+</html>
+```
+
+my_tennis_club/members/templates/all_members.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Members</h1>
+
+    <ul>
+      {% for x in mymembers %}
+      <li>
+        <a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
+```
+
+my_tennis_club/members/views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
+from .models import Member
 
+def members(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('all_members.html')
+  context = {
+    'mymembers': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
+
+def details(request, id):
+  mymember = Member.objects.get(id=id)
+  template = loader.get_template('details.html')
+  context = {
+    'mymember': mymember,
+  }
+  return HttpResponse(template.render(context, request))
+```
+
+my_tennis_club/members/urls.py:
+
+```py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('members/', views.members, name='members'),
+    path('members/details/<int:id>', views.details, name='details'),
+]
 ```
 
 ```py
-
-```
-
-```py
-
-```
-
-```py
-
+py manage.py runserver
 ```
 
 </details>
