@@ -1114,18 +1114,10 @@ admin.site.register(Member)
 ```
 
 127.0.0.1:8000/admin/:
+  
+![011](https://user-images.githubusercontent.com/32337103/215183560-c1d9f4e8-409e-48e9-b564-da01788c9dbd.png)
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+![012](https://user-images.githubusercontent.com/32337103/215183631-c7dc8b78-bb9e-41ce-8882-1ad9b3c74179.png)
 
 </details>
 
