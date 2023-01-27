@@ -608,7 +608,7 @@ python manage.py shell
 
 </details>
 
-+DISPLAY DATA
++DISPLAY TEMPLATE DATA
 
 <details>
   <summary>16. sample </summary>
