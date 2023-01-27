@@ -910,7 +910,13 @@ my_tennis_club/members/templates/all_members.html:
 ```py
 py manage.py runserver
 ```
-
+  
+127.0.0.1:8000/:  
+  
+![007](https://user-images.githubusercontent.com/32337103/215138505-56d25ad0-33d3-480f-8e1f-fbd0092b683c.png)
+  
+![008](https://user-images.githubusercontent.com/32337103/215138775-dd6d5698-f1fa-4b48-b117-83e3119df5d2.png)
+  
 </details>
 
 <details>
