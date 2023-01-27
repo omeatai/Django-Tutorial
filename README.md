@@ -825,7 +825,7 @@ py manage.py runserver
 
 my_tennis_club/members/templates/main.html:
 
-```bs
+```bash
 {% extends "master.html" %}
 
 {% block title %}
