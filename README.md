@@ -956,30 +956,85 @@ my_tennis_club/members/templates/404.html:
   </body>
 </html>
 ```
-  
+
 ![008](https://user-images.githubusercontent.com/32337103/215175543-4b34095c-2a20-43f7-9fd9-3ecbcc83f620.png)
-  
 
 </details>
 
 <details>
-  <summary>21. sample </summary>
+  <summary>21. Add Django Test View </summary>
+
+my_tennis_club/members/views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
+from .models import Member
 
+def members(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('all_members.html')
+  context = {
+    'mymembers': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
+
+def details(request, id):
+  mymember = Member.objects.get(id=id)
+  template = loader.get_template('details.html')
+  context = {
+    'mymember': mymember,
+  }
+  return HttpResponse(template.render(context, request))
+
+def main(request):
+  template = loader.get_template('main.html')
+  return HttpResponse(template.render())
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry'],
+  }
+  return HttpResponse(template.render(context, request))
 ```
+
+my_tennis_club/members/urls.py:
 
 ```py
+from django.urls import path
+from . import views
 
+urlpatterns = [
+    path('', views.main, name='main'),
+    path('members/', views.members, name='members'),
+    path('members/details/<int:id>', views.details, name='details'),
+    path('testing/', views.testing, name='testing'),
+]
 ```
+
+my_tennis_club/members/templates/template.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    {% for x in fruits %}
+    <h1>{{ x }}</h1>
+    {% endfor %}
+
+    <p>In views.py you can see what the fruits variable looks like.</p>
+  </body>
+</html>
+```
+
+/my_tennis_club
 
 ```py
-
+python manage.py runserver
 ```
 
-```py
-
-```
+127.0.0.1:8000/testing/:
 
 </details>
 
