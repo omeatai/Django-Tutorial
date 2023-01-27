@@ -920,22 +920,41 @@ py manage.py runserver
 </details>
 
 <details>
-  <summary>20. Create 404 Page </summary>
+  <summary>20. Customize the 404 Template Page </summary>
+
+- Important: When DEBUG = False, Django requires you to specify the hosts you will allow this Django project to run from.
+
+- In production, this should be replaced with a proper domain name:
+
+ALLOWED_HOSTS = ['yourdomain.com']
+
+- Django will look for a file named 404.html in the templates folder, and display it when there is a 404 error.
+
+- If no such file exists, Django shows the "Not Found" page.
+
+- To customize this message, all you have to do is to create a file in the templates folder and name it 404.html, and fill it with write whatever you want.
+
+my_tennis_club/my_tennis_club/settings.py:
 
 ```py
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
+ALLOWED_HOSTS = ['*']
 ```
 
-```py
+my_tennis_club/members/templates/404.html:
 
-```
+```html
+<!DOCTYPE html>
+<html>
+  <title>Wrong address</title>
+  <body>
+    <h1>Ooops!</h1>
 
-```py
-
-```
-
-```py
-
+    <h2>I cannot find the file you requested!</h2>
+  </body>
+</html>
 ```
 
 </details>
