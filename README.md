@@ -285,36 +285,56 @@ python manage.py migrate
 ```py
 python manage.py runserver
 ```
-  
-127.0.0.1:8000/members:  
+
+127.0.0.1:8000/members:
 
 ![004](https://user-images.githubusercontent.com/32337103/214960898-da8f5076-7b10-4112-a4cd-f9d12589fc5d.png)
 
 </details>
 
 <details>
-  <summary>10. sample </summary>
+  <summary>10. Create Member Model </summary>
+
+my_tennis_club/members/models.py:
 
 ```py
+from django.db import models
 
+class Member(models.Model):
+  firstname = models.CharField(max_length=255)
+  lastname = models.CharField(max_length=255)
+```
+
+my_tennis_club/
+
+```py
+python manage.py makemigrations members
 ```
 
 ```py
+python manage.py migrate
+```
 
+View SQL migrate:
+
+```py
+python manage.py sqlmigrate <model> <migration number>
+python manage.py sqlmigrate members 0001
 ```
 
 ```py
-
-```
-
-```py
-
+# BEGIN;
+# --
+# -- Create model Member
+# --
+# CREATE TABLE "members_member" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "firstname" varchar(255) NOT NULL, "lastname" varchar(255) NOT NULL);
+# COMMIT;
 ```
 
 </details>
 
 <details>
-  <summary>11. sample </summary>
+  <summary>11. Django Insert Data </summary>
 
 ```py
 
