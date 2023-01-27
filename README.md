@@ -570,7 +570,7 @@ python manage.py migrate
 </details>
 
 <details>
-  <summary>15. Insert Data to updated Model </summary>
+  <summary>15. Insert Data into updated Model </summary>
 
 ```py
 python manage.py shell
