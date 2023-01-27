@@ -744,6 +744,10 @@ urlpatterns = [
 ```py
 py manage.py runserver
 ```
+  
+![006](https://user-images.githubusercontent.com/32337103/215122475-c5df9fb6-5c0e-4e6e-8dff-3a7078130f4c.png)
+
+![007](https://user-images.githubusercontent.com/32337103/215122533-7600e321-0f0a-4a66-b7df-ea43fcdc6de1.png)
 
 </details>
 
