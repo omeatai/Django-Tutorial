@@ -1151,9 +1151,9 @@ class Member(models.Model):
 ```
 
 127.0.0.1:8000/admin/:
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215197241-8c5136e5-80b9-40f9-a814-0bb81ff6c9d2.png)
-  
+
 To Set list_display -
 
 my_tennis_club/members/admin.py:
@@ -1171,10 +1171,12 @@ admin.site.register(Member, MemberAdmin)
 ```
 
 127.0.0.1:8000/admin/:
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215197817-cc4a6a91-bc57-48fa-aa18-3cd64ab06eba.png)
 
 </details>
+
++SYNTAX
 
 <details>
   <summary>25. sample </summary>
