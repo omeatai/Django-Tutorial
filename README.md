@@ -8,6 +8,8 @@ Django Tutorial by Ifeanyi Omeata
 
 ### [1-DJANGO TUTORIAL - W3SCHOOLS](#)
 
++INTRODUCTION
+
 <details>
   <summary>1. Introduction </summary>
 
@@ -605,6 +607,8 @@ python manage.py shell
 ```
 
 </details>
+
++DISPLAY DATA
 
 <details>
   <summary>16. sample </summary>
