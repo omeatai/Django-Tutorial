@@ -386,24 +386,32 @@ View added record in Model:
 # <QuerySet [{'id': 1, 'firstname': 'Emil', 'lastname': 'Refsnes'}]>
 ```
 
-```py
+To add Multiple Records in the Model:
 
+```py
+>>> member1 = Member(firstname='Tobias', lastname='Refsnes')
+>>> member2 = Member(firstname='Linus', lastname='Refsnes')
+>>> member3 = Member(firstname='Lene', lastname='Refsnes')
+>>> member4 = Member(firstname='Stale', lastname='Refsnes')
+>>> member5 = Member(firstname='Jane', lastname='Doe')
+>>> members_list = [member1, member2, member3, member4, member5]
+>>> for x in members_list:
+>>>   x.save()
+```
+
+View added records in Model:
+
+```py
+>>> Member.objects.all().values()
 ```
 
 ```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
+# <QuerySet [{'id': 1, 'firstname': 'Emil', 'lastname': 'Refsnes'},
+# {'id': 2, 'firstname': 'Tobias', 'lastname': 'Refsnes'},
+# {'id': 3, 'firstname': 'Linus', 'lastname': 'Refsnes'},
+# {'id': 4, 'firstname': 'Lene', 'lastname': 'Refsnes'},
+# {'id': 5, 'firstname': 'Stale', 'lastname': 'Refsnes'},
+# {'id': 6, 'firstname': 'Jane', 'lastname': 'Doe'}]>
 ```
 
 </details>
