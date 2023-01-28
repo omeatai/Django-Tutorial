@@ -3240,7 +3240,7 @@ template.html:
   </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215293477-65d7ce47-d730-4328-9b1f-24235855825a.png)
 
 views.py:
@@ -3252,13 +3252,13 @@ from django.template import loader
 def testing(request):
   template = loader.get_template('template.html')
   context = {
-    'fruits': ['Apple', 'Banana', 'Cherry'],   
+    'fruits': ['Apple', 'Banana', 'Cherry'],
   }
   return HttpResponse(template.render(context, request))
-                  
+
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -3271,30 +3271,30 @@ template.html:
   {% empty %}
     <li>No members</li>
   {% endfor %}
-</ul> 
+</ul>
 
 <p>In views.py you can see that there is no myobject variable.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215293538-b2cdcb56-df37-4cb3-ac6e-b778cc7490b4.png)
 
 </details>
 
 <details>
   <summary>54. Template Tags - Comments </summary>
-  
+
 - Comments allows you to have sections of code that should be ignored.
-  
-- You can add a message to your comment, to help you remember why you wrote the comment, or as message to other people reading the code.  
-  
-- You can also use the {# ... #} tags when commenting out code, which can be easier for smaller comments.  
-  
-- Views are written in Python, and Python comments are written with the # character.  
-  
-views.py:  
+
+- You can add a message to your comment, to help you remember why you wrote the comment, or as message to other people reading the code.
+
+- You can also use the {# ... #} tags when commenting out code, which can be easier for smaller comments.
+
+- Views are written in Python, and Python comments are written with the # character.
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3302,38 +3302,36 @@ from django.template import loader
 
 def testing(request):
   template = loader.get_template('template.html')
-  return HttpResponse(template.render())                    
+  return HttpResponse(template.render())
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-<h1>Welcome Everyone</h1>
-{% comment %}
-  <h1>Welcome ladies and gentlemen</h1>
-{% endcomment %}
-
-</body>
-</html>                  
+  <body>
+    <h1>Welcome Everyone</h1>
+    {% comment %}
+    <h1>Welcome ladies and gentlemen</h1>
+    {% endcomment %}
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215293655-e05a591b-333f-43b4-9178-e78940ec2048.png)
 
 ```html
 <h1>Welcome Everyone</h1>
 {% comment "this was the original welcome message" %}
-    <h1>Welcome ladies and gentlemen</h1>
+<h1>Welcome ladies and gentlemen</h1>
 {% endcomment %}
 ```
 
 ```html
 <h1>Welcome{# Everyone#}</h1>
 ```
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3350,17 +3348,17 @@ def testing(request):
 
 <details>
   <summary>55. Template Tags - Include </summary>
-  
+
 - The include tag allows you to include a template inside the current template.
 
-- This is useful when you have a block of content that is the same for many pages.  
-  
+- This is useful when you have a block of content that is the same for many pages.
+
 - You can send variables into the template by using the with keyword.
 
-- In the include file, you refer to the variables by using the {{ variablename }} syntax.  
+- In the include file, you refer to the variables by using the {{ variablename }} syntax.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3371,28 +3369,29 @@ def testing(request):
 ```
 
 template.html:
-  
+
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>Hello</h1>
 
-<h1>Hello</h1>
+    <p>This page contains a footer in a template.</p>
 
-<p>This page contains a footer in a template.</p>
+    {% include 'footer.html' %}
 
-{% include 'footer.html' %} 
-
-<p>Check out the two templates to see what they look like, and views.py to see the reference to the child template.</p>
-
-</body>
-</html>                  
+    <p>
+      Check out the two templates to see what they look like, and views.py to
+      see the reference to the child template.
+    </p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215293916-0331fa94-ed0e-4c9d-a137-7afbb16594c5.png)
-  
+
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3400,32 +3399,30 @@ from django.template import loader
 def testing(request):
   template = loader.get_template('template.html')
   return HttpResponse(template.render())
-                  
+
 ```
-  
+
 template.html:
-  
+
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    {% include "mymenu.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
 
-{% include "mymenu.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
+    <h1>Welcome</h1>
 
-<h1>Welcome</h1>
+    <p>This is my web site.</p>
 
-<p>This is my web site.</p>
-
-<p>Check out mymenu.html to see the HTML content of the include.</p>
-
-</body>
-</html>                  
+    <p>Check out mymenu.html to see the HTML content of the include.</p>
+  </body>
+</html>
 ```
-  
-mymenu.html:  
-  
+
+mymenu.html:
+
 ```py
-<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>  
+<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/215293994-22060211-83c7-41ce-bd51-4adf2372bf0c.png)
