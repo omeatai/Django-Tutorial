@@ -2079,91 +2079,185 @@ template.html:
 ```
   
 ![](https://user-images.githubusercontent.com/32337103/215287416-5d42c636-5d6f-4640-b8a8-30f4f6ea4dae.png)
-  
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
   <summary>37b. Template Tags - forloop.counter0 </summary>
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))   
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<ul>
+  {% for x in fruits %}
+    <li>{{ forloop.counter0 }}</li>
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits object look like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215287625-7515c4e2-0452-4e9a-af28-eb88d5c53938.png)
 
 </details>
 
 <details>
   <summary>37c. Template Tags - forloop.first </summary>
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))  
 ```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+<ul>
+  {% for x in fruits %}
+    <li
+    {% if forloop.first %}
+      style='background-color:lightblue;'
+    {% endif %}
+    >{{ x }}</li>
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits object look like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
-
+  
+![](https://user-images.githubusercontent.com/32337103/215287969-9f101f82-519c-4fed-987f-90d65d3165ca.png)
+  
 </details>
 
 <details>
   <summary>37d. Template Tags - forloop.last </summary>
 
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<ul>
+  {% for x in fruits %}
+    <li
+    {% if forloop.last %}
+      style='background-color:lightblue;'
+    {% endif %}
+    >{{ x }}</li>
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits object look like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215288123-0a77085f-9afb-4ddd-83ab-c5556cc8c3d8.png)
 
 </details>
 
 <details>
   <summary>37e. Template Tags - forloop.parentloop </summary>
 
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'cars': ['Ford', 'Volvo', 'BMW'],
+    'colors': ['Red', 'Green', 'Blue']
+    }
+  return HttpResponse(template.render(context, request))   
 ```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+<ul>
+  {% for x in cars %}
+    <li>{{ x }}:
+      <ul>
+        {% for y in colors %}
+          <li>
+            {{ forloop.parentloop.counter }}
+            {{ y }}
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the cars and colors object look like.</p>
+
+</body>
+</html>                  
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215288312-62fababe-ecec-4fc2-b54f-463752e525c4.png)
+  
 
 ```py
 
