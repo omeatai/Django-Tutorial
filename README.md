@@ -1231,9 +1231,61 @@ def testing(request):
 ```
 
 127.0.0.1:8000/testing/:
-  
+
 ![012](https://user-images.githubusercontent.com/32337103/215256961-b62a0903-29f3-4aa0-b953-c202138d280f.png)
-  
+
+Create Variables in Template -
+
+templates/template.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    {% with firstname="Tobias" %}
+    <h1>Hello {{ firstname }}, how are you?</h1>
+    {% endwith %}
+  </body>
+</html>
+```
+
+my_tennis_club/members/views:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+from .models import Member
+
+def members(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('all_members.html')
+  context = {
+    'mymembers': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
+
+def details(request, id):
+  mymember = Member.objects.get(id=id)
+  template = loader.get_template('details.html')
+  context = {
+    'mymember': mymember,
+  }
+  return HttpResponse(template.render(context, request))
+
+def main(request):
+  template = loader.get_template('main.html')
+  return HttpResponse(template.render())
+
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
+```
+
+127.0.0.1:8000/testing/:
+
+```py
+
+```
 
 </details>
 
