@@ -1961,13 +1961,7 @@ template.html:
 </html>
 ```
 
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/215277341-9b630872-fa24-4ad8-bab4-ffe82362e06f.png)
 
 </details>
 
