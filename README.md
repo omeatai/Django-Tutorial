@@ -1720,37 +1720,29 @@ template.html:
 </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215273390-bcc5db2d-d576-4ac0-89a7-f9bf4f767132.png)
-  
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
   <summary>31. Template Tags - csrf_token </summary>
 
-```py
+template.html:
 
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
+```html
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <form action="" method="post">
+      //csrf token inseted in form {% csrf_token %}
+      <h2>registration form</h2>
+      <input type="text" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
 ```
 
 </details>
@@ -1758,12 +1750,47 @@ template.html:
 <details>
   <summary>32. Template Tags - cycle </summary>
 
-```py
+- The cycle tag returns different values for different iterations in a loop.
 
+- The first iteration gets the first value, the second iteration gets the second value etc.
+
+- You can have as many values as you like.
+
+- If there are more iterations that values, the cycle resets and starts at value 1
+
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<ul>
+{% for x in fruits %}
+  <li style='color:{% cycle 'red' 'green' 'blue' 'pink' %}'>
+    {{ x }}
+  </li>
+{% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits variable looks like.</p>
+
+</body>
+</html>
 ```
 
 ```py
