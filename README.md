@@ -1713,7 +1713,7 @@ template.html:
 
 <h1>Welcome Everyone!</h1>
 
-{% comment %}
+{% comment "optional heading" %}
   <h1>Greetings!</h2>
 {% endcomment %}
 
