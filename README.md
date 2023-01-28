@@ -3019,15 +3019,15 @@ Returns the absolute URL part of a URL.
 
 <details>
   <summary>49. Template Tags - verbatim </summary>
-  
+
 - The verbatim tag is used to stop Django from executing code.
 
 - Anything between {% verbatim %} and {% endverbatim %} will not be executed, but rendered as output instead.
 
-- To be sure that you refer to the correct verbatim code block, you can add a name to it:  
+- To be sure that you refer to the correct verbatim code block, you can add a name to it:
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3037,10 +3037,10 @@ def testing(request):
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
     }
-  return HttpResponse(template.render(context, request))       
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -3054,28 +3054,22 @@ template.html:
 {% endverbatim %}
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215292811-2cf341ef-6139-4edc-b808-ec89c7cb2966.png)
-  
+
 template.html:
-  
+
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-{% verbatim mycode %}
-  {% for x in fruits %}
-    {% verbatim %}
-       <h1>{{ x }}</h1>
-    {% endverbatim %}
-  {% endfor %}
-{% endverbatim mycode %}
-
-</body>
-</html>                  
+  <body>
+    {% verbatim mycode %} {% for x in fruits %} {% verbatim %}
+    <h1>{{ x }}</h1>
+    {% endverbatim %} {% endfor %} {% endverbatim mycode %}
+  </body>
+</html>
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/215292853-5ce3a378-5453-4145-80fe-9f41f63bda0c.png)
@@ -3095,41 +3089,39 @@ Calculates a width value based on the ratio between a given value and a max valu
 
 <details>
   <summary>51. Template Tags - with  </summary>
-  
+
 - The with tag is used to create variables in Django templates.
 
-- This can be useful when you need to ask for the same variable many times, like in a loop.  
+- This can be useful when you need to ask for the same variable many times, like in a loop.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
 
 def testing(request):
   template = loader.get_template('template.html')
-  return HttpResponse(template.render())                  
+  return HttpResponse(template.render())
 ```
 
 template.html:
-  
+
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-{% with firstname="Stalikken" %}
-  <h1>Hello {{ firstname }}</h1>
-{% endwith %}
-
-</body>
-</html>                  
+  <body>
+    {% with firstname="Stalikken" %}
+    <h1>Hello {{ firstname }}</h1>
+    {% endwith %}
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215292934-de95c829-2e36-4af1-8844-a5f539e8849a.png)
-  
+
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3139,10 +3131,10 @@ def testing(request):
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
     }
-  return HttpResponse(template.render(context, request))     
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```code
 <!DOCTYPE html>
@@ -3158,23 +3150,51 @@ template.html:
 <p>Check out views.py to see what the fruits list looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215292976-99312dc9-935f-4ac7-ba58-4ff299544421.png)
-  
 
 </details>
 
 <details>
-  <summary>52. sample </summary>
+  <summary>52. Template Tags - Reversed keyword </summary>
+
+The reversed keyword is used when you want to do the loop in reversed order.
+
+views.py:
 
 ```py
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
+from .models import Member
+
+def testing(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('template.html')
+  context = {
+    'members': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
 
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    {% for x in members reversed %}
+    <h1>{{ x.id }}</h1>
+    <p>{{ x.firstname }} {{ x.lastname }}</p>
+    {% endfor %}
+
+    <p>
+      In views.py you can see how to import and fetch members from the database.
+    </p>
+  </body>
+</html>
 ```
 
 ```py
