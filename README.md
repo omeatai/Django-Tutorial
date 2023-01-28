@@ -2520,43 +2520,101 @@ template.html:
   
 ![](https://user-images.githubusercontent.com/32337103/215290655-dedf12cf-f8af-4c09-bc34-53a7b0e9aed4.png)
 
+views.py:  
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'mylist': [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5]
+    }
+  return HttpResponse(template.render(context, request))   
+```
+  
+template.html:  
+
+```py
+<!DOCTYPE html>
+<html>
+<body>
+
+{% for x in mylist %}
+  {% ifchanged %}
+    <p>New value: {{ x }}</p>
+  {% else %}
+    <p>Same value: {{ x }}</p>
+  {% endifchanged %}
+{% endfor %}
+
+<p>Check out views.py to see what cars object look like.</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215291268-3f5646a2-5cf9-4825-8dd3-78ddd1694353.png)
+ 
+
 </details>
 
 <details>
   <summary>40. Template Tags - include </summary>
+  
+- The include tag allows you to include content from another template.
+
+- Place the include tag exactly where you want the content to be displayed.
+
+- This is useful when you have the same content for many pages.
+
+- You can also send variables into the template, by using the with keyword.  
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
+```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+{% include "mymenu.html" with me="ALEXANDER" sponsor="W3SCHOOLS" %}
+
+<h1>Welcome</h1>
+
+<p>This is my web site.</p>
+
+<p>Check out mymenu.html to see the HTML content of the include.</p>
+
+</body>
+</html>                  
+```
+  
+mymenu.html:  
+
+```html
+<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>   
 ```
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/215291493-d86a684c-a81c-44b6-948f-8c10b52415c4.png)
 
 </details>
 
 <details>
   <summary>41. Template Tags - load </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+  
+Loads template tags from another library.  
 
 ```py
 
@@ -2566,64 +2624,214 @@ template.html:
 
 <details>
   <summary>42. Template Tags - lorem  </summary>
+  
+- The lorem tag inserts a specified amount of random text.
 
+- The "random" text is the famous "Lorum ipsum" text, in lower case letters.  
+
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())   
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+{% lorem 50 w %}
+
+</body>
+</html>                  
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215291751-4f1e3f19-4c58-4647-bf8a-2f164dbf26f5.png)
+  
+template.html:  
+  
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
-```py
+{% lorem 5 p %}
 
+</body>
+</html>                  
 ```
-
+  
+![](https://user-images.githubusercontent.com/32337103/215291835-de7e51f7-a543-4a4d-b646-4a20f56d8b76.png)
+  
 ```py
-
+{% lorem count method random %}
 ```
 
 </details>
 
 <details>
   <summary>43. Template Tags - now </summary>
+  
+The now tag inserts the current date and/or time, according to the specified format.
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())   
 ```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>{% now "Y-m-d G:i:s" %}</h1>
+
+</body>
+</html>                  
 ```
-
+  
+![](https://user-images.githubusercontent.com/32337103/215291958-ecc2a2d3-2960-4c12-ad6c-f99b0f18ab3b.png)
+  
 ```py
-
-```
-
-```py
-
+{% now format %}
 ```
 
 </details>
 
 <details>
   <summary>44. Template Tags - regroup </summary>
+  
+- The regroup tag returns a new object grouped by a specified value.
+
+- The result is divided into one GroupedResult object for each group, making the newlist object.
+  
+- Make sure the object is sorted correctly before regrouping, otherwise you will end up with groups with the same grouper name.  
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'cars': [
+      {
+        'brand': 'Ford',
+        'model': 'Mustang',
+        'year': '1964',
+      },
+      {
+        'brand': 'Ford',
+        'model': 'Bronco',
+        'year': '1970',
+      },
+      {
+        'brand': 'Ford',
+        'model': 'Sierra',
+        'year': '1981',
+      },
+      {
+        'brand': 'Volvo',
+        'model': 'XC90',
+        'year': '2016',
+      },
+      {
+        'brand': 'Volvo',
+        'model': 'P1800',
+        'year': '1964',
+      }]
+    }
+  return HttpResponse(template.render(context, request)) 
 ```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+{% regroup cars by brand as newlist %}
+
+{{ newlist }}
+
+{% for x in newlist %}
+  <h1>{{ x.grouper }}</h1>
+  {% for y in x.list %}
+    <p>{{ y.model }}: {{ y.year }}</p>
+  {% endfor %}
+{% endfor %}
+
+<p>Check out views.py to see what the cars list looks like.</p>
+
+</body>
+</html>                  
+```
+  
+The result from {% regroup cars by brand as newlist %}:  
 
 ```py
-
+[
+  GroupedResult(
+    grouper='Ford',
+    list=[
+      {
+        'brand': 'Ford',
+        'model': 'Mustang',
+        'year': '1964'
+      },
+      {
+        'brand': 'Ford',
+        'model': 'Bronco',
+        'year': '1970'
+      },
+      {
+        'brand': 'Ford',
+        'model': 'Sierra',
+        'year': '1981'
+      }
+    ]
+  ),
+  GroupedResult(
+    grouper='Volvo',
+    list=[
+      {
+        'brand': 'Volvo',
+        'model': 'XC90',
+        'year': '2016'
+      },
+      {
+        'brand': 'Volvo',
+        'model': 'P1800',
+        'year': '1964'
+      }
+    ]
+  )
+]
 ```
 
+![](https://user-images.githubusercontent.com/32337103/215292099-a778f455-c480-45ed-b391-3d942d0e4fc5.png)
+  
 ```py
-
-```
-
-```py
-
-```
+{% regroup object by object.property as newname %}
+```  
 
 </details>
 
