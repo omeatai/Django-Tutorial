@@ -1677,6 +1677,9 @@ childtemplate.html:
   <p>Explorer of life.</p>
 {% endblock %}
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215270392-c5f022ee-5195-4ff0-8fd5-d6050b6cca89.png)
+  
 
 ```py
 
