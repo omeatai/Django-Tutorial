@@ -2003,16 +2003,41 @@ template.html:
 </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215285954-9eee4f77-0eb0-4eae-90d7-c3a89dfc99c4.png)
 
+views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'mycar': {
+      'brand': 'Ford',
+      'model': 'Mustang',
+      'year': '1964',
+      }
+    }
+  return HttpResponse(template.render(context, request))
 
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    {% for x, y in mycar.items %}
+    <p>The {{ x }} is {{ y }}.</p>
+    {% endfor %}
+
+    <p>Check out views.py to see what the mycar dictionary looks like.</p>
+  </body>
+</html>
 ```
 
 </details>
