@@ -2374,28 +2374,39 @@ template.html:
 </html>
 ```
 
-```py
+views.py:
 
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'myvar': 2
+  }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
-
-```
+template.html:
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
-```
+{% if myvar == 1 %}
+  <h1>Hello!</h1>
+{% elif myvar == 2 %}
+  <h1>Welcome!</h1>
+{% else %}
+  <h1>Greetings!</h1>
+{% endif %}
 
-```py
+<p>Check out views.py to see what the myvar variable looks like.</p>
 
-```
-
-```py
-
-```
-
-```py
-
+</body>
+</html>
 ```
 
 </details>
