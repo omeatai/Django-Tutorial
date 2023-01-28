@@ -1582,14 +1582,12 @@ with	          Specifies a variable to use in the block
 
 When escape is on, these characters are escaped:
 
-- < is converted to &lt;
-- > is converted to &gt;
-- ' is converted to '
-- " is converted to "
-- & is converted to &amp;
-
-```py
-
+```bash
+< is converted to &lt;
+> is converted to &gt;
+' is converted to '
+" is converted to "
+& is converted to &amp;
 ```
 
 ```py
