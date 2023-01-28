@@ -1348,7 +1348,7 @@ templates/template.html:
 </details>
 
 <details>
-  <summary>26. sample </summary>
+  <summary>26. Template Tags </summary>
 
 ```py
 
