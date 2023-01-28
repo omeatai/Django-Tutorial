@@ -1344,21 +1344,68 @@ templates/template.html:
 ```
 
 127.0.0.1:8000/testing/:
-  
-![015](https://user-images.githubusercontent.com/32337103/215259182-e501b4c4-4a57-4cc1-a3f9-ecc1e577591a.png) 
+
+![015](https://user-images.githubusercontent.com/32337103/215259182-e501b4c4-4a57-4cc1-a3f9-ecc1e577591a.png)
 
 </details>
 
 <details>
   <summary>26. Template Tags </summary>
 
+templates/template.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    {% if greeting == 1 %}
+    <h1>Hello</h1>
+    {% else %}
+    <h1>Bye</h1>
+    {% endif %}
+
+    <p>In views.py you can see what the greeting variable looks like.</p>
+  </body>
+</html>
+```
+
+my_tennis_club/members/views.py:
+
 ```py
+from django.http import HttpResponse
+from django.template import loader
+from .models import Member
+
+def members(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('all_members.html')
+  context = {
+    'mymembers': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
+
+def details(request, id):
+  mymember = Member.objects.get(id=id)
+  template = loader.get_template('details.html')
+  context = {
+    'mymember': mymember,
+  }
+  return HttpResponse(template.render(context, request))
+
+def main(request):
+  template = loader.get_template('main.html')
+  return HttpResponse(template.render())
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'greeting': 1,
+  }
+  return HttpResponse(template.render(context, request))
 
 ```
 
-```py
-
-```
+127.0.0.1:8000/testing/:
 
 ```py
 
