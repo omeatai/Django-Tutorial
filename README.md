@@ -1803,9 +1803,8 @@ template.html:
 </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215275833-f39e7516-ba59-43e4-ac65-57e5fc447996.png)
-  
 
 </details>
 
@@ -1888,20 +1887,35 @@ childtemplate.html:
 <details>
   <summary>35. Template Tags - filter </summary>
 
+- The filter tag allows you to run a section of code through a filter, and return it according to the filter keyword(s).
+
+- To add multiple filters, separate the keywords with the pipe | character.
+
+views.py:
+
 ```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
 
 ```
 
-```py
+template.html:
 
-```
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Welcome Everyone!</h1>
 
-```py
-
-```
-
-```py
-
+    {% filter upper %}
+    <p>Have a great day!</p>
+    {% endfilter %}
+  </body>
+</html>
 ```
 
 </details>
