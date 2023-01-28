@@ -1631,9 +1631,56 @@ The block tag has two functions:
 - It is a placeholder for content.
 - It is content that will replace the placeholder.
 
-- In master templates the block tag is a placeholder that will be replaced by a block in a child template with the same name.
+In master templates the block tag is a placeholder that will be replaced by a block in a child template with the same name.<br>
 
-- In child templates the block tag is content that will replace the placeholder in the master template with the same name.
+In child templates the block tag is content that will replace the placeholder in the master template with the same name.<br>
+
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('childtemplate.html')
+  return HttpResponse(template.render())
+
+```
+
+mymaster.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Welcome</h1>
+
+    {% block userinfo %}
+    <h2>Not registered yet</h2>
+    {% endblock %}
+
+    <p>
+      Check out the two templates to see what they look like, and views.py to
+      see the reference to the child template.
+    </p>
+  </body>
+</html>
+```
+
+childtemplate.html:
+
+```bs
+{% extends "mymaster.html" %}
+
+{% block userinfo %}
+  <h2>John Doe</h2>
+  <p>Explorer of life.</p>
+{% endblock %}
+```
+
+```py
+
+```
 
 ```py
 
