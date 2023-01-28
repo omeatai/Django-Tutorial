@@ -1728,6 +1728,17 @@ template.html:
 <details>
   <summary>31. Template Tags - csrf_token </summary>
 
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def my_view(request):
+    return HttpResponse('Hello world')
+```
+
 template.html:
 
 ```html
@@ -1793,54 +1804,80 @@ template.html:
 </html>
 ```
 
-```py
-
-```
-
-```py
-
-```
-
 </details>
 
 <details>
   <summary>33. Template Tags - debug	</summary>
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+Outputs a whole load of debugging information, including the current context and imported modules. {% debug %} outputs nothing when the DEBUG setting is False.
 
 </details>
 
 <details>
   <summary>34. Template Tags - extends </summary>
 
+- The extends tag is used to specify that this template needs a parent template.
+
+- The extends tag takes one argument, which is the name of the parent template.
+
+- When a child template with a parent template is requested, Django uses the parent template as a "skeleton" and fills it with content from the child template, according to the matching block tags.
+
+views.py:
+
 ```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('childtemplate.html')
+  return HttpResponse(template.render())
 
 ```
 
-```py
+mymaster.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Welcome</h1>
+    <hr />
+
+    {% block heading %}
+    <h2>No name</h2>
+    {% endblock %}
+
+    <h2>My Cars</h2>
+
+    <ul>
+      {% block cars %}
+      <li>No cars</li>
+      {% endblock %}
+    </ul>
+
+    <p>
+      Check out the two templates to see what they look like, and views.py to
+      see the reference to the child template.
+    </p>
+  </body>
+</html>
 ```
 
-```py
+childtemplate.html:
 
-```
+```bash
+{% extends "mymaster.html" %}
 
-```py
+{% block heading %}
+  <h2>John Doe</h2>
+  <p>Explorer of life</p>
+{% endblock %}
 
+{% block cars %}
+  <li>Ford</li>
+  <li>Volvo</li>
+  <li>Audi</li>
+{% endblock %}
 ```
 
 </details>
