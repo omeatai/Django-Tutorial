@@ -1919,9 +1919,8 @@ template.html:
   </body>
 </html>
 ```
-  
-![](https://user-images.githubusercontent.com/32337103/215276359-39aaf01c-6492-453b-a20e-64f9ec2a70db.png)
 
+![](https://user-images.githubusercontent.com/32337103/215276359-39aaf01c-6492-453b-a20e-64f9ec2a70db.png)
 
 </details>
 
@@ -1966,14 +1965,43 @@ template.html:
 </details>
 
 <details>
-  <summary>37. Template Tags - for	 </summary>
+  <summary>37. Template Tags - for </summary>
+
+- The for tag allows you to iterate over items in an object.
+
+- Objects can be array-like objects like a Python list or object-like objects like a Python dictionary.
+
+views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
+```HTML
+<!DOCTYPE html>
+<html>
+<body>
+
+<ul>
+  {% for x in fruits %}
+    <li>{{ x }}</li>
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits variable looks like.</p>
+
+</body>
+</html>
 ```
 
 ```py
