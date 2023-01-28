@@ -2373,6 +2373,8 @@ template.html:
 </body>
 </html>
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215289374-01ae974d-64c2-4fb9-865c-5567c4b70454.png)  
 
 views.py:
 
@@ -2408,8 +2410,8 @@ template.html:
 </body>
 </html>
 ```
-
-![](https://user-images.githubusercontent.com/32337103/215289374-01ae974d-64c2-4fb9-865c-5567c4b70454.png)
+  
+![](https://user-images.githubusercontent.com/32337103/215290382-596fa475-3e4f-4a51-8ec6-dc2795e7d337.png)
 
 </details>
 
