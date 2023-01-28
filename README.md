@@ -1282,13 +1282,68 @@ def testing(request):
 ```
 
 127.0.0.1:8000/testing/:
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215258927-9de476d0-5a60-48e3-862b-ec3f12aae73f.png)
-  
+
+Data From a Model -
+
+my_tennis_club/members/views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
+from .models import Member
+
+def members(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('all_members.html')
+  context = {
+    'mymembers': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
+
+def details(request, id):
+  mymember = Member.objects.get(id=id)
+  template = loader.get_template('details.html')
+  context = {
+    'mymember': mymember,
+  }
+  return HttpResponse(template.render(context, request))
+
+def main(request):
+  template = loader.get_template('main.html')
+  return HttpResponse(template.render())
+
+def testing(request):
+  mymembers = Member.objects.all().values()
+  template = loader.get_template('template.html')
+  context = {
+    'mymembers': mymembers,
+  }
+  return HttpResponse(template.render(context, request))
 
 ```
+
+templates/template.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      {% for x in mymembers %}
+      <li>{{ x.firstname }}</li>
+      {% endfor %}
+    </ul>
+
+    <p>
+      In views.py you can see how to import and fetch members from the database.
+    </p>
+  </body>
+</html>
+```
+
+127.0.0.1:8000/testing/:
 
 </details>
 
