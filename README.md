@@ -1669,7 +1669,7 @@ mymaster.html:
 
 childtemplate.html:
 
-```bs
+```bash
 {% extends "mymaster.html" %}
 
 {% block userinfo %}
