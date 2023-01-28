@@ -1344,6 +1344,8 @@ templates/template.html:
 ```
 
 127.0.0.1:8000/testing/:
+  
+![015](https://user-images.githubusercontent.com/32337103/215259182-e501b4c4-4a57-4cc1-a3f9-ecc1e577591a.png) 
 
 </details>
 
