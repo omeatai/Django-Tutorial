@@ -2837,65 +2837,194 @@ The result from {% regroup cars by brand as newlist %}:
 
 <details>
   <summary>45. Template Tags - resetcycle </summary>
+  
+- The resetcycle tag is used inside a cycle, and resets the cycle, making it start at the beginning.
+
+- It does not reset the loop, only the cycle.
+
+- If you have multiple cycles, you can specify which one to reset with the name argument.  
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request)) 
 ```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<ul>
+  {% for x in fruits %}
+    <li style='color:{% cycle 'red' 'green' 'blue' 'pink' %}'>
+      {{ x }}
+    </li>
+    {% if x == "Banana" %}
+      {% resetcycle %}
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits variable looks like.</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215292269-bde32742-f152-46f3-ac8c-b2a8422e54ad.png)
+
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))                  
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<ul>
+{% for x in fruits %}
+  <li style='
+      color:{% cycle 'red' 'green' 'blue' 'pink' as mycolor %};
+      background:{% cycle 'grey' 'beige' 'red' 'purple' as mybg %};
+    '>
+    {{ x }}
+  </li>
+  {% if x == "Banana" %}
+    {% resetcycle mybg %}
+  {% endif %}
+{% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
+  
+![](https://user-images.githubusercontent.com/32337103/215292325-82fc7cab-dbc2-445b-a96b-d974a790f3ea.png)
+  
 </details>
 
 <details>
   <summary>46. Template Tags - spaceless </summary>
+  
+- The spaceless tag is used to remove any space between tags, in the code.
 
+- The spaceless tag removes any whitespaces, new lines and tabs.  
+
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))                  
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+{% spaceless %}
+  <ul>
+    {% for x in fruits %}
+      <li>{{ x }}</li>
+    {% endfor %}
+  </ul>
+{% endspaceless %}
+
+<p>Right-click the result and view the page source. The entire HTML code is written in one line.</p>
+
+<p>Check out views.py to see what the fruits variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215292391-dbc43074-3a56-48d3-996b-a9941b0b358e.png)
 
 </details>
 
 <details>
   <summary>47. Template Tags - templatetag </summary>
+  
+- The templatetag tag is used to display characters that are normally used to perform Django tasks.
+
+- Each tag character, like {{, {% and {#, has their own name.  
+
+```bash
+Name	          Output
+openvariable	  {{
+closevariable	  }}
+openblock	      {%
+closeblock	    %}
+openbrace	      {
+closebrace	    }
+opencomment	    {#
+closecomment	  #}
+```
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())                  
+```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>
+  {% templatetag openblock %}
+    extends
+  {% templatetag closeblock %}
+</h1>
+
+</body>
+</html>                  
 ```
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
+![](https://user-images.githubusercontent.com/32337103/215292512-f1b80172-ca7b-4e80-89d6-1955784d8e12.png)
 </details>
 
 <details>
