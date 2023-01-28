@@ -2257,57 +2257,87 @@ template.html:
 ```
   
 ![](https://user-images.githubusercontent.com/32337103/215288312-62fababe-ecec-4fc2-b54f-463752e525c4.png)
-  
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
   <summary>37f. Template Tags - forloop.revcounter </summary>
 
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))   
+                  
+```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<ul>
+  {% for x in fruits %}
+    <li>{{ forloop.revcounter }}</li>
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits object look like.</p>
+
+</body>
+</html>                  
 ```
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/215288555-6dd476a2-0c7a-423b-9bcf-b4949c288134.png)
 
 </details>
 
 <details>
   <summary>37g. Template Tags - forloop.revcounter0 </summary>
 
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))   
 ```
 
+template.html:
+  
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+<ul>
+  {% for x in fruits %}
+    <li>{{ forloop.revcounter }}</li>
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the fruits object look like.</p>
+
+</body>
+</html>                  
 ```
 
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/215288704-6c62f5ad-9c1c-4b6e-85a2-4db3cfe4bf4b.png)
 
 </details>
 
