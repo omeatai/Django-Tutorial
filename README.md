@@ -2047,12 +2047,35 @@ template.html:
 <details>
   <summary>37a. Template Tags - forloop.counter </summary>
 
-```py
+views.py:
 
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      {% for x in fruits %}
+      <li>{{ forloop.counter }}</li>
+      {% endfor %}
+    </ul>
+
+    <p>Check out views.py to see what the fruits object look like.</p>
+  </body>
+</html>
 ```
 
 ```py
