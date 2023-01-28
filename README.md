@@ -3349,23 +3349,86 @@ def testing(request):
 </details>
 
 <details>
-  <summary>55. sample </summary>
+  <summary>55. Template Tags - Include </summary>
+  
+- The include tag allows you to include a template inside the current template.
 
+- This is useful when you have a block of content that is the same for many pages.  
+  
+- You can send variables into the template by using the with keyword.
+
+- In the include file, you refer to the variables by using the {{ variablename }} syntax.  
+
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
 ```
 
-```py
+template.html:
+  
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>Hello</h1>
+
+<p>This page contains a footer in a template.</p>
+
+{% include 'footer.html' %} 
+
+<p>Check out the two templates to see what they look like, and views.py to see the reference to the child template.</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215293916-0331fa94-ed0e-4c9d-a137-7afbb16594c5.png)
+  
+views.py:
+  
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
+                  
+```
+  
+template.html:
+  
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+{% include "mymenu.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
+
+<h1>Welcome</h1>
+
+<p>This is my web site.</p>
+
+<p>Check out mymenu.html to see the HTML content of the include.</p>
+
+</body>
+</html>                  
+```
+  
+mymenu.html:  
+  
+```py
+<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>  
 ```
 
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/215293994-22060211-83c7-41ce-bd51-4adf2372bf0c.png)
 
 </details>
 
