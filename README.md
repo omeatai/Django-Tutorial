@@ -1677,41 +1677,48 @@ childtemplate.html:
   <p>Explorer of life.</p>
 {% endblock %}
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215270392-c5f022ee-5195-4ff0-8fd5-d6050b6cca89.png)
-  
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
-  <summary>30. Template Tags - comment	 </summary>
+  <summary>30. Template Tags - comment </summary>
+
+- The comment tag allows you to add comment sections that will be ignored by Django.
+
+- Comments can be used to make the code more readable.
+
+- Comments can be used to prevent execution when testing code.
+
+- You can add an explanation to your comments to make them more understandable
+
+views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Welcome Everyone!</h1>
+
+{% comment %}
+  <h1>Greetings!</h2>
+{% endcomment %}
+
+</body>
+</html>
 ```
 
 ```py
