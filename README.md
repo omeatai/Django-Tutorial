@@ -1540,7 +1540,7 @@ Is not
 +TEMPLATE TAGS
 
 <details>
-  <summary>27. Template Tags </summary>
+  <summary>27. Template Tags - Introduction </summary>
 
 ```bs
 Tag	            Description
@@ -1624,7 +1624,16 @@ def testing(request):
 </details>
 
 <details>
-  <summary>29. Template Tags - block	  </summary>
+  <summary>29. Template Tags - block </summary>
+
+The block tag has two functions:
+
+- It is a placeholder for content.
+- It is content that will replace the placeholder.
+
+- In master templates the block tag is a placeholder that will be replaced by a block in a child template with the same name.
+
+- In child templates the block tag is content that will replace the placeholder in the master template with the same name.
 
 ```py
 
