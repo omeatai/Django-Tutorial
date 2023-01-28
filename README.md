@@ -1590,12 +1590,33 @@ When escape is on, these characters are escaped:
 & is converted to &amp;
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    {% autoescape on %}
+    <h1>{{ heading }}</h1>
+    {% endautoescape %}
+
+    <p>Check out views.py to see what the heading variable looks like.</p>
+  </body>
+</html>
 ```
 
-```py
+views.py:
 
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'heading': 'Hello &lt;i&gt;my&lt;/i&gt; World!',
+  }
+  return HttpResponse(template.render(context, request))
 ```
 
 ```py
