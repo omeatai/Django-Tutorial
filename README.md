@@ -2456,14 +2456,69 @@ template.html:
 </body>
 </html>
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215290542-2a80c3b1-625f-4077-b188-6cb41563102c.png)
+
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'cars': [
+      {
+        'brand': 'Ford',
+        'model': 'Mustang',
+        'year': '1964',
+      },
+      {
+        'brand': 'Ford',
+        'model': 'Bronco',
+        'year': '1970',
+      },
+      {
+        'brand': 'Ford',
+        'model': 'Sierra',
+        'year': '1981',
+      },
+      {
+        'brand': 'Volvo',
+        'model': 'XC90',
+        'year': '2016',
+      },
+      {
+        'brand': 'Volvo',
+        'model': 'P1800',
+        'year': '1964',
+      }]
+    }
+  return HttpResponse(template.render(context, request))   
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+{% for x in cars %}
+  {% ifchanged x.brand %}
+    <h1>{{ x.brand }}:</h1>
+  {% endifchanged %}
+  <p>{{ x.model }}, {{ x.year }}</p>
+{% endfor %}
+
+<p>Check out views.py to see what the cars object look like.</p>
+
+</body>
+</html>                  
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215290655-dedf12cf-f8af-4c09-bc34-53a7b0e9aed4.png)
 
 </details>
 
