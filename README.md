@@ -1231,6 +1231,9 @@ def testing(request):
 ```
 
 127.0.0.1:8000/testing/:
+  
+![012](https://user-images.githubusercontent.com/32337103/215256961-b62a0903-29f3-4aa0-b953-c202138d280f.png)
+  
 
 </details>
 
