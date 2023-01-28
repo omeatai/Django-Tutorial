@@ -3196,14 +3196,8 @@ template.html:
   </body>
 </html>
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215293203-bd6a067c-660a-479d-8cad-72e8b12a9cb7.png)
 
 </details>
 
@@ -3227,3 +3221,4 @@ template.html:
 ```
 
 </details>
+  
