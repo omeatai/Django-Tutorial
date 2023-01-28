@@ -3453,7 +3453,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>57. sample </summary>
+  <summary>57. Filter Reference - addslashes </summary>
 
 ```py
 
@@ -3474,7 +3474,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>58. sample </summary>
+  <summary>58. Filter Reference - capfirst </summary>
 
 ```py
 
@@ -3495,7 +3495,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>59. sample </summary>
+  <summary>59. Filter Reference - center </summary>
 
 ```py
 
@@ -3516,7 +3516,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>60. sample </summary>
+  <summary>60. Filter Reference - cut </summary>
 
 ```py
 
@@ -3537,7 +3537,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>61. sample </summary>
+  <summary>61. Filter Reference - default </summary>
 
 ```py
 
@@ -3558,7 +3558,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>62. sample </summary>
+  <summary>62. Filter Reference - default if none </summary>
 
 ```py
 
@@ -3579,7 +3579,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>63. sample </summary>
+  <summary>63. Filter Reference - dictsort </summary>
 
 ```py
 
@@ -3600,7 +3600,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>64. sample </summary>
+  <summary>64. Filter Reference - dictsortreversed </summary>
 
 ```py
 
@@ -3621,7 +3621,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>65. sample </summary>
+  <summary>65. Filter Reference - divisibleby </summary>
 
 ```py
 
@@ -3642,7 +3642,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>66. sample </summary>
+  <summary>66. Filter Reference - escape </summary>
 
 ```py
 
@@ -3663,7 +3663,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>67. sample </summary>
+  <summary>67. Filter Reference - escapejs </summary>
 
 ```py
 
@@ -3684,7 +3684,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>68. sample </summary>
+  <summary>68. Filter Reference - filesizeformat </summary>
 
 ```py
 
@@ -3705,7 +3705,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>69. sample </summary>
+  <summary>69. Filter Reference - first </summary>
 
 ```py
 
@@ -3726,7 +3726,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>70. sample </summary>
+  <summary>70. Filter Reference - floatformat </summary>
 
 ```py
 
@@ -3747,7 +3747,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>71. sample </summary>
+  <summary>71. Filter Reference - get_digit </summary>
 
 ```py
 
@@ -3768,7 +3768,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>72. sample </summary>
+  <summary>72. Filter Reference - join </summary>
 
 ```py
 
@@ -3789,7 +3789,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>73. sample </summary>
+  <summary>73. Filter Reference - join_script </summary>
 
 ```py
 
@@ -3810,7 +3810,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>74. sample </summary>
+  <summary>74. Filter Reference - last </summary>
 
 ```py
 
@@ -3831,7 +3831,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>75. sample </summary>
+  <summary>75. Filter Reference - length </summary>
 
 ```py
 
@@ -3852,7 +3852,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>76. sample </summary>
+  <summary>76. Filter Reference - length_js </summary>
 
 ```py
 
@@ -3873,7 +3873,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>77. sample </summary>
+  <summary>77. Filter Reference - linebreaks </summary>
 
 ```py
 
@@ -3894,7 +3894,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>78. sample </summary>
+  <summary>78. Filter Reference - linebreaksbr </summary>
 
 ```py
 
@@ -3915,7 +3915,7 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>79. sample </summary>
+  <summary>79. Filter Reference - linenumbers </summary>
 
 ```py
 
@@ -3936,7 +3936,448 @@ mymenu.html:
 </details>
 
 <details>
-  <summary>80. sample </summary>
+  <summary>80. Filter Reference - ljust </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>81. Filter Reference - lower </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>82. Filter Reference - make_list </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>83. Filter Reference - phone2numeric </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>84. Filter Reference - pluralize </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>85. Filter Reference - random </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>86. Filter Reference - rjust </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>87. Filter Reference - slice </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>88. Filter Reference - slugify </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>89. Filter Reference - striptags </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>90. Filter Reference - time </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>91. Filter Reference - timesince </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>92. Filter Reference - timeuntil </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>93. Filter Reference - title </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>94. Filter Reference - title </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>95. Filter Reference - truncatechars </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>96. Filter Reference - truncatechars_html </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>97. Filter Reference - truncatewords </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>98. Filter Reference - truncatewords_html </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>99. Filter Reference - unordered_list </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>100. Filter Reference - upper </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>101. sample </summary>
 
 ```py
 
