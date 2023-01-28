@@ -1282,6 +1282,9 @@ def testing(request):
 ```
 
 127.0.0.1:8000/testing/:
+  
+![](https://user-images.githubusercontent.com/32337103/215258927-9de476d0-5a60-48e3-862b-ec3f12aae73f.png)
+  
 
 ```py
 
