@@ -1881,9 +1881,8 @@ childtemplate.html:
   <li>Audi</li>
 {% endblock %}
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215276184-abf815c2-10dc-461f-ae52-6aa96afe3b50.png)
-  
 
 </details>
 
@@ -1926,12 +1925,37 @@ template.html:
 <details>
   <summary>36. Template Tags - firstof	 </summary>
 
-```py
+- The firstof tag returns the first argument that is not an empty variable.
 
+- Empty variables can be an empty string "", or a zero number 0, or a boolean false.
+
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'x': 'Volvo',
+    'y': 'Ford',
+    'z': 'BMW',
+    }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>{% firstof x y z %}</h1>
+
+    <p>Check out views.py to see the content of the x, y, and z variables.</p>
+  </body>
+</html>
 ```
 
 ```py
