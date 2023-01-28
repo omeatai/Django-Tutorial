@@ -3202,15 +3202,46 @@ template.html:
 </details>
 
 <details>
-  <summary>53. sample </summary>
+  <summary>53. Template Tags - Empty keyword </summary>
+
+- The empty keyword can be used if you want to do something special if the object is empty.
+
+- The empty keyword can also be used if the object does not exist.
+
+views.py:
 
 ```py
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'emptytestobject': [],
+  }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      {% for x in emptytestobject %}
+      <li>{{ x.firstname }}</li>
+      {% empty %}
+      <li>No members</li>
+      {% endfor %}
+    </ul>
+
+    <p>In views.py you can see the emptytestobject.</p>
+  </body>
+</html>
 ```
+
+views.py:
 
 ```py
 
