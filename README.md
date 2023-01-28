@@ -2373,8 +2373,8 @@ template.html:
 </body>
 </html>
 ```
-  
-![](https://user-images.githubusercontent.com/32337103/215289374-01ae974d-64c2-4fb9-865c-5567c4b70454.png)  
+
+![](https://user-images.githubusercontent.com/32337103/215289374-01ae974d-64c2-4fb9-865c-5567c4b70454.png)
 
 views.py:
 
@@ -2410,20 +2410,51 @@ template.html:
 </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215290382-596fa475-3e4f-4a51-8ec6-dc2795e7d337.png)
 
 </details>
 
 <details>
-  <summary>39. Template Tags - ifchanged	 </summary>
+  <summary>39. Template Tags - ifchanged </summary>
+
+- The ifchanged tag allows you to check a value in a loop and output a code if the value has changed since the last iteration.
+
+- If the iteration object has many values per iteration, you can specify which value to check, and the block of code will only displayed if that value has changed since the last iteration.
+
+views.py:
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'mylist': [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5]
+    }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
+```bash
+<!DOCTYPE html>
+<html>
+<body>
+
+<ul>
+  {% for x in mylist %}
+    {% ifchanged %}
+      <li>{{ x }}</li>
+    {% endifchanged %}
+  {% endfor %}
+</ul>
+
+<p>Check out views.py to see what the mylist object look like.</p>
+
+</body>
+</html>
 ```
 
 ```py
