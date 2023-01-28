@@ -2456,10 +2456,10 @@ template.html:
 </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215290542-2a80c3b1-625f-4077-b188-6cb41563102c.png)
 
-views.py:  
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -2495,32 +2495,29 @@ def testing(request):
         'year': '1964',
       }]
     }
-  return HttpResponse(template.render(context, request))   
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-{% for x in cars %}
-  {% ifchanged x.brand %}
+  <body>
+    {% for x in cars %} {% ifchanged x.brand %}
     <h1>{{ x.brand }}:</h1>
-  {% endifchanged %}
-  <p>{{ x.model }}, {{ x.year }}</p>
-{% endfor %}
+    {% endifchanged %}
+    <p>{{ x.model }}, {{ x.year }}</p>
+    {% endfor %}
 
-<p>Check out views.py to see what the cars object look like.</p>
-
-</body>
-</html>                  
+    <p>Check out views.py to see what the cars object look like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215290655-dedf12cf-f8af-4c09-bc34-53a7b0e9aed4.png)
 
-views.py:  
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -2531,10 +2528,10 @@ def testing(request):
   context = {
     'mylist': [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5]
     }
-  return HttpResponse(template.render(context, request))   
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -2552,26 +2549,25 @@ template.html:
 <p>Check out views.py to see what cars object look like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215291268-3f5646a2-5cf9-4825-8dd3-78ddd1694353.png)
- 
 
 </details>
 
 <details>
   <summary>40. Template Tags - include </summary>
-  
+
 - The include tag allows you to include content from another template.
 
 - Place the include tag exactly where you want the content to be displayed.
 
 - This is useful when you have the same content for many pages.
 
-- You can also send variables into the template, by using the with keyword.  
-  
-views.py:  
+- You can also send variables into the template, by using the with keyword.
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -2581,30 +2577,28 @@ def testing(request):
   template = loader.get_template('template.html')
   return HttpResponse(template.render())
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    {% include "mymenu.html" with me="ALEXANDER" sponsor="W3SCHOOLS" %}
 
-{% include "mymenu.html" with me="ALEXANDER" sponsor="W3SCHOOLS" %}
+    <h1>Welcome</h1>
 
-<h1>Welcome</h1>
+    <p>This is my web site.</p>
 
-<p>This is my web site.</p>
-
-<p>Check out mymenu.html to see the HTML content of the include.</p>
-
-</body>
-</html>                  
+    <p>Check out mymenu.html to see the HTML content of the include.</p>
+  </body>
+</html>
 ```
-  
-mymenu.html:  
+
+mymenu.html:
 
 ```html
-<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>   
+<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/215291493-d86a684c-a81c-44b6-948f-8c10b52415c4.png)
@@ -2613,8 +2607,8 @@ mymenu.html:
 
 <details>
   <summary>41. Template Tags - load </summary>
-  
-Loads template tags from another library.  
+
+Loads template tags from another library.
 
 ```py
 
@@ -2624,52 +2618,48 @@ Loads template tags from another library.
 
 <details>
   <summary>42. Template Tags - lorem  </summary>
-  
+
 - The lorem tag inserts a specified amount of random text.
 
-- The "random" text is the famous "Lorum ipsum" text, in lower case letters.  
+- The "random" text is the famous "Lorum ipsum" text, in lower case letters.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
 
 def testing(request):
   template = loader.get_template('template.html')
-  return HttpResponse(template.render())   
+  return HttpResponse(template.render())
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-{% lorem 50 w %}
-
-</body>
-</html>                  
+  <body>
+    {% lorem 50 w %}
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215291751-4f1e3f19-4c58-4647-bf8a-2f164dbf26f5.png)
-  
-template.html:  
-  
+
+template.html:
+
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-{% lorem 5 p %}
-
-</body>
-</html>                  
+  <body>
+    {% lorem 5 p %}
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215291835-de7e51f7-a543-4a4d-b646-4a20f56d8b76.png)
-  
+
 ```py
 {% lorem count method random %}
 ```
@@ -2678,10 +2668,10 @@ template.html:
 
 <details>
   <summary>43. Template Tags - now </summary>
-  
+
 The now tag inserts the current date and/or time, according to the specified format.
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -2689,10 +2679,10 @@ from django.template import loader
 
 def testing(request):
   template = loader.get_template('template.html')
-  return HttpResponse(template.render())   
+  return HttpResponse(template.render())
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -2702,11 +2692,11 @@ template.html:
 <h1>{% now "Y-m-d G:i:s" %}</h1>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215291958-ecc2a2d3-2960-4c12-ad6c-f99b0f18ab3b.png)
-  
+
 ```py
 {% now format %}
 ```
@@ -2715,14 +2705,14 @@ template.html:
 
 <details>
   <summary>44. Template Tags - regroup </summary>
-  
+
 - The regroup tag returns a new object grouped by a specified value.
 
 - The result is divided into one GroupedResult object for each group, making the newlist object.
-  
-- Make sure the object is sorted correctly before regrouping, otherwise you will end up with groups with the same grouper name.  
-  
-views.py:  
+
+- Make sure the object is sorted correctly before regrouping, otherwise you will end up with groups with the same grouper name.
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -2758,34 +2748,27 @@ def testing(request):
         'year': '1964',
       }]
     }
-  return HttpResponse(template.render(context, request)) 
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-{% regroup cars by brand as newlist %}
-
-{{ newlist }}
-
-{% for x in newlist %}
-  <h1>{{ x.grouper }}</h1>
-  {% for y in x.list %}
+  <body>
+    {% regroup cars by brand as newlist %} {{ newlist }} {% for x in newlist %}
+    <h1>{{ x.grouper }}</h1>
+    {% for y in x.list %}
     <p>{{ y.model }}: {{ y.year }}</p>
-  {% endfor %}
-{% endfor %}
+    {% endfor %} {% endfor %}
 
-<p>Check out views.py to see what the cars list looks like.</p>
-
-</body>
-</html>                  
+    <p>Check out views.py to see what the cars list looks like.</p>
+  </body>
+</html>
 ```
-  
-The result from {% regroup cars by brand as newlist %}:  
+
+The result from {% regroup cars by brand as newlist %}:
 
 ```py
 [
@@ -2828,23 +2811,23 @@ The result from {% regroup cars by brand as newlist %}:
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/215292099-a778f455-c480-45ed-b391-3d942d0e4fc5.png)
-  
+
 ```py
 {% regroup object by object.property as newname %}
-```  
+```
 
 </details>
 
 <details>
   <summary>45. Template Tags - resetcycle </summary>
-  
+
 - The resetcycle tag is used inside a cycle, and resets the cycle, making it start at the beginning.
 
 - It does not reset the loop, only the cycle.
 
-- If you have multiple cycles, you can specify which one to reset with the name argument.  
-  
-views.py:  
+- If you have multiple cycles, you can specify which one to reset with the name argument.
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -2855,10 +2838,10 @@ def testing(request):
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
     }
-  return HttpResponse(template.render(context, request)) 
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
@@ -2879,12 +2862,12 @@ template.html:
 <p>Check out views.py to see what the fruits variable looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215292269-bde32742-f152-46f3-ac8c-b2a8422e54ad.png)
 
-views.py:  
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -2895,10 +2878,10 @@ def testing(request):
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
     }
-  return HttpResponse(template.render(context, request))                  
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
@@ -2922,22 +2905,22 @@ template.html:
 <p>Check out views.py to see what the fruits variable looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215292325-82fc7cab-dbc2-445b-a96b-d974a790f3ea.png)
-  
+
 </details>
 
 <details>
   <summary>46. Template Tags - spaceless </summary>
-  
+
 - The spaceless tag is used to remove any space between tags, in the code.
 
-- The spaceless tag removes any whitespaces, new lines and tabs.  
+- The spaceless tag removes any whitespaces, new lines and tabs.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -2947,42 +2930,43 @@ def testing(request):
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
     }
-  return HttpResponse(template.render(context, request))                  
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-{% spaceless %}
-  <ul>
-    {% for x in fruits %}
+  <body>
+    {% spaceless %}
+    <ul>
+      {% for x in fruits %}
       <li>{{ x }}</li>
-    {% endfor %}
-  </ul>
-{% endspaceless %}
+      {% endfor %}
+    </ul>
+    {% endspaceless %}
 
-<p>Right-click the result and view the page source. The entire HTML code is written in one line.</p>
+    <p>
+      Right-click the result and view the page source. The entire HTML code is
+      written in one line.
+    </p>
 
-<p>Check out views.py to see what the fruits variable looks like.</p>
-
-</body>
-</html>                  
+    <p>Check out views.py to see what the fruits variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215292391-dbc43074-3a56-48d3-996b-a9941b0b358e.png)
 
 </details>
 
 <details>
   <summary>47. Template Tags - templatetag </summary>
-  
+
 - The templatetag tag is used to display characters that are normally used to perform Django tasks.
 
-- Each tag character, like {{, {% and {#, has their own name.  
+- Each tag character, like {{, {% and {#, has their own name.
 
 ```bash
 Name	          Output
@@ -2995,8 +2979,8 @@ closebrace	    }
 opencomment	    {#
 closecomment	  #}
 ```
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3004,27 +2988,22 @@ from django.template import loader
 
 def testing(request):
   template = loader.get_template('template.html')
-  return HttpResponse(template.render())                  
+  return HttpResponse(template.render())
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-
-<h1>
-  {% templatetag openblock %}
-    extends
-  {% templatetag closeblock %}
-</h1>
-
-</body>
-</html>                  
+  <body>
+    <h1>{% templatetag openblock %} extends {% templatetag closeblock %}</h1>
+  </body>
+</html>
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/215292512-f1b80172-ca7b-4e80-89d6-1955784d8e12.png)
+
 </details>
 
 <details>
