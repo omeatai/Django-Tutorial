@@ -3240,36 +3240,110 @@ template.html:
   </body>
 </html>
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215293477-65d7ce47-d730-4328-9b1f-24235855825a.png)
 
 views.py:
 
 ```py
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry'],   
+  }
+  return HttpResponse(template.render(context, request))
+                  
 ```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+<ul>
+  {% for x in myobject %}
+    <li>{{ x.firstname }}</li>
+  {% empty %}
+    <li>No members</li>
+  {% endfor %}
+</ul> 
+
+<p>In views.py you can see that there is no myobject variable.</p>
+
+</body>
+</html>                  
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215293538-b2cdcb56-df37-4cb3-ac6e-b778cc7490b4.png)
 
 </details>
 
 <details>
-  <summary>54. sample </summary>
+  <summary>54. Template Tags - Comments </summary>
+  
+- Comments allows you to have sections of code that should be ignored.
+  
+- You can add a message to your comment, to help you remember why you wrote the comment, or as message to other people reading the code.  
+  
+- You can also use the {# ... #} tags when commenting out code, which can be easier for smaller comments.  
+  
+- Views are written in Python, and Python comments are written with the # character.  
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())                    
+```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Welcome Everyone</h1>
+{% comment %}
+  <h1>Welcome ladies and gentlemen</h1>
+{% endcomment %}
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215293655-e05a591b-333f-43b4-9178-e78940ec2048.png)
+
+```html
+<h1>Welcome Everyone</h1>
+{% comment "this was the original welcome message" %}
+    <h1>Welcome ladies and gentlemen</h1>
+{% endcomment %}
 ```
 
-```py
-
+```html
+<h1>Welcome{# Everyone#}</h1>
 ```
-
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
-```
-
-```py
-
+def testing(request):
+  template = loader.get_template('template.html')
+  #context = {
+  # 'var1': 'John',
+  #}
+  return HttpResponse(template.render())
 ```
 
 </details>
