@@ -1384,7 +1384,9 @@ with	          Specifies a variable to use in the block
 </details>
 
 <details>
-  <summary>27. Django if Else </summary>
+  <summary>27. Django Conditionals and Operators </summary>
+
+If/Else -
 
 templates/template.html:
 
@@ -1440,28 +1442,131 @@ def testing(request):
 ```
 
 127.0.0.1:8000/testing/:
-  
+
 ![016](https://user-images.githubusercontent.com/32337103/215260865-67cfd700-fb4e-419d-b16c-4f00809c1a9d.png)
-  
+
+If-Elif-Else -
 
 ```py
-
+{% if greeting == 1 %}
+  <h1>Hello</h1>
+{% elif greeting == 2 %}
+  <h1>Welcome</h1>
+{% else %}
+  <h1>Goodbye</h1>
+{% endif %}
 ```
 
-```py
+Is equal to -
 
+```py
+{% if greeting == 2 %}
+  <h1>Hello</h1>
+{% endif %}
 ```
 
-```py
+Is not equal to -
 
+```py
+{% if greeting != 1 %}
+  <h1>Hello</h1>
+{% endif %}
 ```
 
-```py
+Is less than -
 
+```py
+{% if greeting < 3 %}
+  <h1>Hello</h1>
+{% endif %}
 ```
 
-```py
+Is less than, or equal to -
 
+```py
+{% if greeting <= 3 %}
+  <h1>Hello</h1>
+{% endif %}
+```
+
+Is greater than -
+
+```py
+{% if greeting > 1 %}
+  <h1>Hello</h1>
+{% endif %}
+```
+
+Is greater than, or equal to -
+
+```py
+{% if greeting >= 1 %}
+  <h1>Hello</h1>
+{% endif %}
+```
+
+And -
+
+```py
+{% if greeting == 1 and day == "Friday" %}
+  <h1>Hello Weekend!</h1>
+{% endif %}
+```
+
+Or -
+
+```py
+{% if greeting == 1 or greeting == 5 %}
+  <h1>Hello</h1>
+{% endif %}
+```
+
+And/Or -
+
+```py
+{% if greeting == 1 and day == "Friday" or greeting == 5 %}
+```
+
+In -
+
+```py
+{% if 'Banana' in fruits %}
+  <h1>Hello</h1>
+{% else %}
+  <h1>Goodbye</h1>
+{% endif %}
+```
+
+Not in -
+
+```py
+{% if 'Banana' not in fruits %}
+  <h1>Hello</h1>
+{% else %}
+  <h1>Goodbye</h1>
+{% endif %}
+```
+
+Is -
+
+```py
+{% with var1=x var2=x %}
+  {% if var1 is var2 %}
+    <h1>YES</h1>
+  {% else %}
+    <h1>NO</h1>
+  {% endif %}
+{% endwith %}
+```
+
+Is not
+
+```py
+{% if x is not y %}
+  <h1>YES</h1>
+{% else %}
+  <h1>NO</h1>
+{% endif %}
 ```
 
 </details>
