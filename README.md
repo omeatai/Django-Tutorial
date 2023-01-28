@@ -1572,7 +1572,7 @@ Is not
 </details>
 
 <details>
-  <summary>28. sample </summary>
+  <summary>28. Django Loops </summary>
 
 ```py
 
