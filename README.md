@@ -1176,7 +1176,7 @@ admin.site.register(Member, MemberAdmin)
 
 </details>
 
-+SYNTAX
++CONDITIONALS AND OPERATORS
 
 <details>
   <summary>25. Template Variables </summary>
@@ -1350,41 +1350,7 @@ templates/template.html:
 </details>
 
 <details>
-  <summary>26. Template Tags </summary>
-
-```bs
-Tag	            Description
-
-autoescape	    Specifies if autoescape mode is on or off
-block	          Specifies a block section
-comment	        Specifies a comment section
-csrf_token	    Protects forms from Cross Site Request Forgeries
-cycle	          Specifies content to use in each cycle of a loop
-debug	          Specifies debugging information
-extends	        Specifies a parent template
-filter	        Filters content before returning it
-firstof	        Returns the first not empty variable
-for	            Specifies a for loop
-if	            Specifies a if statement
-ifchanged	      Used in for loops. Outputs a block only if a value has changed since the last iteration
-include	        Specifies included content/template
-load	          Loads template tags from another library
-lorem	          Outputs random text
-now	            Outputs the current date/time
-regroup	        Sorts an object by a group
-resetcycle	    Used in cycles. Resets the cycle
-spaceless	      Removes whitespace between HTML tags
-templatetag	    Outputs a specified template tag
-url	            Returns the absolute URL part of a URL
-verbatim	      Specifies contents that should not be rendered by the template engine
-widthratio	    Calculates a width value based on the ratio between a given value and a max value
-with	          Specifies a variable to use in the block
-```
-
-</details>
-
-<details>
-  <summary>27. Django Conditionals and Operators </summary>
+  <summary>26. Django Conditionals and Operators </summary>
 
 If/Else -
 
@@ -1571,8 +1537,44 @@ Is not
 
 </details>
 
++TEMPLATE TAGS
+
 <details>
-  <summary>28. Django Loops </summary>
+  <summary>27. Template Tags </summary>
+
+```bs
+Tag	            Description
+
+autoescape	    Specifies if autoescape mode is on or off
+block	          Specifies a block section
+comment	        Specifies a comment section
+csrf_token	    Protects forms from Cross Site Request Forgeries
+cycle	          Specifies content to use in each cycle of a loop
+debug	          Specifies debugging information
+extends	        Specifies a parent template
+filter	        Filters content before returning it
+firstof	        Returns the first not empty variable
+for	            Specifies a for loop
+if	            Specifies a if statement
+ifchanged	      Used in for loops. Outputs a block only if a value has changed since the last iteration
+include	        Specifies included content/template
+load	          Loads template tags from another library
+lorem	          Outputs random text
+now	            Outputs the current date/time
+regroup	        Sorts an object by a group
+resetcycle	    Used in cycles. Resets the cycle
+spaceless	      Removes whitespace between HTML tags
+templatetag	    Outputs a specified template tag
+url	            Returns the absolute URL part of a URL
+verbatim	      Specifies contents that should not be rendered by the template engine
+widthratio	    Calculates a width value based on the ratio between a given value and a max value
+with	          Specifies a variable to use in the block
+```
+
+</details>
+
+<details>
+  <summary>28. Template Tags - autoescape  </summary>
 
 ```py
 
@@ -1593,7 +1595,7 @@ Is not
 </details>
 
 <details>
-  <summary>29. sample </summary>
+  <summary>29. Template Tags - block	  </summary>
 
 ```py
 
@@ -1614,7 +1616,7 @@ Is not
 </details>
 
 <details>
-  <summary>30. sample </summary>
+  <summary>30. Template Tags - comment	 </summary>
 
 ```py
 
@@ -1635,7 +1637,7 @@ Is not
 </details>
 
 <details>
-  <summary>31. sample </summary>
+  <summary>31. Template Tags - csrf_token </summary>
 
 ```py
 
@@ -1656,7 +1658,7 @@ Is not
 </details>
 
 <details>
-  <summary>32. sample </summary>
+  <summary>32. Template Tags - cycle </summary>
 
 ```py
 
@@ -1677,7 +1679,7 @@ Is not
 </details>
 
 <details>
-  <summary>33. sample </summary>
+  <summary>33. Template Tags - debug	</summary>
 
 ```py
 
@@ -1698,7 +1700,7 @@ Is not
 </details>
 
 <details>
-  <summary>34. sample </summary>
+  <summary>34. Template Tags - extends </summary>
 
 ```py
 
@@ -1719,7 +1721,7 @@ Is not
 </details>
 
 <details>
-  <summary>35. sample </summary>
+  <summary>35. Template Tags - filter </summary>
 
 ```py
 
@@ -1740,7 +1742,7 @@ Is not
 </details>
 
 <details>
-  <summary>36. sample </summary>
+  <summary>36. Template Tags - firstof	 </summary>
 
 ```py
 
@@ -1761,7 +1763,7 @@ Is not
 </details>
 
 <details>
-  <summary>37. sample </summary>
+  <summary>37. Template Tags - for	 </summary>
 
 ```py
 
@@ -1782,7 +1784,7 @@ Is not
 </details>
 
 <details>
-  <summary>38. sample </summary>
+  <summary>38. Template Tags - if </summary>
 
 ```py
 
@@ -1803,7 +1805,7 @@ Is not
 </details>
 
 <details>
-  <summary>39. sample </summary>
+  <summary>39. Template Tags - ifchanged	 </summary>
 
 ```py
 
@@ -1824,7 +1826,7 @@ Is not
 </details>
 
 <details>
-  <summary>40. sample </summary>
+  <summary>40. Template Tags - include </summary>
 
 ```py
 
@@ -1845,7 +1847,7 @@ Is not
 </details>
 
 <details>
-  <summary>41. sample </summary>
+  <summary>41. Template Tags - load </summary>
 
 ```py
 
@@ -1866,7 +1868,7 @@ Is not
 </details>
 
 <details>
-  <summary>42. sample </summary>
+  <summary>42. Template Tags - lorem  </summary>
 
 ```py
 
@@ -1887,7 +1889,7 @@ Is not
 </details>
 
 <details>
-  <summary>43. sample </summary>
+  <summary>43. Template Tags - now </summary>
 
 ```py
 
@@ -1908,7 +1910,7 @@ Is not
 </details>
 
 <details>
-  <summary>44. sample </summary>
+  <summary>44. Template Tags - regroup </summary>
 
 ```py
 
@@ -1929,7 +1931,7 @@ Is not
 </details>
 
 <details>
-  <summary>45. sample </summary>
+  <summary>45. Template Tags - resetcycle </summary>
 
 ```py
 
@@ -1950,7 +1952,7 @@ Is not
 </details>
 
 <details>
-  <summary>46. sample </summary>
+  <summary>46. Template Tags - spaceless </summary>
 
 ```py
 
@@ -1971,7 +1973,7 @@ Is not
 </details>
 
 <details>
-  <summary>47. sample </summary>
+  <summary>47. Template Tags - templatetag </summary>
 
 ```py
 
@@ -1992,7 +1994,7 @@ Is not
 </details>
 
 <details>
-  <summary>48. sample </summary>
+  <summary>48. Template Tags - url </summary>
 
 ```py
 
@@ -2013,7 +2015,7 @@ Is not
 </details>
 
 <details>
-  <summary>49. sample </summary>
+  <summary>49. Template Tags - verbatim </summary>
 
 ```py
 
@@ -2034,7 +2036,70 @@ Is not
 </details>
 
 <details>
-  <summary>50. sample </summary>
+  <summary>50. Template Tags - widthratio </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>51. Template Tags - with  </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>52. sample </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>53. sample </summary>
 
 ```py
 
