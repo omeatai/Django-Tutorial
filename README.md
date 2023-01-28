@@ -1576,6 +1576,18 @@ with	          Specifies a variable to use in the block
 <details>
   <summary>28. Template Tags - autoescape  </summary>
 
+- The autoescape tag is used to specify if autoescape is on or off.
+
+- If autoescape is on, which is default, HTML code in variables will be escaped.
+
+When escape is on, these characters are escaped:
+
+- < is converted to &lt;
+- > is converted to &gt;
+- ' is converted to '
+- " is converted to "
+- & is converted to &amp;
+
 ```py
 
 ```
