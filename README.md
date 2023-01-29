@@ -3570,153 +3570,353 @@ template.html:
   </body>
 </html>
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215330828-5a372836-3cdb-41b7-a280-3e048161404f.png)
 
 </details>
 
 <details>
   <summary>58. Filter Reference - capfirst </summary>
+  
+The capfirst filter capitalizes the first letter of the value.  
 
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'animal': 'lion',   
+  }
+  return HttpResponse(template.render(context, request))     
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>{{ animal|capfirst }}</h1>
+
+<p>In views.py you can see what the animal variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215331045-40a87606-e020-4e1e-ba55-c61d4a65840e.png)
 
 </details>
 
 <details>
   <summary>59. Filter Reference - center </summary>
+  
+The center filter places the value in the center of a value of the specified length.
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'name': 'Tobias',
+  }
+  return HttpResponse(template.render(context, request))    
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>{{ name|center:20 }}</h1>
+
+<p>In HTML the display does not show more than one space,
+but if you view the page source you will see that there are
+20 characters between &lt;h1&gt; and &lt;/h1&gt;.</p>
+
+<p>Or, to demonstrate we can use a textarea to see that "Tobias" is center aligned:</p>
+
+<textarea>{{ name|center:20 }}</textarea>
+
+<p>In views.py you can see what the name variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215331340-2a3a1963-0686-44bd-bb14-10a215a3982d.png)
 
 </details>
 
 <details>
   <summary>60. Filter Reference - cut </summary>
+  
+- The cut filter removes the specified phrase from the value.
+
+- The cut filter is case sensitive.
+
+- All occurences of the specified phrase/character are removed.  
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'name': 'Emil Refsnes',
+  }
+  return HttpResponse(template.render(context, request))  
 ```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>{{ name|cut:"snes" }}</h1>
+
+<p>In views.py you can see what the name variable looks like.</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215331712-6c51ca13-a1aa-4290-a16f-b006dc2dc5b0.png)
+
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'name': 'Emil Refsnes',
+  }
+  return HttpResponse(template.render(context, request))      
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>{{ name|cut:"e" }}</h1>
+
+<p>In views.py you can see what the name variable looks like.</p>
+
+</body>
+</html>                  
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215331793-64c3a751-c631-4463-bf48-4a6c822afc57.png)
 
-```py
-
-```
 
 </details>
 
 <details>
   <summary>61. Filter Reference - default </summary>
+  
+- The default filter allows you to specify a default value to use if the value evaluates to False.
+
+Values that evaluates to False are:
+
+- Empty Strings ""
+- Any numeric 0
+- Any empty object [], (), {}, set(), range(0)
+- None
+- False
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'colors': ['Red', 'Green', 'Blue', '', 'Yellow']
+  }
+  return HttpResponse(template.render(context, request))                    
+```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+{% for x in colors %}
+  <h1>{{ x|default:"nocolor" }}</h1>
+{% endfor %}
+
+<p>In views.py you can see what the colors variable looks like.</p>
+
+</body>
+</html>                  
 ```
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/215332377-323885df-93f8-45b8-bf0f-e06a828a575b.png)
 
 </details>
 
 <details>
   <summary>62. Filter Reference - default if none </summary>
+  
+- The default_if_none filter allows you to specify a default value to use if the value is None.
 
+- The value has to be exactly None for this filter to have effect.  
+
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'colors': ['Red', None, 'Blue', '', 'Yellow']
+  }
+  return HttpResponse(template.render(context, request))  
 ```
 
+template.html:  
+  
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+{% for x in colors %}
+  <h1>{{ x|default_if_none:"nocolor" }}</h1>
+{% endfor %}
+
+<p>In views.py you can see what the colors variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215332945-19576437-2c74-4c2d-9b39-774d585609f1.png)
+  
 
 </details>
 
 <details>
   <summary>63. Filter Reference - dictsort </summary>
+  
+- The dictsort filter sorts a dictionary by the specified field.
+
+- The dictsort filter sorts ascending.
+
+- Use the dictsortreversed filter to sort descending.  
+
+views.py:
+  
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'cars': [
+      {'brand': 'Ford', 'model': 'Mustang', 'year': 1964},
+      {'brand': 'Volvo', 'model': 'XC90', 'year': 2022},
+      {'brand': 'Volvo', 'model': 'P1800', 'year': 1962},
+      {'brand': 'Ford', 'model': 'Focus', 'year': 2004},
+    ]
+  }
+  return HttpResponse(template.render(context, request))        
+```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+{% for x in cars|dictsort:"year" %}
+  <p>{{ x.year }} {{ x.brand }} {{ x.model }}.</p>
+{% endfor %}
+
+<p>In views.py you can see what the colors variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215333363-4679cb6d-0fe7-454e-ac27-423d13e0d974.png)
 
 </details>
 
 <details>
   <summary>64. Filter Reference - dictsortreversed </summary>
+  
+- The dictsortreversed filter sorts a dictionary by the specified field, descending.
+
+- Use the dictsort filter to sort ascending.  
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'cars': [
+      {'brand': 'Ford', 'model': 'Mustang', 'year': 1964},
+      {'brand': 'Volvo', 'model': 'XC90', 'year': 2022},
+      {'brand': 'Volvo', 'model': 'P1800', 'year': 1962},
+      {'brand': 'Ford', 'model': 'Focus', 'year': 2004},
+    ]
+  }
+  return HttpResponse(template.render(context, request))  
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+{% for x in cars|dictsortreversed:"year" %}
+  <p>{{ x.year }} {{ x.brand }} {{ x.model }}.</p>
+{% endfor %}
+
+<p>In views.py you can see what the colors variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215334222-18ee4b35-c15a-4796-b938-1cc8c6f0a2fe.png)
 
 </details>
 
