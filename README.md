@@ -3922,85 +3922,172 @@ template.html:
 
 <details>
   <summary>65. Filter Reference - divisibleby </summary>
+  
+The divisibleby filter returns True if the value is divisible by the argument, otherwise it returns False.
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'totalsum': 40,
+  }
+  return HttpResponse(template.render(context, request))     
 ```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+{% if totalsum|divisibleby:5 %}
+  <h1>Yes, it is!</h1>
+{% endif %}
+
+<p>In views.py you can see what the totalsum variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215334771-4988bd47-1514-46d1-9bfd-afc6c367a7b4.png)
 
 </details>
 
 <details>
   <summary>66. Filter Reference - escape </summary>
+  
+The escape filter escapes HTML characters from the value.
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'heading': 'Hello &lt;i>my&lt;/i> World!',
+  }
+  return HttpResponse(template.render(context, request))   
 ```
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+{% autoescape off %}
+  <h1>{{ heading|escape }}</h1>
+  <h1>{{ heading }}</h1>
+{% endautoescape %}
+
+<p>In views.py you can see what the heading variable looks like.</p>
+
+<p>
+<strong>Note:</strong>
+Escaping HTML characters is a default setting in Django,
+so we have to turn off autoescape in the example to see the difference.
+</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215335205-da51b744-0cb1-4f7a-a4aa-d8c10caa0f12.png)
 
 </details>
 
 <details>
   <summary>67. Filter Reference - escapejs </summary>
+  
+The escapejs filter escapes text to be used in JavaScript strings.
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'var1': 'John\nDoe',
+  }
+  return HttpResponse(template.render(context, request))       
 ```
 
-```py
+template.html:
+  
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
-```
+<h3>Without escapejs:</h3>
+<button onclick="alert('{{ var1 }}')">Click me</button>
 
-```py
+<h3>With escapejs:</h3>
+<button onclick="alert('{{ var1|escapejs }}')">Click me</button>
 
-```
+<p>Try clicking both buttons. The JavaScript without the escapejs filter will raise an error.
 
-```py
+<p>In views.py you can see what the var1 variable looks like.</p>
 
+</body>
+</html>                  
 ```
 
 </details>
 
 <details>
   <summary>68. Filter Reference - filesizeformat </summary>
+  
+- The filesizeformat filter converts a large number into a more human readable format.
+
+Examples:
+
+- 1024 is converted into 1.0 KB.
+
+- 524288 is converted into 512.0 KB.  
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'size': 26214400
+  }
+  return HttpResponse(template.render(context, request))                    
 ```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>{{ size|filesizeformat }}</h1>
+
+<p>In views.py you can see what the size variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215335665-dd213300-acd1-478a-9f40-e6dbbc671eb1.png)
 
 </details>
 
