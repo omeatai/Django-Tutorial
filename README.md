@@ -4284,6 +4284,37 @@ template.html:
 ```  
   
 ![](https://user-images.githubusercontent.com/32337103/215336425-a1d7acf2-d1fe-4dd5-bd42-dc9061b68f43.png)
+  
+views.py:  
+  
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'mynumber': 981358286,
+  }
+  return HttpResponse(template.render(context, request))                    
+```
+  
+template.html:  
+
+```py
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>{{ mynumber|floatformat:"2g" }}</h1>
+
+<p>In views.py you can see what the mynumber variable looks like.</p>
+
+</body>
+</html>                  
+```  
+  
+![](https://user-images.githubusercontent.com/32337103/215336543-ade9c2e7-9caf-4215-8e86-3ddb5d32684d.png)
 
 </details>
 
