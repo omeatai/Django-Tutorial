@@ -3434,12 +3434,37 @@ mymenu.html:
 <details>
   <summary>56. Filter Reference - add </summary>
 
-```py
+- The add filter adds a specified argument to a value.
 
+- The add filter tries to convert the values into numbers and return the sum, but if is not possible to convert the values into numbers, the specified argument will be added at the end.
+
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'prices': [70, 35, 52],
+  }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    {% for x in prices %}
+    <h1>The price is {{ x|add:"10" }} dollars.</h1>
+    {% endfor %}
+
+    <p>In views.py you can see what the prices variable looks like.</p>
+  </body>
+</html>
 ```
 
 ```py
