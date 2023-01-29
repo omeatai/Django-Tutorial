@@ -4321,41 +4321,75 @@ template.html:
 <details>
   <summary>71. Filter Reference - get_digit </summary>
 
+The get_digit filter returns the specified digit from a number, counting from the end of the number.  
+
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'mynumber': 75641,
+  }
+  return HttpResponse(template.render(context, request))      
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>{{ mynumber|get_digit:2 }}</h1>
+
+<p>In views.py you can see what the mynumber variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215336894-da367535-4fe5-41dc-986f-098f5ec4400f.png)
 
 </details>
 
 <details>
   <summary>72. Filter Reference - join </summary>
+  
+- The join filter takes all items in an iterable and joins them into one string.
 
+- A string must be specified as the separator.  
+
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))                     
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
-```
+<h1>{{ fruits|join:"#" }}</h1>
 
-```py
+<p>In views.py you can see what the fruits variable looks like.</p>
 
-```
-
-```py
-
+</body>
+</html>                  
 ```
 
 </details>
