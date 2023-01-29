@@ -4093,43 +4093,197 @@ template.html:
 
 <details>
   <summary>69. Filter Reference - first </summary>
+  
+- The first filter returns the first item of an object.
+
+- For strings, the first filter returns the first character.
+  
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
+    }
+  return HttpResponse(template.render(context, request))   
 ```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>{{ fruits|first }}</h1>
+
+<p>In views.py you can see what the fruits variable looks like.</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215335849-f19ea176-b87b-4704-a7e4-27625e012486.png)
+
+views.py:  
 
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'firstname': 'Emil',   
+    'lastname': 'Refsnes',   
+  }
+  return HttpResponse(template.render(context, request))   
 ```
+  
+template.html:  
 
-```py
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
+<h1>{{ firstname|first }}</h1>
+
+<p>In views.py you can see what the firstname variable looks like.</p>
+
+</body>
+</html>                  
 ```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215335911-fba4513b-0462-4bae-9aaf-5e95d55eb919.png)
 
 </details>
 
 <details>
   <summary>70. Filter Reference - floatformat </summary>
+  
+- The floatformat filter rounds a floating-point number to the specified number of decimals, or one, if no decimal argument is specified.
 
+- If the argument value is a positive number, the value will be displayed with the specified number of decimals, even if the value is an integer.  
+
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'mynumber': 7.122489,
+  }
+  return HttpResponse(template.render(context, request))                    
 ```
+  
+template.html:  
 
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>{{ mynumber|floatformat:2 }}</h1>
+
+<p>In views.py you can see what the mynumber variable looks like.</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215336012-5bc68756-d58b-4482-a4c9-8b0bb885c039.png)
+  
+views.py:  
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())                    
 ```
+  
+template.html:  
 
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>{{ 7.122489|floatformat:2 }}</p>
+<p>{{ 7.1|floatformat:2 }}</p>
+<p>{{ 7|floatformat:2 }}</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215336096-8601e42d-31d6-42b8-9ff7-e48bc6ee1856.png)
+  
+views.py:  
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())                    
 ```
+  
+template.html:  
 
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>{{ 7.122489|floatformat:-2 }}</p>
+<p>{{ 7.1|floatformat:-2 }}</p>
+<p>{{ 7|floatformat:-2 }}</p>
+
+</body>
+</html>                  
+```
+  
+![](https://user-images.githubusercontent.com/32337103/215336338-8c072038-44e3-4281-8815-be0c85a72122.png)
+  
+views.py:
+  
 ```py
+from django.http import HttpResponse
+from django.template import loader
 
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())                    
 ```
+  
+template.html:  
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>{{ 7.122489|floatformat:-2 }}</p>
+<p>{{ 7.1|floatformat:-2 }}</p>
+<p>{{ 7|floatformat:-2 }}</p>
+
+</body>
+</html>                  
+```  
+  
+![](https://user-images.githubusercontent.com/32337103/215336425-a1d7acf2-d1fe-4dd5-bd42-dc9061b68f43.png)
 
 </details>
 
