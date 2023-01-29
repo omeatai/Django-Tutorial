@@ -3466,11 +3466,11 @@ template.html:
   </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215329917-31ca505c-7882-4b94-b4db-4b97fc307bf8.png)
-  
+
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3478,12 +3478,12 @@ from django.template import loader
 def testing(request):
   template = loader.get_template('template.html')
   context = {
-    'fruits': ['Apple', 'Banana', 'Cherry'],   
+    'fruits': ['Apple', 'Banana', 'Cherry'],
   }
-  return HttpResponse(template.render(context, request))                    
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -3497,13 +3497,13 @@ template.html:
 <p>In views.py you can see what the fruits variable looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215330058-4f1f81ab-b653-4bf2-b5e6-25fc066c2296.png)
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3511,13 +3511,13 @@ from django.template import loader
 def testing(request):
   template = loader.get_template('template.html')
   context = {
-    'fruits': ['Apple', 'Banana', 'Cherry'],   
+    'fruits': ['Apple', 'Banana', 'Cherry'],
     'vegetables': ['Asparagus', 'Broccoli', 'Carrot'],
   }
-  return HttpResponse(template.render(context, request)) 
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -3530,30 +3530,45 @@ template.html:
 and vegetables variables look like.</p>
 
 </body>
-</html>                  
-```  
-  
+</html>
+```
+
 ![](https://user-images.githubusercontent.com/32337103/215330188-5b8131da-d03a-40a3-bccb-c19d54edda37.png)
-  
+
 </details>
 
 <details>
   <summary>57. Filter Reference - addslashes </summary>
 
-```py
+- The addslashes filter adds a slash \ character before any quotes.
 
+- This can be helpful when you are dealing with JavaScript, and you have to escape quote characters.
+
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'name': "Capt'n Jack",
+  }
+  return HttpResponse(template.render(context, request))
 ```
 
-```py
+template.html:
 
-```
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>{{ name|addslashes }}</h1>
 
-```py
-
-```
-
-```py
-
+    <p>In views.py you can see what the name variable looks like.</p>
+  </body>
+</html>
 ```
 
 </details>
