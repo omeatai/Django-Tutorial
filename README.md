@@ -3469,15 +3469,72 @@ template.html:
   
 ![](https://user-images.githubusercontent.com/32337103/215329917-31ca505c-7882-4b94-b4db-4b97fc307bf8.png)
   
+views.py:
+  
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry'],   
+  }
+  return HttpResponse(template.render(context, request))                    
+```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
+{% for x in fruits %}
+  <h1>{{ x|add:"-CHECK" }}</h1>
+{% endfor %}
+
+<p>In views.py you can see what the fruits variable looks like.</p>
+
+</body>
+</html>                  
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215330058-4f1f81ab-b653-4bf2-b5e6-25fc066c2296.png)
+
+views.py:
+  
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry'],   
+    'vegetables': ['Asparagus', 'Broccoli', 'Carrot'],
+  }
+  return HttpResponse(template.render(context, request)) 
+```
+  
+template.html:  
 
 ```py
+<!DOCTYPE html>
+<html>
+<body>
 
-```
+{{ fruits|add:vegetables }}
 
+<p>In views.py you can see what the fruits
+and vegetables variables look like.</p>
+
+</body>
+</html>                  
+```  
+  
+![](https://user-images.githubusercontent.com/32337103/215330188-5b8131da-d03a-40a3-bccb-c19d54edda37.png)
+  
 </details>
 
 <details>
