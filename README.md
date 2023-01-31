@@ -195,28 +195,48 @@ python manage.py migrate
 </details>
 
 <details>
-  <summary>6. </summary>
+  <summary>6. Types of Model Relationships</summary>
+
+Many to One Relationship:
 
 ```py
+class Category(models.Model):
+  name = models.CharField(max_length=30)
 
+class Article(models.Model):
+  title = models.CharField(max_length=30)
+  description = models.CharField(max_length=100)
+  category = models.ForeignKey(Category, on_delete=models.CASCADE)
 ```
 
-```py
+One to One Relationship:
 
+```py
+class Place(models.Model):
+  name = models.CharField(max_length=50)
+  address = models.CharField(max_length=80)
+
+class Restaurant(models.Model):
+  place = models.OneToOneField(Place, on_delete=models.CASCADE, primary_key=True)
+  serves_hot_dogs = models.BooleanField(default=False)
+  serves_pizza = models.BooleanField(default=False)
 ```
 
-```py
-
-```
+Many to Many Relationship:
 
 ```py
+class Publication(models.Model):
+  title = models.CharField(max_length=30)
 
+class Article(models.Model):
+  headline = models.CharField(max_length=100)
+  publications = models.ManyToManyField(Publication)
 ```
 
 </details>
 
 <details>
-  <summary>7. </summary>
+  <summary>7. Register Article Model in Admin</summary>
 
 ```py
 
