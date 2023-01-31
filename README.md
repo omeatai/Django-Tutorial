@@ -5034,43 +5034,65 @@ python manage.py runserver
 ```
 
 http://127.0.0.1:8000/admin/:
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215768567-5d80987f-c627-444a-b384-9591a942f9fb.png)
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215768464-b29c8b45-2baa-4271-8bdb-17478160e42e.png)
-  
 
 </details>
 
 <details>
-  <summary>103. </summary>
+  <summary>103. Create App - articles </summary>
 
 ```py
-
+python manage.py startapp articles
 ```
 
-```py
-
-```
+Register App in Settings.py:
 
 ```py
 
-```
+# Application definition
 
-```py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'articles'
+]
 
 ```
 
 </details>
 
 <details>
-  <summary>104. </summary>
+  <summary>104. Create Function View  </summary>
+
+articles/views.py:
 
 ```py
+from django.shortcuts import render, HttpResponse
 
+# Create your views here.
+
+def article_list(request):
+    return HttpResponse("This is our first view for articles")
 ```
 
+djblog/urls.py:
+
 ```py
+from django.contrib import admin
+from django.urls import path
+from articles.views import article_list
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', article_list, name='article_list')
+]
 
 ```
 
