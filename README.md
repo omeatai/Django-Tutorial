@@ -4987,34 +4987,53 @@ Upgrade pip:
 python -m pip install --upgrade pip
 ```
 
-```py
+Create Project:
 
+```py
+django-admin startproject Blog
+django-admin startproject Blog .
 ```
 
-```py
+Run Migrations:
 
+```py
+#python manage.py makemigrations
+python manage.py migrate
+```
+
+Start local Server:
+
+```py
+python manage.py runserver
 ```
 
 </details>
 
 <details>
-  <summary>102. </summary>
+  <summary>102. Create Super User</summary>
 
 ```py
-
+python manage.py createsuperuser
 ```
 
 ```py
-
+# Username (leave blank to use 'ifeanyiomeata'): admin
+# Email address: admin@gmail.com
+# Password:
+# Password (again):
+# This password is too short. It must contain at least 8 characters.
+# This password is too common.
+# This password is entirely numeric.
+# Bypass password validation and create user anyway? [y/N]: y
+# Superuser created successfully.
+# (venv-djblog) ifeanyiomeata@Ifeanyis-MacBook-Air djblog %
 ```
 
 ```py
-
+python manage.py runserver
 ```
 
-```py
-
-```
+http://127.0.0.1:8000/admin/:
 
 </details>
 
