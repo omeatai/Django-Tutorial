@@ -1124,7 +1124,7 @@ urlpatterns = [
 
 </details>
 
-### [1-DJANGO TUTORIAL - W3SCHOOLS](#)
+### [#-DJANGO TUTORIAL - W3SCHOOLS](#)
 
 +INTRODUCTION
 
