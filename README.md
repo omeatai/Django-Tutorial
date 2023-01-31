@@ -37,6 +37,12 @@ Upgrade pip:
 python -m pip install --upgrade pip
 ```
 
+Create Requirements:
+
+```py
+pip freeze > requirements.txt
+```
+
 Create Project:
 
 ```py
