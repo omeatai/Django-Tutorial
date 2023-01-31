@@ -5034,6 +5034,11 @@ python manage.py runserver
 ```
 
 http://127.0.0.1:8000/admin/:
+  
+![](https://user-images.githubusercontent.com/32337103/215768567-5d80987f-c627-444a-b384-9591a942f9fb.png)
+  
+![](https://user-images.githubusercontent.com/32337103/215768464-b29c8b45-2baa-4271-8bdb-17478160e42e.png)
+  
 
 </details>
 
