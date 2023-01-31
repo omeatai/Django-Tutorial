@@ -4961,13 +4961,30 @@ template.html:
 <details>
   <summary>101. Introduction </summary>
 
+Install virtual env:
+
 ```py
+python -m venv venv_dj_blog
+```
+
+Activate virtual env:
+
+```py
+source venv_dj_blog/bin/activate
+```
+
+Install Django:
+
+```py
+python -m pip install Django
 pip install Django
 pip install Django==4.1.5
 ```
 
-```py
+Upgrade pip:
 
+```py
+python -m pip install --upgrade pip
 ```
 
 ```py
