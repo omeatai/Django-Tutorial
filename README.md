@@ -237,22 +237,62 @@ class Article(models.Model):
 
 <details>
   <summary>7. Register Article Model in Admin</summary>
+  
+![](https://user-images.githubusercontent.com/32337103/215871020-7c6ebe88-6df2-4fa3-8d8a-f378481b3315.png)
+ 
+article/admin.py: 
 
 ```py
+from django.contrib import admin
+from .models import Article
 
+# Register your models here.
+admin.site.register(Article)
 ```
+
+![](https://user-images.githubusercontent.com/32337103/215872036-54c00bc1-9ecb-46e4-86af-2fd266b1fc00.png)
+
+![](https://user-images.githubusercontent.com/32337103/215872428-284492e9-a096-486e-a602-d52469d37f7a.png)
+
+![](https://user-images.githubusercontent.com/32337103/215872531-f492e5bb-65e3-43e0-8e56-f0d026e9e381.png)
+
+article/models.py:
 
 ```py
+from django.db import models
+from django.contrib.auth.models import User
 
+# Create your models here.
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    slug = models.SlugField(max_length=100, unique=True)
+    published = models.DateTimeField (auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.title
 ```
+
+![](https://user-images.githubusercontent.com/32337103/215873268-146b239e-df87-4444-858f-8b032f0e38a6.png)
+
+article/admin.py:
 
 ```py
+from django.contrib import admin
+from .models import Article
 
+# Register your models here.
+#admin.site.register(Article)
+
+@admin.register(Article)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'published', 'author')
+    date_hierarchy = 'published'
+    search_fields = ('title', 'description')
 ```
 
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/215874163-e718c175-a845-437c-9e79-fb07cc9a3ee1.png)
 
 </details>
 
