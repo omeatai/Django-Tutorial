@@ -6,12 +6,1130 @@ Django Tutorial by Ifeanyi Omeata
 
 ---
 
+### [1-DJANGO & DJANGO REST FRAMEWORK WITH REACT FRONTEND - PARWIZ FOROGH](https://www.udemy.com/course/django-django-rest-framework-build-rest-api-in-python/learn/lecture/29085424#overview)
+
+<details>
+  <summary>1. Introduction </summary>
+
+Install virtual env:
+
+```py
+python -m venv venv_dj_blog
+```
+
+Activate virtual env:
+
+```py
+source venv_dj_blog/bin/activate
+```
+
+Install Django:
+
+```py
+python -m pip install Django
+pip install Django
+pip install Django==4.1.5
+```
+
+Upgrade pip:
+
+```py
+python -m pip install --upgrade pip
+```
+
+Create Project:
+
+```py
+django-admin startproject Blog
+django-admin startproject Blog .
+```
+
+Run Migrations:
+
+```py
+#python manage.py makemigrations
+python manage.py migrate
+```
+
+Start local Server:
+
+```py
+python manage.py runserver
+```
+
+</details>
+
+<details>
+  <summary>2. Create Super User</summary>
+
+```py
+python manage.py createsuperuser
+```
+
+```py
+# Username (leave blank to use 'ifeanyiomeata'): admin
+# Email address: admin@gmail.com
+# Password:
+# Password (again):
+# This password is too short. It must contain at least 8 characters.
+# This password is too common.
+# This password is entirely numeric.
+# Bypass password validation and create user anyway? [y/N]: y
+# Superuser created successfully.
+# (venv-djblog) ifeanyiomeata@Ifeanyis-MacBook-Air djblog %
+```
+
+```py
+python manage.py runserver
+```
+
+http://127.0.0.1:8000/admin/:
+
+![](https://user-images.githubusercontent.com/32337103/215768567-5d80987f-c627-444a-b384-9591a942f9fb.png)
+
+![](https://user-images.githubusercontent.com/32337103/215768464-b29c8b45-2baa-4271-8bdb-17478160e42e.png)
+
+</details>
+
+<details>
+  <summary>3. Create App - articles </summary>
+
+```py
+python manage.py startapp articles
+```
+
+Register App in Settings.py:
+
+```py
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'articles'
+]
+
+```
+
+</details>
+
+<details>
+  <summary>4. Create Function View  </summary>
+
+articles/views.py:
+
+```py
+from django.shortcuts import render, HttpResponse
+
+# Create your views here.
+
+def article_list(request):
+    return HttpResponse("This is our first view for articles")
+```
+
+djblog/urls.py:
+
+```py
+from django.contrib import admin
+from django.urls import path
+from articles.views import article_list
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', article_list, name='article_list')
+]
+
+```
+
+![](https://user-images.githubusercontent.com/32337103/215846696-05e3e185-0a45-40d4-a0ef-ea06625a9169.png)
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>5. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>6. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>7. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>8. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>9. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>10. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>11. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>12. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>13. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>14. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>15. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>16. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>17. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>18. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>19. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>20. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>21. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>22. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>23. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>24. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>25. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>26. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>27. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>28. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>29. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>30. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>31. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>32. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>33. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>34. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>35. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>36. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>37. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>38. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>39. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>40. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>41. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>42. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>43. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>44. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>45. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>46. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>47. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>48. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>49. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
+<details>
+  <summary>50. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+
 ### [1-DJANGO TUTORIAL - W3SCHOOLS](#)
 
 +INTRODUCTION
 
 <details>
-  <summary>1. Introduction </summary>
+  <summary>A1. Introduction </summary>
 
 Django follows the MVT design pattern (Model View Template).
 
@@ -64,7 +1182,7 @@ URLs
 </details>
 
 <details>
-  <summary>2. Install Python, pip and Venv </summary>
+  <summary>A2. Install Python, pip and Venv </summary>
 
 Download Python:
 
@@ -115,7 +1233,7 @@ source venv-w3django/bin/activate
 </details>
 
 <details>
-  <summary>3. Install Django </summary>
+  <summary>A3. Install Django </summary>
 
 ```py
 python -m pip install Django
@@ -134,7 +1252,7 @@ django-admin --version
 </details>
 
 <details>
-  <summary>4. Create Django Project </summary>
+  <summary>A4. Create Django Project </summary>
 
 ```py
 django-admin startproject my_tennis_club
@@ -167,7 +1285,7 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>5. Create Django App </summary>
+  <summary>A5. Create Django App </summary>
 
 my_tennis_club/
 
@@ -178,7 +1296,7 @@ python manage.py startapp members
 </details>
 
 <details>
-  <summary>6. Create Django View - return HttpResponse </summary>
+  <summary>A6. Create Django View - return HttpResponse </summary>
 
 members/views.py:
 
@@ -193,7 +1311,7 @@ def members(request):
 </details>
 
 <details>
-  <summary>7. Create urls.py routes </summary>
+  <summary>A7. Create urls.py routes </summary>
 
 my_tennis_club/members/urls.py:
 
@@ -231,7 +1349,7 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>8. Create and load HTML Template </summary>
+  <summary>A8. Create and load HTML Template </summary>
 
 my_tennis_club/members/templates/myfirst.html:
 
@@ -259,7 +1377,7 @@ def members(request):
 </details>
 
 <details>
-  <summary>9. Register App in Settings </summary>
+  <summary>A9. Register App in Settings </summary>
 
 my_tennis_club/my_tennis_club/settings.py:
 
@@ -295,7 +1413,7 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>10. Create Member Model </summary>
+  <summary>A10. Create Member Model </summary>
 
 my_tennis_club/members/models.py:
 
@@ -336,7 +1454,7 @@ python manage.py sqlmigrate members 0001
 </details>
 
 <details>
-  <summary>11. Get and Insert Data </summary>
+  <summary>A11. Get and Insert Data </summary>
 
 Enter Python Shell
 
@@ -4937,1125 +6055,6 @@ template.html:
 
 <details>
   <summary>100. Filter Reference - upper </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-### [1-DJANGO & DJANGO REST FRAMEWORK WITH REACT FRONTEND - PARWIZ FOROGH](https://www.udemy.com/course/django-django-rest-framework-build-rest-api-in-python/learn/lecture/29085424#overview)
-
-<details>
-  <summary>101. Introduction </summary>
-
-Install virtual env:
-
-```py
-python -m venv venv_dj_blog
-```
-
-Activate virtual env:
-
-```py
-source venv_dj_blog/bin/activate
-```
-
-Install Django:
-
-```py
-python -m pip install Django
-pip install Django
-pip install Django==4.1.5
-```
-
-Upgrade pip:
-
-```py
-python -m pip install --upgrade pip
-```
-
-Create Project:
-
-```py
-django-admin startproject Blog
-django-admin startproject Blog .
-```
-
-Run Migrations:
-
-```py
-#python manage.py makemigrations
-python manage.py migrate
-```
-
-Start local Server:
-
-```py
-python manage.py runserver
-```
-
-</details>
-
-<details>
-  <summary>102. Create Super User</summary>
-
-```py
-python manage.py createsuperuser
-```
-
-```py
-# Username (leave blank to use 'ifeanyiomeata'): admin
-# Email address: admin@gmail.com
-# Password:
-# Password (again):
-# This password is too short. It must contain at least 8 characters.
-# This password is too common.
-# This password is entirely numeric.
-# Bypass password validation and create user anyway? [y/N]: y
-# Superuser created successfully.
-# (venv-djblog) ifeanyiomeata@Ifeanyis-MacBook-Air djblog %
-```
-
-```py
-python manage.py runserver
-```
-
-http://127.0.0.1:8000/admin/:
-
-![](https://user-images.githubusercontent.com/32337103/215768567-5d80987f-c627-444a-b384-9591a942f9fb.png)
-
-![](https://user-images.githubusercontent.com/32337103/215768464-b29c8b45-2baa-4271-8bdb-17478160e42e.png)
-
-</details>
-
-<details>
-  <summary>103. Create App - articles </summary>
-
-```py
-python manage.py startapp articles
-```
-
-Register App in Settings.py:
-
-```py
-
-# Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'articles'
-]
-
-```
-
-</details>
-
-<details>
-  <summary>104. Create Function View  </summary>
-
-articles/views.py:
-
-```py
-from django.shortcuts import render, HttpResponse
-
-# Create your views here.
-
-def article_list(request):
-    return HttpResponse("This is our first view for articles")
-```
-
-djblog/urls.py:
-
-```py
-from django.contrib import admin
-from django.urls import path
-from articles.views import article_list
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', article_list, name='article_list')
-]
-
-```
-  
-![](https://user-images.githubusercontent.com/32337103/215846696-05e3e185-0a45-40d4-a0ef-ea06625a9169.png)
-  
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>105. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>106. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>107. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>108. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>109. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>110. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>111. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>112. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>113. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>114. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>115. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>116. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>117. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>118. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>119. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>120. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>121. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>122. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>123. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>124. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>125. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>126. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>127. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>128. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>129. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>130. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>131. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>132. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>133. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>134. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>135. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>136. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>137. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>138. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>139. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>140. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>141. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>142. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>143. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>144. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>145. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>146. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>147. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>148. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>149. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>150. </summary>
 
 ```py
 
