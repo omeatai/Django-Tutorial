@@ -132,29 +132,32 @@ def article_list(request):
     return HttpResponse("This is our first view for articles")
 ```
 
-djblog/urls.py:
+articles/urls.py:
 
 ```py
-from django.contrib import admin
 from django.urls import path
-from articles.views import article_list
+from .views import article_list
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', article_list, name='article_list')
 ]
 
 ```
 
+djblog/urls.py:
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('articles.urls') )
+]
+
+```
+
 ![](https://user-images.githubusercontent.com/32337103/215846696-05e3e185-0a45-40d4-a0ef-ea06625a9169.png)
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
