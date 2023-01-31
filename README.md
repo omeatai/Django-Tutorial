@@ -3570,18 +3570,18 @@ template.html:
   </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215330828-5a372836-3cdb-41b7-a280-3e048161404f.png)
 
 </details>
 
 <details>
   <summary>58. Filter Reference - capfirst </summary>
-  
-The capfirst filter capitalizes the first letter of the value.  
+
+The capfirst filter capitalizes the first letter of the value.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3589,36 +3589,34 @@ from django.template import loader
 def testing(request):
   template = loader.get_template('template.html')
   context = {
-    'animal': 'lion',   
+    'animal': 'lion',
   }
-  return HttpResponse(template.render(context, request))     
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ animal|capfirst }}</h1>
 
-<h1>{{ animal|capfirst }}</h1>
-
-<p>In views.py you can see what the animal variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the animal variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215331045-40a87606-e020-4e1e-ba55-c61d4a65840e.png)
 
 </details>
 
 <details>
   <summary>59. Filter Reference - center </summary>
-  
+
 The center filter places the value in the center of a value of the specified length.
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3629,46 +3627,49 @@ def testing(request):
   context = {
     'name': 'Tobias',
   }
-  return HttpResponse(template.render(context, request))    
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ name|center:20 }}</h1>
 
-<h1>{{ name|center:20 }}</h1>
+    <p>
+      In HTML the display does not show more than one space, but if you view the
+      page source you will see that there are 20 characters between &lt;h1&gt;
+      and &lt;/h1&gt;.
+    </p>
 
-<p>In HTML the display does not show more than one space,
-but if you view the page source you will see that there are
-20 characters between &lt;h1&gt; and &lt;/h1&gt;.</p>
+    <p>
+      Or, to demonstrate we can use a textarea to see that "Tobias" is center
+      aligned:
+    </p>
 
-<p>Or, to demonstrate we can use a textarea to see that "Tobias" is center aligned:</p>
+    <textarea>{{ name|center:20 }}</textarea>
 
-<textarea>{{ name|center:20 }}</textarea>
-
-<p>In views.py you can see what the name variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the name variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215331340-2a3a1963-0686-44bd-bb14-10a215a3982d.png)
 
 </details>
 
 <details>
   <summary>60. Filter Reference - cut </summary>
-  
+
 - The cut filter removes the specified phrase from the value.
 
 - The cut filter is case sensitive.
 
-- All occurences of the specified phrase/character are removed.  
-  
-views.py:  
+- All occurences of the specified phrase/character are removed.
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3679,27 +3680,25 @@ def testing(request):
   context = {
     'name': 'Emil Refsnes',
   }
-  return HttpResponse(template.render(context, request))  
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ name|cut:"snes" }}</h1>
 
-<h1>{{ name|cut:"snes" }}</h1>
-
-<p>In views.py you can see what the name variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the name variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215331712-6c51ca13-a1aa-4290-a16f-b006dc2dc5b0.png)
 
-views.py:  
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3710,32 +3709,29 @@ def testing(request):
   context = {
     'name': 'Emil Refsnes',
   }
-  return HttpResponse(template.render(context, request))      
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ name|cut:"e" }}</h1>
 
-<h1>{{ name|cut:"e" }}</h1>
-
-<p>In views.py you can see what the name variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the name variable looks like.</p>
+  </body>
+</html>
 ```
-  
-![](https://user-images.githubusercontent.com/32337103/215331793-64c3a751-c631-4463-bf48-4a6c822afc57.png)
 
+![](https://user-images.githubusercontent.com/32337103/215331793-64c3a751-c631-4463-bf48-4a6c822afc57.png)
 
 </details>
 
 <details>
   <summary>61. Filter Reference - default </summary>
-  
+
 - The default filter allows you to specify a default value to use if the value evaluates to False.
 
 Values that evaluates to False are:
@@ -3745,8 +3741,8 @@ Values that evaluates to False are:
 - Any empty object [], (), {}, set(), range(0)
 - None
 - False
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3757,24 +3753,22 @@ def testing(request):
   context = {
     'colors': ['Red', 'Green', 'Blue', '', 'Yellow']
   }
-  return HttpResponse(template.render(context, request))                    
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    {% for x in colors %}
+    <h1>{{ x|default:"nocolor" }}</h1>
+    {% endfor %}
 
-{% for x in colors %}
-  <h1>{{ x|default:"nocolor" }}</h1>
-{% endfor %}
-
-<p>In views.py you can see what the colors variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the colors variable looks like.</p>
+  </body>
+</html>
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/215332377-323885df-93f8-45b8-bf0f-e06a828a575b.png)
@@ -3783,13 +3777,13 @@ template.html:
 
 <details>
   <summary>62. Filter Reference - default if none </summary>
-  
+
 - The default_if_none filter allows you to specify a default value to use if the value is None.
 
-- The value has to be exactly None for this filter to have effect.  
+- The value has to be exactly None for this filter to have effect.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3799,11 +3793,11 @@ def testing(request):
   context = {
     'colors': ['Red', None, 'Blue', '', 'Yellow']
   }
-  return HttpResponse(template.render(context, request))  
+  return HttpResponse(template.render(context, request))
 ```
 
-template.html:  
-  
+template.html:
+
 ```py
 <!DOCTYPE html>
 <html>
@@ -3816,25 +3810,24 @@ template.html:
 <p>In views.py you can see what the colors variable looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215332945-19576437-2c74-4c2d-9b39-774d585609f1.png)
-  
 
 </details>
 
 <details>
   <summary>63. Filter Reference - dictsort </summary>
-  
+
 - The dictsort filter sorts a dictionary by the specified field.
 
 - The dictsort filter sorts ascending.
 
-- Use the dictsortreversed filter to sort descending.  
+- Use the dictsortreversed filter to sort descending.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -3849,10 +3842,10 @@ def testing(request):
       {'brand': 'Ford', 'model': 'Focus', 'year': 2004},
     ]
   }
-  return HttpResponse(template.render(context, request))        
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -3866,21 +3859,21 @@ template.html:
 <p>In views.py you can see what the colors variable looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215333363-4679cb6d-0fe7-454e-ac27-423d13e0d974.png)
 
 </details>
 
 <details>
   <summary>64. Filter Reference - dictsortreversed </summary>
-  
+
 - The dictsortreversed filter sorts a dictionary by the specified field, descending.
 
-- Use the dictsort filter to sort ascending.  
-  
-views.py:  
+- Use the dictsort filter to sort ascending.
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3896,36 +3889,34 @@ def testing(request):
       {'brand': 'Ford', 'model': 'Focus', 'year': 2004},
     ]
   }
-  return HttpResponse(template.render(context, request))  
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    {% for x in cars|dictsortreversed:"year" %}
+    <p>{{ x.year }} {{ x.brand }} {{ x.model }}.</p>
+    {% endfor %}
 
-{% for x in cars|dictsortreversed:"year" %}
-  <p>{{ x.year }} {{ x.brand }} {{ x.model }}.</p>
-{% endfor %}
-
-<p>In views.py you can see what the colors variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the colors variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215334222-18ee4b35-c15a-4796-b938-1cc8c6f0a2fe.png)
 
 </details>
 
 <details>
   <summary>65. Filter Reference - divisibleby </summary>
-  
+
 The divisibleby filter returns True if the value is divisible by the argument, otherwise it returns False.
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3936,10 +3927,10 @@ def testing(request):
   context = {
     'totalsum': 40,
   }
-  return HttpResponse(template.render(context, request))     
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -3953,19 +3944,19 @@ template.html:
 <p>In views.py you can see what the totalsum variable looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215334771-4988bd47-1514-46d1-9bfd-afc6c367a7b4.png)
 
 </details>
 
 <details>
   <summary>66. Filter Reference - escape </summary>
-  
+
 The escape filter escapes HTML characters from the value.
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -3976,41 +3967,39 @@ def testing(request):
   context = {
     'heading': 'Hello &lt;i>my&lt;/i> World!',
   }
-  return HttpResponse(template.render(context, request))   
+  return HttpResponse(template.render(context, request))
 ```
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    {% autoescape off %}
+    <h1>{{ heading|escape }}</h1>
+    <h1>{{ heading }}</h1>
+    {% endautoescape %}
 
-{% autoescape off %}
-  <h1>{{ heading|escape }}</h1>
-  <h1>{{ heading }}</h1>
-{% endautoescape %}
+    <p>In views.py you can see what the heading variable looks like.</p>
 
-<p>In views.py you can see what the heading variable looks like.</p>
-
-<p>
-<strong>Note:</strong>
-Escaping HTML characters is a default setting in Django,
-so we have to turn off autoescape in the example to see the difference.
-</p>
-
-</body>
-</html>                  
+    <p>
+      <strong>Note:</strong>
+      Escaping HTML characters is a default setting in Django, so we have to
+      turn off autoescape in the example to see the difference.
+    </p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215335205-da51b744-0cb1-4f7a-a4aa-d8c10caa0f12.png)
 
 </details>
 
 <details>
   <summary>67. Filter Reference - escapejs </summary>
-  
+
 The escapejs filter escapes text to be used in JavaScript strings.
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -4021,44 +4010,45 @@ def testing(request):
   context = {
     'var1': 'John\nDoe',
   }
-  return HttpResponse(template.render(context, request))       
+  return HttpResponse(template.render(context, request))
 ```
 
 template.html:
-  
+
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h3>Without escapejs:</h3>
+    <button onclick="alert('{{ var1 }}')">Click me</button>
 
-<h3>Without escapejs:</h3>
-<button onclick="alert('{{ var1 }}')">Click me</button>
+    <h3>With escapejs:</h3>
+    <button onclick="alert('{{ var1|escapejs }}')">Click me</button>
 
-<h3>With escapejs:</h3>
-<button onclick="alert('{{ var1|escapejs }}')">Click me</button>
+    <p>
+      Try clicking both buttons. The JavaScript without the escapejs filter will
+      raise an error.
+    </p>
 
-<p>Try clicking both buttons. The JavaScript without the escapejs filter will raise an error.
-
-<p>In views.py you can see what the var1 variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the var1 variable looks like.</p>
+  </body>
+</html>
 ```
 
 </details>
 
 <details>
   <summary>68. Filter Reference - filesizeformat </summary>
-  
+
 - The filesizeformat filter converts a large number into a more human readable format.
 
 Examples:
 
 - 1024 is converted into 1.0 KB.
 
-- 524288 is converted into 512.0 KB.  
-  
-views.py:  
+- 524288 is converted into 512.0 KB.
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -4069,10 +4059,10 @@ def testing(request):
   context = {
     'size': 26214400
   }
-  return HttpResponse(template.render(context, request))                    
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -4084,21 +4074,21 @@ template.html:
 <p>In views.py you can see what the size variable looks like.</p>
 
 </body>
-</html>                  
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215335665-dd213300-acd1-478a-9f40-e6dbbc671eb1.png)
 
 </details>
 
 <details>
   <summary>69. Filter Reference - first </summary>
-  
+
 - The first filter returns the first item of an object.
 
 - For strings, the first filter returns the first character.
-  
-views.py:  
+
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -4109,27 +4099,25 @@ def testing(request):
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
     }
-  return HttpResponse(template.render(context, request))   
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ fruits|first }}</h1>
 
-<h1>{{ fruits|first }}</h1>
-
-<p>In views.py you can see what the fruits variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the fruits variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215335849-f19ea176-b87b-4704-a7e4-27625e012486.png)
 
-views.py:  
+views.py:
 
 ```py
 from django.http import HttpResponse
@@ -4138,40 +4126,38 @@ from django.template import loader
 def testing(request):
   template = loader.get_template('template.html')
   context = {
-    'firstname': 'Emil',   
-    'lastname': 'Refsnes',   
+    'firstname': 'Emil',
+    'lastname': 'Refsnes',
   }
-  return HttpResponse(template.render(context, request))   
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ firstname|first }}</h1>
 
-<h1>{{ firstname|first }}</h1>
-
-<p>In views.py you can see what the firstname variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the firstname variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215335911-fba4513b-0462-4bae-9aaf-5e95d55eb919.png)
 
 </details>
 
 <details>
   <summary>70. Filter Reference - floatformat </summary>
-  
+
 - The floatformat filter rounds a floating-point number to the specified number of decimals, or one, if no decimal argument is specified.
 
-- If the argument value is a positive number, the value will be displayed with the specified number of decimals, even if the value is an integer.  
+- If the argument value is a positive number, the value will be displayed with the specified number of decimals, even if the value is an integer.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -4181,112 +4167,104 @@ def testing(request):
   context = {
     'mynumber': 7.122489,
   }
-  return HttpResponse(template.render(context, request))                    
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ mynumber|floatformat:2 }}</h1>
 
-<h1>{{ mynumber|floatformat:2 }}</h1>
-
-<p>In views.py you can see what the mynumber variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the mynumber variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215336012-5bc68756-d58b-4482-a4c9-8b0bb885c039.png)
-  
-views.py:  
-  
-```py
-from django.http import HttpResponse
-from django.template import loader
 
-def testing(request):
-  template = loader.get_template('template.html')
-  return HttpResponse(template.render())                    
-```
-  
-template.html:  
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-
-<p>{{ 7.122489|floatformat:2 }}</p>
-<p>{{ 7.1|floatformat:2 }}</p>
-<p>{{ 7|floatformat:2 }}</p>
-
-</body>
-</html>                  
-```
-  
-![](https://user-images.githubusercontent.com/32337103/215336096-8601e42d-31d6-42b8-9ff7-e48bc6ee1856.png)
-  
-views.py:  
-  
-```py
-from django.http import HttpResponse
-from django.template import loader
-
-def testing(request):
-  template = loader.get_template('template.html')
-  return HttpResponse(template.render())                    
-```
-  
-template.html:  
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-
-<p>{{ 7.122489|floatformat:-2 }}</p>
-<p>{{ 7.1|floatformat:-2 }}</p>
-<p>{{ 7|floatformat:-2 }}</p>
-
-</body>
-</html>                  
-```
-  
-![](https://user-images.githubusercontent.com/32337103/215336338-8c072038-44e3-4281-8815-be0c85a72122.png)
-  
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
 
 def testing(request):
   template = loader.get_template('template.html')
-  return HttpResponse(template.render())                    
+  return HttpResponse(template.render())
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <p>{{ 7.122489|floatformat:2 }}</p>
+    <p>{{ 7.1|floatformat:2 }}</p>
+    <p>{{ 7|floatformat:2 }}</p>
+  </body>
+</html>
+```
 
-<p>{{ 7.122489|floatformat:-2 }}</p>
-<p>{{ 7.1|floatformat:-2 }}</p>
-<p>{{ 7|floatformat:-2 }}</p>
+![](https://user-images.githubusercontent.com/32337103/215336096-8601e42d-31d6-42b8-9ff7-e48bc6ee1856.png)
 
-</body>
-</html>                  
-```  
-  
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
+```
+
+template.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>{{ 7.122489|floatformat:-2 }}</p>
+    <p>{{ 7.1|floatformat:-2 }}</p>
+    <p>{{ 7|floatformat:-2 }}</p>
+  </body>
+</html>
+```
+
+![](https://user-images.githubusercontent.com/32337103/215336338-8c072038-44e3-4281-8815-be0c85a72122.png)
+
+views.py:
+
+```py
+from django.http import HttpResponse
+from django.template import loader
+
+def testing(request):
+  template = loader.get_template('template.html')
+  return HttpResponse(template.render())
+```
+
+template.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>{{ 7.122489|floatformat:-2 }}</p>
+    <p>{{ 7.1|floatformat:-2 }}</p>
+    <p>{{ 7|floatformat:-2 }}</p>
+  </body>
+</html>
+```
+
 ![](https://user-images.githubusercontent.com/32337103/215336425-a1d7acf2-d1fe-4dd5-bd42-dc9061b68f43.png)
-  
-views.py:  
-  
+
+views.py:
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -4296,10 +4274,10 @@ def testing(request):
   context = {
     'mynumber': 981358286,
   }
-  return HttpResponse(template.render(context, request))                    
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```py
 <!DOCTYPE html>
@@ -4311,9 +4289,9 @@ template.html:
 <p>In views.py you can see what the mynumber variable looks like.</p>
 
 </body>
-</html>                  
-```  
-  
+</html>
+```
+
 ![](https://user-images.githubusercontent.com/32337103/215336543-ade9c2e7-9caf-4215-8e86-3ddb5d32684d.png)
 
 </details>
@@ -4321,10 +4299,10 @@ template.html:
 <details>
   <summary>71. Filter Reference - get_digit </summary>
 
-The get_digit filter returns the specified digit from a number, counting from the end of the number.  
+The get_digit filter returns the specified digit from a number, counting from the end of the number.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -4334,37 +4312,35 @@ def testing(request):
   context = {
     'mynumber': 75641,
   }
-  return HttpResponse(template.render(context, request))      
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ mynumber|get_digit:2 }}</h1>
 
-<h1>{{ mynumber|get_digit:2 }}</h1>
-
-<p>In views.py you can see what the mynumber variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the mynumber variable looks like.</p>
+  </body>
+</html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215336894-da367535-4fe5-41dc-986f-098f5ec4400f.png)
 
 </details>
 
 <details>
   <summary>72. Filter Reference - join </summary>
-  
+
 - The join filter takes all items in an iterable and joins them into one string.
 
-- A string must be specified as the separator.  
+- A string must be specified as the separator.
 
 views.py:
-  
+
 ```py
 from django.http import HttpResponse
 from django.template import loader
@@ -4374,22 +4350,20 @@ def testing(request):
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry', 'Orange']
     }
-  return HttpResponse(template.render(context, request))                     
+  return HttpResponse(template.render(context, request))
 ```
-  
-template.html:  
+
+template.html:
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <h1>{{ fruits|join:"#" }}</h1>
 
-<h1>{{ fruits|join:"#" }}</h1>
-
-<p>In views.py you can see what the fruits variable looks like.</p>
-
-</body>
-</html>                  
+    <p>In views.py you can see what the fruits variable looks like.</p>
+  </body>
+</html>
 ```
 
 </details>
@@ -4981,6 +4955,10 @@ template.html:
 ```
 
 </details>
+
+### [1-DJANGO & DJANGO REST FRAMEWORK WITH REACT FRONTEND - PARWIZ FOROGH](https://www.udemy.com/course/django-django-rest-framework-build-rest-api-in-python/learn/lecture/29085424#overview)
+
++INTRODUCTION
 
 <details>
   <summary>101. sample </summary>
