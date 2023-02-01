@@ -453,7 +453,6 @@ TEMPLATES = [
 
 <details>
   <summary>11. Template Inheritance - Using Layouts </summary>
-  
 
 articles/views.py:
 
@@ -500,19 +499,50 @@ articles/templates/articles.html:
 {% endblock body %}
 
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215979562-be0db0b4-0836-44bf-b048-91f6218e09b2.png)
 
 </details>
 
 <details>
-  <summary>12. </summary>
+  <summary>12. Adding CSS and Bootstrap without Static</summary>
 
-```py
+articles/templates/base.html:
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    {% block style %}{% endblock style %}
+  </head>
+  <body>
+    {% block body %}{% endblock body %}
+  </body>
+</html>
 ```
 
-```py
+```htmlx
+{% extends 'base.html' %}
+
+{% block title %} Article List {% endblock title%}
+
+{% block style %}
+<style>
+    .h1-style {
+        color: red;
+    }
+</style>
+{% endblock style %}
+
+{%block body %}
+<h1 class="h1-style">Article List</h1>
+<p>This is the place to render articles from Database.</p>
+<p>{{article}}</p>
+{% endblock body %}
 
 ```
 
