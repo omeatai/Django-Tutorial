@@ -387,28 +387,63 @@ articles/templates/articles.html:
   </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215957683-f601ae19-f429-40bb-a551-b2a0f516294c.png)
-  
 
 </details>
 
 <details>
   <summary>10. Project Labeled Templates</summary>
 
-```py
+djblog/templates/articles.html:
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article List</title>
+  </head>
+  <body>
+    <h1>Article List</h1>
+    <p>This is the place to render articles from Database.</p>
+    <p>{{article}}</p>
+  </body>
+</html>
 ```
 
-```py
+djblog/settings.py:
 
+```py
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'], #<--------- Add your own template directory
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 ```
 
-```py
-
-```
+articles/views.py:
 
 ```py
+from django.shortcuts import render, HttpResponse
+
+# Create your views here.
+
+def article_list(request):
+    article = "This is my first article title"
+    return render(request, 'articles.html', {'article':article})
 
 ```
 
