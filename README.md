@@ -348,28 +348,44 @@ def article_list(request):
     return render(request, 'articles.html')
 
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215956850-66d70521-554a-4453-9ba1-8ede5bb0b7c6.png)
 
 </details>
 
 <details>
-  <summary>9. Render Context </summary>
+  <summary>9. Render Context in Template </summary>
+
+articles/views.py:
 
 ```py
+from django.shortcuts import render, HttpResponse
+
+# Create your views here.
+
+def article_list(request):
+    article = "This is my first article title"
+    return render(request, 'articles.html', {'article':article})
 
 ```
 
-```py
+articles/templates/articles.html:
 
-```
-
-```py
-
-```
-
-```py
-
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article List</title>
+  </head>
+  <body>
+    <h1>Article List</h1>
+    <p>This is the place to render articles from Database.</p>
+    <p>{{article}}</p>
+  </body>
+</html>
 ```
 
 </details>
