@@ -348,19 +348,13 @@ def article_list(request):
     return render(request, 'articles.html')
 
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215956850-66d70521-554a-4453-9ba1-8ede5bb0b7c6.png)
 
 </details>
 
 <details>
-  <summary>9. </summary>
+  <summary>9. Render Context </summary>
 
 ```py
 
