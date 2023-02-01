@@ -297,7 +297,7 @@ class ArticleAdmin(admin.ModelAdmin):
 </details>
 
 <details>
-  <summary>8. Django Templates </summary>
+  <summary>8. Create Django Templates </summary>
 
 Required arguments:
 
