@@ -395,6 +395,19 @@ articles/templates/articles.html:
 <details>
   <summary>10. Project Labeled Templates</summary>
 
+articles/views.py:
+
+```py
+from django.shortcuts import render, HttpResponse
+
+# Create your views here.
+
+def article_list(request):
+    article = "This is my first article title"
+    return render(request, 'articles.html', {'article':article})
+
+```
+
 djblog/templates/articles.html:
 
 ```html
@@ -434,20 +447,7 @@ TEMPLATES = [
 ]
 ```
 
-articles/views.py:
-
-```py
-from django.shortcuts import render, HttpResponse
-
-# Create your views here.
-
-def article_list(request):
-    article = "This is my first article title"
-    return render(request, 'articles.html', {'article':article})
-
-```
-                                           
-![](https://user-images.githubusercontent.com/32337103/215957683-f601ae19-f429-40bb-a551-b2a0f516294c.png)                                           
+![](https://user-images.githubusercontent.com/32337103/215957683-f601ae19-f429-40bb-a551-b2a0f516294c.png)
 
 </details>
 
