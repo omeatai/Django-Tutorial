@@ -237,10 +237,10 @@ class Article(models.Model):
 
 <details>
   <summary>7. Register Article Model in Admin</summary>
-  
+
 ![](https://user-images.githubusercontent.com/32337103/215871020-7c6ebe88-6df2-4fa3-8d8a-f378481b3315.png)
- 
-article/admin.py: 
+
+article/admin.py:
 
 ```py
 from django.contrib import admin
@@ -297,13 +297,55 @@ class ArticleAdmin(admin.ModelAdmin):
 </details>
 
 <details>
-  <summary>8. </summary>
+  <summary>8. Django Templates </summary>
 
-```py
+Required arguments:
 
+- request: The request object is used to generate the response.
+- template_name: The full name of a template to use or sequence of template names.
+
+Optional Arguments:
+
+- context: A dictionary of values to add to the template context. By default, this is an
+  empty dictionary. If a value in the dictionary is callable, the view will call it just before rendering the template.
+- content_type: The MIME type to use for the resulting document. Defaults to 'text/html".
+- status: The status code for the response. Defaults to 200.
+
+There are two types of Templates:
+
+- App labeled templates
+- Project labeled templates
+
+App labeled templates -
+
+articles/templates/articles.html:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article List</title>
+  </head>
+  <body>
+    <h1>Article List</h1>
+    <p>This is the place to render articles from Database.</p>
+  </body>
+</html>
 ```
 
+articles/views.py:
+
 ```py
+from django.shortcuts import render, HttpResponse
+
+# Create your views here.
+
+def article_list(request):
+    # return HttpResponse("This is our first view for articles")
+    return render(request, 'articles.html')
 
 ```
 
