@@ -452,13 +452,38 @@ TEMPLATES = [
 </details>
 
 <details>
-  <summary>11. Template Inheritance </summary>
+  <summary>11. Template Inheritance - Using Layouts </summary>
 
-```py
+articles/templates/base.html:
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    {% block style %}{% endblock style %}
+  </head>
+  <body>
+    {% block body %}{% endblock body %}
+  </body>
+</html>
 ```
 
-```py
+articles/templates/articles.html:
+
+```htmlx
+{% extends 'base.html' %}
+
+{% block title %} Article List {% endblock title%}
+
+{%block body %}
+<h1>Article List</h1>
+<p>This is the place to render articles from Database.</p>
+<p>{{article}}</p>
+{% endblock body %}
 
 ```
 
