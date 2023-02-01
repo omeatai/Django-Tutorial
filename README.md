@@ -453,6 +453,20 @@ TEMPLATES = [
 
 <details>
   <summary>11. Template Inheritance - Using Layouts </summary>
+  
+
+articles/views.py:
+
+```py
+from django.shortcuts import render, HttpResponse
+
+# Create your views here.
+
+def article_list(request):
+    article = "This is my first article title"
+    return render(request, 'articles.html', {'article':article})
+
+```
 
 articles/templates/base.html:
 
@@ -486,14 +500,8 @@ articles/templates/articles.html:
 {% endblock body %}
 
 ```
-
-```py
-
-```
-
-```py
-
-```
+  
+![](https://user-images.githubusercontent.com/32337103/215979562-be0db0b4-0836-44bf-b048-91f6218e09b2.png)
 
 </details>
 
