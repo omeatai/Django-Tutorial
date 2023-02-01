@@ -387,11 +387,14 @@ articles/templates/articles.html:
   </body>
 </html>
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/215957683-f601ae19-f429-40bb-a551-b2a0f516294c.png)
+  
 
 </details>
 
 <details>
-  <summary>10. </summary>
+  <summary>10. Project Labeled Templates</summary>
 
 ```py
 
