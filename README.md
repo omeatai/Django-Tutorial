@@ -654,6 +654,7 @@ Model signals -
 - If you override these methods on your model, you must call the parent class’ methods for these signals to be sent.
 - Note also that Django stores signal handlers as weak references by default, so if your handler is a local function, it may be garbage collected.
 - To prevent this, pass weak=False when you call the signal’s connect().
+- For performance reasons, you shouldn’t perform queries in receivers of pre_init or post_init signals because they would be executed for each instance returned during queryset iteration.
 
 pre_init -
 
@@ -668,6 +669,89 @@ Arguments sent with this signal:
 - sender - The model class that just had an instance created.
 - args - A list of positional arguments passed to \_init\_\_().
 - kwargs - A dictionary of keyword arguments passed to \_init\_\_().
+
+post_init -
+
+```py
+django.db.models.signals.post_init
+```
+
+- Like pre_init, but this one is sent when the \_init\_\_() method finishes.
+
+Arguments sent with this signal:
+
+- sender - The model class that just had an instance created.
+- instance - The actual instance of the model that’s just been created.
+
+pre_save -
+
+```py
+django.db.models.signals.pre_save
+```
+
+- This is sent at the beginning of a model’s save() method.
+
+Arguments sent with this signal:
+
+- sender - The model class.
+- instance - The actual instance being saved.
+- raw - A boolean; True if the model is saved exactly as presented (i.e. when loading a fixture). One should not query/modify other records in the database as the database might not be in a consistent state yet.
+- using - The database alias being used.
+- update_fields - The set of fields to update as passed to Model.save(), or None if update_fields wasn’t passed to save().
+
+post_save -
+
+```py
+django.db.models.signals.post_save
+```
+
+- Like pre_save, but sent at the end of the save() method.
+
+Arguments sent with this signal:
+
+- sender - The model class.
+- instance - The actual instance being saved.
+- created - A boolean; True if a new record was created.
+- raw - A boolean; True if the model is saved exactly as presented (i.e. when loading a fixture). One should not query/modify other records in the database as the database might not be in a consistent state yet.
+- using - The database alias being used.
+- update_fields - The set of fields to update as passed to Model.save(), or None if update_fields wasn’t passed to save().
+
+pre_delete -
+
+```py
+django.db.models.signals.pre_delete
+```
+
+- Sent at the beginning of a model’s delete() method and a queryset’s delete() method.
+
+Arguments sent with this signal:
+
+- sender - The model class.
+- instance - The actual instance being deleted.
+- using - The database alias being used.
+
+post_delete -
+
+```py
+django.db.models.signals.post_delete
+```
+
+- Like pre_delete, but sent at the end of a model’s delete() method and a queryset’s delete() method.
+
+Arguments sent with this signal:
+
+- sender - The model class.
+- instance - The actual instance being deleted.
+  Note that the object will no longer be in the database, so be very careful what you do with this instance.
+- using - The database alias being used.
+
+```py
+
+```
+
+```py
+
+```
 
 </details>
 
