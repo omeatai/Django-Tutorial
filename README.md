@@ -1003,28 +1003,131 @@ articles/templates/articles.html:
 {% endblock body %}
 
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/216396649-ec8013a9-c735-4925-836d-5da5514493e8.png)
-  
 
 </details>
 
 <details>
-  <summary>17. </summary>
+  <summary>17. Adding Bootstrap Navbar </summary>
 
-```py
+articles/templates/navbar.html:
 
+```html
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container">
+    <a class="navbar-brand" href="#">Django-Blog</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link disabled">Welcome, Adam.</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Add Article</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Profile
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Change Password</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 ```
 
-```py
+articles/templates/base.html:
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    {% block style %}{% endblock style %}
+  </head>
+  <body>
+    {% block nav %} {% include 'navbar.html' %} {% endblock nav %} {% block body
+    %}{% endblock body %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
 ```
 
-```py
+```htmlx
+{% extends 'base.html' %}
 
-```
+{% block title %} Article List {% endblock title%}
 
-```py
+{% block style %}
+<style>
+    .h1-style {
+        margin: 2rem 0;
+        color: #2c9df0;
+    }
+    .link-style {
+        text-decoration: none;
+        color:black;
+    }
+    .link-style:hover {
+        text-decoration: none;
+        color:gray;
+    }
+</style>
+{% endblock style %}
+
+{%block body %}
+<section class="container">
+    <h1 class="h1-style">Article List</h1>
+    {% for article in articles %}
+        <span class="badge rounded-pill text-bg-success">Author: {{article.author}}</span>
+        <h1><a class="link-style" href="">{{article.title}}</a></h1>
+    {% endfor %}
+</section>
+
+{% endblock body %}
 
 ```
 
