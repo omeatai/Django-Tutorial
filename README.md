@@ -745,13 +745,71 @@ Arguments sent with this signal:
   Note that the object will no longer be in the database, so be very careful what you do with this instance.
 - using - The database alias being used.
 
-```py
+Examples -
 
+django post_save signals
+
+Let’s have a look on the post_save built-in signal. Its code lives in the django.db.models.signals module. This particular signal fires right after a model finish executing its save method.
+
+```py
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+post_save.connect(save_profile, sender=User)
+```
+
+Another way to register a signal, is by using the @receiver decorator:
+
+```py
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
 ```
 
 ```py
+from django.dispatch import receiver
 
+from djoser.signals import user_activated
+
+@receiver(user_activated)
+def my_handler(user, request):
+    # do what you need here
 ```
+
+More Explanation of Django signals:
+
+- The Django Signals is a strategy to allow decoupled applications to get notified when certain events occur
+- There are two key elements in the signals machinary: the senders and the receivers.
+- As the name suggests, the sender is the one responsible to dispatch a signal, and the receiver is the one who will receive this signal and then do something.
+- A receiver must be a function or an instance method which is to receive signals.
+- A sender must either be a Python object, or None to receive events from any sender.
+- The connection between the senders and the receivers is done through “signal dispatchers”, which are instances of Signal, via the connect method.
+- So to receive a signal, you need to register a receiver function that gets called when the signal is sent by using the Signal.connect() method.
+
+django built-in signals:
+
+- Django provides a set of built-in signals that let user code get notified by Django itself of certain actions.
+
+These include some useful notifications:
+
+- django.db.models.signals.pre_save & django.db.models.signals.post_save:
+  Sent before or after a model's save() method is called.
+
+- django.db.models.signals.pre_delete & django.db.models.signals.post_delete:
+  Sent before or after a model's delete() method or queryset's delete() method is called.
+
+- django.db.models.signals.m2m_changed :
+  Sent when a ManyToManyField on a model is changed.
+
+- django.core.signals.request_started & django.core.signals.request_finished:
+  Sent when Django starts or finishes an HTTP request.
 
 </details>
 
