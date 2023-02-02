@@ -1096,6 +1096,8 @@ articles/templates/base.html:
 </html>
 ```
 
+articles/templates/articles.html:
+
 ```htmlx
 {% extends 'base.html' %}
 
