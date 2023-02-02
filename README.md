@@ -918,7 +918,11 @@ article.save()
 ```py
 # <Article: the first article>
 ```
-
+  
+![](https://user-images.githubusercontent.com/32337103/216329675-2b6a670c-ed46-4491-b8cd-17571c12f220.png)
+  
+![](https://user-images.githubusercontent.com/32337103/216329839-a8c8d2a8-1b71-4c8c-9f7a-b17b7024f80e.png)
+  
 </details>
 
 <details>
