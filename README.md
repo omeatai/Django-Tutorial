@@ -1132,6 +1132,9 @@ articles/templates/articles.html:
 {% endblock body %}
 
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/216427207-449b2da7-1cdc-4515-a942-10ed1173046c.png)
+  
 
 </details>
 
