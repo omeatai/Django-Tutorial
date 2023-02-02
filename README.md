@@ -599,35 +599,80 @@ articles/templates/base.html:
   </body>
 </html>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/216303473-6288b019-e6d3-4179-b0ad-db6500e4f1e0.png)
-  
 
 </details>
 
 <details>
-  <summary>14. Dynamic Slugs with signals </summary>
+  <summary>14. What are signals? </summary>
+
+- Django includes a “signal dispatcher” which helps decoupled applications get notified when actions occur elsewhere in the framework.
+- In a nutshell, signals allow certain senders to notify a set of receivers that some action has taken place.
+- They’re especially useful when many pieces of code may be interested in the same events.
+- For example, a third-party app can register to be notified of settings changes.
 
 ```py
+from django.apps import AppConfig
+from django.core.signals import setting_changed
 
+def my_callback(sender, **kwargs):
+    print("Setting changed!")
+
+class MyAppConfig(AppConfig):
+    ...
+
+    def ready(self):
+        setting_changed.connect(my_callback)
 ```
 
 ```py
+from django.core.signals import request_finished
 
+request_finished.connect(my_callback)
+
+def my_callback(sender, **kwargs):
+    print("Request finished!")
 ```
 
 ```py
-
+Signal.connect(receiver, sender=None, weak=True, dispatch_uid=None)
 ```
+
+- receiver – The callback function which will be connected to this signal.
+- sender – Specifies a particular sender to receive signals from.
+- weak – Django stores signal handlers as weak references by default. Thus, if your receiver is a local function, it may be garbage collected. To prevent this, pass weak=False when you call the signal’s connect() method.
+- dispatch_uid – A unique identifier for a signal receiver in cases where duplicate signals may be sent.
+
+Model signals -
+
+- All built-in signals are sent using the send() method.
+- The django.db.models.signals module defines a set of signals sent by the model system.
+- Signals can make your code harder to maintain.
+- Consider implementing a helper method on a custom manager, to both update your models and perform additional logic, or else overriding model methods before using model signals.
+- Many of these signals are sent by various model methods like \_init\_\_() or save() that you can override in your own code.
+- If you override these methods on your model, you must call the parent class’ methods for these signals to be sent.
+- Note also that Django stores signal handlers as weak references by default, so if your handler is a local function, it may be garbage collected.
+- To prevent this, pass weak=False when you call the signal’s connect().
+
+pre_init -
 
 ```py
-
+django.db.models.signals.pre_init
 ```
+
+- Whenever you instantiate a Django model, this signal is sent at the beginning of the model’s \_init\_\_() method.
+
+Arguments sent with this signal:
+
+- sender - The model class that just had an instance created.
+- args - A list of positional arguments passed to \_init\_\_().
+- kwargs - A dictionary of keyword arguments passed to \_init\_\_().
 
 </details>
 
 <details>
-  <summary>15. </summary>
+  <summary>15. Dynamic Slugs with signals </summary>
 
 ```py
 
