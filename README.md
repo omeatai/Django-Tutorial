@@ -918,29 +918,89 @@ article.save()
 ```py
 # <Article: the first article>
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/216329675-2b6a670c-ed46-4491-b8cd-17571c12f220.png)
-  
+
 ![](https://user-images.githubusercontent.com/32337103/216329839-a8c8d2a8-1b71-4c8c-9f7a-b17b7024f80e.png)
-  
+
 </details>
 
 <details>
-  <summary>16. </summary>
+  <summary>16. Retrieving Data </summary>
+
+articles/views.py:
 
 ```py
+from django.shortcuts import render, HttpResponse
+from .models import Article
+
+# Create your views here.
+
+def article_list(request):
+    articles = Article.objects.all().order_by('-published')
+    return render(request, 'articles.html', {'articles':articles})
 
 ```
 
-```py
+articles/templates/base.html:
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    {% block style %}{% endblock style %}
+  </head>
+  <body>
+    {% block body %}{% endblock body %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
 ```
 
-```py
+articles/templates/articles.html:
 
-```
+```htmlx
+{% extends 'base.html' %}
 
-```py
+{% block title %} Article List {% endblock title%}
+
+{% block style %}
+<style>
+    .link-style {
+        text-decoration: none;
+        color:black;
+    }
+    .link-style:hover {
+        text-decoration: none;
+        color:gray;
+    }
+</style>
+{% endblock style %}
+
+{%block body %}
+<section class="container">
+    <h1>Article List</h1>
+    {% for article in articles %}
+        <span class="badge rounded-pill text-bg-success">Author: {{article.author}}</span>
+        <h1><a class="link-style" href="">{{article.title}}</a></h1>
+    {% endfor %}
+</section>
+
+{% endblock body %}
 
 ```
 
