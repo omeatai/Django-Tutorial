@@ -599,6 +599,9 @@ articles/templates/base.html:
   </body>
 </html>
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/216303473-6288b019-e6d3-4179-b0ad-db6500e4f1e0.png)
+  
 
 </details>
 
