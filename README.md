@@ -603,7 +603,7 @@ articles/templates/base.html:
 </details>
 
 <details>
-  <summary>14. </summary>
+  <summary>14. Dynamic Slugs with signals </summary>
 
 ```py
 
