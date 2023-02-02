@@ -1003,6 +1003,9 @@ articles/templates/articles.html:
 {% endblock body %}
 
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/216396649-ec8013a9-c735-4925-836d-5da5514493e8.png)
+  
 
 </details>
 
