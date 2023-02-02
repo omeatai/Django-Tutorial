@@ -926,7 +926,7 @@ article.save()
 </details>
 
 <details>
-  <summary>16. Retrieving Data </summary>
+  <summary>16. Retrieving Data from Model </summary>
 
 articles/views.py:
 
