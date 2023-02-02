@@ -816,20 +816,107 @@ These include some useful notifications:
 <details>
   <summary>15. Dynamic Slugs with signals </summary>
 
+articles/signals.py:
+
 ```py
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from .models import Article
+from django.utils.text import slugify
+
+
+@receiver(pre_save, sender=Article)
+def add_slug(sender, instance, *args, **kwargs):
+    if instance and not instance.slug:
+        slug = slugify (instance.title)
+        instance.slug = slug
+```
+
+articles/apps.py:
+
+```py
+from django.apps import AppConfig
+
+
+class ArticlesConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'articles'
+
+    def ready(self):
+        import articles.signals
 
 ```
 
-```py
+articles/init.py:
 
+```py
+default_app_config = "articles.apps.ArticlesConfig"
+```
+
+articles/models.py:
+
+```py
+from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    slug = models.SlugField(max_length=100, unique=True)
+    published = models.DateTimeField (auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.title
 ```
 
 ```py
+python manage.py shell
+```
 
+```bs
+from django.contrib.auth import get_user_model
+from articles.models import Article
+user = get_user_model()
+ u = user.objects.first()
+ >>> u
+<User: admin>
+
+article = Article(title='the first article',description='this is the article',author=u)
+article.save()
+```
+
+```bs
+>>> Article.objects.all().last()
 ```
 
 ```py
+# <Article: the first article>
+```
 
+```bs
+>>> Article.objects.all().last().__dict__
+```
+
+```py
+# {'_state': <django.db.models.base.ModelState object at 0x1044d1100>, 'id': 2, 'title': 'the first article', 'description': 'this is the article', 'slug': 'the-first-article', 'published': datetime.datetime(2023, 2, 2, 12, 31, 24, 759019, tzinfo=datetime.timezone.utc), 'author_id': 1}
+```
+
+```bs
+>>> Article.objects.all().last().slug
+```
+
+```py
+# 'the-first-article'
+```
+
+```bs
+>>> Article.objects.get(author=u, title='the first article')
+```
+
+```py
+# <Article: the first article>
 ```
 
 </details>
