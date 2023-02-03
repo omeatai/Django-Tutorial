@@ -1212,6 +1212,8 @@ articles/templates/details.html:
     </div>
 {% endblock body %}
 ```
+  
+![](https://user-images.githubusercontent.com/32337103/216662571-196525d5-33c2-4fa9-9908-3af531d9de89.png)
 
 </details>
 
