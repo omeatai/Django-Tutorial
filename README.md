@@ -1560,7 +1560,40 @@ class ArticleForm(ModelForm):
 
 >>> from django.forms import Textarea
 >>> Form = modelform_factory(Book, form=BookForm,
-...                          widgets={"title": Textarea()})
+                          widgets={"title": Textarea()})
+```
+
+```py
+from django import forms
+
+class ProductForm(forms.ModelForm):
+  	### here date is the field name in the model ###
+    date = forms.DateTimeField(widget=forms.DateInput(attrs={'class': 'form-control'}))
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+############## or ##############
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(ProductForm, self).__init__(*args, **kwargs)
+        self.fields['date'].widget.attrs["class"] = "form-control"
+
+############## or ##############
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = "__all__"
+		widgets = {
+            'date': forms.DateInput(attrs={'class': 'form-control'})
+        }
+### you can use the attrs to style the fields ###
 ```
 
 </details>
@@ -1568,20 +1601,96 @@ class ArticleForm(ModelForm):
 <details>
   <summary>20. Create Login System with Django Forms</summary>
 
+articles/forms.py:
+
 ```py
+from django import forms
+
+class LoginForm (forms.Form):
+    username = forms.CharField(
+        label='Username',
+        initial='',
+        required=True,
+        max_length=50,
+        help_text='50 characters max.',
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(
+        label='Password',
+        required=True,
+        max_length=50,
+        help_text='50 characters max.',
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+```
+
+articles/views.py:
+
+```py
+from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.contrib.auth import authenticate, login
+
+from .models import Article
+from .forms import LoginForm
+
+# Create your views here.
+
+def article_list(request):
+    articles = Article.objects.all().order_by('-published')
+    return render(request, 'articles.html', {'articles':articles})
+
+def article_details(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return render(request, 'details.html', {'article':article})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+
+            if user is None:
+                return HttpResponse("Invalid Login")
+            login(request, user)
+            return HttpResponse("You are authenticated")
+    else:
+        form = LoginForm()
+        # form.fields['username'].initial = ''
+    return render(request, 'account/login.html', {'form':form})
 
 ```
 
-```py
+articles/templates/account/login.html:
 
+```htmlx
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <h1>Login User</h1>
+    <p>Use the following form for the login</p>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Login" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
 ```
 
-```py
-
-```
+articles/urls.py:
 
 ```py
+from django.urls import path
+from .views import article_list, article_details, user_login
 
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+    path('login/', user_login, name='login')
+]
 ```
 
 </details>
