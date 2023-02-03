@@ -1132,29 +1132,85 @@ articles/templates/articles.html:
 {% endblock body %}
 
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/216427207-449b2da7-1cdc-4515-a942-10ed1173046c.png)
-  
 
 </details>
 
 <details>
-  <summary>18. </summary>
+  <summary>18. Getting the details of Articles </summary>
+
+articles/views.py:
 
 ```py
+from django.shortcuts import render, HttpResponse, get_object_or_404
+from .models import Article
+
+# Create your views here.
+
+def article_list(request):
+    articles = Article.objects.all().order_by('-published')
+    return render(request, 'articles.html', {'articles':articles})
+
+def article_details(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return render(request, 'details.html', {'article':article})
 
 ```
 
+articles/urls.py:
+
 ```py
+from django.urls import path
+from .views import article_list, article_details
+
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details')
+]
+```
+
+articles/templates/base.html:
+
+```htmlx
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    {% block style %}{% endblock style %}
+  </head>
+  <body>
+    {% block nav %}
+      {% include 'navbar.html' %}
+    {% endblock nav %}
+    {% block body %}{% endblock body %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
 
 ```
 
-```py
+articles/templates/details.html:
 
-```
+```htmlx
+{% extends 'base.html' %}
 
-```py
+{% block title %}{% endblock title %}
 
+{% block style %}{% endblock style %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>{{article.title}}</h1>
+        <h6>Published {{article.published}} by <i>{{article.author}}</i></h6>
+        <br>
+        <p>{{article.description}}</p>
+    </div>
+{% endblock body %}
 ```
 
 </details>
