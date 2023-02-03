@@ -1212,34 +1212,361 @@ articles/templates/details.html:
     </div>
 {% endblock body %}
 ```
-  
+
 ![](https://user-images.githubusercontent.com/32337103/216662571-196525d5-33c2-4fa9-9908-3af531d9de89.png)
 
 </details>
 
 <details>
-  <summary>19. </summary>
+  <summary>19. Django Forms - Form vs Model Form </summary>
+
+Form -
 
 ```py
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
+# Create your forms here.
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=100)
+```
+
+```py
+from django import forms
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(max_length=1000)
+```
+
+```py
+from django import forms
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+    sender = forms.EmailField()
+    cc_myself = forms.BooleanField(required=False)
+```
+
+```py
+from django import forms
+
+class AuthorForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    title = forms.CharField(
+        max_length=3,
+        widget=forms.Select(choices=TITLE_CHOICES),
+    )
+    birth_date = forms.DateField(required=False)
+
+class BookForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    authors = forms.ModelMultipleChoiceField(queryset=Author.objects.all())
+```
+
+```py
+from django.core.mail import send_mail
+
+if form.is_valid():
+    subject = form.cleaned_data['subject']
+    message = form.cleaned_data['message']
+    sender = form.cleaned_data['sender']
+    cc_myself = form.cleaned_data['cc_myself']
+
+    recipients = ['info@example.com']
+    if cc_myself:
+        recipients.append(sender)
+
+    send_mail(subject, message, sender, recipients)
+    return HttpResponseRedirect('/thanks/')
+```
+
+Example:
+
+```py
+from django import forms
+
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=100)
+```
+
+```htmlx
+<form action="/your-name/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+```
+
+```py
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+from .forms import NameForm
+
+def get_name(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NameForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
+
+    return render(request, 'name.html', {'form': form})
+```
+
+Model Form -
+
+```py
+from django.forms import ModelForm
+from myapp.models import Article
+
+# Create the form class.
+class ArticleForm(ModelForm):
+    class Meta:
+        model = Article
+        fields = ['pub_date', 'headline', 'content', 'reporter']
+
+# Creating a form to add an article.
+>>> form = ArticleForm()
+
+# Creating a form to change an existing article.
+>>> article = Article.objects.get(pk=1)
+>>> form = ArticleForm(instance=article)
+```
+
+```py
+from django.db import models
+from django.forms import ModelForm
+
+TITLE_CHOICES = [
+    ('MR', 'Mr.'),
+    ('MRS', 'Mrs.'),
+    ('MS', 'Ms.'),
+]
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=3, choices=TITLE_CHOICES)
+    birth_date = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class Book(models.Model):
+    name = models.CharField(max_length=100)
+    authors = models.ManyToManyField(Author)
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = ['name', 'title', 'birth_date']
+
+class BookForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ['name', 'authors']
+```
+
+```py
+from django.core.exceptions import NON_FIELD_ERRORS
+from django.forms import ModelForm
+
+class ArticleForm(ModelForm):
+    class Meta:
+        error_messages = {
+            NON_FIELD_ERRORS: {
+                'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
+            }
+        }
+```
+
+```py
+>>> from myapp.models import Article
+>>> from myapp.forms import ArticleForm
+
+# Create a form instance from POST data.
+>>> f = ArticleForm(request.POST)
+
+# Save a new Article object from the form's data.
+>>> new_article = f.save()
+
+# Create a form to edit an existing Article, but use
+# POST data to populate the form.
+>>> a = Article.objects.get(pk=1)
+>>> f = ArticleForm(request.POST, instance=a)
+>>> f.save()
+```
+
+```py
+# Create a form instance with POST data.
+>>> f = AuthorForm(request.POST)
+
+# Create, but don't save the new author instance.
+>>> new_author = f.save(commit=False)
+
+# Modify the author in some way.
+>>> new_author.some_field = 'some_value'
+
+# Save the new instance.
+>>> new_author.save()
+
+# Now, save the many-to-many data for the form.
+>>> f.save_m2m()
+```
+
+```py
+# Create a form instance with POST data.
+>>> a = Author()
+>>> f = AuthorForm(request.POST, instance=a)
+
+# Create and save the new author instance. There's no need to do anything else.
+>>> new_author = f.save()
+```
+
+```py
+from django.forms import ModelForm
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = '__all__'
+```
+
+```py
+class PartialAuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        exclude = ['title']
+```
+
+```py
+author = Author(title='Mr')
+form = PartialAuthorForm(request.POST, instance=author)
+form.save()
+
+form = PartialAuthorForm(request.POST)
+author = form.save(commit=False)
+author.title = 'Mr'
+author.save()
+```
+
+```py
+from django.forms import ModelForm, Textarea
+from myapp.models import Author
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = ('name', 'title', 'birth_date')
+        widgets = {
+            'name': Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
+```
+
+```py
+from django.utils.translation import gettext_lazy as _
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = ('name', 'title', 'birth_date')
+        labels = {
+            'name': _('Writer'),
+        }
+        help_texts = {
+            'name': _('Some useful help text.'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("This writer's name is too long."),
+            },
+        }
 
 ```
 
 ```py
+from django.forms import ModelForm
+from myapp.models import Article
 
+class ArticleForm(ModelForm):
+    class Meta:
+        model = Article
+        fields = ['pub_date', 'headline', 'content', 'reporter', 'slug']
+        field_classes = {
+            'slug': MySlugFormField,
+        }
 ```
 
 ```py
+from django.forms import CharField, ModelForm
+from myapp.models import Article
 
+class ArticleForm(ModelForm):
+    slug = CharField(validators=[validate_slug])
+
+    class Meta:
+        model = Article
+        fields = ['pub_date', 'headline', 'content', 'reporter', 'slug']
 ```
 
 ```py
+class Article(models.Model):
+    headline = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        help_text='Use puns liberally',
+    )
+    content = models.TextField()
 
+class ArticleForm(ModelForm):
+    headline = MyFormField(
+        max_length=200,
+        required=False,
+        help_text='Use puns liberally',
+    )
+
+    class Meta:
+        model = Article
+        fields = ['headline', 'content']
+```
+
+```py
+>>> article = Article.objects.get(pk=1)
+>>> article.headline
+'My headline'
+>>> form = ArticleForm(initial={'headline': 'Initial headline'}, instance=article)
+>>> form['headline'].value()
+'Initial headline'
+```
+
+```py
+>>> from django.forms import modelform_factory
+>>> from myapp.models import Book
+>>> BookForm = modelform_factory(Book, fields=("author", "title"))
+
+>>> from django.forms import Textarea
+>>> Form = modelform_factory(Book, form=BookForm,
+...                          widgets={"title": Textarea()})
 ```
 
 </details>
 
 <details>
-  <summary>20. </summary>
+  <summary>20. Create Login System with Django Forms</summary>
 
 ```py
 
