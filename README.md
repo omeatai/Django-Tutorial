@@ -1605,6 +1605,7 @@ articles/forms.py:
 
 ```py
 from django import forms
+from django.utils.html import format_html
 
 class LoginForm (forms.Form):
     username = forms.CharField(
@@ -1612,13 +1613,13 @@ class LoginForm (forms.Form):
         initial='',
         required=True,
         max_length=50,
-        help_text='50 characters max.',
+        help_text=format_html('<span class="red">50 characters max.</span>'),
         widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(
         label='Password',
         required=True,
         max_length=50,
-        help_text='50 characters max.',
+        help_text=format_html('<span class="red">50 characters max.</span>'),
         widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 ```
 
@@ -1666,6 +1667,14 @@ articles/templates/account/login.html:
 {% extends "base.html" %}
 
 {% block title %}Login{% endblock title %}
+
+{% block style %}
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+{% endblock style %}
 
 {% block body %}
 <div class="container">
