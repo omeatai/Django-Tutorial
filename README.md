@@ -1702,7 +1702,7 @@ urlpatterns = [
 ]
 ```
 	
-![](https://user-images.githubusercontent.com/32337103/216725724-6c1b3720-e187-417f-be14-642d515d0846.png)
+![](https://user-images.githubusercontent.com/32337103/216727185-7ee4ce9e-415d-4133-802a-599418db98f9.png)
 
 
 </details>
