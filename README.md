@@ -1820,18 +1820,122 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 ```
+	
+articles/forms.py:	
 
+```py
+from django import forms
+from django.utils.html import format_html
+from django.contrib.auth.models import User
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        label='Username',
+        initial='',
+        required=True,
+        max_length=50,
+        help_text=format_html('<span class="red">50 characters max.</span>'),
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(
+        label='Password',
+        required=True,
+        max_length=50,
+        help_text=format_html('<span class="red">50 characters max.</span>'),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+class UserRegistration(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['passsword2']:
+            raise forms.ValidationError('Passwords do not match')
+        else:
+            return cd['password2']
+
+```
+	
+articles/views.py:	
+
+```py
+from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.contrib.auth import authenticate, login
+
+from .models import Article
+from .forms import LoginForm, UserRegistration
+
+
+# Create your views here.
+
+def article_list(request):
+    articles = Article.objects.all().order_by('-published')
+    return render(request, 'articles.html', {'articles':articles})
+
+def article_details(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return render(request, 'details.html', {'article':article})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+
+            if user is None:
+                return HttpResponse("Invalid Login")
+            login(request, user)
+            return HttpResponse("You are authenticated")
+    else:
+        form = LoginForm()
+        # form.fields['username'].initial = ''
+    return render(request, 'account/login.html', {'form':form})
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistration(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'account/register_done.html', {'user_form': user_form})
+    else:
+        user_form = UserRegistration()
+    return render(request, 'account/register.html', {'user_form': user_form})
+
+```
+	
+articles/urls.py:	
+
+```py
+from django.urls import path
+from .views import article_list, article_details, user_login, register
+
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+    path('login/', user_login, name='login'),
+    path('register/', register, name='register'),
+]
+```
+	
 ```py
 
 ```
 
 ```py
 
-```
-
-```py
-
-```
+```	
+	
+<img width="1359" alt="image" src="https://user-images.githubusercontent.com/32337103/216755335-3f765b49-b832-4824-b8c1-5e8fcb11e357.png">
+	
 
 </details>
 
