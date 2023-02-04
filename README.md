@@ -1707,7 +1707,7 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>21. Install Django-Crispy-Forms Library</summary>
+  <summary>21. Install Django Crispy Forms Library</summary>
 
 ```bs
 pip install django-crispy-forms
@@ -1794,7 +1794,7 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 </details>
 
 <details>
-  <summary>22. Create Registration System</summary>
+  <summary>22. Create Registration System with ModelForm and Crispy Forms</summary>
 
 ```py
 pip install crispy-bootstrap5
@@ -1817,7 +1817,8 @@ INSTALLED_APPS = [
 ```
 
 ```py
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 ```
 
 ```py
