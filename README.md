@@ -1820,8 +1820,8 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 ```
-	
-articles/forms.py:	
+
+articles/forms.py:
 
 ```py
 from django import forms
@@ -1853,14 +1853,14 @@ class UserRegistration(forms.ModelForm):
 
     def clean_password2(self):
         cd = self.cleaned_data
-        if cd['password'] != cd['passsword2']:
+        if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords do not match')
         else:
             return cd['password2']
 
 ```
-	
-articles/views.py:	
+
+articles/views.py:
 
 ```py
 from django.shortcuts import render, HttpResponse, get_object_or_404
@@ -1911,8 +1911,8 @@ def register(request):
     return render(request, 'account/register.html', {'user_form': user_form})
 
 ```
-	
-articles/urls.py:	
+
+articles/urls.py:
 
 ```py
 from django.urls import path
@@ -1925,17 +1925,55 @@ urlpatterns = [
     path('register/', register, name='register'),
 ]
 ```
-	
-```py
+
+articles/templates/account/register.html:
+
+```htmlx
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block style %}
+    <style>
+        .register_style {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+{% endblock style %}
+
+{% block body %}
+<div class="container my-4 register_style">
+    <h3>Register an account </h3>
+    <p>Use the following form for Registration.</p>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{user_form | crispy}}
+        <input type="submit" value="Create Account" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
 
 ```
 
-```py
+articles/templates/account/register_done.html:
 
-```	
-	
+```htmlx
+{% extends "base.html" %}
+
+{% block title %}Done{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <h3>Welcome, {{new_user.username}}</h3>
+    <p>Your Account has been created, you can <a href="{% url 'login' %}">Login Here</a>.</p>
+</div>
+{% endblock body %}
+```
+
 <img width="1359" alt="image" src="https://user-images.githubusercontent.com/32337103/216755335-3f765b49-b832-4824-b8c1-5e8fcb11e357.png">
-	
 
 </details>
 
