@@ -1701,35 +1701,120 @@ urlpatterns = [
     path('login/', user_login, name='login')
 ]
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216727185-7ee4ce9e-415d-4133-802a-599418db98f9.png)
 
+</details>
+
+<details>
+  <summary>21. Install Django-Crispy-Forms Library</summary>
+
+```bs
+pip install django-crispy-forms
+```
+
+```py
+# In Settings
+INSTALLED_APPS = [
+	'crispy_forms',
+]
+
+# Very Bottom of Settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Top of HTML page
+{% load crispy_forms_tags %}
+
+# Apply styling to form
+{{ form | crispy }}
+```
+
+Crispy-Bootstrap5 -
+
+```bs
+### 1- install library ###
+pip install crispy-bootstrap5
+```
+
+```py
+### 2- add the following 2 lines to installed apps in settings.py  ###
+"crispy_forms",
+"crispy_bootstrap5",
+
+### 3- add the following 2 lines in settings.py ###
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+### 4- now load crispy forms tags and use crispy filter in your html file  ###
+{% extends "main/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+</form>
+
+{% endblock %}
+```
+
+Crispy-Tailwind -
+
+```bs
+### install library ###
+pip install crispy-tailwind
+```
+
+```py
+INSTALLED_APPS = (
+    ...
+    "crispy_forms",
+    "crispy_tailwind",
+    ...
+)
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+### Now load crispy forms tags and use crispy filter in your html file  ###
+{% extends "main/base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+</form>
+
+{% endblock %}
+```
 
 </details>
 
 <details>
-  <summary>21. </summary>
+  <summary>22. Create Registration System</summary>
 
 ```py
-
+pip install crispy-bootstrap5
 ```
 
 ```py
+# Application definition
 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'articles',
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
 ```
-
-```py
-
-```
-
-```py
-
-```
-
-</details>
-
-<details>
-  <summary>22. </summary>
 
 ```py
 
