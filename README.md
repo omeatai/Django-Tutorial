@@ -1973,8 +1973,16 @@ articles/templates/account/register_done.html:
 {% endblock body %}
 ```
 
-<img width="1359" alt="image" src="https://user-images.githubusercontent.com/32337103/216755335-3f765b49-b832-4824-b8c1-5e8fcb11e357.png">
+![](https://user-images.githubusercontent.com/32337103/216756087-a47a6683-66cd-4b10-97d8-6af375e03456.png)
+	
+![](https://user-images.githubusercontent.com/32337103/216756103-6ea9235c-3843-440e-9b44-9e1df060e055.png)
 
+![](https://user-images.githubusercontent.com/32337103/216756124-b462ce08-2eca-4933-a324-8314b3e72364.png)
+
+![](https://user-images.githubusercontent.com/32337103/216756132-585e7bd2-6517-4636-8fa6-d690ffa91632.png)
+	
+![](https://user-images.githubusercontent.com/32337103/216756149-2055825a-9340-4549-ae57-2fcdb9c30f6d.png)
+	
 </details>
 
 <details>
