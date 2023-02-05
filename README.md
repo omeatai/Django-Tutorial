@@ -1974,33 +1974,94 @@ articles/templates/account/register_done.html:
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/216756087-a47a6683-66cd-4b10-97d8-6af375e03456.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216756103-6ea9235c-3843-440e-9b44-9e1df060e055.png)
 
 ![](https://user-images.githubusercontent.com/32337103/216756124-b462ce08-2eca-4933-a324-8314b3e72364.png)
 
 ![](https://user-images.githubusercontent.com/32337103/216756132-585e7bd2-6517-4636-8fa6-d690ffa91632.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216756149-2055825a-9340-4549-ae57-2fcdb9c30f6d.png)
-	
+
 </details>
 
 <details>
-  <summary>23. </summary>
+  <summary>23. Use Django Class LoginView for Login </summary>
+
+djblog/articles/urls.py:
 
 ```py
+from django.urls import path
+from .views import article_list, article_details, user_login, register
+from django.contrib.auth.views import LoginView
 
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+    # path('login/', user_login, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('register/', register, name='register'),
+]
 ```
 
+djblog/djblog/settings.py:
+
 ```py
 
+# Internationalization
+# https://docs.djangoproject.com/en/4.1/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+LOGIN_REDIRECT_URL = 'article_list'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 ```
 
-```py
-
-```
+djblog/articles/templates/registration/login.html:
 
 ```py
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block style %}
+    <style>
+        .red {
+            color: red;
+        }
+        .login_style {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+{% endblock style %}
+
+{% block body %}
+<div class="container my-4 login_style">
+    <h1>Login User</h1>
+
+    {% if form.errors %}
+        <p class="red">Incorrect Username or Password!</p>
+    {% else %}
+        <p>Use the following form below for the login.</p>
+    {% endif  %}
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form | crispy}}
+        <input type="hidden" name="next" value="{{next}}" />
+        <input type="submit" value="Login" class="btn btn-success" />
+    </form>
+</div>
+{% endblock body %}
 
 ```
 
