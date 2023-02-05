@@ -2064,31 +2064,66 @@ djblog/articles/templates/registration/login.html:
 {% endblock body %}
 
 ```
-	
-![](https://user-images.githubusercontent.com/32337103/216801732-ff7d1432-44c2-483d-9bda-2304270cdacf.png)
-	
-![](https://user-images.githubusercontent.com/32337103/216801734-f5cd4dd0-20c5-4a1b-8e4d-ae1648d73fbe.png)
 
+![](https://user-images.githubusercontent.com/32337103/216801732-ff7d1432-44c2-483d-9bda-2304270cdacf.png)
+
+![](https://user-images.githubusercontent.com/32337103/216801734-f5cd4dd0-20c5-4a1b-8e4d-ae1648d73fbe.png)
 
 </details>
 
 <details>
-  <summary>24. </summary>
+  <summary>24. Use Django Class LogoutView for Logout </summary>
+
+djblog/articles/urls.py:
 
 ```py
+from django.urls import path
+from .views import article_list, article_details, user_login, register
+from django.contrib.auth.views import LoginView, LogoutView
+
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+    # path('login/', user_login, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', register, name='register'),
+]
+```
+
+djblog/djblog/settings.py:
+
+```py
+# Application definition
+
+INSTALLED_APPS = [
+    'articles', # raise app to the first item in the list
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
 
 ```
 
-```py
-
-```
+djblog/articles/templates/registration/logged_out.html:
 
 ```py
+{% extends "base.html" %}
 
-```
+{% block title %}Logged out{% endblock title %}
 
-```py
+{% block body %}
+<div class="container my-4">
+    <p>You have been logged out.</p>
+    <p>You can <a href="{% url 'login' %}">Login Back</a>.</p>
 
+</div>
+{% endblock body %}
 ```
 
 </details>
