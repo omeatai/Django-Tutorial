@@ -2523,7 +2523,7 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>28. </summary>
+  <summary>28. Update Article </summary>
 
 ```py
 
