@@ -2125,6 +2125,13 @@ djblog/articles/templates/registration/logged_out.html:
 </div>
 {% endblock body %}
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/216802222-c873061a-a9d4-4b1d-a570-0c3e2e31c3a4.png)
+	
+![](https://user-images.githubusercontent.com/32337103/216802235-9e0636d5-1274-4d57-8fdf-a978b0b45608.png)
+
+![](https://user-images.githubusercontent.com/32337103/216802250-ba0c5ea3-1375-40bb-a008-825323e408dc.png)
+
 
 </details>
 
@@ -2673,6 +2680,29 @@ djblog/articles/templates/registration/logged_out.html:
 ```
 
 </details>
+	
+<details>
+  <summary>51. </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+</details>
+	
+	
 
 ### [#-DJANGO TUTORIAL - W3SCHOOLS](#)
 
