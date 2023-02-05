@@ -2137,13 +2137,13 @@ djblog/articles/templates/registration/logged_out.html:
 <details>
   <summary>25. Restricting/Hiding menu in Navbar with user.is_authenticated </summary>
 
-```pyx
+```html
 <li class="nav-item">
-    {% if request.user.is_anonymous %}
-    <a class="nav-link disabled">Welcome, Visitor.</a>
-    {% else %}
-    <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
-    {% endif %}
+  {% if request.user.is_anonymous %}
+  <a class="nav-link disabled">Welcome, Visitor.</a>
+  {% else %}
+  <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+  {% endif %}
 </li>
 ```
 
@@ -2198,11 +2198,11 @@ djblog/articles/templates/navbar.html:
     </div>
   </nav>
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216804185-0b81f25d-d0cb-48f9-8776-25d7c71cde73.png)
 
-![](https://user-images.githubusercontent.com/32337103/216804194-c965dd1a-7e19-4efa-9f4b-67391e5a800a.png)	
-	
+![](https://user-images.githubusercontent.com/32337103/216804194-c965dd1a-7e19-4efa-9f4b-67391e5a800a.png)
+
 </details>
 
 <details>
