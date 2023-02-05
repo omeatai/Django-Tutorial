@@ -2135,22 +2135,68 @@ djblog/articles/templates/registration/logged_out.html:
 </details>
 
 <details>
-  <summary>25. </summary>
+  <summary>25. Restricting/Hiding menu in Navbar with user.is_authenticated </summary>
 
-```py
-
+```pyx
+<li class="nav-item">
+    {% if request.user.is_anonymous %}
+    <a class="nav-link disabled">Welcome, Visitor.</a>
+    {% else %}
+    <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+    {% endif %}
+</li>
 ```
 
-```py
-
-```
+djblog/articles/templates/navbar.html:
 
 ```py
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'article_list' %}">Django-Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
 
-```
+            {% if request.user.is_authenticated %}
 
-```py
+            <li class="nav-item mx-5">
+                <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'article_list' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Add Article</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Profile
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Change Password</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </li>
 
+            {% else %}
+
+            <li class="nav-item mx-5">
+              <a class="nav-link disabled">Welcome, Visitor.</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
 ```
 
 </details>
