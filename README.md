@@ -2366,6 +2366,10 @@ djblog/articles/templates/navbar.html:
 ```py
 
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/216846064-d648a52d-7c9b-4817-913c-74cf64131447.png)
+	
+![](https://user-images.githubusercontent.com/32337103/216846089-7d2df4d1-dc28-4d87-82f0-2c88b9ea77cf.png)
 
 </details>
 
