@@ -2541,6 +2541,15 @@ urlpatterns = [
 
 ```
 
+![](https://user-images.githubusercontent.com/32337103/216848734-2ec4c3ae-58fc-495a-a5f5-d8289876475e.png)
+
+![](https://user-images.githubusercontent.com/32337103/216848744-bd133608-c568-4229-8e56-53af614f2bf7.png)
+	
+![](https://user-images.githubusercontent.com/32337103/216848774-4f3a7fe8-3964-4485-b2a6-b0817697a97c.png)
+	
+![](https://user-images.githubusercontent.com/32337103/216848806-06fb89ae-c05b-4199-88e6-33c3b0184dbd.png)
+
+
 </details>
 
 <details>
