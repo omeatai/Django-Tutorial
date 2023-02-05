@@ -2339,17 +2339,17 @@ djblog/articles/templates/navbar.html:
     </div>
   </nav>
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216840877-9cba86b3-6a0e-4ea0-b08c-17d7e95f54a8.png)
 
 ![](https://user-images.githubusercontent.com/32337103/216840894-cfc8b155-60c1-4589-848b-0cd8cf671cfe.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216840932-488bb0dc-f53b-4812-8858-a76d11a2ce75.png)
-	
+
 </details>
 
 <details>
-  <summary>27. </summary>
+  <summary>27. Add Article with ArticleRegistrationForm </summary>
 
 ```py
 
