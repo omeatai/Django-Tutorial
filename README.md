@@ -2198,7 +2198,11 @@ djblog/articles/templates/navbar.html:
     </div>
   </nav>
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/216804185-0b81f25d-d0cb-48f9-8776-25d7c71cde73.png)
 
+![](https://user-images.githubusercontent.com/32337103/216804194-c965dd1a-7e19-4efa-9f4b-67391e5a800a.png)	
+	
 </details>
 
 <details>
