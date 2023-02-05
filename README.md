@@ -2064,6 +2064,11 @@ djblog/articles/templates/registration/login.html:
 {% endblock body %}
 
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/216801732-ff7d1432-44c2-483d-9bda-2304270cdacf.png)
+	
+![](https://user-images.githubusercontent.com/32337103/216801734-f5cd4dd0-20c5-4a1b-8e4d-ae1648d73fbe.png)
+
 
 </details>
 
