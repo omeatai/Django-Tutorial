@@ -2351,24 +2351,173 @@ djblog/articles/templates/navbar.html:
 <details>
   <summary>27. Add Article with ArticleRegistrationForm </summary>
 
+djblog/articles/forms.py:
+
 ```py
+from django import forms
+from django.utils.html import format_html
+from django.contrib.auth.models import User
+from .models import Article
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        label='Username',
+        initial='',
+        required=True,
+        max_length=50,
+        help_text=format_html('<span class="red">50 characters max.</span>'),
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(
+        label='Password',
+        required=True,
+        max_length=50,
+        help_text=format_html('<span class="red">50 characters max.</span>'),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+class UserRegistration(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords do not match')
+        else:
+            return cd['password2']
+
+class ArticleRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ('title', 'description')
+```
+
+djblog/articles/views.py:
+
+```py
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.contrib.auth import authenticate, login
+
+from .models import Article
+from .forms import LoginForm, UserRegistration, ArticleRegistrationForm
+
+
+# Create your views here.
+
+def article_list(request):
+    articles = Article.objects.all().order_by('-published')
+    return render(request, 'articles.html', {'articles':articles})
+
+def article_details(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return render(request, 'details.html', {'article':article})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+
+            if user is None:
+                return HttpResponse("Invalid Login")
+            login(request, user)
+            return HttpResponse("You are authenticated")
+    else:
+        form = LoginForm()
+        # form.fields['username'].initial = ''
+    return render(request, 'account/login.html', {'form':form})
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistration(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'account/register_done.html', {'user_form': user_form})
+    else:
+        user_form = UserRegistration()
+    return render(request, 'account/register.html', {'user_form': user_form})
+
+def article_form(request):
+    if not request.user.is_authenticated:
+        return redirect('article_list') # <--- Protect Route for Add Article
+    if request.method == 'POST':
+        article_form = ArticleRegistrationForm(request.POST)
+
+        if article_form.is_valid():
+            article = article_form.save(commit=False)
+            article.author = request.user
+            article.save()
+            return redirect('article_list')
+    else:
+        article_form = ArticleRegistrationForm()
+    return render(request, 'account/add_article.html', {'article_form': article_form})
 
 ```
 
+djblog/articles/templates/account/add_article.html:
+
 ```py
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Add Article{% endblock title %}
+
+{% block style %}
+    <style>
+        .article_style {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-4 article_style">
+    <h1>Add Article</h1>
+    <p>Use the following form below to add an Article.</p>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{article_form | crispy}}
+        <input type="submit" value="Add Article" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
 
 ```
 
+djblog/articles/urls.py:
+
 ```py
+from django.urls import path
+from .views import article_list, article_details, user_login, register, article_form
+from django.contrib.auth.views import (LoginView, LogoutView, PasswordChangeView,
+                                       PasswordChangeDoneView)
+
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+    path('add/', article_form, name='article_form'), # <---- Add Article
+    # path('login/', user_login, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', register, name='register'),
+    path('password_change/', PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'),
+]
 
 ```
 
-```py
-
-```
-	
 ![](https://user-images.githubusercontent.com/32337103/216846064-d648a52d-7c9b-4817-913c-74cf64131447.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216846089-7d2df4d1-dc28-4d87-82f0-2c88b9ea77cf.png)
 
 </details>
