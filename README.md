@@ -2206,22 +2206,138 @@ djblog/articles/templates/navbar.html:
 </details>
 
 <details>
-  <summary>26. </summary>
+  <summary>26. Password Change with PasswordChangeView </summary>
+
+djblog/articles/urls.py:
 
 ```py
+from django.urls import path
+from .views import article_list, article_details, user_login, register
+from django.contrib.auth.views import (LoginView, LogoutView, PasswordChangeView,
+                                       PasswordChangeDoneView)
 
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+    # path('login/', user_login, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', register, name='register'),
+    path('password_change/', PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'),
+]
+
+# from django.urls import path, include
+# from django.contrib.auth import views as auth_views
+# from . import views
+# from django.urls import reverse_lazy
+
+# app_name = 'account'
+
+# urlpatterns = [
+#     #Password Changes URLs
+#     path('password_change/', auth_views.PasswordChangeView.as_view(
+#         success_url=reverse_lazy('account:password_change_done')
+#     ), name='password_change'),
+#     path('password_change/done/',auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+# ]
 ```
 
-```py
+djblog/articles/templates/registration/password_change_form.html:
 
+```py
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Password Change{% endblock title %}
+
+{% block style %}
+    <style>
+        .register_style {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+{% endblock style %}
+
+{% block body %}
+<div class="container my-5 register_style">
+    <h3>Change Your Password </h3>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form | crispy}}
+        <input type="submit" value="Change Password" class="btn btn-success" />
+    </form>
+</div>
+{% endblock body %}
 ```
 
-```py
+djblog/articles/templates/registration/password_change_done.html:
 
+```py
+{% extends "base.html" %}
+
+{% block title %}Password Change Done{% endblock title %}
+
+{% block body %}
+<div class="container my-5">
+    <h3>Password Changed </h3>
+    <p>Your password has been changed!</p>
+</div>
+{% endblock body %}
 ```
 
-```py
+djblog/articles/templates/navbar.html:
 
+```py
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'article_list' %}">Django-Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+
+            {% if request.user.is_authenticated %}
+
+            <li class="nav-item mx-5">
+                <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'article_list' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Add Article</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Profile
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item mx-5">
+              <a class="nav-link disabled">Welcome, Visitor.</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
 ```
 
 </details>
