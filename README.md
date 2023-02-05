@@ -487,7 +487,7 @@ articles/templates/base.html:
 
 articles/templates/articles.html:
 
-```htmlx
+```py
 {% extends 'base.html' %}
 
 {% block title %} Article List {% endblock title%}
@@ -527,7 +527,7 @@ articles/templates/base.html:
 
 articles/templates/articles.html:
 
-```htmlx
+```py
 {% extends 'base.html' %}
 
 {% block title %} Article List {% endblock title%}
@@ -973,7 +973,7 @@ articles/templates/base.html:
 
 articles/templates/articles.html:
 
-```htmlx
+```py
 {% extends 'base.html' %}
 
 {% block title %} Article List {% endblock title%}
@@ -1098,7 +1098,7 @@ articles/templates/base.html:
 
 articles/templates/articles.html:
 
-```htmlx
+```py
 {% extends 'base.html' %}
 
 {% block title %} Article List {% endblock title%}
@@ -1172,7 +1172,7 @@ urlpatterns = [
 
 articles/templates/base.html:
 
-```htmlx
+```py
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -1196,7 +1196,7 @@ articles/templates/base.html:
 
 articles/templates/details.html:
 
-```htmlx
+```py
 {% extends 'base.html' %}
 
 {% block title %}{% endblock title %}
@@ -1294,7 +1294,7 @@ class NameForm(forms.Form):
     your_name = forms.CharField(label='Your name', max_length=100)
 ```
 
-```htmlx
+```py
 <form action="/your-name/" method="post">
     {% csrf_token %}
     {{ form }}
@@ -1663,7 +1663,7 @@ def user_login(request):
 
 articles/templates/account/login.html:
 
-```htmlx
+```py
 {% extends "base.html" %}
 
 {% block title %}Login{% endblock title %}
@@ -1928,7 +1928,7 @@ urlpatterns = [
 
 articles/templates/account/register.html:
 
-```htmlx
+```py
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
@@ -1960,7 +1960,7 @@ articles/templates/account/register.html:
 
 articles/templates/account/register_done.html:
 
-```htmlx
+```py
 {% extends "base.html" %}
 
 {% block title %}Done{% endblock title %}
