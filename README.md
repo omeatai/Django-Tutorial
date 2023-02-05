@@ -2523,7 +2523,7 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>28. Update Article </summary>
+  <summary>28. Update Article with ArticleUpdateForm </summary>
 
 djblog/articles/forms.py:
 
