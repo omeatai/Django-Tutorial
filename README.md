@@ -2525,30 +2525,218 @@ urlpatterns = [
 <details>
   <summary>28. Update Article </summary>
 
+djblog/articles/forms.py:
+
 ```py
+from django import forms
+from django.utils.html import format_html
+from django.contrib.auth.models import User
+from .models import Article
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        label='Username',
+        initial='',
+        required=True,
+        max_length=50,
+        help_text=format_html('<span class="red">50 characters max.</span>'),
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(
+        label='Password',
+        required=True,
+        max_length=50,
+        help_text=format_html('<span class="red">50 characters max.</span>'),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+class UserRegistration(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords do not match')
+        else:
+            return cd['password2']
+
+class ArticleRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ('title', 'description')
+
+class ArticleUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ('title', 'description')
+```
+
+djblog/articles/views.py:
+
+```py
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.contrib.auth import authenticate, login
+
+from .models import Article
+from .forms import LoginForm, UserRegistration, ArticleRegistrationForm, ArticleUpdateForm
+
+
+# Create your views here.
+
+def article_list(request):
+    articles = Article.objects.all().order_by('-published')
+    return render(request, 'articles.html', {'articles':articles})
+
+def article_details(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return render(request, 'details.html', {'article':article})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+
+            if user is None:
+                return HttpResponse("Invalid Login")
+            login(request, user)
+            return HttpResponse("You are authenticated")
+    else:
+        form = LoginForm()
+        # form.fields['username'].initial = ''
+    return render(request, 'account/login.html', {'form':form})
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistration(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'account/register_done.html', {'user_form': user_form})
+    else:
+        user_form = UserRegistration()
+    return render(request, 'account/register.html', {'user_form': user_form})
+
+def article_form(request):
+    if not request.user.is_authenticated:
+        return redirect('article_list') # <--- Protect Route for Add Article
+    if request.method == 'POST':
+        article_form = ArticleRegistrationForm(request.POST)
+
+        if article_form.is_valid():
+            article = article_form.save(commit=False)
+            article.author = request.user
+            article.save()
+            return redirect('article_list')
+    else:
+        article_form = ArticleRegistrationForm()
+    return render(request, 'account/add_article.html', {'article_form': article_form})
+
+
+def update_article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    form = ArticleUpdateForm(request.POST or None, instance=article)
+
+    if form.is_valid():
+        form.save()
+        return redirect('article_list')
+    return render(request, 'account/update.html', {'form': form})
+```
+
+djblog/articles/urls.py:
+
+```py
+from django.urls import path
+from .views import (article_list, article_details, user_login, register,
+                    article_form, update_article)
+from django.contrib.auth.views import (LoginView, LogoutView, PasswordChangeView,
+                                       PasswordChangeDoneView)
+
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+    path('add/', article_form, name='article_form'),
+    path('update/<slug:slug>/', update_article, name='update_article'),
+    # path('login/', user_login, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', register, name='register'),
+    path('password_change/', PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'),
+]
 
 ```
 
+djblog/articles/templates/account/update.html:
+
 ```py
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}{{form.title}}{% endblock title %}
+
+{% block style %}
+    <style>
+        .update_style {
+            width: 700px;
+            margin: auto;
+        }
+    </style>
+{% endblock style %}
+
+{% block body %}
+<div class="container my-4 update_style">
+    <h3>Update Article </h3>
+    <p>Use the following form to update the Article.</p>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form | crispy}}
+        <input type="submit" value="Update Article" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
 
 ```
 
-```py
-
-```
+djblog/articles/templates/details.html:
 
 ```py
+{% extends 'base.html' %}
 
+{% block title %}{% endblock title %}
+
+{% block style %}{% endblock style %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>{{article.title}}</h1>
+        <h6>Published {{article.published}} by <i>{{article.author}}</i></h6>
+        <br>
+        <p>{{article.description}}</p>
+
+        {% if request.user == article.author %}
+        <a class="btn btn-danger mx-3 mt-3" href="">Delete</a>
+        <a class="btn btn-success mx-3 mt-3" href="{% url 'update_article' article.slug %}">Update</a>
+        {% endif %}
+    </div>
+{% endblock body %}
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/216848734-2ec4c3ae-58fc-495a-a5f5-d8289876475e.png)
 
 ![](https://user-images.githubusercontent.com/32337103/216848744-bd133608-c568-4229-8e56-53af614f2bf7.png)
-	
-![](https://user-images.githubusercontent.com/32337103/216848774-4f3a7fe8-3964-4485-b2a6-b0817697a97c.png)
-	
-![](https://user-images.githubusercontent.com/32337103/216848806-06fb89ae-c05b-4199-88e6-33c3b0184dbd.png)
 
+![](https://user-images.githubusercontent.com/32337103/216848774-4f3a7fe8-3964-4485-b2a6-b0817697a97c.png)
+
+![](https://user-images.githubusercontent.com/32337103/216848806-06fb89ae-c05b-4199-88e6-33c3b0184dbd.png)
 
 </details>
 
