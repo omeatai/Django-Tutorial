@@ -3075,7 +3075,7 @@ djblog/articles/templates/articles.html:
 {% endblock body %}
 
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216942190-717c3fe3-a503-4609-8cb1-acb8abcabf2d.png)
 
 ![](https://user-images.githubusercontent.com/32337103/216942243-a567777e-aebf-4eba-9273-0f5daa3b55da.png)
@@ -3083,7 +3083,7 @@ djblog/articles/templates/articles.html:
 </details>
 
 <details>
-  <summary>31. </summary>
+  <summary>31. Login_required Decorator </summary>
 
 ```py
 
