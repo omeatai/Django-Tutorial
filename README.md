@@ -2870,32 +2870,209 @@ djblog/articles/templates/details.html:
     </div>
 {% endblock body %}
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/216925835-de1396f5-a5c9-4639-af24-40fe46c72164.png)
 
 ![](https://user-images.githubusercontent.com/32337103/216925897-d5c9a5c9-2ecf-4635-96f7-ec867ed27fc4.png)
 
 ![](https://user-images.githubusercontent.com/32337103/216925943-ad390b72-9243-4351-bf99-6530cf64d4cc.png)
-	
 
 </details>
 
 <details>
-  <summary>30. </summary>
+  <summary>30. Django Pagination </summary>
 
-```py
+```bs
+def article_list(request):
+    article_list = Article.objects.all().order_by('-published')
+    paginator = Paginator(article_list, 2)
+    page = request.GET.get('page')
 
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages)
+
+    return render(request, 'articles.html', {'articles':articles, 'page': page})
 ```
 
-```py
+djblog/articles/views.py:
 
+```py
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.contrib.auth import authenticate, login
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from .models import Article
+from .forms import LoginForm, UserRegistration, ArticleRegistrationForm, ArticleUpdateForm
+
+
+# Create your views here.
+
+def article_list(request):
+    article_list = Article.objects.all().order_by('-published')
+    paginator = Paginator(article_list, 2)
+    page = request.GET.get('page')
+
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages)
+
+    return render(request, 'articles.html', {'articles':articles, 'page': page})
+
+def article_details(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return render(request, 'details.html', {'article':article})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+
+            if user is None:
+                return HttpResponse("Invalid Login")
+            login(request, user)
+            return HttpResponse("You are authenticated")
+    else:
+        form = LoginForm()
+        # form.fields['username'].initial = ''
+    return render(request, 'account/login.html', {'form':form})
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistration(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'account/register_done.html', {'user_form': user_form})
+    else:
+        user_form = UserRegistration()
+    return render(request, 'account/register.html', {'user_form': user_form})
+
+def article_form(request):
+    if not request.user.is_authenticated:
+        return redirect('article_list') # <--- Protect Route for Add Article
+    if request.method == 'POST':
+        article_form = ArticleRegistrationForm(request.POST)
+
+        if article_form.is_valid():
+            article = article_form.save(commit=False)
+            article.author = request.user
+            article.save()
+            return redirect('article_list')
+    else:
+        article_form = ArticleRegistrationForm()
+    return render(request, 'account/add_article.html', {'article_form': article_form})
+
+
+def update_article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    form = ArticleUpdateForm(request.POST or None, instance=article)
+
+    if form.is_valid():
+        form.save()
+        return redirect('article_list')
+    return render(request, 'account/update.html', {'form': form})
+
+def delete_article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    article.delete()
+    return redirect('article_list')
 ```
 
-```py
+djblog/articles/templates/account/pagination.html:
 
+```py
+<style type="text/css">
+    .paginator,
+    .paginator-next,
+    .paginator-prev {
+        color:white;
+        background:black;
+        font-size:12px;
+        padding: 10px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .paginator-next {
+        border-radius: 0 10px 10px 0;
+        background:gray;
+    }
+    .paginator-prev {
+        border-radius: 10px 0 0 10px;
+        background:gray;
+    }
+</style>
+
+<nav aria-label="page navigation example">
+    <ul class="pagination" style="margin-top: 30px;">
+        <li class="page-item">
+            {% if page.has_previous %}
+            <a class="paginator-prev" href="?page={{page.previous_page_number}}">Previous</a>
+            {% comment %} class="page-link" {% endcomment %}
+            {% endif %}
+        </li>
+
+        <li class="page-item">
+            <a class="paginator">Page {{page.number}} of {{page.paginator.num_pages}}</a>
+        </li>
+
+        <li class="page-item" >
+            {% if page.has_next %}
+            <a class="paginator-next" href="?page={{page.next_page_number}}">Next</a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
 ```
 
+djblog/articles/templates/articles.html:
+
 ```py
+{% extends 'base.html' %}
+
+{% block title %} Article List {% endblock title%}
+
+{% block style %}
+<style>
+    .h1-style {
+        margin: 2rem 0;
+        color: #2c9df0;
+    }
+    .link-style {
+        text-decoration: none;
+        color:black;
+    }
+    .link-style:hover {
+        text-decoration: none;
+        color:gray;
+    }
+</style>
+{% endblock style %}
+
+{%block body %}
+<section class="container">
+    <h1 class="h1-style">Article List</h1>
+    {% for article in articles %}
+        <span class="badge rounded-pill text-bg-success">Author: {{article.author}}</span>
+        <h1><a class="link-style" href="{% url 'article_details' article.slug %}">{{article.title}}</a></h1>
+    {% endfor %}
+
+    {% include 'account/pagination.html' with page=articles %}
+
+</section>
+
+{% endblock body %}
 
 ```
 
