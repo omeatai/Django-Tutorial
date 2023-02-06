@@ -3222,6 +3222,9 @@ def delete_article(request, slug):
     article.delete()
     return redirect('article_list')
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/216984681-9345b074-47ba-4a96-8345-924af1f3c498.png)
+	
 
 </details>
 
