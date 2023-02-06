@@ -2870,6 +2870,13 @@ djblog/articles/templates/details.html:
     </div>
 {% endblock body %}
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/216925835-de1396f5-a5c9-4639-af24-40fe46c72164.png)
+
+![](https://user-images.githubusercontent.com/32337103/216925897-d5c9a5c9-2ecf-4635-96f7-ec867ed27fc4.png)
+
+![](https://user-images.githubusercontent.com/32337103/216925943-ad390b72-9243-4351-bf99-6530cf64d4cc.png)
+	
 
 </details>
 
