@@ -3083,7 +3083,7 @@ djblog/articles/templates/articles.html:
 </details>
 
 <details>
-  <summary>31. Login_required Decorator </summary>
+  <summary>31. Using Login_required Decorator to restrict access to pages </summary>
 
 ```py
 
