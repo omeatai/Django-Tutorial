@@ -3248,7 +3248,15 @@ pip freeze > requirements.txt
 
 Configure Settings.py file for Production:
 
+```py
+pip install python-dotenv
+```
+
 ```bs
+import os
+from dotenv import load_dotenv
+load_dotenv()  # loads the configs from .env
+
 if 'SECRET_KEY' in os.environ:
     SECRET_KEY = os.environ["SECRET_KEY"]
 
