@@ -3812,7 +3812,84 @@ git remote -v
 </details>
 
 <details>
-  <summary>36. </summary>
+  <summary>36. Migrating to PostgreSQL </summary>
+
+Install Python Adapter for Database Migration:
+
+```py
+pip install psycopg2
+python -m pip install psycopg2-binary
+```
+
+```py
+pip freeze > requirements.txt
+```
+
+Install Postgresql:
+
+```py
+https://postgresapp.com/
+```
+
+Install pgAdmin:
+
+```py
+https://www.pgadmin.org/
+```
+
+Settings for Postgresql connection:
+
+```py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db_name',
+        'USER': 'db_user',
+        'PASSWORD': 'db_user_password',
+        'HOST': '',
+        'PORT': 'db_port_number',
+    }
+}
+```
+
+```py
+# Just after the default DATABASE configuration add this in settings.py
+
+POSTGRES_DB = os.environ.get("POSTGRES_DB")
+POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+POSTGRES_USER = os.environ.get("POSTGRES_USER")
+POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
+POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
+
+POSTGRES_READY = (
+    POSTGRES_DB is not None
+    and POSTGRES_PASSWORD is not None
+    and POSTGRES_USER is not None
+    and POSTGRES_HOST is not None
+    and POSTGRES_PORT is not None
+)
+
+if POSTGRES_READY:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT,
+        }
+    }
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
