@@ -3916,9 +3916,23 @@ DATABASES = {
 ```py
 python manage.py createsuperuser
 ```
-
+	
+![](https://user-images.githubusercontent.com/32337103/217245031-7cf49cc6-bfe2-400b-a536-b6e3fcdda90c.png)
+![](https://user-images.githubusercontent.com/32337103/217245135-7b117e31-d69b-47d5-9e39-62afbfb7ea5f.png)
+	
+Settings for REMOTE Postgresql connection (with Railway):
+	
 ```py
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+}
 ```
 
 ```py
