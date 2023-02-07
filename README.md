@@ -3884,7 +3884,35 @@ if POSTGRES_READY:
 ```
 
 ```py
+psql --version
+psql -U postgres
 
+# List Databases:
+\list
+\l
+
+# List Tables:
+\dt
+
+# Quit terminal:
+\q
+```
+
+```py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+}
+```
+
+```py
+python manage.py createsuperuser
 ```
 
 ```py
@@ -3896,15 +3924,9 @@ if POSTGRES_READY:
 ```
 
 ```py
-
-```
-
-```py
-
-```
-
-```py
-
+git add .
+git commit -m "Connected to Postgresql"
+git push heroku master
 ```
 
 </details>
