@@ -3753,22 +3753,24 @@ heroku config:unset GITHUB_USERNAME
 </details>
 
 <details>
-  <summary>35. </summary>
+  <summary>35. Renaming Heroku Remote App </summary>
 
 ```py
-
+heroku apps:rename newname
 ```
 
 ```py
-
+# Renaming oldname to newname... done
+# http://newname.herokuapp.com/ | git@herokuapp.com:newname.git
+# Git remote heroku updated
 ```
 
 ```py
-
+heroku apps:rename newname --app oldname
 ```
 
 ```py
-
+# http://newname.herokuapp.com/ | git@herokuapp.com:newname.git
 ```
 
 </details>
