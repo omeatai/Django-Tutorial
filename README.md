@@ -3360,18 +3360,40 @@ https://rocky-wildwood-72845.herokuapp.com/ deployed to Heroku
 </details>
 
 <details>
-  <summary>33. </summary>
+  <summary>33. Protect Secrets with Python-dotenv </summary>
 
-```py
-
+```bs
+pip install python-dotenv
 ```
 
-```py
+.env:
 
+```py
+SECRET_KEY = 'YOUR SECRET KEY'
+
+GITHUB_KEY = 'YOUR GITHUB KEY'
+GITHUB_SECRET = 'YOUR GITHUB SECRET KEY'
+
+GOOGLE_KEY = 'YOUR GOOGLE KEY'
+GOOGLE_SECRET = 'YOUR GOOGLE SECRET KEY'
 ```
 
-```py
+settings.py:
 
+```py
+from dotenv import load_dotenv
+load_dotenv()  # loads the configs from .env
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
+
+# social auth configs for github
+SOCIAL_AUTH_GITHUB_KEY = str(os.getenv('GITHUB_KEY'))
+SOCIAL_AUTH_GITHUB_SECRET = str(os.getenv('GITHUB_SECRET'))
+
+# social auth configs for google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = str(os.getenv('GOOGLE_KEY'))
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('GOOGLE_SECRET'))
 ```
 
 </details>
