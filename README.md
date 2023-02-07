@@ -3837,6 +3837,21 @@ Install pgAdmin:
 https://www.pgadmin.org/
 ```
 
+```py
+psql --version
+psql -U postgres
+
+# List Databases:
+\list
+\l
+
+# List Tables:
+\dt
+
+# Quit terminal:
+\q
+```
+
 Settings for Postgresql connection:
 
 ```py
@@ -3881,21 +3896,6 @@ if POSTGRES_READY:
         }
     }
 
-```
-
-```py
-psql --version
-psql -U postgres
-
-# List Databases:
-\list
-\l
-
-# List Tables:
-\dt
-
-# Quit terminal:
-\q
 ```
 
 ```py
