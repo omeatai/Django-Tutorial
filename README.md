@@ -3682,6 +3682,7 @@ GOOGLE_SECRET = 'YOUR GOOGLE SECRET KEY'
 settings.py:
 
 ```py
+import os
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
