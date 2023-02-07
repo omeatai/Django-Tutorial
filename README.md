@@ -3773,6 +3773,42 @@ heroku apps:rename newname --app oldname
 # http://newname.herokuapp.com/ | git@herokuapp.com:newname.git
 ```
 
+Updating Git remotes:
+
+```py
+git remote rm heroku
+heroku git:remote -a newname
+```
+
+```py
+# If you're working on the heroku remote (default):
+heroku git:remote -a [app name]
+
+# If you want to specify a different remote, use the -r argument:
+heroku git:remote -a [app name] -r [remote]
+
+# Delete the current remote reference with
+git remote rm origin
+
+# Add the new remote
+git remote add origin <URL to new heroku app>
+
+# push to new domain
+git push -u origin master
+
+# View Remote URLs
+git remote -v
+
+# Remove Heroku remote URL
+git remote rm heroku
+
+# Set new Heroku URL
+heroku git:remote -a  ############
+
+git remote set-url heroku <repo git>
+git remote -v
+```
+
 </details>
 
 <details>
