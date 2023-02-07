@@ -3230,30 +3230,137 @@ def delete_article(request, slug):
 <details>
   <summary>32. Deploy Django App to Heroku </summary>
 
+Install Dependencies/Modules:
+
+```py
+pip install whitenoise
+```
+
+```py
+pip install gunicorn
+```
+
+Create requirements.txt file:
+
+```py
+pip freeze > requirements.txt
+```
+
+Configure Settings.py file:
+
+```bs
+DEBUG = False
+
+ALLOWED_HOSTS = ['*']
+
+"whitenoise.middleware.WhiteNoiseMiddleware",
+
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+```
+
+djblog/djblog/settings.py:
+
 ```py
 
 ```
 
-```py
+Install the Heroku CLI:
 
+```bs
+brew tap heroku/brew && brew install heroku
+brew install heroku
+brew upgrade heroku
 ```
 
-```py
+Check Installed Heroku Version:
 
+```bs
+heroku --version
 ```
 
-```py
+Login to Heroku Account:
 
+```bs
+heroku login
+```
+
+Check Heroku Account details:
+
+```bs
+heroku auth:whoami
+heroku auth:token
+heroku authorizations
+heroku authorizations:info 059ed27c-d04a-4349-9dba-83a0169277ae
+```
+
+```bs
+Create .gitignore file
+```
+
+```bs
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+Create Heroku app:
+
+```bs
+heroku create
+#Creating app... done, ⬢ rocky-wildwood-72845
+
+heroku create <project-name>
+```
+
+Check remote Heroku apps:
+
+```bs
+heroku apps
+```
+
+Set remote Heroku app location:
+
+```bs
+heroku git:remote -a rocky-wildwood-72845
+heroku git:remote --app rocky-wildwood-72845
+```
+
+```bs
+create Procfile
+```
+
+Procfile:
+
+```bs
+web: gunicorn djblog.wsgi
+```
+
+Choose the Python Version (optional):
+
+```bs
+echo python-3.9.6 > runtime.txt
+git add runtime.txt
+git commit -m "Request a specific Python version"
+```
+
+Make final commit and push to Heroku:
+
+```bs
+git add .
+git commit -m "Created Procfile"
+git push heroku master
+```
+
+```bs
+https://rocky-wildwood-72845.herokuapp.com/ deployed to Heroku
 ```
 
 </details>
 
 <details>
   <summary>33. </summary>
-
-```py
-
-```
 
 ```py
 
