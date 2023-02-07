@@ -3902,6 +3902,11 @@ Settings for LOCAL Postgresql connection:
 
 ```py
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
@@ -3916,27 +3921,32 @@ DATABASES = {
 ```py
 python manage.py createsuperuser
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/217245031-7cf49cc6-bfe2-400b-a536-b6e3fcdda90c.png)
 ![](https://user-images.githubusercontent.com/32337103/217245135-7b117e31-d69b-47d5-9e39-62afbfb7ea5f.png)
-	
+
 Settings for REMOTE Postgresql connection (with Railway):
-	
+
 ```py
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': os.environ.get("PGDATABASE"),
+        'USER': os.environ.get("PGUSER"),
+        'PASSWORD': os.environ.get("PGPASSWORD"),
+        'HOST':  os.environ.get("PGHOST"),
+        'PORT': os.environ.get("PGPORT"),
     }
 }
 ```
 
 ```py
-
+python manage.py migrate
 ```
 
 ```py
