@@ -3898,6 +3898,8 @@ if POSTGRES_READY:
 
 ```
 
+Settings for LOCAL Postgresql connection:
+
 ```py
 DATABASES = {
     'default': {
