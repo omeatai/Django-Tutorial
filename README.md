@@ -3706,22 +3706,48 @@ SECRET_KEY = os.environ["GOOGLE_SECRET"]
 </details>
 
 <details>
-  <summary>34. </summary>
+  <summary>34. Set Heroku Config .env Values </summary>
+
+View current configuration values:
 
 ```py
-
+heroku config
 ```
 
 ```py
+# GITHUB_USERNAME: joesmith
+# OTHER_VAR:    production
+```
 
+Get a single configuration value:
+
+```py
+heroku config:get GITHUB_USERNAME
 ```
 
 ```py
+# joesmith
+```
 
+Set/add a configuration value:
+
+```py
+heroku config:set GITHUB_USERNAME=joesmith
 ```
 
 ```py
+# Adding config vars and restarting myapp... done, v12
+# GITHUB_USERNAME: joesmith
+```
 
+Remove a configuration value:
+
+```py
+heroku config:unset GITHUB_USERNAME
+```
+
+```py
+# Unsetting GITHUB_USERNAME and restarting myapp... done, v13
 ```
 
 </details>
