@@ -4113,15 +4113,27 @@ python manage.py createsuperuser
 ```
 
 http://127.0.0.1:8000/admin:
+	
+![](https://user-images.githubusercontent.com/32337103/218187218-279ccd88-243a-478c-b682-84ede19e3b5a.png)
+	
+![](https://user-images.githubusercontent.com/32337103/218187292-cfc00c72-3d3f-49c6-961a-c5476d028ec2.png)
+	
+Add CustomUser Model to Admin - 
+
+djqa/users/admin.py:	
 
 ```py
+from django.contrib import admin
+from .models import CustomUser
 
+# Register your models here.
+admin.site.register(CustomUser)
 ```
 
-```py
-
-```
-
+![](https://user-images.githubusercontent.com/32337103/218187813-f2473d5d-3f35-4cc3-9937-f701f770d1da.png)
+	
+![](https://user-images.githubusercontent.com/32337103/218188052-fc6cbcaa-3bb9-4d80-ad17-273fa9e996d9.png)
+		
 </details>
 
 <details>
