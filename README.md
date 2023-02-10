@@ -4273,6 +4273,8 @@ djqa/questions/init.py:
 default_app_config = "questions.apps.QuestionsConfig"
 ```
 
+Open Python Shell:
+
 ```py
 python manage.py shell
 ```
