@@ -3959,25 +3959,40 @@ git push heroku master
 
 </details>
 
-+DJANGO REST FRAMEWORK
++BUILDING QUESTION AND ANSWER APP IN DJANGO
 
 <details>
-  <summary>37. </summary>
+  <summary>37. Introduction </summary>
+
+Install Venv:
 
 ```py
-
+python -m venv venv_djqa
+source venv_djqa/bin/activate
 ```
 
-```py
+Install Django
 
+```py
+pip install Django
 ```
 
-```py
+Upgrade pip:
 
+```py
+python -m pip install --upgrade pip
 ```
 
-```py
+Create Django Project:
 
+```py
+django-admin startproject djqa .
+```
+
+Create Users app:
+
+```py
+python manage.py startapp users
 ```
 
 </details>
