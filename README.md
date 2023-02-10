@@ -4137,35 +4137,98 @@ admin.site.register(CustomUser)
 </details>
 
 <details>
-  <summary>39. </summary>
+  <summary>39. Create Questions App</summary>
 
 ```py
-
+python manage.py startapp questions
 ```
 
-```py
-
-```
+djqa/djqa/settings.py:
 
 ```py
+# Application definition
 
-```
-
-```py
-
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'users',
+    'questions',
+]
 ```
 
 </details>
 
 <details>
-  <summary>40. </summary>
+  <summary>40. Create Question and Answer Models </summary>
+
+djqa/questions/models.py:
 
 ```py
+from django.db import models
+from django.conf import settings
 
+# Create your models here.
+class Question(models.Model):
+    title= models.CharField(max_length=250)
+    body = models.TextField()
+    slug = models.SlugField(max_length=250, unique=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='questions')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class Answer(models.Model):
+    description = models.TextField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author.username
+```
+
+Make Migrations:
+
+```py
+python manage.py makemigrations
 ```
 
 ```py
+# Migrations for 'questions':
+#   questions/migrations/0001_initial.py
+#     - Create model Question
+#     - Create model Answer
+```
 
+Run Migration:
+
+```py
+python manage.py migrate
+```
+
+```py
+# Operations to perform:
+#   Apply all migrations: admin, auth, contenttypes, questions, sessions, users
+# Running migrations:
+#   Applying questions.0001_initial... OK
+```
+
+Add Models to Admin -
+
+djqa/questions/admin.py:
+
+```py
+from django.contrib import admin
+from .models import Question, Answer
+
+# Register your models here.
+admin.site.register(Question)
+admin.site.register(Answer)
 ```
 
 ```py
