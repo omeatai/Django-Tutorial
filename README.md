@@ -4092,6 +4092,9 @@ python manage.py runserver
 # Quit the server with CONTROL-C.
 ```
 
+![](https://user-images.githubusercontent.com/32337103/218186250-0178f098-5e14-4ebb-b34f-da5eb23d043f.png)
+
+
 ```py
 
 ```
