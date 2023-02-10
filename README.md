@@ -4230,17 +4230,60 @@ from .models import Question, Answer
 admin.site.register(Question)
 admin.site.register(Answer)
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/218191785-7d0e6793-1bc1-4df2-872b-ed70301fe856.png)
-	
 
 </details>
 
 <details>
-  <summary>41. Create dynamic Slugs for Questions </summary>
+  <summary>41. Create dynamic Slugs for Questions with signals </summary>
+
+djqa/questions/signals.py:
 
 ```py
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from .models import Question
+from django.utils.text import slugify
 
+@receiver(pre_save, sender=Question)
+def add_slug(sender, instance, *args, **kwargs):
+    if instance and not instance.slug:
+        slug = slugify(instance.title)
+        instance.slug = slug
+```
+
+djqa/questions/apps.py:
+
+```py
+from django.apps import AppConfig
+
+
+class QuestionsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'questions'
+
+    def ready(self):
+        import questions.signals
+```
+
+djqa/questions/init.py:
+
+```py
+default_app_config = "questions.apps.QuestionsConfig"
+```
+
+```py
+python manage.py shell
+```
+
+```py
+from django.contrib.auth import get_user_model
+user = get_user_model()
+u = user.objects.first()
+from questions.models import Question
+q = Question(title = "This is my question", body = 'This is the question body', author=u)
+q = save()
 ```
 
 ```py
