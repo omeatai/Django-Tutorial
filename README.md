@@ -4283,7 +4283,7 @@ python manage.py shell
 # u = user.objects.first()
 # from questions.models import Question
 # q = Question(title = "This is my question", body = 'This is the question body', author=u)
-# q = save()
+# q.save()
 ```
 
 ```py
