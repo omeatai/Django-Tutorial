@@ -8,6 +8,8 @@ Django Tutorial by Ifeanyi Omeata
 
 ### [1-DJANGO & DJANGO REST FRAMEWORK WITH REACT FRONTEND - PARWIZ FOROGH](https://www.udemy.com/course/django-django-rest-framework-build-rest-api-in-python/learn/lecture/29085424#overview)
 
++BUILDING BLOG APPLICATION IN DJANGO
+
 <details>
   <summary>1. Introduction </summary>
 
@@ -3956,6 +3958,8 @@ git push heroku master
 ```
 
 </details>
+
++DJANGO REST FRAMEWORK
 
 <details>
   <summary>37. </summary>
