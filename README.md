@@ -4094,14 +4094,25 @@ python manage.py runserver
 
 ![](https://user-images.githubusercontent.com/32337103/218186250-0178f098-5e14-4ebb-b34f-da5eb23d043f.png)
 
+Create Super User:
 
 ```py
-
+python manage.py createsuperuser
 ```
 
 ```py
-
+# Username: admin
+# Email address: admin@gmail.com
+# Password:
+# Password (again):
+# This password is too short. It must contain at least 8 characters.
+# This password is too common.
+# This password is entirely numeric.
+# Bypass password validation and create user anyway? [y/N]: y
+# Superuser created successfully.
 ```
+
+http://127.0.0.1:8000/admin:
 
 ```py
 
