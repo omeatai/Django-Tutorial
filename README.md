@@ -4278,12 +4278,12 @@ python manage.py shell
 ```
 
 ```py
-from django.contrib.auth import get_user_model
-user = get_user_model()
-u = user.objects.first()
-from questions.models import Question
-q = Question(title = "This is my question", body = 'This is the question body', author=u)
-q = save()
+# from django.contrib.auth import get_user_model
+# user = get_user_model()
+# u = user.objects.first()
+# from questions.models import Question
+# q = Question(title = "This is my question", body = 'This is the question body', author=u)
+# q = save()
 ```
 
 ```py
