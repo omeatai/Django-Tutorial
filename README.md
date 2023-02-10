@@ -4230,19 +4230,14 @@ from .models import Question, Answer
 admin.site.register(Question)
 admin.site.register(Answer)
 ```
-
-```py
-
-```
-
-```py
-
-```
+	
+![](https://user-images.githubusercontent.com/32337103/218191785-7d0e6793-1bc1-4df2-872b-ed70301fe856.png)
+	
 
 </details>
 
 <details>
-  <summary>41. </summary>
+  <summary>41. Create dynamic Slugs for Questions </summary>
 
 ```py
 
