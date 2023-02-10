@@ -4284,10 +4284,7 @@ python manage.py shell
 # from questions.models import Question
 # q = Question(title = "This is my question", body = 'This is the question body', author=u)
 # q.save()
-```
-
-```py
-
+# exit()
 ```
 
 ```py
