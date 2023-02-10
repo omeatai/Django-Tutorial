@@ -4293,8 +4293,6 @@ python manage.py shell
 python manage.py runserver
 ```
 
-![](https://user-images.githubusercontent.com/32337103/218195160-1e0a0e30-35d8-4fee-a40f-db89398e165a.png)
-
 ![](https://user-images.githubusercontent.com/32337103/218195342-7b5c8e51-91c1-478d-be6d-b083ca31d9fd.png)
 
 ![](https://user-images.githubusercontent.com/32337103/218195435-74ce77ab-b58c-4086-a3c6-b206ef733573.png)
