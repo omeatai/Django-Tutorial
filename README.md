@@ -4300,14 +4300,81 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>42. </summary>
+  <summary>42. Render Question List Page </summary>
+
+djqa/djqa/urls.py:
 
 ```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('questions.urls'))
+]
 
 ```
 
-```py
+djqa/questions/urls.py:
 
+```py
+from django.urls import path
+from .views import question_list
+
+urlpatterns = [
+    path('question/', question_list, name='question_list')
+]
+```
+
+djqa/questions/views.py:
+
+```py
+from django.shortcuts import render
+from .models import Question
+
+# Create your views here.
+def question_list(request):
+    question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+```
+
+djqa/templates/questionList.html:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question List</title>
+  </head>
+  <body>
+    <h1>Question 1</h1>
+    <p>What is the Capital of Nigeria?</p>
+  </body>
+</html>
+```
+
+djqa/djqa/settings.py:
+
+```py
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 ```
 
 ```py
