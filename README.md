@@ -4430,9 +4430,74 @@ djqa/templates/questionList.html:
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/218435813-7cdd2c49-7472-479c-868f-7d0874910c8b.png)
-	
 
 ![](https://user-images.githubusercontent.com/32337103/218434831-94970245-a6bb-4e5d-93cb-dfd362ed3c86.png)
+
+djqa/templates/questionList.html:
+
+```py
+{% extends 'base.html' %}
+
+{% block title %}Question List{% endblock title %}
+
+{% block style%}{% endblock style%}
+
+{% block body%}
+<div class="container">
+{% for question in question_list %}
+    <div class="card mt-3 shadow">
+        <div class="card-body">
+            <h5 class="card-title"><a href="">{{question.title}}</a></h5>
+            <p class="card-text">{{question.body}}</p>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col col-md-auto">
+                    Posted By: {{question.author.username}}
+                </div>
+                <div class="col col-md-auto">
+                    Answers: {{question.answers.count}}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock body%}
+<body>
+
+```
+
+djqa/questions/models.py:
+
+```py
+from django.db import models
+from django.conf import settings
+
+# Create your models here.
+class Question(models.Model):
+    title= models.CharField(max_length=250)
+    body = models.TextField()
+    slug = models.SlugField(max_length=250, unique=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='questions')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class Answer(models.Model):
+    description = models.TextField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author.username
+```
+
+```py
+
+```
 
 ```py
 
