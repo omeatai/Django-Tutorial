@@ -4698,6 +4698,13 @@ Cloud-Django/djqa/templates/questionList.html:
 <body>
 
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/218563663-b9e44fad-01bc-4ca4-b387-5bd0293d56f4.png)
+
+![](https://user-images.githubusercontent.com/32337103/218563694-58952ba7-0bc1-4a9e-8334-c963858e6025.png)
+	
+![](https://user-images.githubusercontent.com/32337103/218563733-d484e09c-139d-48fe-a95b-a7eef7b4adc7.png)
+
 
 </details>
 
