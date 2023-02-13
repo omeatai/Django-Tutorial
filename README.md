@@ -4594,27 +4594,108 @@ djqa/templates/base.html:
 </body>
 </html>
 ```
-	
-![](https://user-images.githubusercontent.com/32337103/218559989-e236eedd-ccfb-4e41-be4b-0e2c43768965.png)	
+
+![](https://user-images.githubusercontent.com/32337103/218559989-e236eedd-ccfb-4e41-be4b-0e2c43768965.png)
 
 </details>
 
 <details>
-  <summary>45. </summary>
+  <summary>45. Create Details Page for Questions </summary>
+
+Cloud-Django/djqa/questions/urls.py:
 
 ```py
+from django.urls import path
+from .views import question_list, question_details
 
+urlpatterns = [
+    path('question/', question_list, name='question_list'),
+    path('question/<slug:slug>/', question_details, name='question_details')
+]
+```
+
+Cloud-Django/djqa/questions/views.py:
+
+```py
+from django.shortcuts import render, get_object_or_404
+from .models import Question
+
+# Create your views here.
+def question_list(request):
+    question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+def question_details(request, slug):
+    question = get_object_or_404(Question, slug=slug )
+    return render(request, 'questionDetails.html', {'question': question})
+```
+
+Cloud-Django/djqa/templates/questionDetails.html:
+
+```py
+{% extends 'base.html' %}
+
+{% block title %} Question Details {% endblock title %}
+
+{% block body %}
+<div class="container mt-3">
+    <h1>{{question.title}}</h1>
+    <p>{{question.body}}</p>
+    <h6>
+        Posted By: <i>{{question.author}} </i>
+    </h6>
+    <p>Published {{question.created_at}}</p>
+</div>
+{% endblock body %}
+```
+
+Cloud-Django/djqa/templates/questionList.html:
+
+```bs
+<h5 class="card-title"><a class="link-style" href="{% url 'question_details' question.slug %}">{{question.title}}</a></h5>
 ```
 
 ```py
+{% extends 'base.html' %}
 
-```
+{% block title %}Question List{% endblock title %}
 
-```py
+{% block style%}
+    <style>
+        .link-style {
+            text-decoration:none;
+            color: #00798C;
+        }
+        .link-style:hover {
+            text-decoration:none;
+            color:gray;
+        }
+    </style>
+{% endblock style%}
 
-```
-
-```py
+{% block body%}
+<div class="container">
+{% for question in question_list %}
+    <div class="card mt-3 shadow">
+        <div class="card-body">
+            <h5 class="card-title"><a class="link-style" href="{% url 'question_details' question.slug %}">{{question.title}}</a></h5>
+            <p class="card-text">{{question.body}}</p>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col col-md-auto">
+                    Posted By: {{question.author.username}}
+                </div>
+                <div class="col col-md-auto">
+                    Answers: {{question.answers.count}}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock body%}
+<body>
 
 ```
 
