@@ -4594,6 +4594,8 @@ djqa/templates/base.html:
 </body>
 </html>
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/218559989-e236eedd-ccfb-4e41-be4b-0e2c43768965.png)	
 
 </details>
 
