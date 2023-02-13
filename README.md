@@ -4440,14 +4440,25 @@ djqa/templates/questionList.html:
 
 {% block title %}Question List{% endblock title %}
 
-{% block style%}{% endblock style%}
+{% block style%}
+    <style>
+        .link-style {
+            text-decoration:none;
+            color: #00798C;
+        }
+        .link-style:hover {
+            text-decoration:none;
+            color:gray;
+        }
+    </style>
+{% endblock style%}
 
 {% block body%}
 <div class="container">
 {% for question in question_list %}
     <div class="card mt-3 shadow">
         <div class="card-body">
-            <h5 class="card-title"><a href="">{{question.title}}</a></h5>
+            <h5 class="card-title"><a class="link-style" href="">{{question.title}}</a></h5>
             <p class="card-text">{{question.body}}</p>
         </div>
         <div class="card-footer">
@@ -4493,18 +4504,6 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.author.username
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
 ```
 
 </details>
