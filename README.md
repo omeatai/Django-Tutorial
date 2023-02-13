@@ -4505,7 +4505,9 @@ class Answer(models.Model):
     def __str__(self):
         return self.author.username
 ```
-
+	
+![](https://user-images.githubusercontent.com/32337103/218442066-0780b24e-5783-4d8f-8efd-6bd8e6732afb.png)
+	
 </details>
 
 <details>
