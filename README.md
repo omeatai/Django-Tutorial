@@ -4419,6 +4419,7 @@ djqa/templates/questionList.html:
     <div class="card mt-3 shadow">
         <div class="card-body">
             <h5 class="card-title"><a href="">{{question.title}}</a></h5>
+            <p class="card-text">{{question.body}}</p>
         </div>
     </div>
 {% endfor %}
@@ -4427,8 +4428,6 @@ djqa/templates/questionList.html:
 <body>
 
 ```
-
-![](https://user-images.githubusercontent.com/32337103/218434952-f1152f23-010f-4980-a57a-5dd521fe0903.png)
 
 ![](https://user-images.githubusercontent.com/32337103/218434831-94970245-a6bb-4e5d-93cb-dfd362ed3c86.png)
 
