@@ -4379,7 +4379,10 @@ TEMPLATES = [
 
 ![](https://user-images.githubusercontent.com/32337103/218429996-5ff4a211-a5bf-4c6b-8adf-83d382e75b91.png)
 
-Modify template with bootstrap -
+</details>
+
+<details>
+  <summary>43. Modify Template with Bootstrap </summary>
 
 djqa/templates/base.html:
 
@@ -4426,22 +4429,8 @@ djqa/templates/questionList.html:
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/218434952-f1152f23-010f-4980-a57a-5dd521fe0903.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/218434831-94970245-a6bb-4e5d-93cb-dfd362ed3c86.png)
-	
-
-</details>
-
-<details>
-  <summary>43. </summary>
-
-```py
-
-```
-
-```py
-
-```
 
 ```py
 
