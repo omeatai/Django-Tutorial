@@ -5186,19 +5186,163 @@ Cloud-Django/djqa/templates/navbar.html:
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/219075501-966aa47a-a128-43a4-9160-ace0525f561a.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219075571-ffda94c6-7f0f-4a37-9bc8-304cef526529.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219075682-96850d19-e4ba-400c-8841-7ad2e10f6a68.png)
-	
+
 </details>
 
 <details>
-  <summary>50. </summary>
+  <summary>50. Creating Questions </summary>
+
+Cloud-Django/djqa/questions/forms.py:
 
 ```py
+from django import forms
+from django.contrib.auth import get_user_model
+from .models import Question
+
+User = get_user_model()
+
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords don\'t match.')
+        return cd['password2']
+
+class QuestionRegistrationForm(forms. ModelForm):
+    class Meta:
+        model = Question
+        fields = ('title', 'body',)
+```
+
+Cloud-Django/djqa/questions/models.py:
+
+```py
+from django.db import models
+from django.conf import settings
+
+# Create your models here.
+class Question(models.Model):
+    title= models.CharField(max_length=250)
+    body = models.TextField()
+    slug = models.SlugField(max_length=250, unique=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='questions')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class Answer(models.Model):
+    description = models.TextField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author.username
+```
+
+Cloud-Django/djqa/questions/views.py:
+
+```py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Question
+from .forms import UserRegistrationForm, QuestionRegistrationForm
+
+# Create your views here.
+def question_list(request):
+    question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+def question_details(request, slug):
+    question = get_object_or_404(Question, slug=slug )
+    return render(request, 'questionDetails.html', {'question': question})
+
+def register(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'register_done.html', {'user_form':user_form})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'register.html', {'user_form':user_form})
+
+def create_question (request):
+    if request.method == "POST":
+        question_form = QuestionRegistrationForm(request.POST)
+
+        if question_form.is_valid():
+            question = question_form.save(commit=False)
+            question.author = request.user
+            question = question_form.save()
+            return redirect('question_list')
+    else:
+        question_form = QuestionRegistrationForm()
+    return render(request, 'add_question.html', {'question_form': question_form})
 
 ```
+
+Cloud-Django/djqa/templates/add_question.html:
+
+```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Add Question {% endblock title %}
+
+{% block style %}
+<style>
+    .question-style {
+        width:700px;
+        height: auto;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-5 question-style">
+    <h3>Add Question</h3>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{question_form | crispy}}
+
+        <input type="submit" value="Add Question" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
+```
+
+Cloud-Django/djqa/questions/urls.py:
+
+```py
+from django.urls import path
+from .views import question_list, question_details, register, create_question
+
+urlpatterns = [
+    path('question/', question_list, name='question_list'),
+    path('question/<slug:slug>/', question_details, name='question_details'),
+    path('register/', register, name='register'),
+    path('add/', create_question, name='create_question'),
+]
+```
+
+Cloud-Django/djqa/templates/navbar.html:
 
 ```py
 
