@@ -5510,6 +5510,18 @@ Cloud-Django/djqa/templates/questionDetails.html:
 
 {% block title %} Question Details {% endblock title %}
 
+{% block style %}
+<style>
+    .author {
+        color: gray;
+    }
+    .answer {
+        color: #000;
+        font-weight: bold;
+    }
+</style>
+{% endblock style %}
+
 {% block body %}
 <div class="container mt-3">
     <h1>{{question.title}}</h1>
@@ -5526,16 +5538,24 @@ Cloud-Django/djqa/templates/questionDetails.html:
     {% for answers in answer_list %}
         <div class="card mt-4 py-3 shadow">
             <div class="card-body">
-                <p class="card-text">{{answers.description}}</p>
+                <p class="card-text answer">{{answers.description}}</p>
+                <hr>
+                <div class="row author">
+                    <div class="col col-md-auto">
+                        Answered By : {{answers.author.username}}
+                    </div>
+                    <div class="col col-md-auto">
+                        Answered Time : {{answers.created_at}}
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
 </div>
 {% endblock body %}
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219157114-1b122e41-0810-40d3-be59-365d7b54f1d2.png)
-	
 
 </details>
 
