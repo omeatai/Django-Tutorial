@@ -4903,6 +4903,9 @@ Cloud-Django/djqa/templates/registration/logged_out.html:
 </div>
 {% endblock body %}
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/219015533-9cf4daf1-a9d8-4258-8d17-ca4b81b7d90b.png)
+
 
 </details>
 
