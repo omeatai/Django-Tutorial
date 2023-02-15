@@ -4708,22 +4708,101 @@ Cloud-Django/djqa/templates/questionList.html:
 </details>
 
 <details>
-  <summary>46. </summary>
+  <summary>46. Create Login Page </summary>
+
+```bs
+pip install django-crispy-forms
+```
+
+```bs
+pip install crispy-bootstrap5
+```
+
+Cloud-Django/djqa/djqa/settings.py:
 
 ```py
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'users',
+    'questions',
+]
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+LOGIN_REDIRECT_URL = 'question_list'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 ```
 
+Cloud-Django/djqa/users/urls.py:
+
 ```py
+from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
+
+urlpatterns = [
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout')
+]
+```
+
+Cloud-Django/djqa/djqa/urls.py:
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('questions.urls')),
+    path('', include('users.urls'))
+]
 
 ```
 
-```py
-
-```
+Cloud-Django/djqa/templates/registration/login.html:
 
 ```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
+
+{% block title %} Login {% endblock title %}
+
+{% block style %}
+<style>
+    .login-style {
+        width:500px;
+        height: auto;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-4 login-style">
+    <h1>Login User</h1>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form | crispy}}
+
+        <input type="hidden" name="text" value="{{next}}"/>
+        <input type="submit" value="Login" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
 ```
 
 </details>
