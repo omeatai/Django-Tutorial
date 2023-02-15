@@ -5533,6 +5533,9 @@ Cloud-Django/djqa/templates/questionDetails.html:
 </div>
 {% endblock body %}
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/219157114-1b122e41-0810-40d3-be59-365d7b54f1d2.png)
+	
 
 </details>
 
