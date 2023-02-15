@@ -4804,11 +4804,13 @@ Cloud-Django/djqa/templates/registration/login.html:
 </div>
 {% endblock body %}
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/219012659-9023e028-b4c6-489a-9e69-fd2f21199a41.png)	
 
 </details>
 
 <details>
-  <summary>47. </summary>
+  <summary>47. Logout Page </summary>
 
 ```py
 
