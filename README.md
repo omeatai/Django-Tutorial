@@ -5500,7 +5500,7 @@ class Answer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.author.username
+        return f"{self.author.username} - {self.question.title}"
 ```
 
 Cloud-Django/djqa/templates/questionDetails.html:
