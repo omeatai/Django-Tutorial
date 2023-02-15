@@ -4907,7 +4907,7 @@ Cloud-Django/djqa/templates/registration/logged_out.html:
 </details>
 
 <details>
-  <summary>48. </summary>
+  <summary>48. Create User Registration Page </summary>
 
 ```py
 
