@@ -5281,7 +5281,7 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request, 'register.html', {'user_form':user_form})
 
-def create_question (request):
+def create_question(request):
     if request.method == "POST":
         question_form = QuestionRegistrationForm(request.POST)
 
@@ -5414,7 +5414,7 @@ Cloud-Django/djqa/templates/navbar.html:
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/219086040-acc824f0-239a-4f15-add4-2ac761bf00e7.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219086151-9f413ecd-2696-40f7-8430-34b5e14b1682.png)
 
 ![](https://user-images.githubusercontent.com/32337103/219086289-0718d64e-04a4-4a83-9531-9354b5b97205.png)
