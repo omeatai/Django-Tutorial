@@ -4772,6 +4772,73 @@ urlpatterns = [
 
 ```
 
+Cloud-Django/djqa/templates/navbar.html:
+
+```bs
+<li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+
+<a class="nav-link" href="{% url 'login' %}">Login</a>
+```
+
+```py
+<style>
+    .text-style {
+        font-size: 30px !important;
+        font-family: fantasy !important;
+        color: brown !important;
+        font-weight: bold !important;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-style" href="#">Question Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link disabled">Welcome, Alex.</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Add Question</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Change Password</a></li>
+              <li><a class="dropdown-item" href="#">Change Account</a></li>
+              <li><a class="dropdown-item" href="#">Question & Answer</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+```
+
 Cloud-Django/djqa/templates/registration/login.html:
 
 ```py
@@ -4804,31 +4871,37 @@ Cloud-Django/djqa/templates/registration/login.html:
 </div>
 {% endblock body %}
 ```
-	
-![](https://user-images.githubusercontent.com/32337103/219012659-9023e028-b4c6-489a-9e69-fd2f21199a41.png)	
-	
+
+![](https://user-images.githubusercontent.com/32337103/219012659-9023e028-b4c6-489a-9e69-fd2f21199a41.png)
+
 ![](https://user-images.githubusercontent.com/32337103/219013062-8b08cc85-0b54-48d5-99a8-97bf5e20b581.png)
-	
 
 </details>
 
 <details>
   <summary>47. Create Logout Page </summary>
 
-```py
-
-```
+Cloud-Django/djqa/templates/registration/logged_out.html:
 
 ```py
+{% extends 'base.html' %}
 
-```
+{% block title %} Logout {% endblock title %}
 
-```py
+{% block style %}
+<style>
+    .login-style {
+        width:500px;
+        height: auto;
+    }
+</style>
+{% endblock style %}
 
-```
-
-```py
-
+{% block body %}
+<div class="container">
+    <p>You have been logout. You can <a class="" href="{% url 'login' %}">Login Here</a>.</p>
+</div>
+{% endblock body %}
 ```
 
 </details>
