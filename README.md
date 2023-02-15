@@ -5219,7 +5219,7 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
 
-class QuestionRegistrationForm(forms. ModelForm):
+class QuestionRegistrationForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ('title', 'body',)
