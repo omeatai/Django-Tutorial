@@ -5422,7 +5422,7 @@ Cloud-Django/djqa/templates/navbar.html:
 </details>
 
 <details>
-  <summary>51. </summary>
+  <summary>51. Listing Answers </summary>
 
 ```py
 
