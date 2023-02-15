@@ -5093,9 +5093,13 @@ Cloud-Django/djqa/templates/navbar.html:
   </nav>
 ```
 
-```py
+![](https://user-images.githubusercontent.com/32337103/219070714-81862d60-505b-49f3-b4c6-197b254bd1ab.png)
+	
+![](https://user-images.githubusercontent.com/32337103/219070916-38b420bf-4df7-4184-9ca7-ce76c64e5e76.png)
 
-```
+![](https://user-images.githubusercontent.com/32337103/219070981-20e819ec-b57b-4002-a86e-15dd5c8a31bf.png)
+	
+![](https://user-images.githubusercontent.com/32337103/219071080-e21a3ed8-3acc-4337-a798-ae5c69914e98.png)
 
 </details>
 
