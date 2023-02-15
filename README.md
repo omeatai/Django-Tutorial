@@ -4903,25 +4903,194 @@ Cloud-Django/djqa/templates/registration/logged_out.html:
 </div>
 {% endblock body %}
 ```
-	
-![](https://user-images.githubusercontent.com/32337103/219015533-9cf4daf1-a9d8-4258-8d17-ca4b81b7d90b.png)
 
+![](https://user-images.githubusercontent.com/32337103/219015533-9cf4daf1-a9d8-4258-8d17-ca4b81b7d90b.png)
 
 </details>
 
 <details>
   <summary>48. Create User Registration Page </summary>
 
+Cloud-Django/djqa/questions/forms.py:
+
 ```py
+from django import forms
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords don\'t match.')
+        return cd['password2']
+```
+
+Cloud-Django/djqa/questions/views.py:
+
+```py
+from django.shortcuts import render, get_object_or_404
+from .models import Question
+from .forms import UserRegistrationForm
+
+# Create your views here.
+def question_list(request):
+    question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+def question_details(request, slug):
+    question = get_object_or_404(Question, slug=slug )
+    return render(request, 'questionDetails.html', {'question': question})
+
+def register(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'register_done.html', {'user_form':user_form})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'register.html', {'user_form':user_form})
+```
+
+Cloud-Django/djqa/templates/register.html:
+
+```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Register {% endblock title %}
+
+{% block style %}
+<style>
+    .register-style {
+        width:500px;
+        height: auto;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-4 register-style">
+    <h3>Register an account</h3>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{user_form | crispy}}
+
+        <input type="submit" value="Create Account" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
+```
+
+Cloud-Django/djqa/templates/register_done.html:
+
+```py
+{% extends 'base.html' %}
+
+{% block title %} Register Done {% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+    <p>Your account has been created, You can <a href="{% url 'login' %}">Login HERE</a>.</p>
+
+</div>
+{% endblock body %}
+```
+
+Cloud-Django/djqa/questions/urls.py:
+
+```py
+from django.urls import path
+from .views import question_list, question_details, register
+
+urlpatterns = [
+    path('question/', question_list, name='question_list'),
+    path('question/<slug:slug>/', question_details, name='question_details'),
+    path('register/', register, name='register'),
+]
+```
+
+Cloud-Django/djqa/templates/navbar.html:
+
+```bsx
+<a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'register' %}">Register</a>
+</li>
 
 ```
 
 ```py
+<style>
+    .text-style {
+        font-size: 30px !important;
+        font-family: fantasy !important;
+        color: brown !important;
+        font-weight: bold !important;
+    }
+</style>
 
-```
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-style" href="#">Question Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
 
-```py
+          <li class="nav-item">
+            <a class="nav-link" href="#">Add Question</a>
+          </li>
 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Change Password</a></li>
+              <li><a class="dropdown-item" href="#">Change Account</a></li>
+              <li><a class="dropdown-item" href="#">Question & Answer</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 ```
 
 ```py
