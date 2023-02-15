@@ -4806,11 +4806,14 @@ Cloud-Django/djqa/templates/registration/login.html:
 ```
 	
 ![](https://user-images.githubusercontent.com/32337103/219012659-9023e028-b4c6-489a-9e69-fd2f21199a41.png)	
+	
+![](https://user-images.githubusercontent.com/32337103/219013062-8b08cc85-0b54-48d5-99a8-97bf5e20b581.png)
+	
 
 </details>
 
 <details>
-  <summary>47. Logout Page </summary>
+  <summary>47. Create Logout Page </summary>
 
 ```py
 
