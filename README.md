@@ -5185,10 +5185,12 @@ Cloud-Django/djqa/templates/navbar.html:
   </nav>
 ```
 
-```py
-
-```
-
+![](https://user-images.githubusercontent.com/32337103/219075501-966aa47a-a128-43a4-9160-ace0525f561a.png)
+	
+![](https://user-images.githubusercontent.com/32337103/219075571-ffda94c6-7f0f-4a37-9bc8-304cef526529.png)
+	
+![](https://user-images.githubusercontent.com/32337103/219075682-96850d19-e4ba-400c-8841-7ad2e10f6a68.png)
+	
 </details>
 
 <details>
