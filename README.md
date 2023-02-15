@@ -5555,7 +5555,9 @@ Cloud-Django/djqa/templates/questionDetails.html:
 {% endblock body %}
 ```
 
-![](https://user-images.githubusercontent.com/32337103/219157114-1b122e41-0810-40d3-be59-365d7b54f1d2.png)
+![](https://user-images.githubusercontent.com/32337103/219168538-55678dc8-588e-4e66-8ea2-7acb4d693b34.png)
+	
+![](https://user-images.githubusercontent.com/32337103/219168808-ebd511da-0455-4712-a4f7-2ae9cf44d3a2.png)	
 	
 ![](https://user-images.githubusercontent.com/32337103/219167926-1b510cba-3b14-4010-adc1-bc29d8109bc0.png)	
 
