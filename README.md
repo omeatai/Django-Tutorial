@@ -5424,20 +5424,114 @@ Cloud-Django/djqa/templates/navbar.html:
 <details>
   <summary>51. Listing Answers </summary>
 
-```py
+Cloud-Django/djqa/questions/views.py:
 
+```bsx
+def question_details(request, slug):
+  question = get_object_or_404(Question, slug=slug)
+  answer_list = Answer.objects.filter(question=question)
+  return render(request, 'questionDetails.html', {'question': question, 'answer_list': answer_list})
 ```
 
 ```py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Question, Answer
+from .forms import UserRegistrationForm, QuestionRegistrationForm
+
+# Create your views here.
+def question_list(request):
+    question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+def question_details(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    answer_list = Answer.objects.filter(question=question)
+    return render(request, 'questionDetails.html', {'question': question, 'answer_list': answer_list})
+
+def register(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'register_done.html', {'user_form':user_form})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'register.html', {'user_form':user_form})
+
+def create_question (request):
+    if request.method == "POST":
+        question_form = QuestionRegistrationForm(request.POST)
+
+        if question_form.is_valid():
+            question = question_form.save(commit=False)
+            question.author = request.user
+            question = question_form.save()
+            return redirect('question_list')
+    else:
+        question_form = QuestionRegistrationForm()
+    return render(request, 'add_question.html', {'question_form': question_form})
 
 ```
 
-```py
+Cloud-Django/djqa/questions/models.py:
 
+```py
+from django.db import models
+from django.conf import settings
+
+# Create your models here.
+class Question(models.Model):
+    title= models.CharField(max_length=250)
+    body = models.TextField()
+    slug = models.SlugField(max_length=250, unique=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='questions')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class Answer(models.Model):
+    description = models.TextField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author.username
 ```
 
-```py
+Cloud-Django/djqa/templates/questionDetails.html:
 
+```py
+{% extends 'base.html' %}
+
+{% block title %} Question Details {% endblock title %}
+
+{% block body %}
+<div class="container mt-3">
+    <h1>{{question.title}}</h1>
+    <p>{{question.body}}</p>
+    <h6>
+        Posted By: <i>{{question.author}} </i>
+    </h6>
+    <p>Published {{question.created_at}}</p>
+    <hr>
+</div>
+
+<!-- Listing the answers -->
+<div class="container">
+    {% for answers in answer_list %}
+        <div class="card mt-4 py-3 shadow">
+            <div class="card-body">
+                <p class="card-text">{{answers.description}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock body %}
 ```
 
 </details>
