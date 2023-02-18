@@ -557,18 +557,18 @@ articles/templates/articles.html:
 <details>
   <summary>13. Adding Bootstrap Styles </summary>
 
-```bs
+```pyx
 https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rpyxA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 ```
 
-```bs
+```pyx
 https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhpyx68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 ```
@@ -877,7 +877,7 @@ class Article(models.Model):
 python manage.py shell
 ```
 
-```bs
+```pyx
 from django.contrib.auth import get_user_model
 from articles.models import Article
 user = get_user_model()
@@ -889,7 +889,7 @@ article = Article(title='the first article',description='this is the article',au
 article.save()
 ```
 
-```bs
+```pyx
 >>> Article.objects.all().last()
 ```
 
@@ -897,7 +897,7 @@ article.save()
 # <Article: the first article>
 ```
 
-```bs
+```pyx
 >>> Article.objects.all().last().__dict__
 ```
 
@@ -905,7 +905,7 @@ article.save()
 # {'_state': <django.db.models.base.ModelState object at 0x1044d1100>, 'id': 2, 'title': 'the first article', 'description': 'this is the article', 'slug': 'the-first-article', 'published': datetime.datetime(2023, 2, 2, 12, 31, 24, 759019, tzinfo=datetime.timezone.utc), 'author_id': 1}
 ```
 
-```bs
+```pyx
 >>> Article.objects.all().last().slug
 ```
 
@@ -913,7 +913,7 @@ article.save()
 # 'the-first-article'
 ```
 
-```bs
+```pyx
 >>> Article.objects.get(author=u, title='the first article')
 ```
 
@@ -1022,8 +1022,8 @@ articles/templates/navbar.html:
     <button
       class="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown"
+      data-pyx-toggle="collapse"
+      data-pyx-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown"
       aria-expanded="false"
       aria-label="Toggle navigation"
@@ -1046,7 +1046,7 @@ articles/templates/navbar.html:
             class="nav-link dropdown-toggle"
             href="#"
             role="button"
-            data-bs-toggle="dropdown"
+            data-pyx-toggle="dropdown"
             aria-expanded="false"
           >
             Profile
@@ -1711,7 +1711,7 @@ urlpatterns = [
 <details>
   <summary>21. Install Django Crispy Forms Library</summary>
 
-```bs
+```pyx
 pip install django-crispy-forms
 ```
 
@@ -1733,7 +1733,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 Crispy-Bootstrap5 -
 
-```bs
+```pyx
 ### 1- install library ###
 pip install crispy-bootstrap5
 ```
@@ -1763,7 +1763,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 Crispy-Tailwind -
 
-```bs
+```pyx
 ### install library ###
 pip install crispy-tailwind
 ```
@@ -2155,7 +2155,7 @@ djblog/articles/templates/navbar.html:
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
     <div class="container">
       <a class="navbar-brand" href="{% url 'article_list' %}">Django-Blog</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-pyx-toggle="collapse" data-pyx-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -2173,7 +2173,7 @@ djblog/articles/templates/navbar.html:
                 <a class="nav-link" href="#">Add Article</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-pyx-toggle="dropdown" aria-expanded="false">
                 Profile
                 </a>
                 <ul class="dropdown-menu">
@@ -2296,7 +2296,7 @@ djblog/articles/templates/navbar.html:
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
     <div class="container">
       <a class="navbar-brand" href="{% url 'article_list' %}">Django-Blog</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-pyx-toggle="collapse" data-pyx-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -2314,7 +2314,7 @@ djblog/articles/templates/navbar.html:
                 <a class="nav-link" href="#">Add Article</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-pyx-toggle="dropdown" aria-expanded="false">
                 Profile
                 </a>
                 <ul class="dropdown-menu">
@@ -2884,7 +2884,7 @@ djblog/articles/templates/details.html:
 <details>
   <summary>30. Django Pagination </summary>
 
-```bs
+```pyx
 def article_list(request):
     article_list = Article.objects.all().order_by('-published')
     paginator = Paginator(article_list, 2)
@@ -3112,7 +3112,7 @@ urlpatterns = [
 
 ```
 
-```bs
+```pyx
 @login_required
 def article_form(request):
     # if not request.user.is_authenticated:
@@ -3254,7 +3254,7 @@ Configure Settings.py file for Production:
 pip install python-dotenv
 ```
 
-```bs
+```pyx
 import os
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
@@ -3269,7 +3269,7 @@ ALLOWED_HOSTS = [] if DEBUG else ["*"]
 
 Make sure staticfiles is configured correctly:
 
-```bs
+```pyx
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "static/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -3279,14 +3279,14 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # STATICFILES_DIRS = [ BASE_DIR / "articles/static"]
 ```
 
-```bs
+```pyx
 {% load static %}
 <img src="{% static "images/hi.jpg" %}" alt="Hi!">
 ```
 
 Enable WhiteNoise:
 
-```bs
+```pyx
 MIDDLEWARE = [
     # ...
     "django.middleware.security.SecurityMiddleware",
@@ -3297,7 +3297,7 @@ MIDDLEWARE = [
 
 Add compression and caching support:
 
-```bs
+```pyx
 STORAGES = {
     # ...
     "staticfiles": {
@@ -3306,7 +3306,7 @@ STORAGES = {
 }
 ```
 
-```bs
+```pyx
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 ```
 
@@ -3315,7 +3315,7 @@ Using WhiteNoise in development:
 - You can disable Django’s static file handling and allow WhiteNoise to take over simply by passing the --nostatic option to the runserver command, but you need to remember to add this option every time you call runserver.
 - An easier way is to edit your settings.py file and add whitenoise.runserver_nostatic to the top of your INSTALLED_APPS list:
 
-```bs
+```pyx
 INSTALLED_APPS = [
     # ...
     "whitenoise.runserver_nostatic",
@@ -3565,13 +3565,13 @@ djblog/articles/templates/articles.html
 
 Run Collectstatic to collect static files:
 
-```bs
+```pyx
 python manage.py collectstatic
 ```
 
 Install the Heroku CLI:
 
-```bs
+```pyx
 brew tap heroku/brew && brew install heroku
 brew install heroku
 brew upgrade heroku
@@ -3579,30 +3579,30 @@ brew upgrade heroku
 
 Check Installed Heroku Version:
 
-```bs
+```pyx
 heroku --version
 ```
 
 Login to Heroku Account:
 
-```bs
+```pyx
 heroku login
 ```
 
 Check Heroku Account details:
 
-```bs
+```pyx
 heroku auth:whoami
 heroku auth:token
 heroku authorizations
 heroku authorizations:info 059ed27c-d04a-4349-9dba-83a0169277ae
 ```
 
-```bs
+```pyx
 Create .gitignore file
 ```
 
-```bs
+```pyx
 git init
 git add .
 git commit -m "Initial commit"
@@ -3610,7 +3610,7 @@ git commit -m "Initial commit"
 
 Create Heroku app:
 
-```bs
+```pyx
 heroku create
 #Creating app... done, ⬢ rocky-wildwood-72845
 
@@ -3619,30 +3619,30 @@ heroku create <project-name>
 
 Check remote Heroku apps:
 
-```bs
+```pyx
 heroku apps
 ```
 
 Set remote Heroku app location:
 
-```bs
+```pyx
 heroku git:remote -a rocky-wildwood-72845
 heroku git:remote --app rocky-wildwood-72845
 ```
 
-```bs
+```pyx
 create Procfile
 ```
 
 Procfile:
 
-```bs
+```pyx
 web: gunicorn djblog.wsgi
 ```
 
 Choose the Python Version (optional):
 
-```bs
+```pyx
 echo python-3.9.6 > runtime.txt
 git add runtime.txt
 git commit -m "Request a specific Python version"
@@ -3650,13 +3650,13 @@ git commit -m "Request a specific Python version"
 
 Make final commit and push to Heroku:
 
-```bs
+```pyx
 git add .
 git commit -m "Created Procfile"
 git push heroku master
 ```
 
-```bs
+```pyx
 https://rocky-wildwood-72845.herokuapp.com/ deployed to Heroku
 ```
 
@@ -3665,7 +3665,7 @@ https://rocky-wildwood-72845.herokuapp.com/ deployed to Heroku
 <details>
   <summary>33. Protect Secrets with Python-dotenv </summary>
 
-```bs
+```pyx
 pip install python-dotenv
 ```
 
@@ -4004,10 +4004,10 @@ djqa/users/models.py:
 
 ```py
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import ApyxtractUser
 
 # Create your models here.
-class CustomUser(AbstractUser):
+class CustomUser(ApyxtractUser):
     pass
 ```
 
@@ -4528,7 +4528,7 @@ djqa/templates/navbar.html:
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand text-style" href="#">Question Hub</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-pyx-toggle="collapse" data-pyx-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -4545,7 +4545,7 @@ djqa/templates/navbar.html:
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-pyx-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu">
@@ -4710,11 +4710,11 @@ Cloud-Django/djqa/templates/questionList.html:
 <details>
   <summary>46. Create Login Page </summary>
 
-```bs
+```pyx
 pip install django-crispy-forms
 ```
 
-```bs
+```pyx
 pip install crispy-bootstrap5
 ```
 
@@ -4774,7 +4774,7 @@ urlpatterns = [
 
 Cloud-Django/djqa/templates/navbar.html:
 
-```bs
+```pyx
 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
 
 <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -4793,7 +4793,7 @@ Cloud-Django/djqa/templates/navbar.html:
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand text-style" href="#">Question Hub</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-pyx-toggle="collapse" data-pyx-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -4810,7 +4810,7 @@ Cloud-Django/djqa/templates/navbar.html:
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-pyx-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu">
@@ -5025,7 +5025,7 @@ urlpatterns = [
 
 Cloud-Django/djqa/templates/navbar.html:
 
-```bsx
+```pyx
 <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
 
 <li class="nav-item">
@@ -5047,7 +5047,7 @@ Cloud-Django/djqa/templates/navbar.html:
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand text-style" href="#">Question Hub</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-pyx-toggle="collapse" data-pyx-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -5064,7 +5064,7 @@ Cloud-Django/djqa/templates/navbar.html:
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-pyx-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu">
@@ -5108,7 +5108,7 @@ Cloud-Django/djqa/templates/navbar.html:
 
 Cloud-Django/djqa/templates/navbar.html:
 
-```bsx
+```pyx
 {% if request.user.is_authenticated %}
 ---
 {% else %}
@@ -5129,7 +5129,7 @@ Cloud-Django/djqa/templates/navbar.html:
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand text-style" href="{% url 'question_list' %}">Question Hub</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-pyx-toggle="collapse" data-pyx-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -5155,7 +5155,7 @@ Cloud-Django/djqa/templates/navbar.html:
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-pyx-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu">
@@ -5357,7 +5357,7 @@ Cloud-Django/djqa/templates/navbar.html:
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand text-style" href="{% url 'question_list' %}">Question Hub</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-pyx-toggle="collapse" data-pyx-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -5383,7 +5383,7 @@ Cloud-Django/djqa/templates/navbar.html:
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-pyx-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu">
@@ -5426,7 +5426,7 @@ Cloud-Django/djqa/templates/navbar.html:
 
 Cloud-Django/djqa/questions/views.py:
 
-```bsx
+```pyx
 def question_details(request, slug):
   question = get_object_or_404(Question, slug=slug)
   answer_list = Answer.objects.filter(question=question)
@@ -5629,7 +5629,7 @@ class Answer(models.Model):
 
 Cloud-Django/djqa/questions/views.py:
 
-```bsx
+```pyx
 def question_details(request, slug):
     question = get_object_or_404(Question, slug=slug)
     answer_list = Answer.objects.filter(question=question)
@@ -5773,21 +5773,25 @@ Cloud-Django/djqa/templates/questionDetails.html:
 
 {% endblock body %}
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219849974-2df538a0-6cd2-4b04-9535-8b30af9041df.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219850048-8e556589-6746-4658-8ca0-cfcf0287dd92.png)
 
 ![](https://user-images.githubusercontent.com/32337103/219850059-68db8b90-8d2a-4eed-9756-d0fc70112fa5.png)
-	
-	
+
 </details>
 
 <details>
-  <summary>53. </summary>
+  <summary>53. Update Question </summary>
 
-```py
+Cloud-Django/djqa/templates/questionDetails.html:
 
+```pyx
+{% if request. user == question.author %}
+    <a class="btn btn-danger" href="">Delete</a>
+    <a class="btn btn-success" href="">Update</a>
+{% endif %}
 ```
 
 ```py
