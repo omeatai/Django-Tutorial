@@ -6540,7 +6540,7 @@ Cloud-Django/djqa/templates/questionDetails.html:
 
 {% endblock body %}
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219855053-9e452132-fb30-455c-b8e5-a004477a0fd8.png)
 
 ![](https://user-images.githubusercontent.com/32337103/219855084-44a50818-bf5f-45b8-ab25-ec76778e8b23.png)
@@ -6548,11 +6548,11 @@ Cloud-Django/djqa/templates/questionDetails.html:
 ![](https://user-images.githubusercontent.com/32337103/219855110-a868d59e-9f4b-4adf-ab21-5f2c1bede579.png)
 
 ![](https://user-images.githubusercontent.com/32337103/219855127-da664022-8b67-432b-9feb-405cc353bace.png)
-	
+
 </details>
 
 <details>
-  <summary>56. </summary>
+  <summary>56. Delete Answer </summary>
 
 ```py
 
