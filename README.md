@@ -6063,9 +6063,9 @@ urlpatterns = [
     path('update/<slug:slug>/', update_question, name='update_question'),
 ]
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219851544-1c2caaff-582d-4679-8464-acf2ace3c192.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219851567-7c8a26a0-84e6-47a0-8dc3-0d5709c3ef8a.png)
 
 ![](https://user-images.githubusercontent.com/32337103/219851600-e8efbbb7-4560-4022-b1bf-660c928e8b83.png)
@@ -6075,18 +6075,182 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>54. </summary>
+  <summary>54. Delete Question </summary>
 
-```py
+Cloud-Django/djqa/questions/views.py:
 
+```bsx
+def delete_question(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    question.delete()
+    return redirect('question_list')
 ```
 
 ```py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Question, Answer
+from .forms import UserRegistrationForm, QuestionRegistrationForm, AnswerForm, QuestionUpdateForm
+
+# Create your views here.
+def question_list(request):
+    question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+def question_details(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    answer_list = Answer.objects.filter(question=question)
+
+    #adding answer
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.question = question
+            answer.author = request.user
+            answer = form.save()
+            return redirect('question_details', slug=question.slug)
+    else:
+        form = AnswerForm()
+
+    return render(request, 'questionDetails.html', {'question': question, 'answer_list': answer_list, 'form':form})
+
+def register(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'register_done.html', {'user_form':user_form})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'register.html', {'user_form':user_form})
+
+def create_question(request):
+    if request.method == "POST":
+        question_form = QuestionRegistrationForm(request.POST)
+
+        if question_form.is_valid():
+            question = question_form.save(commit=False)
+            question.author = request.user
+            question = question_form.save()
+            return redirect('question_list')
+    else:
+        question_form = QuestionRegistrationForm()
+    return render(request, 'add_question.html', {'question_form': question_form})
+
+def update_question(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    form = QuestionUpdateForm(request.POST or None, instance=question)
+
+    if form.is_valid():
+        form.save()
+        return redirect('question_list')
+    return render (request, 'update.html', {'form': form})
+
+def delete_question(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    question.delete()
+    return redirect('question_list')
 
 ```
 
-```py
+Cloud-Django/djqa/questions/urls.py:
 
+```py
+from django.urls import path
+from .views import question_list, question_details, register, create_question, update_question, delete_question
+
+urlpatterns = [
+    path('question/', question_list, name='question_list'),
+    path('question/<slug:slug>/', question_details, name='question_details'),
+    path('register/', register, name='register'),
+    path('add/', create_question, name='create_question'),
+    path('update/<slug:slug>/', update_question, name='update_question'),
+    path('delete/<slug:slug>/', delete_question, name='delete_question'),
+]
+```
+
+Cloud-Django/djqa/templates/questionDetails.html:
+
+```bsx
+{% if request.user == question.author %}
+    <a class="btn btn-danger" href="{% url 'delete_question' question.slug %}">Delete</a>
+    <a class="btn btn-success" href="{% url 'update_question' question.slug %}">Update</a>
+{% endif %}
+```
+
+```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Question Details {% endblock title %}
+
+{% block style %}
+<style>
+    .author {
+        color: gray;
+    }
+    .answer {
+        color: #000;
+        font-weight: bold;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-3">
+    <h1>{{question.title}}</h1>
+    <p>{{question.body}}</p>
+    <h6>
+        Posted By: <i>{{question.author}} </i>
+    </h6>
+    <p>Published {{question.created_at}}</p>
+    <hr>
+    {% if request.user == question.author %}
+        <a class="btn btn-danger" href="{% url 'delete_question' question.slug %}">Delete</a>
+        <a class="btn btn-success" href="{% url 'update_question' question.slug %}">Update</a>
+    {% endif %}
+
+</div>
+
+<!-- Listing the answers -->
+<div class="container">
+    {% for answers in answer_list %}
+        <div class="card mt-4 py-3 shadow">
+            <div class="card-body">
+                <p class="card-text answer">{{answers.description}}</p>
+                <hr>
+                <div class="row author">
+                    <div class="col col-md-auto">
+                        Answered By : {{answers.author.username}}
+                    </div>
+                    <div class="col col-md-auto">
+                        Answered Time : {{answers.created_at}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Adding answers -->
+<div class="container">
+    <div class="card mt-4">
+        <form method="post" novalidate>
+            <h5 class="card-header">Add Answer</h5>
+            <div class="card-body">
+                {% csrf_token %}
+                {{form | crispy}}
+                <input type="submit" value="Add Answer" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock body %}
 ```
 
 ```py
