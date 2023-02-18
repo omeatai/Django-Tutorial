@@ -5787,7 +5787,7 @@ Cloud-Django/djqa/templates/questionDetails.html:
 
 Cloud-Django/djqa/templates/questionDetails.html:
 
-```pyx
+```bsx
 {% if request.user == question.author %}
     <a class="btn btn-danger" href="">Delete</a>
     <a class="btn btn-success" href="{% url 'update_question' question.slug %}">Update</a>
@@ -5868,7 +5868,7 @@ Cloud-Django/djqa/templates/questionDetails.html:
 
 Cloud-Django/djqa/questions/forms.py:
 
-```pyx
+```bsx
 class QuestionUpdateForm(forms.ModelForm):
     class Meta:
         model = Question
@@ -5941,7 +5941,7 @@ class Answer(models.Model):
 
 Cloud-Django/djqa/questions/views.py:
 
-```pyx
+```bsx
 def update_question(request, slug):
     question = get_object_or_404(Question, slug=slug)
     form = QuestionUpdateForm(request.POST or None, instance=question)
