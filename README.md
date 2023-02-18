@@ -568,7 +568,7 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css
 ```bs
 https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhbs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 ```
@@ -5025,7 +5025,7 @@ urlpatterns = [
 
 Cloud-Django/djqa/templates/navbar.html:
 
-```bs
+```bsx
 <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
 
 <li class="nav-item">
@@ -5108,7 +5108,7 @@ Cloud-Django/djqa/templates/navbar.html:
 
 Cloud-Django/djqa/templates/navbar.html:
 
-```bs
+```bsx
 {% if request.user.is_authenticated %}
 ---
 {% else %}
@@ -5426,7 +5426,7 @@ Cloud-Django/djqa/templates/navbar.html:
 
 Cloud-Django/djqa/questions/views.py:
 
-```bs
+```bsx
 def question_details(request, slug):
   question = get_object_or_404(Question, slug=slug)
   answer_list = Answer.objects.filter(question=question)
@@ -5629,7 +5629,7 @@ class Answer(models.Model):
 
 Cloud-Django/djqa/questions/views.py:
 
-```bs
+```bsx
 def question_details(request, slug):
     question = get_object_or_404(Question, slug=slug)
     answer_list = Answer.objects.filter(question=question)
@@ -5787,7 +5787,7 @@ Cloud-Django/djqa/templates/questionDetails.html:
 
 Cloud-Django/djqa/templates/questionDetails.html:
 
-```bs
+```pyx
 {% if request. user == question.author %}
     <a class="btn btn-danger" href="">Delete</a>
     <a class="btn btn-success" href="">Update</a>
