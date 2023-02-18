@@ -5776,6 +5776,11 @@ Cloud-Django/djqa/templates/questionDetails.html:
 	
 ![](https://user-images.githubusercontent.com/32337103/219849974-2df538a0-6cd2-4b04-9535-8b30af9041df.png)
 	
+![](https://user-images.githubusercontent.com/32337103/219850048-8e556589-6746-4658-8ca0-cfcf0287dd92.png)
+
+![](https://user-images.githubusercontent.com/32337103/219850059-68db8b90-8d2a-4eed-9756-d0fc70112fa5.png)
+	
+	
 </details>
 
 <details>
