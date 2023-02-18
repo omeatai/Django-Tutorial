@@ -6063,6 +6063,14 @@ urlpatterns = [
     path('update/<slug:slug>/', update_question, name='update_question'),
 ]
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/219851544-1c2caaff-582d-4679-8464-acf2ace3c192.png)
+	
+![](https://user-images.githubusercontent.com/32337103/219851567-7c8a26a0-84e6-47a0-8dc3-0d5709c3ef8a.png)
+
+![](https://user-images.githubusercontent.com/32337103/219851600-e8efbbb7-4560-4022-b1bf-660c928e8b83.png)
+
+![](https://user-images.githubusercontent.com/32337103/219851614-9154d4dd-e8d3-44d8-88e0-db4529226a6f.png)
 
 </details>
 
