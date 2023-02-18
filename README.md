@@ -6029,7 +6029,7 @@ Cloud-Django/djqa/templates/update.html:
 {% block style %}
 <style>
     .update-style {
-        width:500px;
+        width:700px;
         height: auto;
     }
 </style>
@@ -6254,31 +6254,291 @@ Cloud-Django/djqa/templates/questionDetails.html:
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/219852301-32c69887-a6f9-4648-a15f-0c4073fd1918.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/219852326-99c887b1-b825-4ff5-8a29-0ee4c88c7a1b.png)
 
 ![](https://user-images.githubusercontent.com/32337103/219852344-974956db-afab-407b-8d68-35e1457603f4.png)
-	
 
 </details>
 
 <details>
-  <summary>55. </summary>
+  <summary>55. Update Answer </summary>
 
-```py
+Cloud-Django/djqa/questions/forms.py:
 
+```bsx
+class AnswerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('description',)
 ```
 
 ```py
+from django import forms
+from django.contrib.auth import get_user_model
+from .models import Question, Answer
 
+User = get_user_model()
+
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords don\'t match.')
+        return cd['password2']
+
+class QuestionRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ('title', 'body',)
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('description',)
+
+class QuestionUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ('title', 'body')
+
+class AnswerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('description',)
+```
+
+Cloud-Django/djqa/questions/views.py:
+
+```bsx
+def update_answer(request, id):
+    answer = get_object_or_404(Answer, id=id)
+
+    form = AnswerUpdateForm(request.POST or None, instance=answer)
+    if form.is_valid():
+        form.save()
+        return redirect('question_details', slug=answer.question.slug)
+    return render(request, 'update_answer.html', {'form': form})
 ```
 
 ```py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Question, Answer
+from .forms import UserRegistrationForm, QuestionRegistrationForm, AnswerForm, QuestionUpdateForm, AnswerUpdateForm
 
+# Create your views here.
+def question_list(request):
+    question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+def question_details(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    answer_list = Answer.objects.filter(question=question)
+
+    #adding answer
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.question = question
+            answer.author = request.user
+            answer = form.save()
+            return redirect('question_details', slug=question.slug)
+    else:
+        form = AnswerForm()
+
+    return render(request, 'questionDetails.html', {'question': question, 'answer_list': answer_list, 'form':form})
+
+def register(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'register_done.html', {'user_form':user_form})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'register.html', {'user_form':user_form})
+
+def create_question(request):
+    if request.method == "POST":
+        question_form = QuestionRegistrationForm(request.POST)
+
+        if question_form.is_valid():
+            question = question_form.save(commit=False)
+            question.author = request.user
+            question = question_form.save()
+            return redirect('question_list')
+    else:
+        question_form = QuestionRegistrationForm()
+    return render(request, 'add_question.html', {'question_form': question_form})
+
+def update_question(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    form = QuestionUpdateForm(request.POST or None, instance=question)
+
+    if form.is_valid():
+        form.save()
+        return redirect('question_list')
+    return render (request, 'update.html', {'form': form})
+
+def delete_question(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    question.delete()
+    return redirect('question_list')
+
+
+def update_answer(request, id):
+    answer = get_object_or_404(Answer, id=id)
+
+    form = AnswerUpdateForm(request.POST or None, instance=answer)
+    if form.is_valid():
+        form.save()
+        return redirect('question_details', slug=answer.question.slug)
+    return render(request, 'update_answer.html', {'form': form})
+```
+
+Cloud-Django/djqa/templates/update_answer.html:
+
+```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Update Answer {% endblock title %}
+
+{% block style %}
+<style>
+    .update-style {
+        width:700px;
+        height: auto;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-5 update-style">
+    <h3>Update Answer</h3>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form | crispy}}
+
+        <input type="submit" value="Update Answer" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
+```
+
+Cloud-Django/djqa/questions/urls.py:
+
+```py
+from django.urls import path
+from .views import question_list, question_details, register, create_question, update_question, delete_question, update_answer
+
+urlpatterns = [
+    path('question/', question_list, name='question_list'),
+    path('question/<slug:slug>/', question_details, name='question_details'),
+    path('register/', register, name='register'),
+    path('add/', create_question, name='create_question'),
+    path('update/<slug:slug>/', update_question, name='update_question'),
+    path('delete/<slug:slug>/', delete_question, name='delete_question'),
+    path('answer/update/<int:id>/', update_answer, name='update_answer'),
+]
+```
+
+Cloud-Django/djqa/templates/questionDetails.html:
+
+```bsx
+{% if request.user == answers.author %}
+    <a class="btn btn-outline-danger btn-sm mt-3" href="">Delete</a>
+    <a class="btn btn-outline-success btn-sm mt-3" href="{% url 'update_answer' answers.id %}">Update</a>
+{% endif %}
 ```
 
 ```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
+{% block title %} Question Details {% endblock title %}
+
+{% block style %}
+<style>
+    .author {
+        color: gray;
+    }
+    .answer {
+        color: #000;
+        font-weight: bold;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-3">
+    <h1>{{question.title}}</h1>
+    <p>{{question.body}}</p>
+    <h6>
+        Posted By: <i>{{question.author}} </i>
+    </h6>
+    <p>Published {{question.created_at}}</p>
+    <hr>
+    {% if request.user == question.author %}
+        <a class="btn btn-danger" href="{% url 'delete_question' question.slug %}">Delete</a>
+        <a class="btn btn-success" href="{% url 'update_question' question.slug %}">Update</a>
+    {% endif %}
+
+</div>
+
+<!-- Listing the answers -->
+<div class="container">
+    {% for answers in answer_list %}
+        <div class="card mt-4 py-3 shadow">
+            <div class="card-body">
+                <p class="card-text answer">{{answers.description}}</p>
+                <hr>
+                <div class="row author">
+                    <div class="col col-md-auto">
+                        Answered By : {{answers.author.username}}
+                    </div>
+                    <div class="col col-md-auto">
+                        Answered Time : {{answers.created_at}}
+                    </div>
+                </div>
+                {% if request.user == answers.author %}
+                    <a class="btn btn-outline-danger btn-sm mt-3" href="">Delete</a>
+                    <a class="btn btn-outline-success btn-sm mt-3" href="{% url 'update_answer' answers.id %}">Update</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Adding answers -->
+<div class="container">
+    <div class="card mt-4">
+        <form method="post" novalidate>
+            <h5 class="card-header">Add Answer</h5>
+            <div class="card-body">
+                {% csrf_token %}
+                {{form | crispy}}
+                <input type="submit" value="Add Answer" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock body %}
 ```
 
 </details>
