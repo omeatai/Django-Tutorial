@@ -6760,42 +6760,147 @@ Cloud-Django/djqa/templates/questionDetails.html:
 <details>
   <summary>57. Change Password </summary>
 
-```py
+Cloud-Django/djqa/users/urls.py:
 
+```py
+from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
+
+urlpatterns = [
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('password_change/', PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'),
+]
+```
+
+Cloud-Django/djqa/templates/registration/password_change_form.html:
+
+```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Password Change {% endblock title %}
+
+{% block style %}
+<style>
+    .login-style {
+        width:500px;
+        height: auto;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-4 login-style">
+    <h3>Change Your Password</h3>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form | crispy}}
+
+        <input type="submit" value="Change Password" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
+```
+
+Cloud-Django/djqa/templates/registration/password_change_done.html:
+
+```py
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Change Done {% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+    <h3>Password Changed</h3>
+    <p>Your Password has been changed.</p>
+</div>
+{% endblock body %}
+```
+
+Cloud-Django/djqa/templates/navbar.html:
+
+```pybs
+<li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
 ```
 
 ```py
+<style>
+    .text-style {
+        font-size: 30px !important;
+        font-family: fantasy !important;
+        color: brown !important;
+        font-weight: bold !important;
+    }
+</style>
 
-```
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-style" href="{% url 'question_list' %}">Question Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-```py
+          {% if request.user.is_authenticated %}
 
-```
+          <li class="nav-item mx-3">
+            <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+          </li>
 
-```py
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
 
-```
+          <li class="nav-item mx-3">
+            <a class="nav-link active" aria-current="page" href="{% url 'question_list' %}">Home</a>
+          </li>
 
-```py
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'create_question' %}">Add Question</a>
+          </li>
 
-```
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+              <li><a class="dropdown-item" href="#">Change Account</a></li>
+              <li><a class="dropdown-item" href="#">Question & Answer</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
 
-```py
+          {% else %}
 
-```
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
 
-```py
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
 
-```
+          {% endif %}
+        </ul>
 
-```py
-
+      </div>
+    </div>
+  </nav>
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/221259754-71d7b2ed-a136-470c-a08d-0eb27338f184.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221259568-8a7ecdeb-736c-4d56-a2f6-5849342bb49f.png)
-	
 
 </details>
 
