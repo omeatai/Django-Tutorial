@@ -7211,15 +7211,31 @@ Cloud-Django/djqa/templates/navbar.html:
     </div>
   </nav>
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221277283-13267bbc-203c-4e70-8217-7815542e8288.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221277769-8be787e5-797a-403a-b773-8271f33f29c3.png)
-	
+
 </details>
 
 <details>
-  <summary>59. </summary>
+  <summary>59. Listing Questions and Answers for User</summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
