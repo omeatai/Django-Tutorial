@@ -6554,6 +6554,27 @@ Cloud-Django/djqa/templates/questionDetails.html:
 <details>
   <summary>56. Delete Answer </summary>
 
+Cloud-Django/djqa/questions/views.py:
+
+```pybs
+def delete_answer(request, id):
+    answer = get_object_or_404(Answer, id=id)
+    answer.delete()
+    return redirect('question_details', slug = answer.question.slug)
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
 ```py
 
 ```
