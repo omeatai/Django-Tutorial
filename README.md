@@ -6755,11 +6755,26 @@ Cloud-Django/djqa/templates/questionDetails.html:
 ![](https://user-images.githubusercontent.com/32337103/221180036-ff8fb197-7e82-4276-9e89-28a369c1a814.png)
 ![](https://user-images.githubusercontent.com/32337103/221180095-e9371ec1-3c32-45dc-aa94-34426ef73129.png)
 
-
 </details>
 
 <details>
-  <summary>57. </summary>
+  <summary>57. Change Password </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
