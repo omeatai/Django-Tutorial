@@ -6792,6 +6792,11 @@ Cloud-Django/djqa/templates/questionDetails.html:
 
 ```
 
+![](https://user-images.githubusercontent.com/32337103/221259754-71d7b2ed-a136-470c-a08d-0eb27338f184.png)
+	
+![](https://user-images.githubusercontent.com/32337103/221259568-8a7ecdeb-736c-4d56-a2f6-5849342bb49f.png)
+	
+
 </details>
 
 <details>
