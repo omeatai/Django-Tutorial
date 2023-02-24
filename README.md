@@ -6905,7 +6905,7 @@ Cloud-Django/djqa/templates/navbar.html:
 </details>
 
 <details>
-  <summary>58. </summary>
+  <summary>58. Change Account Information </summary>
 
 ```py
 
