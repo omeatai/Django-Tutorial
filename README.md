@@ -7491,6 +7491,10 @@ Cloud-Django/djqa/templates/navbar.html:
     </div>
   </nav>
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221382018-af7b5ac6-a4b6-4e0a-a9f4-e5e3220ec411.png)
+![](https://user-images.githubusercontent.com/32337103/221382025-9ec05b15-0f64-4f99-aacf-7a5551319824.png)
+	
 
 </details>
 
