@@ -7630,6 +7630,9 @@ def list_info(request):
     return render(request, 'list_info.html', {'questions': questions, 'answers': answers})
 
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221382778-c833d03f-0d99-4f38-83d4-5aa14c29264a.png)
+	
 
 </details>
 
