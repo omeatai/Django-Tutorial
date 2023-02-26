@@ -8149,14 +8149,33 @@ pip install -r requirements.txt
 	
 ![](https://user-images.githubusercontent.com/32337103/221401205-36e79beb-e337-4616-a4a4-fc2c5356da6b.png)
 	
+```pybs
+Web -> Add a new Web App -> Manual configuration (including virtualenvs) -> Python 3.9 -> Next
+```	
+	
+![](https://user-images.githubusercontent.com/32337103/221401282-0de38a25-1f10-4e92-ab5c-767286d7c639.png)
+	
+![](https://user-images.githubusercontent.com/32337103/221402342-492b3f23-5503-41f6-ab4f-30c721ca61f4.png)
+![](https://user-images.githubusercontent.com/32337103/221402376-65586274-da56-45c6-b1a2-1097d24e263a.png)
+![](https://user-images.githubusercontent.com/32337103/221402450-041b83b9-0da4-4fde-9907-3b54b7cf74e6.png)
+![](https://user-images.githubusercontent.com/32337103/221402508-8b3fc187-51ba-441a-8940-e79ab9c58a6f.png)
 
 ```pybs
+import os
+import sys
 
+path = ''
+if path not in sys.path:
+    sys.path.insert(0, path)
+    
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application ()
 ```
 
-```pybs
-
-```
+![](https://user-images.githubusercontent.com/32337103/221402746-2ee45331-4db0-4f6c-9646-4803a1fceeca.png)
+	
 
 ```pybs
 
