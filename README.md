@@ -7911,6 +7911,12 @@ Cloud-Django/djqa/templates/questionList.html:
 </div>
 {% endblock body%}
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221398472-d8fc81a4-5688-4364-ad9b-ebb719be4319.png)
+![](https://user-images.githubusercontent.com/32337103/221398486-bfad61ed-1a94-457e-95ff-175e9697fa9e.png)
+![](https://user-images.githubusercontent.com/32337103/221398498-78173b1b-5202-4647-9654-385d37b8e11e.png)
+![](https://user-images.githubusercontent.com/32337103/221398504-147e72d5-3a3a-47c3-a1f8-732e8b2d3c0d.png)
+	
 
 </details>
 
