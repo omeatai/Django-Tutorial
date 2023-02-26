@@ -7638,20 +7638,278 @@ def list_info(request):
 <details>
   <summary>61. Search Functionality</summary>
 
-```py
+Cloud-Django/djqa/templates/navbar.html:
 
+```pybs
+<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
 ```
 
 ```py
+<style>
+    .text-style {
+        font-size: 30px !important;
+        font-family: fantasy !important;
+        color: brown !important;
+        font-weight: bold !important;
+    }
+</style>
 
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-style" href="{% url 'question_list' %}">Question Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          {% if request.user.is_authenticated %}
+
+          <li class="nav-item mx-3">
+            <a class="nav-link disabled">Welcome, {{request.user.username | title}}.</a>
+          </li>
+
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+
+          <li class="nav-item mx-3">
+            <a class="nav-link active" aria-current="page" href="{% url 'question_list' %}">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'create_question' %}">Add Question</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">Change Account</a></li>
+              <li><a class="dropdown-item" href="{% url 'list' %}">Question & Answer</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+
+          {% else %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+
+          {% endif %}
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+```
+
+Cloud-Django/djqa/questions/views.py:
+
+```pybs
+@login_required
+def question_list(request):
+    if 'q' in request.GET:
+        q = request.GET['q']
+        question_list = Question.objects.filter(title__icontains=q).order_by('-created_at')
+    else:
+        question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
 ```
 
 ```py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Question, Answer
+from django.contrib import messages
+from .forms import UserRegistrationForm, QuestionRegistrationForm, AnswerForm, QuestionUpdateForm, AnswerUpdateForm, ProfileForm
+from django.contrib.auth.decorators import login_required
+
+# Create your views here.
+@login_required
+def question_list(request):
+    if 'q' in request.GET:
+        q = request.GET['q']
+        question_list = Question.objects.filter(title__icontains=q).order_by('-created_at')
+    else:
+        question_list = Question.objects.all().order_by('-created_at')
+    return render(request, 'questionList.html', {'question_list': question_list})
+
+@login_required
+def question_details(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    answer_list = Answer.objects.filter(question=question)
+
+    #adding answer
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.question = question
+            answer.author = request.user
+            answer = form.save()
+            return redirect('question_details', slug=question.slug)
+    else:
+        form = AnswerForm()
+
+    return render(request, 'questionDetails.html', {'question': question, 'answer_list': answer_list, 'form':form})
+
+def register(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'register_done.html', {'user_form':user_form})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'register.html', {'user_form':user_form})
+
+@login_required
+def create_question(request):
+    if request.method == "POST":
+        question_form = QuestionRegistrationForm(request.POST)
+
+        if question_form.is_valid():
+            question = question_form.save(commit=False)
+            question.author = request.user
+            question = question_form.save()
+            return redirect('question_list')
+    else:
+        question_form = QuestionRegistrationForm()
+    return render(request, 'add_question.html', {'question_form': question_form})
+
+@login_required
+def update_question(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    form = QuestionUpdateForm(request.POST or None, instance=question)
+
+    if form.is_valid():
+        form.save()
+        return redirect('question_list')
+    return render (request, 'update.html', {'form': form})
+
+@login_required
+def delete_question(request, slug):
+    question = get_object_or_404(Question, slug=slug)
+    question.delete()
+    return redirect('question_list')
+
+@login_required
+def update_answer(request, id):
+    answer = get_object_or_404(Answer, id=id)
+
+    form = AnswerUpdateForm(request.POST or None, instance=answer)
+    if form.is_valid():
+        form.save()
+        return redirect('question_details', slug=answer.question.slug)
+    return render(request, 'update_answer.html', {'form': form})
+
+@login_required
+def delete_answer(request, id):
+    answer = get_object_or_404(Answer, id=id)
+    answer.delete()
+    return redirect('question_details', slug = answer.question.slug)
+
+@login_required
+def change_profile(request):
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile has been updated successfully')
+
+    form = ProfileForm(instance=request.user)
+    return render(request, 'registration/profile.html', {'form': form})
+
+@login_required
+def list_info(request):
+    questions = Question.objects.filter(author=request.user).order_by('-created_at')
+    answers = Answer.objects.filter(author=request.user).order_by('-created_at')
+    return render(request, 'list_info.html', {'questions': questions, 'answers': answers})
 
 ```
 
-```py
+Cloud-Django/djqa/templates/questionList.html:
 
+```pybs
+{% if not question_list%}
+<div class="card mt-3 shadow">
+    <div class="card-body">
+        <h5 class="card-title"><a class="link-style" href="">Sorry, No records were found.</a></h5>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <a href="{% url 'question_list'%}"><button class="btn btn-success">Return</button></a>
+        </div>
+    </div>
+</div>
+{% endif %}
+```
+
+```py
+{% extends 'base.html' %}
+
+{% block title %}Question List{% endblock title %}
+
+{% block style%}
+    <style>
+        .link-style {
+            text-decoration:none;
+            color: #00798C;
+        }
+        .link-style:hover {
+            text-decoration:none;
+            color:gray;
+        }
+    </style>
+{% endblock style%}
+
+{% block body%}
+<div class="container">
+{% for question in question_list %}
+    <div class="card mt-3 shadow">
+        <div class="card-body">
+            <h5 class="card-title"><a class="link-style" href="{% url 'question_details' question.slug %}">{{question.title}}</a></h5>
+            <p class="card-text">{{question.body}}</p>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col col-md-auto">
+                    Posted By: {{question.author.username}}
+                </div>
+                <div class="col col-md-auto">
+                    Answers: {{question.answers.count}}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% if not question_list%}
+<div class="card mt-3 shadow">
+    <div class="card-body">
+        <h5 class="card-title"><a class="link-style" href="">Sorry, No records were found.</a></h5>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <a href="{% url 'question_list'%}"><button class="btn btn-success">Return</button></a>
+        </div>
+    </div>
+</div>
+{% endif %}
+</div>
+{% endblock body%}
 ```
 
 </details>
