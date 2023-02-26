@@ -8182,22 +8182,31 @@ application = get_wsgi_application ()
 </details>
 
 <details>
-  <summary>63. </summary>
+  <summary>63. Check for Upgrades </summary>
 
-```py
+List outdated packages:
 
+```pybs
+pip list --outdated
 ```
 
-```py
+requirements.txt:
 
+```pybs
+asgiref>=3.4.1
+crispy-bootstrap5>=0.6
+Django>=3.2.7
+django-crispy-forms>=1.13.0
+pytz>=2021.3
+sqlparse>=0.4.2
 ```
 
-```py
-
+```pybs
+pip install -r requirements.txt --upgrade
 ```
 
-```py
-
+```pybs
+pip frèeze > requirements.txt
 ```
 
 </details>
