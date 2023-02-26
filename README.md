@@ -8179,14 +8179,6 @@ application = get_wsgi_application ()
 ![](https://user-images.githubusercontent.com/32337103/221403101-597168d7-572b-4582-8ddd-f7aedced20cd.png)
 ![](https://user-images.githubusercontent.com/32337103/221403154-484bdd66-cca4-456c-9fc9-7a9798f4346c.png)
 
-```pybs
-
-```
-
-```py
-
-```
-
 </details>
 
 <details>
