@@ -8211,6 +8211,8 @@ pip frèeze > requirements.txt
 
 </details>
 
++DJANGO REST FRAMEWORK
+
 <details>
   <summary>64. </summary>
 
