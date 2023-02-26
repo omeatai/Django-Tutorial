@@ -8140,19 +8140,17 @@ cd djqa
 ls
 mkvirtualenv --python=/usr/bin/python3.9 myvenv
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221400769-1928daba-1b01-4396-af75-4b4c635323c1.png)
-	
+
+```pybs
+pip install -r requirements.txt
+```
 
 ```pybs
 
 ```
 
-
-```pybs
-
-```	
-	
 ```pybs
 
 ```
