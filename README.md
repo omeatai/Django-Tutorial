@@ -8126,9 +8126,12 @@ git reset --hard HEAD@{3}
 ```
 
 pythonanywhere -> console -> Bash
+	
+![](https://user-images.githubusercontent.com/32337103/221400346-2680602a-cd2c-466d-8167-fc60fd3fa94f.png)
+![](https://user-images.githubusercontent.com/32337103/221400376-7b197cd2-9762-44d2-8437-3cc5a1bf179b.png)
 
 ```pybs
-
+https://github.com/omeatai/djqa.git
 ```
 
 ```pybs
