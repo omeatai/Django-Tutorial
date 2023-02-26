@@ -8136,7 +8136,9 @@ git clone https://github.com/omeatai/djqa.git
 ![](https://user-images.githubusercontent.com/32337103/221400544-ba22fa83-7609-429b-ac21-a34aaf97d7d5.png)
 
 ```pybs
-
+cd djqa
+ls
+mkvirtualenv --python=/usr/bin/python3.9 myvenv
 ```
 
 ```pybs
