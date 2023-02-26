@@ -8146,9 +8146,8 @@ mkvirtualenv --python=/usr/bin/python3.9 myvenv
 ```pybs
 pip install -r requirements.txt
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221401205-36e79beb-e337-4616-a4a4-fc2c5356da6b.png)
-	
 
 ```pybs
 
