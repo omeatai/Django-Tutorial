@@ -8130,10 +8130,10 @@ pythonanywhere -> console -> Bash
 ![](https://user-images.githubusercontent.com/32337103/221400346-2680602a-cd2c-466d-8167-fc60fd3fa94f.png)
 
 ```pybs
-https://github.com/omeatai/djqa.git
+git clone https://github.com/omeatai/djqa.git
 ```
 
-![](https://user-images.githubusercontent.com/32337103/221400376-7b197cd2-9762-44d2-8437-3cc5a1bf179b.png)
+![](https://user-images.githubusercontent.com/32337103/221400544-ba22fa83-7609-429b-ac21-a34aaf97d7d5.png)
 
 ```pybs
 
