@@ -8398,48 +8398,61 @@ python manage.py shell
 >>> article = Article(title="This is my title", description = "This is my description")
 >>> article.save()
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221498835-55a3cca3-103a-41aa-8756-602451122bf6.png)
 ![](https://user-images.githubusercontent.com/32337103/221498969-d2464fa4-e788-42a8-8357-010bf7d84836.png)
 ![](https://user-images.githubusercontent.com/32337103/221499036-f0671ce6-4fb5-45aa-90f9-2c64a89ed143.png)
-	
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
-  <summary>69. </summary>
+  <summary>69. Serialization </summary>
+
+Cloud-Django/djrest/backend/serializers.py:
+
+```py
+
+```
+
+```pybs
+>>> from backend.models import Article
+>>> from backend.serializers import ArticleSerializer
+>>> from rest_framework.renderers import JSONRenderer
+>>> from rest_framework.parsers import JSONParser
+>>> a = Article(title="This is my title for serializtion",description="This is my description")
+>>> a.save()
+>>> serializer = ArticleSerializer(a)
+>>> serializer.data
+```
+
+```json
+{
+  "title": "This is my title for serializtion",
+  "description": "This is my description",
+  "slug": "this-is-my-title-for-serializtion",
+  "published": "2023-02-27T10:19:33.988149Z"
+}
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
