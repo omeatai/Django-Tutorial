@@ -8487,22 +8487,8 @@ OrderedDict([('title', 'This is my title for serializtion'), ('description', 'Th
 >>> serializer = ArticleSerializer(Article.objects.all(), many=True)
 >>> serializer.data
 ```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+	
+![](https://user-images.githubusercontent.com/32337103/221554352-b542cc79-ff36-4d5d-a57f-989abc335d3d.png)
 
 </details>
 
