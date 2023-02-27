@@ -8428,6 +8428,9 @@ Cloud-Django/djrest/backend/serializers.py:
 ```pybs
 {'title': 'This is my title for serializtion', 'description': 'This is my description', 'slug': 'this-is-my-title-for-serializtion', 'published': '2023-02-27T10:19:33.988149Z'}
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221537700-4ac54e5f-8b10-40e5-b5f8-2b0bce2a974e.png)
+	
 
 ```py
 
