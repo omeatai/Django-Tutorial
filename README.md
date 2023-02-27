@@ -8808,16 +8808,16 @@ urlpatterns = [
 ```
 
 GET:
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221613958-dbdabb95-8121-4b40-98f1-dc5efb0fc2b9.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221615645-87395944-3767-4fd4-af59-7f973bb85dc1.png)
-	
+
 PUT:
 
 ![](https://user-images.githubusercontent.com/32337103/221616380-23137256-ed99-479e-bf5b-8814f12c1156.png)
-	
-![](https://user-images.githubusercontent.com/32337103/221616665-76bec988-3a5f-4229-a098-d8d78e6f0f9b.png)	
+
+![](https://user-images.githubusercontent.com/32337103/221616665-76bec988-3a5f-4229-a098-d8d78e6f0f9b.png)
 
 </details>
 
