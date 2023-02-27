@@ -8323,7 +8323,10 @@ python manage.py createsuperuser
 ![](https://user-images.githubusercontent.com/32337103/221493783-013cf70e-4017-4a9f-9edb-317b7b7040f8.png)
 ![](https://user-images.githubusercontent.com/32337103/221493822-d8da89b3-9d95-443b-b17b-477e6886ddbb.png)
 
-Register Model to Admin -
+</details>
+
+<details>
+  <summary>67. Register Model to Admin </summary>
 
 Cloud-Django/djrest/backend/admin.py:
 
@@ -8334,36 +8337,15 @@ from .models import Article
 # Register your models here.
 admin.site.register(Article)
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221494744-1baf320b-5ee7-488b-b422-e3f18ac8ca38.png)
 ![](https://user-images.githubusercontent.com/32337103/221494920-a49cc9fa-3982-4f41-aa5c-04f4d4afac99.png)
 ![](https://user-images.githubusercontent.com/32337103/221494988-c0cc3aa5-1222-44d7-8526-6ba29ad11d25.png)
-	
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
-  <summary>67. </summary>
+  <summary>68. Create Dynamic Slugs </summary>
 
 ```py
 
@@ -8381,10 +8363,25 @@ admin.site.register(Article)
 
 ```
 
-</details>
+```py
 
-<details>
-  <summary>68. </summary>
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
