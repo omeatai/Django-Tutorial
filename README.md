@@ -8818,6 +8818,11 @@ PUT:
 ![](https://user-images.githubusercontent.com/32337103/221616380-23137256-ed99-479e-bf5b-8814f12c1156.png)
 
 ![](https://user-images.githubusercontent.com/32337103/221616665-76bec988-3a5f-4229-a098-d8d78e6f0f9b.png)
+	
+DELETE:
+	
+![](https://user-images.githubusercontent.com/32337103/221617930-2746d8ef-9c45-416c-b2ba-14485771af8b.png)
+![](https://user-images.githubusercontent.com/32337103/221620102-366e5847-d664-481b-adde-230ea2f8946d.png)	
 
 </details>
 
