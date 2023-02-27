@@ -9068,6 +9068,24 @@ urlpatterns = [
     path('articles/<slug:slug>/', article_details, name='article_details'),
 ]
 ```
+	
+GET:	
+	
+![](https://user-images.githubusercontent.com/32337103/221644610-1cdc9305-43f0-4f06-98ad-77a7d57f3efd.png)
+![](https://user-images.githubusercontent.com/32337103/221644802-52768726-879e-432c-936b-8a83f34ef833.png)
+	
+PUT:
+	
+![](https://user-images.githubusercontent.com/32337103/221645642-be9bde4f-078b-43b5-a973-f4f07b36f067.png)
+![](https://user-images.githubusercontent.com/32337103/221645716-280129d6-ae96-43fc-9f11-c6820bc78f8f.png)
+	
+DELETE:
+
+![](https://user-images.githubusercontent.com/32337103/221646064-c9c65b18-9512-43ae-a203-a968e71ff0e4.png)
+![](https://user-images.githubusercontent.com/32337103/221646127-64652c42-450c-4085-9e04-673e999566b4.png)
+![](https://user-images.githubusercontent.com/32337103/221646183-6dee1776-7bf6-41f1-b54f-14ea02162192.png)
+![](https://user-images.githubusercontent.com/32337103/221646229-53dd74aa-a5a4-40be-a491-c53f724ff916.png)
+	
 
 ```py
 
