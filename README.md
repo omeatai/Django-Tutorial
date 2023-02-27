@@ -8701,6 +8701,11 @@ class ArticleSerializer(serializers.ModelSerializer):
 #     instance.save()
 #     return instance
 ```
+	
+POST:	
+	
+![](https://user-images.githubusercontent.com/32337103/221606733-6e74b9e1-7b73-4a3f-874b-45937dc818ea.png)
+	
 
 ```py
 
