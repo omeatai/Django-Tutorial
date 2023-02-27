@@ -8712,37 +8712,29 @@ POST:
 ![](https://user-images.githubusercontent.com/32337103/221606733-6e74b9e1-7b73-4a3f-874b-45937dc818ea.png)
 
 GET:
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221607611-ffa3e954-04dc-472b-a95a-0b87c143df87.png)
-	
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
-  <summary>73. </summary>
+  <summary>73. Get a single Article (Details) </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
