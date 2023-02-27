@@ -9397,10 +9397,10 @@ urlpatterns = [
 ]
 ```
 
-PUT and DELETE -
-
 ![](https://user-images.githubusercontent.com/32337103/221694878-61d5959f-2a13-4e7c-84ea-38dfc00cc88a.png)
 ![](https://user-images.githubusercontent.com/32337103/221695043-2b159827-e19e-4808-9ebf-f3a7072e91ba.png)
+
+PUT and DELETE -
 
 backend/views.py:
 
