@@ -8462,6 +8462,9 @@ True
 ```pybs
 OrderedDict([('title', 'This is my title for serializtion'), ('description', 'This is my description'), ('slug', 'this-is-my-title-for-serializtion')])
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221553790-cd69469d-b05a-4214-a829-e4b523622404.png)
+	
 
 ```py
 
