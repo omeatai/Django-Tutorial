@@ -8334,6 +8334,11 @@ from .models import Article
 # Register your models here.
 admin.site.register(Article)
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221494744-1baf320b-5ee7-488b-b422-e3f18ac8ca38.png)
+![](https://user-images.githubusercontent.com/32337103/221494920-a49cc9fa-3982-4f41-aa5c-04f4d4afac99.png)
+![](https://user-images.githubusercontent.com/32337103/221494988-c0cc3aa5-1222-44d7-8526-6ba29ad11d25.png)
+	
 
 ```py
 
