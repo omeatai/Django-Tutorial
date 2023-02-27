@@ -8572,19 +8572,61 @@ class ArticleSerializer(serializers.ModelSerializer):
 </details>
 
 <details>
-  <summary>71. API View Functions </summary>
+  <summary>71. API View Functions for GET and POST </summary>
+
+Cloud-Django/djrest/backend/views.py:
 
 ```py
+from django.shortcuts import render
+from .models import Article
+from .serializers import ArticleSerializer
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
 
+# Create your views here.
+def article_list(request):
+    if request.method == "GET":
+        articles = Article.objects.all()
+        serializer = ArticleSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == "POST":
+        data = JSONParser().parse(request)
+        serializer = ArticleSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
 ```
+
+Cloud-Django/djrest/backend/urls.py:
 
 ```py
+from django.urls import path
+from .views import article_list
 
+urlpatterns = [
+    path('articles/', article_list, name='article_list')
+]
 ```
+
+Cloud-Django/djrest/blogapi/urls.py:
 
 ```py
+from django.contrib import admin
+from django.urls import path, include
 
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('backend.urls'))
+]
 ```
+
+```pybs
+python manage.py runserver
+```
+
+http://127.0.0.1:8000/articles/
 
 ```py
 
