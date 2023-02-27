@@ -8946,7 +8946,7 @@ POST:
 </details>
 
 <details>
-  <summary>75. API View Decorators (@api_view) for GET, PUT, DELETE </summary>
+  <summary>75. API View Decorators (@api_view) for GET (Details), PUT, DELETE </summary>
 
 backend/views.py:
 
