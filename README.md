@@ -8214,7 +8214,26 @@ pip frèeze > requirements.txt
 +DJANGO REST FRAMEWORK
 
 <details>
-  <summary>64. </summary>
+  <summary>64. Introduction </summary>
+
+Install Venv:
+
+```pybs
+python -m venv venv
+source venv/bin/activate
+```
+
+Install django:
+
+```pybs
+pip install django
+```
+
+Install Project:
+
+```py
+django-admin startproject blogapi .
+```
 
 ```py
 
