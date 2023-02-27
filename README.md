@@ -8932,23 +8932,141 @@ urlpatterns = [
 http://127.0.0.1:8000/articles/
 
 ![](https://user-images.githubusercontent.com/32337103/221639333-5a1f831b-b0a8-4905-9080-798f44a7f04d.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221639622-e0e6db4e-dc36-4af4-873a-1ba920a49786.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221639801-2f1dc0d7-80d4-4499-a347-6ff3b5f339bc.png)
 
 ![](https://user-images.githubusercontent.com/32337103/221640281-8198d3df-cfed-40bc-b102-8b209524aaba.png)
-	
-```py
 
+backend/views.py:
+
+```pybs
+@api_view (['GET', 'PUT', 'DELETE'])
+def article_details(request, slug):
+    try:
+        article = Article.objects.get(slug=slug)
+    except Article.DoesNotExist():
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == "GET":
+        serializer = ArticleSerializer(article)
+        return Response(serializer.data)
+
+    elif request.method == "PUT":
+        serializer = ArticleSerializer(article, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == "DELETE":
+        article.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 ```
 
 ```py
+from django.shortcuts import render, HttpResponse
+from .models import Article
+from .serializers import ArticleSerializer
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
+
+@api_view(['GET', 'POST'])
+def article_list(request):
+    if request.method == "GET":
+        articles = Article.objects.all()
+        serializer = ArticleSerializer(articles, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = ArticleSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response (serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view (['GET', 'PUT', 'DELETE'])
+def article_details(request, slug):
+    try:
+        article = Article.objects.get(slug=slug)
+    except Article.DoesNotExist():
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == "GET":
+        serializer = ArticleSerializer(article)
+        return Response(serializer.data)
+
+    elif request.method == "PUT":
+        serializer = ArticleSerializer(article, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == "DELETE":
+        article.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+#API VIEW FUNCTIONS
+
+# @csrf_exempt
+# def article_list(request):
+#     if request.method == "GET":
+#         articles = Article.objects.all()
+#         serializer = ArticleSerializer(articles, many=True)
+#         return JsonResponse(serializer.data, safe=False)
+
+#     elif request.method == "POST":
+#         data = JSONParser().parse(request)
+#         serializer = ArticleSerializer(data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data, status=201)
+#         return JsonResponse(serializer.errors, status=400)
+
+# @csrf_exempt
+# def article_details(request, slug):
+#     try:
+#         article = Article.objects.get(slug=slug)
+#     except Article.DoesNotExist:
+#         return HttpResponse(status=404)
+
+#     if request.method == "GET":
+#         serializer = ArticleSerializer(article)
+#         return JsonResponse(serializer.data)
+
+#     elif request.method == "PUT":
+#         data = JSONParser().parse(request)
+#         serializer = ArticleSerializer(article, data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data, status=200)
+#         return JsonResponse(serializer.errors, status=400)
+
+#     elif request.method == "DELETE":
+#         article.delete()
+#         return HttpResponse(status=204)
 
 ```
 
-```py
+backend/urls.py:
 
+```py
+from django.urls import path
+from .views import article_list, article_details
+
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+]
 ```
 
 ```py
