@@ -8292,7 +8292,7 @@ Cloud-Django/djrest/backend/models.py:
 from django.db import models
 
 # Create your models here.
-class Article (models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     slug = models.SlugField(max_length=200, unique=True)
@@ -8345,26 +8345,58 @@ admin.site.register(Article)
 </details>
 
 <details>
-  <summary>68. Create Dynamic Slugs </summary>
+  <summary>68. Create Dynamic Slugs with Django Signals</summary>
+
+Cloud-Django/djrest/backend/signals.py:
 
 ```py
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from .models import Article
+from django.utils.text import slugify
+
+
+@receiver(pre_save, sender=Article)
+def add_slug(sender, instance, *args, **kwargs):
+    if instance and not instance.slug:
+        slug = slugify(instance.title)
+        instance.slug = slug
+```
+
+Cloud-Django/djrest/backend/apps.py:
+
+```py
+from django.apps import AppConfig
+
+
+class BackendConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'backend'
+
+    def ready(self):
+        import backend.signals
 
 ```
 
-```py
+Cloud-Django/djrest/backend/init.py:
 
+```py
+default_app_config = 'backend.apps. Backend Config'
 ```
 
-```py
+Start Django Shell:
 
+```pybs
+python manage.py shell
 ```
 
-```py
-
-```
-
-```py
-
+```pybs
+>>> from django.contrib.auth import get_user_model
+>>> user = get_user_model()
+>>> u = user.objects.first()
+>>> from backend.models import Article
+>>> article = Article(title="This is my title", description = "This is my description")
+>>> article.save()
 ```
 
 ```py
