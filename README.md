@@ -8627,6 +8627,9 @@ python manage.py runserver
 ```
 
 http://127.0.0.1:8000/articles/
+	
+![](https://user-images.githubusercontent.com/32337103/221601140-6a19e4f4-0a64-43c6-9549-787dbd736def.png)
+	
 
 ```py
 
