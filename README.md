@@ -9235,12 +9235,11 @@ urlpatterns = [
     path('articles/', ArticleList.as_view())
 ]
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221688961-1387f7c4-16cf-4bf1-8dcc-0f15046fa5b2.png)
 ![](https://user-images.githubusercontent.com/32337103/221689481-0ba9c499-d72b-41a5-b71d-eea789916c35.png)
 ![](https://user-images.githubusercontent.com/32337103/221689607-18f3903e-8dc4-4a97-ad3a-44c4bf6e203b.png)
 ![](https://user-images.githubusercontent.com/32337103/221689738-ca9987c4-5f7e-445e-94e7-f9e646d64664.png)
-	
 
 ```py
 
