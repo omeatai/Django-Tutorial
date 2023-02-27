@@ -8718,7 +8718,7 @@ GET:
 </details>
 
 <details>
-  <summary>73. Get a single Article (Details) </summary>
+  <summary>73. Get a single Article (Details) for GET, PUT, DELETE </summary>
 
 Cloud-Django/djrest/backend/views.py:
 
@@ -8827,7 +8827,7 @@ DELETE:
 </details>
 
 <details>
-  <summary>74. API View Decorators (@api_view) </summary>
+  <summary>74. API View Decorators (@api_view) for GET and POST </summary>
 
 backend/views.py:
 
@@ -8938,6 +8938,11 @@ http://127.0.0.1:8000/articles/
 ![](https://user-images.githubusercontent.com/32337103/221639801-2f1dc0d7-80d4-4499-a347-6ff3b5f339bc.png)
 
 ![](https://user-images.githubusercontent.com/32337103/221640281-8198d3df-cfed-40bc-b102-8b209524aaba.png)
+
+</details>
+
+<details>
+  <summary>75. API View Decorators (@api_view) for GET, PUT, DELETE </summary>
 
 backend/views.py:
 
@@ -9085,27 +9090,6 @@ DELETE:
 ![](https://user-images.githubusercontent.com/32337103/221646127-64652c42-450c-4085-9e04-673e999566b4.png)
 ![](https://user-images.githubusercontent.com/32337103/221646183-6dee1776-7bf6-41f1-b54f-14ea02162192.png)
 ![](https://user-images.githubusercontent.com/32337103/221646229-53dd74aa-a5a4-40be-a491-c53f724ff916.png)
-
-</details>
-
-<details>
-  <summary>75. </summary>
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
