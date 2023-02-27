@@ -8738,6 +8738,7 @@ def article_details(request, slug):
         data = JSONParser().parse(request)
         serializer = ArticleSerializer(article, data=data)
         if serializer.is_valid():
+            serializer.save()
             return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
 
@@ -8784,6 +8785,7 @@ def article_details(request, slug):
         data = JSONParser().parse(request)
         serializer = ArticleSerializer(article, data=data)
         if serializer.is_valid():
+            serializer.save()
             return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
 
