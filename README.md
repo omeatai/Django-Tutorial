@@ -9575,6 +9575,13 @@ urlpatterns = [
     path('articles/<slug:slug>/', ArticleDetails.as_view())
 ]
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221702347-92485680-731b-42c0-93a2-484e92e8d588.png)
+![](https://user-images.githubusercontent.com/32337103/221702508-84a5e581-eb8b-48bc-b8c3-b2717fc669e0.png)
+![](https://user-images.githubusercontent.com/32337103/221702660-8751e521-5bc8-4923-8d9c-e26c1b5ce5c1.png)
+![](https://user-images.githubusercontent.com/32337103/221702860-df5ca62d-3ed5-441b-affd-037a6b01fa3d.png)
+![](https://user-images.githubusercontent.com/32337103/221702904-41e864b0-b9df-42c8-94d9-688cf71ea3f4.png)
+	
 
 ```py
 
