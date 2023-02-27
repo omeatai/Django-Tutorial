@@ -8936,6 +8936,8 @@ http://127.0.0.1:8000/articles/
 ![](https://user-images.githubusercontent.com/32337103/221639622-e0e6db4e-dc36-4af4-873a-1ba920a49786.png)
 	
 ![](https://user-images.githubusercontent.com/32337103/221639801-2f1dc0d7-80d4-4499-a347-6ff3b5f339bc.png)
+
+![](https://user-images.githubusercontent.com/32337103/221640281-8198d3df-cfed-40bc-b102-8b209524aaba.png)
 	
 ```py
 
