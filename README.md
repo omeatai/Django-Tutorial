@@ -8630,6 +8630,17 @@ http://127.0.0.1:8000/articles/
 	
 ![](https://user-images.githubusercontent.com/32337103/221601140-6a19e4f4-0a64-43c6-9549-787dbd736def.png)
 	
+Using POSTMAN -
+	
+GET:	
+	
+![](https://user-images.githubusercontent.com/32337103/221603833-bfc988ea-74d3-4bf7-a1f5-7d7f3e3653f4.png)
+	
+POST:
+
+![](https://user-images.githubusercontent.com/32337103/221605285-8eeee239-57de-40e2-9341-5aceb41a248a.png)
+
+CSRF Exempt -
 
 ```py
 
