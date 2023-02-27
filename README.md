@@ -8718,7 +8718,7 @@ GET:
 </details>
 
 <details>
-  <summary>73. API View Functions for Article Details for GET, PUT, DELETE </summary>
+  <summary>73. API View Functions for Article Details for GET (Details), PUT, DELETE </summary>
 
 Cloud-Django/djrest/backend/views.py:
 
