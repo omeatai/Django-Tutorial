@@ -8720,17 +8720,92 @@ GET:
 <details>
   <summary>73. Get a single Article (Details) </summary>
 
-```py
+Cloud-Django/djrest/backend/views.py:
 
+```pybs
+@csrf_exempt
+def article_details(request, slug):
+    try:
+        article = Article.objects.get(slug=slug)
+    except Article.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == "GET":
+        serializer = ArticleSerializer(article)
+        return JsonResponse(serializer.data)
+
+    elif request.method == "PUT":
+        data = JSONParser().parse(request)
+        serializer = ArticleSerializer(article, data=data)
+        if serializer.is_valid():
+            return JsonResponse(serializer.data, status=200)
+        return JsonResponse(serializer.errors, status=400)
+
+    elif request.method == "DELETE":
+        article.delete()
+        return HttpResponse(status=204)
 ```
 
 ```py
+from django.shortcuts import render, HttpResponse
+from .models import Article
+from .serializers import ArticleSerializer
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def article_list(request):
+    if request.method == "GET":
+        articles = Article.objects.all()
+        serializer = ArticleSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == "POST":
+        data = JSONParser().parse(request)
+        serializer = ArticleSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+@csrf_exempt
+def article_details(request, slug):
+    try:
+        article = Article.objects.get(slug=slug)
+    except Article.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == "GET":
+        serializer = ArticleSerializer(article)
+        return JsonResponse(serializer.data)
+
+    elif request.method == "PUT":
+        data = JSONParser().parse(request)
+        serializer = ArticleSerializer(article, data=data)
+        if serializer.is_valid():
+            return JsonResponse(serializer.data, status=200)
+        return JsonResponse(serializer.errors, status=400)
+
+    elif request.method == "DELETE":
+        article.delete()
+        return HttpResponse(status=204)
 
 ```
+
+Cloud-Django/djrest/backend/urls.py:
 
 ```py
+from django.urls import path
+from .views import article_list, article_details
 
+urlpatterns = [
+    path('articles/', article_list, name='article_list'),
+    path('articles/<slug:slug>/', article_details, name='article_details'),
+]
 ```
+
+GET:
 
 ```py
 
