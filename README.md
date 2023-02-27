@@ -8630,6 +8630,11 @@ http://127.0.0.1:8000/articles/
 
 ![](https://user-images.githubusercontent.com/32337103/221601140-6a19e4f4-0a64-43c6-9549-787dbd736def.png)
 
+</details>
+
+<details>
+  <summary>72. Using POSTMAN for GET and POST requests </summary>
+
 Using POSTMAN -
 
 GET:
@@ -8701,11 +8706,10 @@ class ArticleSerializer(serializers.ModelSerializer):
 #     instance.save()
 #     return instance
 ```
-	
-POST:	
-	
+
+POST:
+
 ![](https://user-images.githubusercontent.com/32337103/221606733-6e74b9e1-7b73-4a3f-874b-45937dc818ea.png)
-	
 
 ```py
 
@@ -8714,11 +8718,6 @@ POST:
 ```py
 
 ```
-
-</details>
-
-<details>
-  <summary>72. </summary>
 
 ```py
 
