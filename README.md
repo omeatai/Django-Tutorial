@@ -8423,7 +8423,7 @@ class ArticleSerializer(serializers.Serializer):
 def create(self, validated_data):
     return Article.objects.create(**validated_data)
 
-def update (self, instance, validated_data):
+def update(self, instance, validated_data):
     instance.title = validated_data.get('title', instance.title)
     instance.description = validated_data.get('description', instance.description)
     instance.slug = validated_data.get('slug', instance.slug)
@@ -8493,7 +8493,46 @@ OrderedDict([('title', 'This is my title for serializtion'), ('description', 'Th
 </details>
 
 <details>
-  <summary>70. </summary>
+  <summary>70. Model Serializer </summary>
+
+Cloud-Django/djrest/backend/serializers.py:
+
+```py
+from rest_framework import serializers
+from .models import Article
+
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = '__all__'
+
+# class ArticleSerializer(serializers.Serializer):
+#     title = serializers.CharField(max_length=200)
+#     description = serializers.CharField()
+#     slug = serializers.SlugField(max_length=200)
+#     published = serializers.DateTimeField(read_only=True)
+
+# def create(self, validated_data):
+#     return Article.objects.create(**validated_data)
+
+# def update(self, instance, validated_data):
+#     instance.title = validated_data.get('title', instance.title)
+#     instance.description = validated_data.get('description', instance.description)
+#     instance.slug = validated_data.get('slug', instance.slug)
+#     instance.published = validated_data.get('published', instance.published)
+#     instance.save()
+#     return instance
+```
+
+```pybs
+>>> from backend.serializers import ArticleSerializer
+>>> serializer = ArticleSerializer()
+>>> print(repr(serializer))
+```
+
+```py
+
+```
 
 ```py
 
