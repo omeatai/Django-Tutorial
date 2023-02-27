@@ -8566,26 +8566,29 @@ class ArticleSerializer(serializers.ModelSerializer):
 >>> serializer = ArticleSerializer()
 >>> print(repr(serializer))
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221589601-c7c37852-6f2a-4310-a822-90f3fa127dd0.png)
-	
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
-  <summary>71. </summary>
+  <summary>71. API View Functions </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
