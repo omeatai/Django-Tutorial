@@ -8529,16 +8529,42 @@ class ArticleSerializer(serializers.ModelSerializer):
 >>> serializer = ArticleSerializer()
 >>> print(repr(serializer))
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221588611-f7133f72-1a62-4fd2-bf6c-e45984f34134.png)
-	
+
+Cloud-Django/djrest/backend/serializers.py:
 
 ```py
+from rest_framework import serializers
+from .models import Article
 
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ['title', 'description']
+
+# class ArticleSerializer(serializers.Serializer):
+#     title = serializers.CharField(max_length=200)
+#     description = serializers.CharField()
+#     slug = serializers.SlugField(max_length=200)
+#     published = serializers.DateTimeField(read_only=True)
+
+# def create(self, validated_data):
+#     return Article.objects.create(**validated_data)
+
+# def update(self, instance, validated_data):
+#     instance.title = validated_data.get('title', instance.title)
+#     instance.description = validated_data.get('description', instance.description)
+#     instance.slug = validated_data.get('slug', instance.slug)
+#     instance.published = validated_data.get('published', instance.published)
+#     instance.save()
+#     return instance
 ```
 
-```py
-
+```pybs
+>>> from backend.serializers import ArticleSerializer
+>>> serializer = ArticleSerializer()
+>>> print(repr(serializer))
 ```
 
 ```py
