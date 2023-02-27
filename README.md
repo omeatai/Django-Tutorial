@@ -8231,16 +8231,21 @@ pip install django
 
 Install Project:
 
-```py
+```pybs
 django-admin startproject blogapi .
 ```
 
-```py
+Install Django Rest Framework:
 
+```pybs
+pip install djangorestframework
 ```
 
-```py
-
+```pybs
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
 ```
 
 ```py
