@@ -8414,6 +8414,8 @@ Cloud-Django/djrest/backend/serializers.py:
 
 ```
 
+SERIALIZATION:
+
 ```pybs
 >>> from backend.models import Article
 >>> from backend.serializers import ArticleSerializer
@@ -8428,24 +8430,37 @@ Cloud-Django/djrest/backend/serializers.py:
 ```pybs
 {'title': 'This is my title for serializtion', 'description': 'This is my description', 'slug': 'this-is-my-title-for-serializtion', 'published': '2023-02-27T10:19:33.988149Z'}
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221537700-4ac54e5f-8b10-40e5-b5f8-2b0bce2a974e.png)
-	
 
-```py
-
+```pybs
+>>> content = JSONRenderer().render(serializer.data)
+>>> content
 ```
 
-```py
-
+```json
+b'{
+    "title":"This is my title for serializtion",
+    "description":"This is my description",
+    "slug":"this-is-my-title-for-serializtion",
+    "published":"2023-02-27T10:19:33.988149Z"
+}'
 ```
 
-```py
+DESERIALIZATION:
 
+```pybs
+>>> import io
+>>> stream = io.BytesIO(content)
+>>> data = JSONParser().parse(stream)
+>>> serializer = ArticleSerializer(data=data)
+>>> serializer.is_valid()
+True
+>>> serializer.validated_data
 ```
 
-```py
-
+```pybs
+OrderedDict([('title', 'This is my title for serializtion'), ('description', 'This is my description'), ('slug', 'this-is-my-title-for-serializtion')])
 ```
 
 ```py
