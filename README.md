@@ -8425,13 +8425,8 @@ Cloud-Django/djrest/backend/serializers.py:
 >>> serializer.data
 ```
 
-```json
-{
-  "title": "This is my title for serializtion",
-  "description": "This is my description",
-  "slug": "this-is-my-title-for-serializtion",
-  "published": "2023-02-27T10:19:33.988149Z"
-}
+```pybs
+{'title': 'This is my title for serializtion', 'description': 'This is my description', 'slug': 'this-is-my-title-for-serializtion', 'published': '2023-02-27T10:19:33.988149Z'}
 ```
 
 ```py
