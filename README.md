@@ -8241,6 +8241,8 @@ Install Django Rest Framework:
 pip install djangorestframework
 ```
 
+Cloud-Django/djrest/blogapi/settings.py:
+
 ```pybs
 INSTALLED_APPS = [
     ...
@@ -8248,25 +8250,70 @@ INSTALLED_APPS = [
 ]
 ```
 
-```py
-
+```pybs
+python manage.py migrate
 ```
 
-```py
-
+```pybs
+python manage.py runserver
 ```
 
 </details>
 
 <details>
-  <summary>65. </summary>
+  <summary>65. Create App Models</summary>
+
+Create django App:
+
+```pybs
+python manage.py startapp backend
+```
+
+Cloud-Django/djrest/blogapi/settings.py:
+
+```pybs
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'backend',
+]
+```
+
+Cloud-Django/djrest/backend/models.py:
 
 ```py
+from django.db import models
 
+# Create your models here.
+class Article (models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    slug = models.SlugField(max_length=200, unique=True)
+    published = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+```
+
+```pybs
+python manage.py makemigrations
 ```
 
 ```py
+python manage.py migrate
+```
 
+Create Super User:
+
+```py
+python manage.py createsuperuser
 ```
 
 ```py
