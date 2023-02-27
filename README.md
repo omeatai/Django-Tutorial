@@ -9762,7 +9762,7 @@ urlpatterns = [
     # path('articles/<slug:slug>/', ArticleDetails.as_view())
 ]
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221709324-4e52a780-3fa2-4056-8ac7-d52e7763ebd8.png)
 ![](https://user-images.githubusercontent.com/32337103/221709621-3631975c-61e9-4de1-9c11-5367be3167b9.png)
 ![](https://user-images.githubusercontent.com/32337103/221709640-33fd8139-35b4-4dc3-8be0-765e7f6acda8.png)
@@ -9771,7 +9771,7 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>79. </summary>
+  <summary>79. Using Mixins for GET (Details), PUT and DELETE </summary>
 
 ```py
 
