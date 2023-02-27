@@ -8323,8 +8323,16 @@ python manage.py createsuperuser
 ![](https://user-images.githubusercontent.com/32337103/221493783-013cf70e-4017-4a9f-9edb-317b7b7040f8.png)
 ![](https://user-images.githubusercontent.com/32337103/221493822-d8da89b3-9d95-443b-b17b-477e6886ddbb.png)
 
-```py
+Register Model to Admin -
 
+Cloud-Django/djrest/backend/admin.py:
+
+```py
+from django.contrib import admin
+from .models import Article
+
+# Register your models here.
+admin.site.register(Article)
 ```
 
 ```py
