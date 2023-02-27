@@ -9399,6 +9399,11 @@ urlpatterns = [
 
 PUT and DELETE -
 
+![](https://user-images.githubusercontent.com/32337103/221694878-61d5959f-2a13-4e7c-84ea-38dfc00cc88a.png)
+![](https://user-images.githubusercontent.com/32337103/221695043-2b159827-e19e-4808-9ebf-f3a7072e91ba.png)
+
+````py
+
 backend/views.py:
 
 ```pybs
@@ -9426,7 +9431,7 @@ class ArticleDetails(APIView):
         article = self.get_object(slug)
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-```
+````
 
 ```py
 from django.shortcuts import render, HttpResponse
