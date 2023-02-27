@@ -8627,31 +8627,79 @@ python manage.py runserver
 ```
 
 http://127.0.0.1:8000/articles/
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221601140-6a19e4f4-0a64-43c6-9549-787dbd736def.png)
-	
+
 Using POSTMAN -
-	
-GET:	
-	
+
+GET:
+
 ![](https://user-images.githubusercontent.com/32337103/221603833-bfc988ea-74d3-4bf7-a1f5-7d7f3e3653f4.png)
-	
+
 POST:
 
 ![](https://user-images.githubusercontent.com/32337103/221605285-8eeee239-57de-40e2-9341-5aceb41a248a.png)
 
 CSRF Exempt -
 
-```py
+Cloud-Django/djrest/backend/views.py:
 
+```py
+from django.shortcuts import render
+from .models import Article
+from .serializers import ArticleSerializer
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def article_list(request):
+    if request.method == "GET":
+        articles = Article.objects.all()
+        serializer = ArticleSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == "POST":
+        data = JSONParser().parse(request)
+        serializer = ArticleSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+```
+
+Cloud-Django/djrest/backend/serializers.py:
+
+```pybs
+slug = serializers.SlugField(read_only=True)
 ```
 
 ```py
+from rest_framework import serializers
+from .models import Article
 
-```
+class ArticleSerializer(serializers.ModelSerializer):
+    slug = serializers.SlugField(read_only=True)
+    class Meta:
+        model = Article
+        fields = '__all__'
 
-```py
+# class ArticleSerializer(serializers.Serializer):
+#     title = serializers.CharField(max_length=200)
+#     description = serializers.CharField()
+#     slug = serializers.SlugField(max_length=200)
+#     published = serializers.DateTimeField(read_only=True)
 
+# def create(self, validated_data):
+#     return Article.objects.create(**validated_data)
+
+# def update(self, instance, validated_data):
+#     instance.title = validated_data.get('title', instance.title)
+#     instance.description = validated_data.get('description', instance.description)
+#     instance.slug = validated_data.get('slug', instance.slug)
+#     instance.published = validated_data.get('published', instance.published)
+#     instance.save()
+#     return instance
 ```
 
 ```py
