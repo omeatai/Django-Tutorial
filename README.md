@@ -8929,9 +8929,13 @@ urlpatterns = [
 ]
 ```
 
+GET:
+
 http://127.0.0.1:8000/articles/
 
 ![](https://user-images.githubusercontent.com/32337103/221639333-5a1f831b-b0a8-4905-9080-798f44a7f04d.png)
+
+POST:
 
 ![](https://user-images.githubusercontent.com/32337103/221639622-e0e6db4e-dc36-4af4-873a-1ba920a49786.png)
 
