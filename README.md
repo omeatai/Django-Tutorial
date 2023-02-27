@@ -8529,6 +8529,9 @@ class ArticleSerializer(serializers.ModelSerializer):
 >>> serializer = ArticleSerializer()
 >>> print(repr(serializer))
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221588611-f7133f72-1a62-4fd2-bf6c-e45984f34134.png)
+	
 
 ```py
 
