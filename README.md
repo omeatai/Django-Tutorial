@@ -9582,18 +9582,10 @@ urlpatterns = [
 ![](https://user-images.githubusercontent.com/32337103/221702860-df5ca62d-3ed5-441b-affd-037a6b01fa3d.png)
 ![](https://user-images.githubusercontent.com/32337103/221702904-41e864b0-b9df-42c8-94d9-688cf71ea3f4.png)
 
-```py
-
-```
-
-```py
-
-```
-
 </details>
 
 <details>
-  <summary>78. </summary>
+  <summary>78. Mixins </summary>
 
 ```py
 
