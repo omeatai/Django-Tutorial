@@ -10916,6 +10916,9 @@ urlpatterns = router.urls
 ```
 
 GET (Details):
+	
+![Uploading image.png…]()
+![Uploading image.png…]()
 
 UPDATE:
 
