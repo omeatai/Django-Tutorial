@@ -11749,14 +11749,28 @@ urlpatterns = router.urls
 ```
 
 GET:
+	
+<img width="1157" alt="image" src="https://user-images.githubusercontent.com/32337103/221937211-d8987365-769b-4f23-83de-317947a5e150.png">	
 
 POST:
-
+	
+![](https://user-images.githubusercontent.com/32337103/221945601-ebe2b304-bcf8-496e-b85f-d0111d591f2a.png)
+![](https://user-images.githubusercontent.com/32337103/221945691-051beea3-d473-4314-a0a9-32bc1f859e82.png)
+![](https://user-images.githubusercontent.com/32337103/221945644-57d978a3-8705-4dc1-889a-3e7fa437a765.png)
+	
 GET(Details):
-
+	
+![](https://user-images.githubusercontent.com/32337103/221949605-b738f31d-d7a0-4530-892b-2a13f1493048.png)
+	
 UPDATE:
 
+![](https://user-images.githubusercontent.com/32337103/221949712-23dea395-9b8e-4bca-8493-ab2230b13f17.png)
+![](https://user-images.githubusercontent.com/32337103/221949776-157a9e3a-95f5-42ef-93cd-0c2a773a955a.png)
+	
 DELETE:
+	
+![](https://user-images.githubusercontent.com/32337103/221949834-352f99a5-8b7e-4a45-833b-bf2d7492a4a4.png)
+![](https://user-images.githubusercontent.com/32337103/221949887-2c5e826a-c139-4887-995d-b57e4f3c8b85.png)
 
 </details>
 
