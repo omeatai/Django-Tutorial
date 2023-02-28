@@ -11788,12 +11788,41 @@ REST_FRAMEWORK = {
     ]
 }
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221961651-1b003b03-fef8-4f8a-b93f-25a0f05a9809.png)
-	
+
+backend/models.py:
 
 ```py
+from django.db import models
+from django.contrib.auth.models import User
 
+# Create your models here.
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    slug = models.SlugField(max_length=200, unique=True)
+    published = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
+
+    def __str__(self):
+        return self.title
+```
+
+```pybs
+DELETE db.sqlite3 and Migration Files
+```
+
+```pybs
+python manage.py makemigrations
+```
+
+```pybs
+python manage.py migrate
+```
+
+```pybs
+python manage.py createsuperuser
 ```
 
 ```py
