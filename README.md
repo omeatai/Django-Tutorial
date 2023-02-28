@@ -10638,9 +10638,16 @@ urlpatterns = [
 ```
 
 GET:
+	
+![](https://user-images.githubusercontent.com/32337103/221788133-0b571002-b7e3-4da2-848f-92efb77f8298.png)	
 
 POST:
 
+![](https://user-images.githubusercontent.com/32337103/221788447-8f1ae365-f874-4c2c-86db-9367dd5f9c87.png)
+![](https://user-images.githubusercontent.com/32337103/221788509-32bbe1f9-f0fd-4021-af05-c64c7a571c4e.png)
+![](https://user-images.githubusercontent.com/32337103/221788558-a9d6b789-585c-4f21-9c7d-cd3f5b58ea42.png)
+	
+	
 </details>
 
 <details>
