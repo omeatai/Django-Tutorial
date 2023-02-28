@@ -11831,6 +11831,14 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+http://127.0.0.1:8000/admin/	
+	
+![](https://user-images.githubusercontent.com/32337103/221964849-71c93127-95bd-4484-80db-238323a027d5.png)
+![](https://user-images.githubusercontent.com/32337103/221964888-f52d0981-bc9a-4a7f-9fc0-d4aeae598ea6.png)
+![](https://user-images.githubusercontent.com/32337103/221965140-568bb593-ef01-4cc8-b1ba-7fdde53474aa.png)
+![](https://user-images.githubusercontent.com/32337103/221965181-a62722d1-6543-4b11-a7f0-1f9dbe67762e.png)
+	
+
 ```py
 
 ```
