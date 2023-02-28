@@ -11240,6 +11240,7 @@ class ArticleDetailsViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin,
                             mixins.UpdateModelMixin, mixins.DestroyModelMixin):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    # lookup_field = 'slug'
 
 
 # VIEWSETS AND ROUTERS
