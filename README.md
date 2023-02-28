@@ -11851,11 +11851,59 @@ python manage.py migrate
 ![](https://user-images.githubusercontent.com/32337103/221966776-f71a6d90-89ca-4f86-aa2e-59e91bacb157.png)
 ![](https://user-images.githubusercontent.com/32337103/221967066-2925e16a-28d5-4cf7-b0dd-5955e9e086cf.png)
 
-```py
+blogapi/urls.py:
+
+```pybs
 urlpatterns = [
     ---
     path('api-auth/', include('rest_framework.urls'))
 ]
+```
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('backend.urls')),
+    path('api-auth/', include('rest_framework.urls'))
+]
+```
+
+The default permission policy may be set globally, using the DEFAULT_PERMISSION_CLASSES setting.
+
+```pybs
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+```
+
+If not specified, this setting defaults to allowing unrestricted access:
+
+```pybs
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.AllowAny',
+    ]
+}
+```
+
+blogapi/settings.py:
+
+```py
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        #'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 ```
 
 ```py
