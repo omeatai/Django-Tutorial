@@ -11462,12 +11462,21 @@ urlpatterns = router.urls
 # ]
 ```
 
-GET (Details):
-
+GET(Details):
+	
+![](https://user-images.githubusercontent.com/32337103/221933882-913a661c-7dbd-4700-b056-f6312a2e14bd.png)
+	
 UPDATE:
-
+	
+![](https://user-images.githubusercontent.com/32337103/221933968-0a6ef85d-2436-47b2-bb5e-46ac75e19164.png)
+![](https://user-images.githubusercontent.com/32337103/221934010-21dfdc89-f86d-4942-8894-b0eee0c39307.png)
+	
 DELETE:
-
+	
+![](https://user-images.githubusercontent.com/32337103/221934112-7078fc4c-e357-4595-8387-984300f86412.png)
+![](https://user-images.githubusercontent.com/32337103/221934141-f47e0cb4-67bd-4854-9a06-26961fc3100b.png)
+![](https://user-images.githubusercontent.com/32337103/221934327-066a65e1-2a3d-4e96-a59f-99b4231ccb29.png)
+	
 </details>
 
 <details>
