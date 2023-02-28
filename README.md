@@ -10391,14 +10391,21 @@ urlpatterns = [
 ```
 
 GET (Details):
-
+	
+![](https://user-images.githubusercontent.com/32337103/221782870-492c9f40-3f31-400e-8074-32ef292a3415.png)
+![](https://user-images.githubusercontent.com/32337103/221782969-7ae5b116-6985-498c-aafe-4ea4b4f177f6.png)
+	
 UPDATE:
+	
+![](https://user-images.githubusercontent.com/32337103/221783057-675e40d8-57e9-4dbe-890e-d3550f57b4b0.png)
+![](https://user-images.githubusercontent.com/32337103/221783111-b1185b57-7866-4826-97fa-46a82b9ea74f.png)
 
 DELETE:
 
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/221783179-603c50ad-d16b-4097-b022-f5bd40e3a4c8.png)
+![](https://user-images.githubusercontent.com/32337103/221783220-76c4b6f6-0075-4f6a-8177-201531d8289a.png)
+![](https://user-images.githubusercontent.com/32337103/221783277-cc36c466-8ae7-4fa8-b8ef-e6bf86bdd28f.png)
+	
 
 </details>
 
