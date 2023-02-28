@@ -11197,11 +11197,11 @@ POST:
 ![](https://user-images.githubusercontent.com/32337103/221924484-ba433311-155e-4afa-875a-2c5149c7d0cc.png)
 ![](https://user-images.githubusercontent.com/32337103/221924539-b9a7b0cd-3283-4d8a-83bf-199dde79a4d9.png)
 ![](https://user-images.githubusercontent.com/32337103/221924613-b7c78051-0199-4221-a5b1-b2cc52e43e6d.png)
-	
+
 </details>
 
 <details>
-  <summary>85. </summary>
+  <summary>85. Generic Viewset for GET (Details), UPDATE and DELETE </summary>
 
 ```py
 
