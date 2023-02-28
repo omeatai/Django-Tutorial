@@ -11846,11 +11846,29 @@ INSTALLED_APPS = [
 ```pybs
 python manage.py migrate
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221966541-adf3d12c-7ba8-4276-8bef-8cfb41b50d26.png)
 ![](https://user-images.githubusercontent.com/32337103/221966776-f71a6d90-89ca-4f86-aa2e-59e91bacb157.png)
 ![](https://user-images.githubusercontent.com/32337103/221967066-2925e16a-28d5-4cf7-b0dd-5955e9e086cf.png)
-	
+
+```py
+urlpatterns = [
+    ---
+    path('api-auth/', include('rest_framework.urls'))
+]
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
