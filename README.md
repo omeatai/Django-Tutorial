@@ -11824,9 +11824,20 @@ python manage.py migrate
 ```pybs
 python manage.py createsuperuser
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221964220-551016b7-be45-42e6-a73e-a5b4bb282844.png)
-	
+
+```pybs
+python manage.py runserver
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
