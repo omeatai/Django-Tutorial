@@ -11905,6 +11905,10 @@ REST_FRAMEWORK = {
     ]
 }
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/221989072-4a93fa5d-29c6-4a24-ad47-3a04551a55a9.png)
+![](https://user-images.githubusercontent.com/32337103/221989128-93924aad-51a5-4ee9-9fe8-4ba04f80192d.png)
+	
 
 ```py
 
