@@ -9969,14 +9969,21 @@ urlpatterns = [
 ```
 
 GET:
-
-```py
-
-```
+	
+![](https://user-images.githubusercontent.com/32337103/221778205-fbb39122-7a0b-4372-8c36-1176952e4790.png)
+![](https://user-images.githubusercontent.com/32337103/221778259-92cbe221-749a-4cdf-9c49-60ebece9baf5.png)
 
 UPDATE:
+	
+![](https://user-images.githubusercontent.com/32337103/221778414-69b489b0-499e-4f1f-860a-713961a212c0.png)
+![](https://user-images.githubusercontent.com/32337103/221778450-fa13c326-3ed9-402b-b0ad-a5773fca5ae3.png)	
 
 DELETE:
+
+![](https://user-images.githubusercontent.com/32337103/221778505-f299dbe7-5e10-4534-bec9-7c80e5fb3689.png)
+![](https://user-images.githubusercontent.com/32337103/221778536-8c8b3001-fbad-473e-aae8-bc29136a4cef.png)
+![](https://user-images.githubusercontent.com/32337103/221778588-b8bd584c-ecb0-4143-a066-5cdc4abe0e09.png)
+	
 
 </details>
 
