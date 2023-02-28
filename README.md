@@ -11775,7 +11775,7 @@ DELETE:
 </details>
 
 <details>
-  <summary>87. Authentication </summary>
+  <summary>87. Global Token Authentication </summary>
 
 backend/models.py:
 
@@ -11910,32 +11910,15 @@ REST_FRAMEWORK = {
 ![](https://user-images.githubusercontent.com/32337103/221989128-93924aad-51a5-4ee9-9fe8-4ba04f80192d.png)
 
 Using Postman:
-	
+
 ![](https://user-images.githubusercontent.com/32337103/221989893-b364a925-171c-4a73-ab81-ab2c07858ac2.png)
 ![](https://user-images.githubusercontent.com/32337103/221990049-fd12ac23-f0e2-423f-bb29-044c2f215273.png)
 ![](https://user-images.githubusercontent.com/32337103/221990294-4d325290-9ddb-4207-8869-0da7a0025672.png)
-	
-	
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
 
 </details>
 
 <details>
-  <summary>88. </summary>
+  <summary>88. Class Based Token Authentication </summary>
 
 ```py
 
