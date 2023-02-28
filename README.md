@@ -11909,6 +11909,13 @@ REST_FRAMEWORK = {
 ![](https://user-images.githubusercontent.com/32337103/221989072-4a93fa5d-29c6-4a24-ad47-3a04551a55a9.png)
 ![](https://user-images.githubusercontent.com/32337103/221989128-93924aad-51a5-4ee9-9fe8-4ba04f80192d.png)
 
+Using Postman:
+	
+![](https://user-images.githubusercontent.com/32337103/221989893-b364a925-171c-4a73-ab81-ab2c07858ac2.png)
+![](https://user-images.githubusercontent.com/32337103/221990049-fd12ac23-f0e2-423f-bb29-044c2f215273.png)
+![](https://user-images.githubusercontent.com/32337103/221990294-4d325290-9ddb-4207-8869-0da7a0025672.png)
+	
+	
 ```py
 
 ```
