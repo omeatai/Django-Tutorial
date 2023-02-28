@@ -11777,27 +11777,6 @@ DELETE:
 <details>
   <summary>87. Authentication </summary>
 
-blogapi/settings.py:
-
-```pybs
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        #'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ]
-}
-```
-
-```pybs
-INSTALLED_APPS = [
-    ...
-    'rest_framework.authtoken',
-]
-```
-
-![](https://user-images.githubusercontent.com/32337103/221961651-1b003b03-fef8-4f8a-b93f-25a0f05a9809.png)
-
 backend/models.py:
 
 ```py
@@ -11838,20 +11817,34 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-http://127.0.0.1:8000/admin/	
-	
+http://127.0.0.1:8000/admin/
+
 ![](https://user-images.githubusercontent.com/32337103/221964849-71c93127-95bd-4484-80db-238323a027d5.png)
 ![](https://user-images.githubusercontent.com/32337103/221964888-f52d0981-bc9a-4a7f-9fc0-d4aeae598ea6.png)
 ![](https://user-images.githubusercontent.com/32337103/221965140-568bb593-ef01-4cc8-b1ba-7fdde53474aa.png)
 ![](https://user-images.githubusercontent.com/32337103/221965181-a62722d1-6543-4b11-a7f0-1f9dbe67762e.png)
-	
 
-```py
+blogapi/settings.py:
 
+```pybs
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        #'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 ```
 
-```py
+```pybs
+INSTALLED_APPS = [
+    ...
+    'rest_framework.authtoken',
+]
+```
 
+```pybs
+python manage.py migrate
 ```
 
 ```py
