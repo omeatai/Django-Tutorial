@@ -10917,12 +10917,19 @@ urlpatterns = router.urls
 
 GET (Details):
 	
-![Uploading image.png…]()
-![Uploading image.png…]()
+![](https://user-images.githubusercontent.com/32337103/221915985-de032869-7caa-4b18-9e8e-953de20a8522.png)
+![](https://user-images.githubusercontent.com/32337103/221921137-b7cf1928-b1c0-47b1-873a-59d04d4c33f3.png)
 
 UPDATE:
-
+	
+![](https://user-images.githubusercontent.com/32337103/221921351-35556d19-fbd9-4244-be4d-b6dcf87f5c1d.png)
+![](https://user-images.githubusercontent.com/32337103/221921447-b4c208c1-f40c-4c81-9806-1b99a734e155.png)
+	
 DELETE:
+
+![](https://user-images.githubusercontent.com/32337103/221921513-e3cd010a-bd69-4f3b-8f17-ba0c03127d63.png)
+![](https://user-images.githubusercontent.com/32337103/221921560-60b91ce6-b785-48ea-a43e-53d51f047a25.png)
+![](https://user-images.githubusercontent.com/32337103/221921634-a46792b2-dafb-4712-8eda-9010bd853688.png)
 
 </details>
 
