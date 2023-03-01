@@ -12961,7 +12961,102 @@ class ArticleViewSet(viewsets.ModelViewSet):
 </details>
 
 <details>
-  <summary>92. </summary>
+  <summary>92. Deploy Django Rest Framework to Heroku </summary>
+
+```pybs
+pip install whitenoise
+```
+
+blogapi/settings.py:
+
+```pybs
+MIDDLEWARE = [
+    # ...
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ...
+]
+```
+
+```py
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+```
+
+```pybs
+STATIC_ROOT = BASE_DIR / "staticfiles"
+OR
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+```
+
+```py
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+```
+
+```pybs
+pip install gunicorn
+```
+
+```pybs
+pip freeze > requirements.txt
+```
+
+```pybs
+Create Github Repository - blogapi
+```
+
+```pybs
+Create a .gitignore file
+```
+
+Create Procfile -
+
+Procfile:
+
+```pybs
+web: gunicorn BlogAPI.wsgi
+```
+
+Push to Github -
+
+```pybs
+echo "# blogapi" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/omeatai/blogapi.git
+git push -u origin main
+
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/omeatai/blogapi.git
+git push -u origin main
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
