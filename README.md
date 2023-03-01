@@ -12249,9 +12249,8 @@ class ArticleSerializer(serializers.ModelSerializer):
 #     instance.save()
 #     return instance
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222086299-2f02efb7-06e2-498f-8777-589b19296b2e.png)
-	
 
 </details>
 
