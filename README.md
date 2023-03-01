@@ -12255,7 +12255,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 </details>
 
 <details>
-  <summary>89. </summary>
+  <summary>89. Django Rest Auth </summary>
 
 ```py
 
