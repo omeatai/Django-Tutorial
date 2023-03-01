@@ -13028,7 +13028,7 @@ Create Procfile -
 Procfile:
 
 ```pybs
-web: gunicorn BlogAPI.wsgi
+web: gunicorn blogapi.wsgi
 ```
 
 Push to Github -
