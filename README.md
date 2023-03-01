@@ -12215,6 +12215,41 @@ urlpatterns = router.urls
 ![](https://user-images.githubusercontent.com/32337103/222084708-41705490-46b0-479f-a245-319a36eb25fc.png)
 ![](https://user-images.githubusercontent.com/32337103/222084877-e1b9f08e-2563-4fd8-aac1-f60278f97088.png)
 
+backend/serializers.py:
+
+```pybs
+author = serializers.StringRelatedField()
+```
+
+```py
+from rest_framework import serializers
+from .models import Article
+
+class ArticleSerializer(serializers.ModelSerializer):
+    slug = serializers.SlugField(read_only=True)
+    author = serializers.StringRelatedField()
+    class Meta:
+        model = Article
+        fields = '__all__'
+
+# class ArticleSerializer(serializers.Serializer):
+#     title = serializers.CharField(max_length=200)
+#     description = serializers.CharField()
+#     slug = serializers.SlugField(max_length=200)
+#     published = serializers.DateTimeField(read_only=True)
+
+# def create(self, validated_data):
+#     return Article.objects.create(**validated_data)
+
+# def update(self, instance, validated_data):
+#     instance.title = validated_data.get('title', instance.title)
+#     instance.description = validated_data.get('description', instance.description)
+#     instance.slug = validated_data.get('slug', instance.slug)
+#     instance.published = validated_data.get('published', instance.published)
+#     instance.save()
+#     return instance
+```
+
 </details>
 
 <details>
