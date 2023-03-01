@@ -13008,6 +13008,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
 
 ```pybs
+ python manage.py collectstatic
+```
+
+```pybs
 pip install gunicorn
 ```
 
@@ -13071,10 +13075,6 @@ ALLOWED_HOSTS = ['blog-api-ifeanyi.herokuapp.com', '127.0.0.1', 'localhost']
 git add .
 git commit -m "next commit"
 git push
-```
-
-```py
-
 ```
 
 ```py
