@@ -13073,20 +13073,9 @@ ALLOWED_HOSTS = ['blog-api-ifeanyi.herokuapp.com', '127.0.0.1', 'localhost']
 
 ```pybs
 git add .
+git add -f db.sqlite3
 git commit -m "next commit"
 git push
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
 ```
 
 </details>
