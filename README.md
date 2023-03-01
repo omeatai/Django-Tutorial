@@ -12398,8 +12398,29 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username' # 'email'
 ACCOUNT_EMAIL_REQUIRED = False
 ```
 
-![](https://user-images.githubusercontent.com/32337103/222126745-0a0484fe-6769-41da-aa9c-c0215d81ef16.png)
+<img width="1029" alt="image" src="https://user-images.githubusercontent.com/32337103/222210623-4a193ca4-9c6d-4fbc-be81-de8cff647e1b.png">
+	
+http://127.0.0.1:8000/dj-rest-auth/
+	
+<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222211170-1d5cc22f-fd3a-4682-b868-6e4115f5fcba.png">
+	
+http://127.0.0.1:8000/dj-rest-auth/registration/
+	
+<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222211602-1ff30f24-ab62-43b6-b4d9-8612f091d4e5.png">
+<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222211927-f02075a4-4ddd-4f4e-82db-2e5246bb5604.png">
 
+http://127.0.0.1:8000/dj-rest-auth/login/
+	
+<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222212275-cb6c31ea-5707-45b7-8638-16fcf166d2a0.png">
+<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222212374-63fe536c-e69a-408d-ba10-5fe431360a6f.png">
+<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222212455-1a864ee4-2b6b-4c16-83b2-20596f0e4acf.png">
+
+http://127.0.0.1:8000/dj-rest-auth/logout/
+	
+<img width="1162" alt="image" src="https://user-images.githubusercontent.com/32337103/222213293-0d8f22c9-e048-4729-9716-a4f8be82499e.png">
+<img width="1162" alt="image" src="https://user-images.githubusercontent.com/32337103/222213391-ccd51bc8-4929-4469-ae3d-5a276e5a6aff.png">
+<img width="1162" alt="image" src="https://user-images.githubusercontent.com/32337103/222213820-6479e884-ad98-4707-930a-204afc4e97e4.png">
+	
 </details>
 
 <details>
