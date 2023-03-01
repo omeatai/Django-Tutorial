@@ -13082,12 +13082,11 @@ git push
 ![](https://user-images.githubusercontent.com/32337103/222238211-00e19fda-84d3-47b1-ac11-46585936195e.png)
 ![](https://user-images.githubusercontent.com/32337103/222274339-b937a549-3137-49fe-80c4-2ac6bc0862cd.png)
 ![](https://user-images.githubusercontent.com/32337103/222274436-e7157567-4dac-45d0-8220-78d55b1f55b8.png)
-	
 
 </details>
 
 <details>
-  <summary>93. </summary>
+  <summary>93. Migrate from SQLite to PostgreSQL </summary>
 
 ```py
 
