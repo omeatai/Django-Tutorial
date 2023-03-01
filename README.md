@@ -12399,45 +12399,287 @@ ACCOUNT_EMAIL_REQUIRED = False
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/222210623-4a193ca4-9c6d-4fbc-be81-de8cff647e1b.png)
-	
+
 http://127.0.0.1:8000/dj-rest-auth/
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222211170-1d5cc22f-fd3a-4682-b868-6e4115f5fcba.png)
-	
+
 http://127.0.0.1:8000/dj-rest-auth/registration/
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222211602-1ff30f24-ab62-43b6-b4d9-8612f091d4e5.png)
 ![](https://user-images.githubusercontent.com/32337103/222211927-f02075a4-4ddd-4f4e-82db-2e5246bb5604.png)
 
 http://127.0.0.1:8000/dj-rest-auth/login/
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222212275-cb6c31ea-5707-45b7-8638-16fcf166d2a0.png)
 ![](https://user-images.githubusercontent.com/32337103/222212374-63fe536c-e69a-408d-ba10-5fe431360a6f.png)
 ![](https://user-images.githubusercontent.com/32337103/222212455-1a864ee4-2b6b-4c16-83b2-20596f0e4acf.png)
 
 http://127.0.0.1:8000/dj-rest-auth/logout/
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222213293-0d8f22c9-e048-4729-9716-a4f8be82499e.png)
 ![](https://user-images.githubusercontent.com/32337103/222213391-ccd51bc8-4929-4469-ae3d-5a276e5a6aff.png)
 ![](https://user-images.githubusercontent.com/32337103/222213820-6479e884-ad98-4707-930a-204afc4e97e4.png)
 
 Using Postman:
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222214363-9e2003b9-b816-47d0-90c8-c24a628973c1.png)
 ![](https://user-images.githubusercontent.com/32337103/222214509-cb9972fc-3c89-4b77-a1ef-4552e4236dfb.png)
 ![](https://user-images.githubusercontent.com/32337103/222214564-100fb4b5-e7fa-4258-8d5f-e438834cff82.png)
-	
-	
+
 </details>
 
 <details>
-  <summary>90. </summary>
+  <summary>90. Overriding perform_create Method </summary>
 
-```py
+backend/views.py:
 
+```pybs
+def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 ```
 
 ```py
+from django.shortcuts import render, HttpResponse
+from .models import Article
+from .serializers import ArticleSerializer
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from django.http import Http404
+from rest_framework import generics
+from rest_framework import mixins
+from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
+
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_field = 'slug'
+
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+# GENERIC VIEWSETS
+
+# class ArticleViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
+#                     mixins.CreateModelMixin):
+#     queryset = Article.objects.all()
+#     serializer_class = ArticleSerializer
+
+# class ArticleDetailsViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin,
+#                             mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+#     queryset = Article.objects.all()
+#     serializer_class = ArticleSerializer
+#     # lookup_field = 'slug'
+
+
+# VIEWSETS AND ROUTERS
+
+# class ArticleViewSet(viewsets.ViewSet):
+#     def list(self, request):
+#         articles = Article.objects.all()
+#         serializer = ArticleSerializer(articles, many=True)
+#         return Response(serializer.data)
+
+#     def create(self, request):
+#         serializer = ArticleSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status-status.HTTP_400_BAD_REQUEST)
+
+# class ArticleDetailsViewSet(viewsets.ViewSet):
+#     queryset = Article.objects.all()
+
+#     def retrieve(self, request, pk=None):
+#         article = get_object_or_404(self.queryset, id=pk)
+#         serializer = ArticleSerializer(article)
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+#     def update(self, request, pk=None):
+#         queryset = Article.objects.all()
+#         article = get_object_or_404(queryset, id=pk)
+#         serializer = ArticleSerializer(article, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     def destroy(self, request, pk=None):
+#         queryset = Article.objects.all()
+#         article = get_object_or_404(queryset, id=pk)
+#         article.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# GENERIC API VIEWS
+
+# class ArticleList(generics.ListCreateAPIView):
+#     queryset = Article.objects.all()
+#     serializer_class = ArticleSerializer
+
+# class ArticleDetails(generics. RetrieveUpdateDestroyAPIView):
+#     queryset = Article.objects.all()
+#     serializer_class = ArticleSerializer
+#     lookup_field = 'slug'
+
+# USING MIXINS
+
+# class ArticleList(mixins.ListModelMixin,mixins.CreateModelMixin,
+#                 generics.GenericAPIView):
+#     queryset = Article.objects.all()
+#     serializer_class = ArticleSerializer
+
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+
+# class ArticleDetails(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,
+#                     mixins.DestroyModelMixin,generics.GenericAPIView):
+#     queryset = Article.objects.all()
+#     serializer_class = ArticleSerializer
+#     lookup_field = 'slug'
+
+#     def get(self, request, slug, *args, **kwargs):
+#         return self.retrieve(request, slug=slug)
+
+#     def put(self, request, slug, *args, **kwargs):
+#         return self.update (request, slug=slug)
+
+#     def delete (self, request, slug):
+#         return self.destroy(request, slug=slug)
+
+# CLASS BASED API VIEWS
+
+# class ArticleList(APIView):
+#     def get(self, request):
+#         articles = Article.objects.all()
+#         serializer = ArticleSerializer(articles, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request):
+#         serializer = ArticleSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status-status.HTTP_400_BAD_REQUEST)
+
+# class ArticleDetails(APIView):
+#     def get_object(self, slug):
+#         try:
+#             return Article.objects.get(slug=slug)
+#         except Article.DoesNotExist as e:
+#             raise Http404 from e
+
+#     def get(self, request, slug):
+#         article = self.get_object(slug)
+#         serializer = ArticleSerializer(article)
+#         return Response(serializer.data)
+
+#     def put(self, request, slug):
+#         article = self.get_object(slug)
+#         serializer = ArticleSerializer(article, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     def delete(self, request, slug):
+#         article = self.get_object(slug)
+#         article.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# DECORATOR API VIEWS
+
+# @api_view(['GET', 'POST'])
+# def article_list(request):
+#     if request.method == "GET":
+#         articles = Article.objects.all()
+#         serializer = ArticleSerializer(articles, many=True)
+#         return Response(serializer.data)
+
+#     elif request.method == "POST":
+#         serializer = ArticleSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response (serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view (['GET', 'PUT', 'DELETE'])
+# def article_details(request, slug):
+#     try:
+#         article = Article.objects.get(slug=slug)
+#     except Article.DoesNotExist():
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+
+#     if request.method == "GET":
+#         serializer = ArticleSerializer(article)
+#         return Response(serializer.data)
+
+#     elif request.method == "PUT":
+#         serializer = ArticleSerializer(article, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     elif request.method == "DELETE":
+#         article.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+#API VIEW FUNCTIONS
+
+# @csrf_exempt
+# def article_list(request):
+#     if request.method == "GET":
+#         articles = Article.objects.all()
+#         serializer = ArticleSerializer(articles, many=True)
+#         return JsonResponse(serializer.data, safe=False)
+
+#     elif request.method == "POST":
+#         data = JSONParser().parse(request)
+#         serializer = ArticleSerializer(data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data, status=201)
+#         return JsonResponse(serializer.errors, status=400)
+
+# @csrf_exempt
+# def article_details(request, slug):
+#     try:
+#         article = Article.objects.get(slug=slug)
+#     except Article.DoesNotExist:
+#         return HttpResponse(status=404)
+
+#     if request.method == "GET":
+#         serializer = ArticleSerializer(article)
+#         return JsonResponse(serializer.data)
+
+#     elif request.method == "PUT":
+#         data = JSONParser().parse(request)
+#         serializer = ArticleSerializer(article, data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data, status=200)
+#         return JsonResponse(serializer.errors, status=400)
+
+#     elif request.method == "DELETE":
+#         article.delete()
+#         return HttpResponse(status=204)
 
 ```
 
