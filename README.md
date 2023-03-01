@@ -13057,7 +13057,7 @@ Deploy App on Heroku:
 ![](https://user-images.githubusercontent.com/32337103/222233403-6d3215c9-f404-4955-94f2-1ce1d9bada7a.png)
 ![](https://user-images.githubusercontent.com/32337103/222233802-557909da-aa95-4c95-8117-aa8105247aa0.png)
 ![](https://user-images.githubusercontent.com/32337103/222235459-e85766a8-7342-423b-9719-2e57a7aad13f.png)
-	
+
 blogapi/settings.py:
 
 ```py
@@ -13072,8 +13072,6 @@ git add .
 git commit -m "next commit"
 git push
 ```
-
-	
 
 ```py
 
