@@ -13049,21 +13049,27 @@ git branch -M main
 git remote add origin https://github.com/omeatai/blogapi.git
 git push -u origin main
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222231832-5542b392-94d6-4fe4-8120-8b777f0ea4a5.png)
-	
+
 Deploy App on Heroku:
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222233403-6d3215c9-f404-4955-94f2-1ce1d9bada7a.png)
 ![](https://user-images.githubusercontent.com/32337103/222233802-557909da-aa95-4c95-8117-aa8105247aa0.png)
-	
+
+blogapi/settings.py:
 
 ```py
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
+ALLOWED_HOSTS = ['https://blog-api-ifeanyi.herokuapp.com/', '127.0.0.1', 'localhost']
 ```
 
-```py
-
+```pybs
+git add .
+git commit -m "next commit"
+git push
 ```
 
 ```py
