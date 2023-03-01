@@ -12208,13 +12208,12 @@ urlpatterns = router.urls
 #     path('', include(router.urls))
 # ]
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222083634-3ff1f890-6b1b-434e-8cf3-843f5d7d676d.png)
 ![](https://user-images.githubusercontent.com/32337103/222084097-47b2761f-7e62-4dba-8621-c988b9685622.png)
 ![](https://user-images.githubusercontent.com/32337103/222084200-5d8b6113-81d3-4691-b6d9-815f27e885d3.png)
 ![](https://user-images.githubusercontent.com/32337103/222084708-41705490-46b0-479f-a245-319a36eb25fc.png)
 ![](https://user-images.githubusercontent.com/32337103/222084877-e1b9f08e-2563-4fd8-aac1-f60278f97088.png)
-
 
 </details>
 
