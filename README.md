@@ -12385,6 +12385,10 @@ urlpatterns = [
 ```pybs
 python manage.py migrate
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/222104712-3c0b8477-cb3f-435b-817a-c4942ec991ad.png)
+![](https://user-images.githubusercontent.com/32337103/222105622-ddd61373-c75b-44c6-bd1a-e244f953e12a.png)
+![](https://user-images.githubusercontent.com/32337103/222105909-b8ca29cf-b798-44c1-96d5-c884e675667a.png)
 
 </details>
 
