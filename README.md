@@ -12398,28 +12398,35 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username' # 'email'
 ACCOUNT_EMAIL_REQUIRED = False
 ```
 
-<img width="1029" alt="image" src="https://user-images.githubusercontent.com/32337103/222210623-4a193ca4-9c6d-4fbc-be81-de8cff647e1b.png">
+![](https://user-images.githubusercontent.com/32337103/222210623-4a193ca4-9c6d-4fbc-be81-de8cff647e1b.png)
 	
 http://127.0.0.1:8000/dj-rest-auth/
 	
-<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222211170-1d5cc22f-fd3a-4682-b868-6e4115f5fcba.png">
+![](https://user-images.githubusercontent.com/32337103/222211170-1d5cc22f-fd3a-4682-b868-6e4115f5fcba.png)
 	
 http://127.0.0.1:8000/dj-rest-auth/registration/
 	
-<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222211602-1ff30f24-ab62-43b6-b4d9-8612f091d4e5.png">
-<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222211927-f02075a4-4ddd-4f4e-82db-2e5246bb5604.png">
+![](https://user-images.githubusercontent.com/32337103/222211602-1ff30f24-ab62-43b6-b4d9-8612f091d4e5.png)
+![](https://user-images.githubusercontent.com/32337103/222211927-f02075a4-4ddd-4f4e-82db-2e5246bb5604.png)
 
 http://127.0.0.1:8000/dj-rest-auth/login/
 	
-<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222212275-cb6c31ea-5707-45b7-8638-16fcf166d2a0.png">
-<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222212374-63fe536c-e69a-408d-ba10-5fe431360a6f.png">
-<img width="1161" alt="image" src="https://user-images.githubusercontent.com/32337103/222212455-1a864ee4-2b6b-4c16-83b2-20596f0e4acf.png">
+![](https://user-images.githubusercontent.com/32337103/222212275-cb6c31ea-5707-45b7-8638-16fcf166d2a0.png)
+![](https://user-images.githubusercontent.com/32337103/222212374-63fe536c-e69a-408d-ba10-5fe431360a6f.png)
+![](https://user-images.githubusercontent.com/32337103/222212455-1a864ee4-2b6b-4c16-83b2-20596f0e4acf.png)
 
 http://127.0.0.1:8000/dj-rest-auth/logout/
 	
-<img width="1162" alt="image" src="https://user-images.githubusercontent.com/32337103/222213293-0d8f22c9-e048-4729-9716-a4f8be82499e.png">
-<img width="1162" alt="image" src="https://user-images.githubusercontent.com/32337103/222213391-ccd51bc8-4929-4469-ae3d-5a276e5a6aff.png">
-<img width="1162" alt="image" src="https://user-images.githubusercontent.com/32337103/222213820-6479e884-ad98-4707-930a-204afc4e97e4.png">
+![](https://user-images.githubusercontent.com/32337103/222213293-0d8f22c9-e048-4729-9716-a4f8be82499e.png)
+![](https://user-images.githubusercontent.com/32337103/222213391-ccd51bc8-4929-4469-ae3d-5a276e5a6aff.png)
+![](https://user-images.githubusercontent.com/32337103/222213820-6479e884-ad98-4707-930a-204afc4e97e4.png)
+
+Using Postman:
+	
+![](https://user-images.githubusercontent.com/32337103/222214363-9e2003b9-b816-47d0-90c8-c24a628973c1.png)
+![](https://user-images.githubusercontent.com/32337103/222214509-cb9972fc-3c89-4b77-a1ef-4552e4236dfb.png)
+![](https://user-images.githubusercontent.com/32337103/222214564-100fb4b5-e7fa-4258-8d5f-e438834cff82.png)
+	
 	
 </details>
 
