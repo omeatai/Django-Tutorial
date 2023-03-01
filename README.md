@@ -12691,8 +12691,8 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
 <details>
   <summary>91. Custom Permission </summary>
-	
-backend/permissions.py:	
+
+backend/permissions.py:
 
 ```py
 from rest_framework import permissions
@@ -12704,8 +12704,8 @@ class IsAuthor(permissions.BasePermission):
             return True
         return obj.author == request.user
 ```
-	
-backend/views.py:	
+
+backend/views.py:
 
 ```py
 from django.shortcuts import render, HttpResponse
@@ -12950,14 +12950,14 @@ class ArticleViewSet(viewsets.ModelViewSet):
 #         article.delete()
 #         return HttpResponse(status=204)
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222218773-531043f3-bcac-479d-99a5-23ccb52945f1.png)
 ![](https://user-images.githubusercontent.com/32337103/222218881-3b2dede6-bb6c-421e-b51a-306e3fe232ee.png)
 ![](https://user-images.githubusercontent.com/32337103/222218982-11769bb5-aae8-49a3-bad6-e9f898aecf0c.png)
 ![](https://user-images.githubusercontent.com/32337103/222219031-0c844d13-2306-47fb-be76-74d3737d8adf.png)
 ![](https://user-images.githubusercontent.com/32337103/222219080-73419723-b744-4b9f-ac85-bd1958869bcb.png)
 ![](https://user-images.githubusercontent.com/32337103/222219141-6dc009bb-e0c7-4afe-aa91-2a1b197d7bb6.png)
-	
+
 </details>
 
 <details>
