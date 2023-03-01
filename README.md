@@ -12255,22 +12255,135 @@ class ArticleSerializer(serializers.ModelSerializer):
 </details>
 
 <details>
-  <summary>89. Django Rest Auth </summary>
+  <summary>89. Using DJ Rest Auth for User Registration </summary>
 
-```py
+```pybs
+pip install dj-rest-auth
+```
 
+blogapi/settings.py:
+
+```pybs
+INSTALLED_APPS = (
+    ...,
+    'rest_framework',
+    'rest_framework.authtoken',
+    ...,
+    'dj_rest_auth'
+)
 ```
 
 ```py
+# Application definition
 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'backend',
+]
+```
+
+blogapi/urls.py:
+
+```pybs
+urlpatterns = [
+    ...,
+    path('dj-rest-auth/', include('dj_rest_auth.urls'))
+]
 ```
 
 ```py
+from django.contrib import admin
+from django.urls import path, include
 
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('backend.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls'))
+]
+```
+
+```pybs
+python manage.py migrate
+```
+
+```pybs
+pip install django-allauth
+```
+
+blogapi/settings.py:
+
+```pybs
+INSTALLED_APPS = (
+    ...,
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+)
+
+SITE_ID = 1
 ```
 
 ```py
+# Application definition
 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    'backend',
+]
+
+SITE_ID = 1
+```
+
+blogapi/urls.py:
+
+```pybs
+urlpatterns = [
+    ...,
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
+]
+```
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('backend.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
+]
+
+```
+
+```pybs
+python manage.py migrate
 ```
 
 </details>
