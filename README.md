@@ -12682,7 +12682,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 #         return HttpResponse(status=204)
 
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222216588-ee24cc50-96b5-4d32-af80-ee6c0bdc271d.png)
 ![](https://user-images.githubusercontent.com/32337103/222216667-684dac34-afe0-42fd-9183-0f5faf9e6292.png)
 ![](https://user-images.githubusercontent.com/32337103/222216727-e2cf55be-e2f8-423d-a8b1-f2aaae753c5a.png)
@@ -12690,7 +12690,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 </details>
 
 <details>
-  <summary>91. </summary>
+  <summary>91. Custom Permission </summary>
 
 ```py
 
