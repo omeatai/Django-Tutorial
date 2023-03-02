@@ -13536,22 +13536,82 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>95. Create Rest App and Models </summary>
+  <summary>95. Create App and Models </summary>
 
-```py
-
+```pybs
+python manage.py startapp qa
 ```
 
-```py
+DJRESTQA/settings.py:
 
+```py
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    'qa',
+]
 ```
 
-```py
+qa/models.py:
 
+```py
+from django.db import models
+from django.contrib.auth.models import User
+
+
+class Question(models.Model):
+    title = models.CharField(max_length=250)
+    body = models.TextField()
+    slug = models.SlugField(max_length=250, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')
+    published = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name=' answers')
+    description = models.TextField()
+    published = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author.username
 ```
 
-```py
+```pybs
+python manage.py makemigrations
+python manage.py migrate
+```
 
+qa/admin.py:
+
+```py
+from django.contrib import admin
+from .models import Question, Answer
+# Register your models here.
+
+
+admin.site.register(Question)
+admin.site.register (Answer)
+```
+
+```pybs
+python manage.py runserver
 ```
 
 </details>
