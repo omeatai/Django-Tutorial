@@ -13625,36 +13625,80 @@ python manage.py runserver
 <details>
   <summary>96. Create Dynamic Slug </summary>
 
-```py
+qa/signals.py:
 
+```py
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from .models import Question
+from django.utils.text import slugify
+
+
+@receiver (pre_save, sender=Question)
+def add_slug(sender, instance, *args, **kwargs):
+    if instance and not instance.slug:
+        slug = slugify(instance.title)
+        instance.slug = slug
 ```
 
-```py
+qa/apps.py:
 
+```py
+from django.apps import AppConfig
+
+
+class QaConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'qa'
+
+    def ready(self):
+        import qa.signals
 ```
 
-```py
+qa/init.py:
 
+```py
+default_app_config = 'qa.apps.QaConfig'
 ```
 
-```py
+qa/models.py:
 
+```py
+from django.db import models
+from django.contrib.auth.models import User
+
+
+class Question(models.Model):
+    title = models.CharField(max_length=250)
+    body = models.TextField()
+    slug = models.SlugField(max_length=250, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')
+    published = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    description = models.TextField()
+    published = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.question.title} - {self.question.author.username}"
 ```
 
-```py
-
+```pybs
+python manage.py shell
 ```
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
+```pybs
+>>> from django.contrib.auth import get_user_model
+>>> user = get_user_model()
+>>> u = user.objects.first()
+>>> from qa.models import Question
+>>> q = Question(title = 'This is my title', body='This is my description', author=u)
+>>> q.save()
 ```
 
 </details>
