@@ -13613,7 +13613,7 @@ admin.site.register (Answer)
 ```pybs
 python manage.py runserver
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222462366-9ddfc7d4-77c6-4472-afb7-6acaa9db3757.png)
 ![](https://user-images.githubusercontent.com/32337103/222462888-6311184d-7e13-4d0a-8827-f220329d1b8e.png)
 ![](https://user-images.githubusercontent.com/32337103/222463005-fa010c66-f638-4ac6-8a61-78d0ad88b021.png)
@@ -13623,7 +13623,23 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>96. </summary>
+  <summary>96. Create Dynamic Slug </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
