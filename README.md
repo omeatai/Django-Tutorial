@@ -13822,6 +13822,112 @@ class QuestionViewSet(viewsets.ModelViewSet):
 <details>
   <summary>98. Creating Serializers and Viewsets for Answers </summary>
 
+qa/views.py:
+
+```py
+from django.shortcuts import render, get_object_or_404
+from rest_framework import viewsets
+from .models import Question, Answer
+from .serializers import QuestionSerializer, AnswerSerializer
+from rest_framework import generics
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    lookup_field = 'slug'
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+class AnswerCreate(generics.CreateAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        slug = self.kwargs.get('slug')
+        question = get_object_or_404(Question, slug=slug)
+        serializer.save(author=user, question=question)
+
+class AnswerList(generics.ListAPIView):
+    serializer_class = AnswerSerializer
+
+    def get_queryset(self):
+        slug = self.kwargs.get('slug')
+        return Answer.objects.filter(question__slug=slug)
+```
+
+qa/serializers.py:
+
+```py
+from rest_framework import serializers
+from .models import Question, Answer
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+    slug = serializers.SlugField(read_only=True)
+
+    class Meta:
+        model = Question
+        fields = '__all__'
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+```
+
+qa/models.py:
+
+```py
+from django.db import models
+from django.contrib.auth.models import User
+
+
+class Question(models.Model):
+    title = models.CharField(max_length=250)
+    body = models.TextField()
+    slug = models.SlugField(max_length=250, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')
+    published = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    description = models.TextField()
+    published = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.question.title} - {self.question.author.username}"
+```
+
+qa/urls.py:
+
+```py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import QuestionViewSet, AnswerCreate, AnswerList
+
+
+router = DefaultRouter ()
+router.register('question', QuestionViewSet)
+
+
+urlpatterns = [
+    path('', include(router.urls)),
+    path('question/<slug:slug>/answercreate/', AnswerCreate.as_view()),
+    path('question/<slug:slug>/answers/', AnswerList.as_view()),
+]
+```
+
 ```py
 
 ```
