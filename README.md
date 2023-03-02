@@ -13707,7 +13707,7 @@ python manage.py shell
 </details>
 
 <details>
-  <summary>97. Creating Serializers and Viewsets </summary>
+  <summary>97. Creating Serializers and Viewsets for Questions </summary>
 
 qa/serializers.py:
 
@@ -13810,21 +13810,17 @@ class QuestionViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222480072-7fd84cf0-5e43-458e-83ea-cee25cc21a17.png)
 ![](https://user-images.githubusercontent.com/32337103/222480225-3a39e315-a017-4717-8acb-66ca5afa094a.png)
 ![](https://user-images.githubusercontent.com/32337103/222480791-3d672b63-99f9-4b39-ba46-fcf7f639091b.png)
 ![](https://user-images.githubusercontent.com/32337103/222480862-9723b5aa-0707-4aa3-b6ce-ff061e4bfcd2.png)
 ![](https://user-images.githubusercontent.com/32337103/222480945-5d0fac81-b78c-40fa-86f8-999077c7713b.png)
-	
-```py
-
-```
 
 </details>
 
 <details>
-  <summary>98. </summary>
+  <summary>98. Creating Serializers and Viewsets for Answers </summary>
 
 ```py
 
