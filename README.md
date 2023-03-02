@@ -13367,14 +13367,16 @@ git push -u origin main
 +BACKEND REST API FOR QUESTION AND ANSWER APP
 
 <details>
-  <summary>94. </summary>
+  <summary>94. Introduction </summary>
 
-```py
-
+```pybs
+ python -m venv venv
+ source venv/bin/activate
 ```
 
-```py
-
+```pybs
+pip install django
+pip install djangorestframework
 ```
 
 ```py
