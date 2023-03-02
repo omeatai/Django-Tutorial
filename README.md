@@ -13346,6 +13346,12 @@ python manage.py migrate
 ```pybs
 python manage.py creatsuperuser
 ```
+	
+Railway Postgresql Database:	
+	
+![](https://user-images.githubusercontent.com/32337103/222377245-e125397c-1ec3-46ce-87fb-27ad037bad5f.png)
+![](https://user-images.githubusercontent.com/32337103/222377314-7720eb41-ba70-4723-b222-0cc1ee4ac820.png)
+
 
 ```py
 
