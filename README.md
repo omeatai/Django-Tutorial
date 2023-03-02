@@ -13358,7 +13358,10 @@ git commit -m "Postgresql commit"
 git branch -M main
 git push -u origin main
 ```
-
+	
+![](https://user-images.githubusercontent.com/32337103/222379807-48df3bee-132b-4523-8c96-a802e91573bd.png)
+![](https://user-images.githubusercontent.com/32337103/222379921-3e176eb3-cce7-4586-9a58-aaf82e422539.png)
+	
 </details>
 
 <details>
