@@ -13701,6 +13701,9 @@ python manage.py shell
 >>> q.save()
 ```
 
+![](https://user-images.githubusercontent.com/32337103/222468666-01778daa-7672-471c-8961-a5318b0a2f05.png)
+![](https://user-images.githubusercontent.com/32337103/222468759-ac5ed344-d28b-479e-9e69-6316fc26641e.png)
+
 </details>
 
 <details>
