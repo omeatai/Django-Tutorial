@@ -13930,21 +13930,11 @@ urlpatterns = [
 ]
 ```
 
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/222544304-a68e1464-107a-4cd9-a896-c5d78d5d1435.png)
+![](https://user-images.githubusercontent.com/32337103/222546832-6a7a11f7-a330-466e-a1c1-ed0b2ef82586.png)
+![](https://user-images.githubusercontent.com/32337103/222546996-8c20c731-cf4f-4f4e-a064-4e7e1e8711fd.png)
+![](https://user-images.githubusercontent.com/32337103/222547177-5526d094-29bd-4bff-b10e-8b7e7c4279bf.png)
+![](https://user-images.githubusercontent.com/32337103/222547219-6e0227ba-2040-4161-84ee-7630237b4a69.png)
 
 </details>
 
