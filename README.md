@@ -13526,13 +13526,12 @@ python manage.py createsuperuser
 ```py
 python manage.py runserver
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222427057-dc4033c4-d7dd-4e52-93e1-28ec9c8212f6.png)
 ![](https://user-images.githubusercontent.com/32337103/222427282-4478fcfe-f955-4994-8940-6161cb3e723d.png)
 ![](https://user-images.githubusercontent.com/32337103/222427406-46b55921-39b8-4a2f-900a-d5c613b66dc7.png)
 ![](https://user-images.githubusercontent.com/32337103/222427648-43899095-1391-402c-ad65-7e67c95f9143.png)
 ![](https://user-images.githubusercontent.com/32337103/222427679-d281e028-e86e-4096-917e-ca75582f1a77.png)
-	
 
 </details>
 
