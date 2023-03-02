@@ -13875,11 +13875,12 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class AnswerSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField()
+    author = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Answer
-        fields = '__all__'
+        exclude = ['question']
+        # fields = '__all__'
 ```
 
 qa/models.py:
@@ -13904,9 +13905,10 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
     description = models.TextField()
     published = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.question.title} - {self.question.author.username}"
+        return f"{self.question.title} - {self.author.username}"
 ```
 
 qa/urls.py:
