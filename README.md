@@ -13707,7 +13707,9 @@ python manage.py shell
 </details>
 
 <details>
-  <summary>97. </summary>
+  <summary>97. Creating Serializers and Viewsets </summary>
+
+qa/serializers.py:
 
 ```py
 
