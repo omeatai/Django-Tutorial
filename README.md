@@ -13536,7 +13536,7 @@ python manage.py runserver
 </details>
 
 <details>
-  <summary>95. </summary>
+  <summary>95. Create Rest App and Models </summary>
 
 ```py
 
