@@ -13343,8 +13343,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 python manage.py migrate
 ```
 
-```py
-
+```pybs
+python manage.py creatsuperuser
 ```
 
 ```py
