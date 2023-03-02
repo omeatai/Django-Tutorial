@@ -13375,16 +13375,156 @@ git push -u origin main
 ```
 
 ```pybs
+pip install --upgrade pip
+```
+
+```pybs
 pip install django
 pip install djangorestframework
 ```
 
-```py
+```pybs
+django-admin startproject DJRESTQA .
+```
 
+```pybs
+pip install dj-rest-auth
+```
+
+DJRESTQA/settings.py:
+
+```pybs
+INSTALLED_APPS = (
+    ...,
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+)
 ```
 
 ```py
+# Application definition
 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+]
+```
+
+DJRESTQA/urls.py:
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+]
+```
+
+```pybs
+pip install django-allauth
+```
+
+DJRESTQA/settings.py:
+
+```pybs
+INSTALLED_APPS = (
+    ...,
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+)
+
+SITE_ID = 1
+```
+
+```py
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+]
+
+SITE_ID = 1
+```
+
+DJRESTQA/urls.py:
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
+]
+```
+
+DJRESTQA/settings.py:
+
+```pybs
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = False
+```
+
+```py
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = False
+```
+
+```pybs
+python manage.py makemigrations
+```
+
+```pybs
+python manage.py migrate
+```
+
+```py
+python manage.py createsuperuser
+```
+
+```py
+python manage.py runserver
 ```
 
 </details>
