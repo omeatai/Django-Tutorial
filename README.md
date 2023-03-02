@@ -13718,7 +13718,7 @@ from .models import Question, Answer
 
 class QuestionSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
-    slug = serializers.SlugField()
+    slug = serializers.SlugField(read_only=True)
 
     class Meta:
         model = Question
@@ -13782,6 +13782,12 @@ urlpatterns = [
     path('', include(router.urls))
 ]
 ```
+	
+<img width="1257" alt="image" src="https://user-images.githubusercontent.com/32337103/222477230-e48abf92-f4e3-4b17-85a1-340e9c99031d.png">
+<img width="1258" alt="image" src="https://user-images.githubusercontent.com/32337103/222477989-2fc3ad5b-bb44-495c-85ef-f6a21ca25cbe.png">
+<img width="1258" alt="image" src="https://user-images.githubusercontent.com/32337103/222478053-860596b1-1da5-4e2c-9c5f-52415f755afc.png">
+<img width="1258" alt="image" src="https://user-images.githubusercontent.com/32337103/222478466-c8510675-8494-4d66-8887-2cc59a90f268.png">
+	
 
 ```py
 
