@@ -13712,7 +13712,75 @@ python manage.py shell
 qa/serializers.py:
 
 ```py
+from rest_framework import serializers
+from .models import Question, Answer
 
+
+class QuestionSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+    slug = serializers.SlugField()
+
+    class Meta:
+        model = Question
+        fields = '__all__'
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+```
+
+qa/views.py:
+
+```py
+from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Question
+from .serializers import QuestionSerializer
+# Create your views here.
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+```
+
+DJRESTQA/urls.py:
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('', include('qa.urls')),
+]
+```
+
+qa/urls.py:
+
+```py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import QuestionViewSet
+
+
+router = DefaultRouter ()
+router.register('question', QuestionViewSet)
+
+
+urlpatterns = [
+    path('', include(router.urls))
+]
 ```
 
 ```py
