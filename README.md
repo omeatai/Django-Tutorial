@@ -14059,7 +14059,13 @@ urlpatterns = [
     path('answers/<int:pk>/', AnswerDeleteUpdate.as_view()),
 ]
 ```
-
+	
+![](https://user-images.githubusercontent.com/32337103/222800196-a9e44153-2f5b-4077-a443-9c6e8d2d30f5.png)
+![](https://user-images.githubusercontent.com/32337103/222800296-cc61ef13-7e86-4e29-af02-c7d6feab0bdb.png)
+![](https://user-images.githubusercontent.com/32337103/222800490-1f3eb5c4-66f2-4252-8b58-ba799f2ac1c9.png)
+![](https://user-images.githubusercontent.com/32337103/222800527-77f779a0-eeda-4ece-8b7d-8eb43323d513.png)
+![](https://user-images.githubusercontent.com/32337103/222800858-5e790897-da19-44db-b6c2-1e1e8996c86a.png)
+	
 </details>
 
 <details>
