@@ -14317,13 +14317,13 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AnswerSerializer
     permission_classes = [IsAuthenticated]
 ```
-	
-<img width="1256" alt="image" src="https://user-images.githubusercontent.com/32337103/222808157-2bea333c-bc03-421a-a175-f6a395a05d0a.png">
-<img width="1256" alt="image" src="https://user-images.githubusercontent.com/32337103/222808208-80ff52b5-9ae9-49dd-85cd-65bf0c6443f1.png">
-<img width="1256" alt="image" src="https://user-images.githubusercontent.com/32337103/222808270-0619ba0a-5f99-4de8-94a1-30cc9a9f0d49.png">
-<img width="1256" alt="image" src="https://user-images.githubusercontent.com/32337103/222808336-6146a4af-9e60-4bb0-8389-2c4a0d0b656e.png">
-<img width="1094" alt="image" src="https://user-images.githubusercontent.com/32337103/222808771-f4ef1309-1625-4e99-a94f-2b2ba343dddc.png">
-<img width="1094" alt="image" src="https://user-images.githubusercontent.com/32337103/222808858-86e3abd3-e630-43aa-acee-aa3a4263d33c.png">	
+
+![](https://user-images.githubusercontent.com/32337103/222808157-2bea333c-bc03-421a-a175-f6a395a05d0a.png)
+![](https://user-images.githubusercontent.com/32337103/222808208-80ff52b5-9ae9-49dd-85cd-65bf0c6443f1.png)
+![](https://user-images.githubusercontent.com/32337103/222808270-0619ba0a-5f99-4de8-94a1-30cc9a9f0d49.png)
+![](https://user-images.githubusercontent.com/32337103/222808336-6146a4af-9e60-4bb0-8389-2c4a0d0b656e.png)
+![](https://user-images.githubusercontent.com/32337103/222808771-f4ef1309-1625-4e99-a94f-2b2ba343dddc.png)
+![](https://user-images.githubusercontent.com/32337103/222808858-86e3abd3-e630-43aa-acee-aa3a4263d33c.png)
 
 </details>
 
