@@ -14328,7 +14328,7 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
 </details>
 
 <details>
-  <summary>102. </summary>
+  <summary>102. Custom Permissions </summary>
 
 ```py
 
