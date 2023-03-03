@@ -14070,6 +14070,10 @@ urlpatterns = [
 
 <details>
   <summary>100. Registering New User </summary>
+	
+![](https://user-images.githubusercontent.com/32337103/222801927-78deb37f-b953-4ab1-93c7-79e68f896891.png)
+![](https://user-images.githubusercontent.com/32337103/222802027-cd07bf70-5a66-4329-8df2-85e4821a1f78.png)
+	
 
 DJRESTQA/urls.py:
 
@@ -14086,18 +14090,17 @@ urlpatterns = [
 ]
 
 ```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+	
+![](https://user-images.githubusercontent.com/32337103/222801895-eb7e8cdf-0378-4224-b0fe-4956abe2087b.png)
+![](https://user-images.githubusercontent.com/32337103/222802153-c87ef447-d354-4f84-b3fc-b3b209ab4207.png)
+![](https://user-images.githubusercontent.com/32337103/222802477-f4d79dcb-5623-4cee-8023-fe1a92f2c237.png)	
+![](https://user-images.githubusercontent.com/32337103/222802373-8cc050a7-da3c-40e5-a770-b6cefae3bcf6.png)
+![](https://user-images.githubusercontent.com/32337103/222802640-81ab3799-e8ab-49a8-94c4-b52b743c6f7a.png)
+![](https://user-images.githubusercontent.com/32337103/222802667-3560427d-fd62-47f0-a929-12d16fbfb385.png)
+![](https://user-images.githubusercontent.com/32337103/222802727-7dbff1d8-3684-4177-ac21-0996d861a918.png)
+![](https://user-images.githubusercontent.com/32337103/222803104-9eb2a3bb-d1f2-4544-b099-5851ab9c558c.png)
+![](https://user-images.githubusercontent.com/32337103/222803154-765aab0f-fa38-48ce-94fb-666debde25ba.png)
+![](https://user-images.githubusercontent.com/32337103/222803202-7a775ddf-e302-45e0-84b0-0508258d42c6.png)
 
 </details>
 
