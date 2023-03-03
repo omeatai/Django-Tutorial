@@ -13820,7 +13820,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
 </details>
 
 <details>
-  <summary>98. Creating Serializers and Viewsets for Answers </summary>
+  <summary>98. Creating Viewsets for Answers (GET, POST) </summary>
 
 qa/views.py:
 
@@ -13939,7 +13939,7 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>99. </summary>
+  <summary>99. Creating Viewsets for Answers (GET [Details], UPDATE, DELETE) </summary>
 
 ```py
 
