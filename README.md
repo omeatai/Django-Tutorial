@@ -14069,9 +14069,21 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>100. </summary>
+  <summary>100. Registering New User </summary>
+
+DJRESTQA/urls.py:
 
 ```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('', include('qa.urls')),
+]
 
 ```
 
