@@ -14484,20 +14484,69 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         return obj.owner == request.user
 ```
 
-```py
+qa/permissions.py:
 
+```py
+from rest_framework import permissions
+
+
+class IsAuthor(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.author == request.user
+```
+
+qa/views.py:
+
+```pybs
+from .permissions import IsAuthor
+
+permission_classes = [IsAuthenticated, IsAuthor]
 ```
 
 ```py
+from django.shortcuts import render, get_object_or_404
+from rest_framework import viewsets
+from .models import Question, Answer
+from .serializers import QuestionSerializer, AnswerSerializer
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from .permissions import IsAuthor
 
-```
 
-```py
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    lookup_field = 'slug'
+    permission_classes = [IsAuthenticated, IsAuthor]
 
-```
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
-```py
+class AnswerCreate(generics.CreateAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+    permission_classes = [IsAuthenticated]
 
+    def perform_create(self, serializer):
+        user = self.request.user
+        slug = self.kwargs.get('slug')
+        question = get_object_or_404(Question, slug=slug)
+        serializer.save(author=user, question=question)
+
+class AnswerList(generics.ListAPIView):
+    serializer_class = AnswerSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        slug = self.kwargs.get('slug')
+        return Answer.objects.filter(question__slug=slug)
+
+class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+    permission_classes = [IsAuthenticated, IsAuthor]
 ```
 
 </details>
