@@ -14548,11 +14548,10 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AnswerSerializer
     permission_classes = [IsAuthenticated, IsAuthor]
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222931803-8a4ec010-c35f-4b84-95b6-92abdd2a5d10.png)
 ![](https://user-images.githubusercontent.com/32337103/222931822-bb5d831d-24f9-4234-a440-0c8bb9c9a5b2.png)
 ![](https://user-images.githubusercontent.com/32337103/222931833-14eed223-010e-4636-9f87-d58e22f14984.png)
-	
 
 </details>
 
