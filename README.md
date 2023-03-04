@@ -14330,12 +14330,18 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
 <details>
   <summary>102. Custom Permissions for restricting Users from editing others content</summary>
 
-```py
-
+```pybs
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 ```
 
-```py
-
+```pybs
+'DEFAULT_PERMISSION_CLASSES': [
+   'rest_framework.permissions.AllowAny',
+]
 ```
 
 ```py
