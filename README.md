@@ -14329,10 +14329,11 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
 
 <details>
   <summary>102. Custom Permissions for restricting Users from editing others content</summary>
-	
+
 ![](https://user-images.githubusercontent.com/32337103/222897912-503be374-3642-4e54-a38a-996a3a8e2360.png)
 ![](https://user-images.githubusercontent.com/32337103/222898019-7e4b25d3-dc9f-4429-8ace-d8f47716f009.png)
-	
+
+The default permission policy may be set globally, using the DEFAULT_PERMISSION_CLASSES setting. For example.
 
 ```pybs
 REST_FRAMEWORK = {
@@ -14342,18 +14343,145 @@ REST_FRAMEWORK = {
 }
 ```
 
+If not specified, this setting defaults to allowing unrestricted access:
+
 ```pybs
 'DEFAULT_PERMISSION_CLASSES': [
    'rest_framework.permissions.AllowAny',
 ]
 ```
 
-```py
+You can also set the authentication policy on a per-view, or per-viewset basis, using the APIView class-based views.
 
+```pybs
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class ExampleView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        content = {
+            'status': 'request was permitted'
+        }
+        return Response(content)
 ```
 
-```py
+Or, if you're using the @api_view decorator with function based views.
 
+```pybs
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def example_view(request, format=None):
+    content = {
+        'status': 'request was permitted'
+    }
+    return Response(content)
+```
+
+- Note: when you set new permission classes via the class attribute or decorators you're telling the view to ignore the default list set in the settings.py file.
+
+- Provided they inherit from rest_framework.permissions.BasePermission, permissions can be composed using standard Python bitwise operators. For example, IsAuthenticatedOrReadOnly could be written:
+
+```pybs
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class ReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
+
+class ExampleView(APIView):
+    permission_classes = [IsAuthenticated|ReadOnly]
+
+    def get(self, request, format=None):
+        content = {
+            'status': 'request was permitted'
+        }
+        return Response(content)
+```
+
+AllowAny:
+
+- The AllowAny permission class will allow unrestricted access, regardless of if the request was authenticated or unauthenticated.
+
+- This permission is not strictly required, since you can achieve the same result by using an empty list or tuple for the permissions setting, but you may find it useful to specify this class because it makes the intention explicit.
+
+IsAuthenticated:
+
+- The IsAuthenticated permission class will deny permission to any unauthenticated user, and allow permission otherwise.
+
+- This permission is suitable if you want your API to only be accessible to registered users.
+
+IsAdminUser:
+
+- The IsAdminUser permission class will deny permission to any user, unless user.is_staff is True in which case permission will be allowed.
+
+- This permission is suitable if you want your API to only be accessible to a subset of trusted administrators.
+
+IsAuthenticatedOrReadOnly:
+
+- The IsAuthenticatedOrReadOnly will allow authenticated users to perform any request. Requests for unauthorised users will only be permitted if the request method is one of the "safe" methods; GET, HEAD or OPTIONS.
+
+- This permission is suitable if you want to your API to allow read permissions to anonymous users, and only allow write permissions to authenticated users.
+
+Custom permissions -
+
+To implement a custom permission, override BasePermission and implement either, or both, of the following methods:
+
+- .has_permission(self, request, view)
+- .has_object_permission(self, request, view, obj)
+
+The methods should return True if the request should be granted access, and False otherwise.
+
+- If you need to test if a request is a read operation or a write operation, you should check the request method against the constant SAFE_METHODS, which is a tuple containing 'GET', 'OPTIONS' and 'HEAD'. For example:
+
+```pybs
+if request.method in permissions.SAFE_METHODS:
+    # Check permissions for read-only request
+else:
+    # Check permissions for write request
+```
+
+The following is an example of a permission class that checks the incoming request's IP address against a blocklist, and denies the request if the IP has been blocked.
+
+```pybs
+from rest_framework import permissions
+
+class BlocklistPermission(permissions.BasePermission):
+    """
+    Global permission check for blocked IPs.
+    """
+
+    def has_permission(self, request, view):
+        ip_addr = request.META['REMOTE_ADDR']
+        blocked = Blocklist.objects.filter(ip_addr=ip_addr).exists()
+        return not blocked
+```
+
+You can also create object-level permissions, that are only run against operations that affect a particular object instance. For example:
+
+```pybs
+class IsOwnerOrReadOnly(permissions.BasePermission):
+    """
+    Object-level permission to only allow owners of an object to edit it.
+    Assumes the model instance has an `owner` attribute.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # Instance must have an attribute named `owner`.
+        return obj.owner == request.user
 ```
 
 ```py
