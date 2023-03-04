@@ -14556,7 +14556,7 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
 </details>
 
 <details>
-  <summary>103. </summary>
+  <summary>103. JWT Token Authentication </summary>
 
 ```py
 
