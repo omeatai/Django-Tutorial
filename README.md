@@ -14104,7 +14104,7 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>101. Using Authentication to restrict Users</summary>
+  <summary>101. Using Authentication to restrict Users from Accessing Content</summary>
 
 DJRESTQA/settings.py:
 
@@ -14328,7 +14328,23 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
 </details>
 
 <details>
-  <summary>102. Custom Permissions </summary>
+  <summary>102. Custom Permissions for restricting Users from editing others content</summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
