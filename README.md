@@ -14814,14 +14814,15 @@ urlpatterns = [
 ]
 
 ```
-	
-<img width="1279" alt="image" src="https://user-images.githubusercontent.com/32337103/223049509-ac2b6dd1-86a5-4f00-90ca-e21af895686f.png">
-<img width="1087" alt="image" src="https://user-images.githubusercontent.com/32337103/223078550-471c1898-02e8-4da9-ab48-591d9e483d2f.png">
-<img width="1087" alt="image" src="https://user-images.githubusercontent.com/32337103/223079550-ed5d96d2-3082-4ee5-a36e-319170191897.png">
-<img width="1122" alt="image" src="https://user-images.githubusercontent.com/32337103/223080091-3d567dc9-ded3-4dcb-970c-ff0917726898.png">
+
+![](https://user-images.githubusercontent.com/32337103/223049509-ac2b6dd1-86a5-4f00-90ca-e21af895686f.png)
+![](https://user-images.githubusercontent.com/32337103/223078550-471c1898-02e8-4da9-ab48-591d9e483d2f.png)
+![](https://user-images.githubusercontent.com/32337103/223079550-ed5d96d2-3082-4ee5-a36e-319170191897.png)
+![](https://user-images.githubusercontent.com/32337103/223080091-3d567dc9-ded3-4dcb-970c-ff0917726898.png)
+
 After 5 minutes:
-<img width="1087" alt="image" src="https://user-images.githubusercontent.com/32337103/223079822-7e12eb16-0a2f-4540-a7fc-6f871b67d7c1.png">
-	
+
+![](https://user-images.githubusercontent.com/32337103/223079822-7e12eb16-0a2f-4540-a7fc-6f871b67d7c1.png)
 
 ```py
 
