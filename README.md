@@ -14874,10 +14874,18 @@ git branch -M main
 git remote add origin https://github.com/omeatai/djrestqa.git
 git push -u origin main
 ```
-
-```py
-
+	
+![](https://user-images.githubusercontent.com/32337103/223110723-79a807d1-e2a9-49d0-abe5-ebde9285df0e.png)
+![](https://user-images.githubusercontent.com/32337103/223111040-303d7fd3-2c54-4879-8eed-cb3aae28356f.png)
+	
+```pybs
+cd djrestqa	
+mkvirtualenv --python=/usr/bin/python3.9 myenv
+pip install -r requirements.txt	
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/223112838-9382345d-db25-4b39-a5f5-f99f4b474c7e.png)
+	
 
 ```py
 
