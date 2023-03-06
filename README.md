@@ -14104,7 +14104,7 @@ urlpatterns = [
 </details>
 
 <details>
-  <summary>101. Using Authentication to restrict Users from Accessing Content</summary>
+  <summary>101. Using Token Authentication to restrict Users from Accessing Content</summary>
 
 DJRESTQA/settings.py:
 
@@ -14697,7 +14697,7 @@ print token.key
 </details>
 
 <details>
-  <summary>104. JWT Token Authentication </summary>
+  <summary>104. Using JWT Token Authentication </summary>
 
 ```py
 pip install djangorestframework-simplejwt
@@ -14716,6 +14716,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     # 'rest_framework.authtoken',
     'dj_rest_auth',
     'django.contrib.sites',
@@ -14736,6 +14737,13 @@ REST_FRAMEWORK = {
     )
     ...
 }
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
 ```
 
 ```py
@@ -14754,7 +14762,16 @@ REST_FRAMEWORK = {
     # 'rest_framework.authentication.TokenAuthentication',
     'rest_framework_simplejwt.authentication.JWTAuthentication',
     'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
+    'TOKEN_MODEL': None, #'app_name.ModelName', replace app_name and ModelName with custom token model
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
