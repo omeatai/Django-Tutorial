@@ -14814,6 +14814,9 @@ urlpatterns = [
 ]
 
 ```
+	
+<img width="1279" alt="image" src="https://user-images.githubusercontent.com/32337103/223049509-ac2b6dd1-86a5-4f00-90ca-e21af895686f.png">
+	
 
 ```py
 
