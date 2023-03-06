@@ -14888,10 +14888,10 @@ pip install -r requirements.txt
 
 ![](https://user-images.githubusercontent.com/32337103/223112838-9382345d-db25-4b39-a5f5-f99f4b474c7e.png)
 	
-![](https://user-images.githubusercontent.com/32337103/223116183-fef0ff7a-2488-491a-9737-ae99ebae335b.png">
-![](https://user-images.githubusercontent.com/32337103/223117146-9397e1df-de76-4f42-9a77-e1616948216e.png">
-![](https://user-images.githubusercontent.com/32337103/223117230-5c8767f0-04e5-4db4-9720-5c063ef647c6.png">
-![](https://user-images.githubusercontent.com/32337103/223117419-947bfdcf-ffa1-4e3f-bb68-615354307dd4.png">
+![](https://user-images.githubusercontent.com/32337103/223116183-fef0ff7a-2488-491a-9737-ae99ebae335b.png)
+![](https://user-images.githubusercontent.com/32337103/223117146-9397e1df-de76-4f42-9a77-e1616948216e.png)
+![](https://user-images.githubusercontent.com/32337103/223117230-5c8767f0-04e5-4db4-9720-5c063ef647c6.png)
+![](https://user-images.githubusercontent.com/32337103/223117419-947bfdcf-ffa1-4e3f-bb68-615354307dd4.png)
 
 ```pybs
 import os
