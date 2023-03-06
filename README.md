@@ -14559,6 +14559,105 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
   <summary>103. JWT Token Authentication </summary>
 
 ```py
+pip install djangorestframework-simplejwt
+```
+
+DJRESTQA/settings.py:
+
+```py
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    # 'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    'qa',
+]
+```
+
+```pybs
+REST_FRAMEWORK = {
+    ...
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        ...
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+    ...
+}
+```
+
+```py
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+    # 'rest_framework.authentication.TokenAuthentication',
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+    'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = False
+```
+
+DJRESTQA/urls.py:
+
+```pybs
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+urlpatterns = [
+    ...
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    ...
+]
+```
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('', include('qa.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+
+```
+
+```py
 
 ```
 
@@ -14598,22 +14697,142 @@ class AnswerDeleteUpdate(generics.RetrieveUpdateDestroyAPIView):
 </details>
 
 <details>
-  <summary>105. </summary>
+  <summary>105. **Using Signals in Model to create Token for User </summary>
+
+Go to settings.py and add the following:
 
 ```py
+INSTALLED_APPS = (
+    'rest_framework',
+    'rest_framework.authtoken',
+    'myapp',
+)
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 ```
 
-```py
+Add the following code in myapp's models.py:
 
+```py
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+from django.conf import settings
+
+# This code is triggered whenever a new user has been created and saved to the database
+#@receiver(post_save, sender=User)
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 ```
 
-```py
+Alternatively, if you want to be more explicit, create a file named signals.py under myapp project. Put the code above in it, then in **init**.py, write import signals.
 
+```py
+python manage.py migrate
+python manage.py makemigrations
 ```
 
-```py
+- Take a look in your database, a table named authtoken_token should be created with the following fields: key (this is the token value), created (the datetime it was created), user_id (a foreign key that references the auth_user table's id column).
 
+- create a superuser with python manage.py createsuperuser. Now, take a look at the authtoken_token table in your DB with select \* from authtoken_token;, you should see a new entry has been added.
+
+Using curl or a much simpler alternative httpie to test access to your api, I am using httpie:
+
+```pybs
+http GET 127.0.0.1:8000/whatever 'Authorization: Token your_token_value'
+```
+
+That's it. From now on, for any API access, you need to include the following value in the HTTP header (pay attention to the whitespaces):
+
+```pybs
+Authorization: Token your_token_value
+```
+
+(Optional) DRF also provides the ability to return a user's token if you supply the username and password. All you have to do is to include the following in urls.py:
+
+```py
+from rest_framework.authtoken import views
+
+urlpatterns = [
+    ...
+    url(r'^api-token-auth/', views.obtain_auth_token),
+]
+```
+
+Using httpie to verify:
+
+```pybs
+http POST 127.0.0.1:8000/api-token-auth/ username='admin' password='whatever'
+```
+
+In the return body, you should see this:
+
+```pybs
+{
+    "token": "blah_blah_blah"
+}
+```
+
+If tokens should only be created at certain times, then in your view code, you need to create and save the token at the appropriate time. Once the token is created (and saved), it will be usable for authentication:
+
+```py
+# View Pseudocode
+from rest_framework.authtoken.models import Token
+
+def token_request(request):
+    if user_requested_token() and token_request_is_warranted():
+        new_token = Token.objects.create(user=request.user)
+```
+
+If you've got a custom user manager that handles user creation (and activation), you may also perform this task like so:
+
+```py
+from rest_framework.authtoken.models import Token
+# Other imports
+
+class UserManager(BaseUserManager):
+
+    def create_user(self, **kwargs):
+        """
+        This is your custom method for creating user instances.
+        IMHO, if you're going to do this, you might as well use a signal.
+
+        """
+        # user = self.model(**kwargs) ...
+        Token.objects.create(user=user)
+
+    #You may also choose to handle this upon user activation.
+    #Again, a signal works as well here.
+
+    def activate_user(**kwargs):
+        # user = ...
+        Token.objects.create(user=user)
+```
+
+If you already have users created, then you may drop down into the python shell in your terminal and create Tokens for all the users in your db.
+
+```pybs
+>>> from django.contrib.auth.models import User
+>>> from rest_framework.authtoken.models import Token
+>>> for user in User.objects.all():
+>>> ...    Token.objects.create(user=user)
+```
+
+```pybs
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+u = User.objects.get(username='admin')
+token = Token.objects.create(user=u)
+print token.key
 ```
 
 </details>
