@@ -14823,22 +14823,8 @@ urlpatterns = [
 After 5 minutes:
 
 ![](https://user-images.githubusercontent.com/32337103/223079822-7e12eb16-0a2f-4540-a7fc-6f871b67d7c1.png)
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
-
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/223081838-aa72a26a-099a-4f78-8a9b-70f21b1559a9.png)
+![](https://user-images.githubusercontent.com/32337103/223081951-1808d692-6120-4b5e-8281-08f98e87b239.png)
 
 </details>
 
