@@ -14829,10 +14829,50 @@ After 5 minutes:
 </details>
 
 <details>
-  <summary>105. </summary>
+  <summary>105. Deploy Django App to Python AnyWhere </summary>
 
-```py
+DJRESTQA/settings.py:
 
+```pybs
+DEBUG = False
+
+ALLOWED_HOSTS = ['localhost', 'ifeanyi.pythonanywhere.com']
+
+import os
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+```
+
+```pybs
+python manage.py collectstatic
+```
+
+```pybs
+pip freeze > requirements.txt
+```
+
+```pybs
+Create Repository - djrestqa
+```
+
+```pybs
+Create .gitignore file
+```
+
+```pybs
+echo "# djrestqa" >> README.md
+
+git init
+git add . / git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/omeatai/djrestqa.git
+git push -u origin main
 ```
 
 ```py
