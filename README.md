@@ -14887,7 +14887,7 @@ pip install -r requirements.txt
 ```
 
 ![](https://user-images.githubusercontent.com/32337103/223112838-9382345d-db25-4b39-a5f5-f99f4b474c7e.png)
-	
+
 ![](https://user-images.githubusercontent.com/32337103/223116183-fef0ff7a-2488-491a-9737-ae99ebae335b.png)
 ![](https://user-images.githubusercontent.com/32337103/223117146-9397e1df-de76-4f42-9a77-e1616948216e.png)
 ![](https://user-images.githubusercontent.com/32337103/223117230-5c8767f0-04e5-4db4-9720-5c063ef647c6.png)
@@ -14900,13 +14900,13 @@ import sys
 path = '/home/omeatai/djrestqa'
 if path not in sys.path:
     sys.path.insert(0, path)
-    
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'DJRESTQA.settings'
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/223118220-f43bd0bd-5c03-4d76-9ae0-82755a0f89c8.png)
 ![](https://user-images.githubusercontent.com/32337103/223118399-26a128ec-4402-4ebb-8eb2-16b49699c547.png)
 
@@ -14916,12 +14916,29 @@ https://omeatai.pythonanywhere.com/
 ![](https://user-images.githubusercontent.com/32337103/223118658-7a648f3c-1094-4285-bc9e-e76d42875195.png)
 ![](https://user-images.githubusercontent.com/32337103/223118777-d539531c-9de3-466b-be2f-5ddfc36a2b58.png)
 ![](https://user-images.githubusercontent.com/32337103/223119034-d040aa02-3173-489e-ac1a-ac5cf6157689.png)
-	
 
 </details>
 
++BACKEND INTEGRATION WITH REACTJS
+
 <details>
-  <summary>106. </summary>
+  <summary>106. ReactJS Introduction </summary>
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
+
+```py
+
+```
 
 ```py
 
