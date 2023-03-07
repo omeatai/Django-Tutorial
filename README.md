@@ -14924,19 +14924,23 @@ https://omeatai.pythonanywhere.com/
 <details>
   <summary>106. ReactJS Introduction </summary>
 
-```py
-
+```pybs
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Hello, world!</h1>);
 ```
 
-```py
-
+```pybs
+npx create-react-app my-app
+cd my-app
+npm start
 ```
 
-```py
-
+```pybs
+npx create-react-app frontend
+npm run start
 ```
 
-```py
+```pybs
 
 ```
 
