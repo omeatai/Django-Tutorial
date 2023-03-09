@@ -15204,19 +15204,50 @@ class ClassFirstComponent extends Component {
 }
 export default ClassFirstComponent;
 ```
-	
-![](https://user-images.githubusercontent.com/32337103/223995518-b94a4c7d-ac0b-45c1-97e9-a5f77761128e.png)	
 
-```jsx
+![](https://user-images.githubusercontent.com/32337103/223995518-b94a4c7d-ac0b-45c1-97e9-a5f77761128e.png)
 
+frontend/src/App.js:
+
+```js
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent name="Ben James" />
+      <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
-
-```
+frontend/src/components/ClassFirstComponent.jsx:
 
 ```jsx
+import { Component } from "react";
 
+class ClassFirstComponent extends Component {
+  render() {
+    return (
+      <>
+        <h2>This is a class component</h2>
+        <h3>Email: {this.props.email}</h3>
+        <button onClick={this.props.clickMe}>Click Me</button>
+      </>
+    );
+  }
+}
+export default ClassFirstComponent;
 ```
 
 ```jsx
