@@ -15047,27 +15047,71 @@ class ClassFirstComponent extends Component {
 }
 export default ClassFirstComponent;
 ```
-	
-![](https://user-images.githubusercontent.com/32337103/223984194-1214c285-eee3-414c-bd46-db87739839a4.png)		
+
+![](https://user-images.githubusercontent.com/32337103/223984194-1214c285-eee3-414c-bd46-db87739839a4.png)
 
 </details>
-	
+
 <details>
-  <summary>108. </summary>
+  <summary>108. Props </summary>
 
-```py
+frontend/src/App.js:
 
+```js
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+
+function App() {
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent firstname="Ben" lastname="James" />
+      <ClassFirstComponent email="ben@gmail.com" />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```py
+frontend/src/components/FirstComponent.jsx:
 
+```jsx
+import React from "react";
+
+const FirstComponent = (props) => {
+  return (
+    <>
+      <h2>This is our FirstComponent.</h2>
+      <h3>FirstName: {props.firstname}</h3>
+      <h3>LastName: {props.lastname}</h3>
+    </>
+  );
+};
+
+export default FirstComponent;
 ```
 
-```py
+frontend/src/components/ClassFirstComponent.jsx:
 
+```jsx
+import { Component } from "react";
+
+class ClassFirstComponent extends Component {
+  render() {
+    return (
+      <>
+        <h2>This is a class component</h2>
+        <h3>Email: {this.props.email}</h3>
+      </>
+    );
+  }
+}
+export default ClassFirstComponent;
 ```
 
-```py
+```jsx
 
 ```
 
