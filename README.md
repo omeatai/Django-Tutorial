@@ -15011,22 +15011,41 @@ export default SecondComponent;
 </details>
 
 <details>
-  <summary>107. </summary>
+  <summary>107. Class Components </summary>
 
-```py
+frontend/src/App.js:
 
+```js
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import SecondComponent from "./components/SecondComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+
+function App() {
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent />
+      <SecondComponent />
+      <ClassFirstComponent />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```py
+frontend/src/components/ClassFirstComponent.jsx:
 
-```
+```jsx
+import { Component } from "react";
 
-```py
-
-```
-
-```py
-
+class ClassFirstComponent extends Component {
+  render() {
+    return <h3>This is a class component</h3>;
+  }
+}
+export default ClassFirstComponent;
 ```
 
 </details>
