@@ -15503,9 +15503,7 @@ class MapFunc extends Component {
 export default MapFunc;
 ```
 
-```jsx
-
-```
+![](https://user-images.githubusercontent.com/32337103/224152208-a3d5eb7a-d225-49bd-bd37-4516efbaa67c.png)
 
 </details>
 
