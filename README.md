@@ -15383,9 +15383,7 @@ class ClassFirstComponent extends Component {
 export default ClassFirstComponent;
 ```
 
-```jsx
-
-```
+![](https://user-images.githubusercontent.com/32337103/224108920-0b9eea13-9f06-4c9d-9468-026a144ea06e.png)
 
 </details>
 
