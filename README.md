@@ -15335,16 +15335,52 @@ const FirstComponent = (props) => {
 
 export default FirstComponent;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/224107797-060584e2-90cf-4cc8-840b-6412124a9cc1.png)
-	
+
+frontend/src/App.js:
 
 ```jsx
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
 
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent name="Ben James" clickMe={clickMe} />
+      <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
+frontend/src/components/ClassFirstComponent.jsx:
 
+```jsx
+import { Component } from "react";
+
+class ClassFirstComponent extends Component {
+  render() {
+    return (
+      <div className="container mt-5">
+        <h2>This is a class component</h2>
+        <h3>Email: {this.props.email}</h3>
+        <button className="btn btn-danger" onClick={this.props.clickMe}>
+          Click Me
+        </button>
+      </div>
+    );
+  }
+}
+export default ClassFirstComponent;
 ```
 
 ```jsx
