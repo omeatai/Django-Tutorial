@@ -14983,6 +14983,9 @@ const SecondComponent = () => {
 
 export default SecondComponent;
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/223979668-2af4c2d3-c0da-4cc6-8707-70af0bcff1d8.png)
+	
 
 </details>
 
