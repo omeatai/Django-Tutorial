@@ -15159,16 +15159,50 @@ const FirstComponent = (props) => {
 
 export default FirstComponent;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/223993637-9a52bcd9-1166-45cc-9df3-62a9098bd7ca.png)
-	
 
-```jsx
+frontend/src/App.js:
 
+```js
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+
+function App() {
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent name="Ben James" />
+      <ClassFirstComponent email="ben@gmail.com" />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
+frontend/src/components/ClassFirstComponent.jsx:
 
+```jsx
+import { Component } from "react";
+
+class ClassFirstComponent extends Component {
+  clickMe() {
+    alert("Class component Button was clicked");
+  }
+
+  render() {
+    return (
+      <>
+        <h2>This is a class component</h2>
+        <h3>Email: {this.props.email}</h3>
+        <button onClick={this.clickMe}>Click Me</button>
+      </>
+    );
+  }
+}
+export default ClassFirstComponent;
 ```
 
 ```jsx
