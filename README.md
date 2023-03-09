@@ -15453,38 +15453,54 @@ export default ClassFirstComponent;
 ![](https://user-images.githubusercontent.com/32337103/224137447-7f6bb6e2-61dc-48f6-8b73-4ee86e1d0e1c.png)
 ![](https://user-images.githubusercontent.com/32337103/224137633-1f27d224-2f29-4489-834f-a04ab1cb563f.png)
 
-
 </details>
 
 <details>
-  <summary>112. </summary>
+  <summary>112. Map Function </summary>
 
-```jsx
+frontend/src/App.js:
 
+```js
+import React from "react";
+// import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+import MapFunc from "./components/MapFunc";
+
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+      <MapFunc names={["Python", "Java", "C#", "C++"]} />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
-
-```
+frontend/src/components/MapFunc.jsx:
 
 ```jsx
+import { Component } from "react";
 
-```
+class MapFunc extends Component {
+  myElements = (names) => {
+    return names.map((name) => <div key={name}>{`${name}`}</div>);
+  };
 
-```jsx
-
-```
-
-```jsx
-
-```
-
-```jsx
-
-```
-
-```jsx
-
+  render() {
+    return (
+      <div className="container mt-5">
+        <h2>{this.myElements(this.props.names)}</h2>
+      </div>
+    );
+  }
+}
+export default MapFunc;
 ```
 
 ```jsx
