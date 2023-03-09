@@ -15335,6 +15335,9 @@ const FirstComponent = (props) => {
 
 export default FirstComponent;
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/224107797-060584e2-90cf-4cc8-840b-6412124a9cc1.png)
+	
 
 ```jsx
 
