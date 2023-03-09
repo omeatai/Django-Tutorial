@@ -14940,24 +14940,48 @@ npx create-react-app frontend
 npm run start
 ```
 
-```pybs
+frontend/src/App.js:
 
+```jsx
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import SecondComponent from "./components/SecondComponent";
+
+function App() {
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent />
+      <SecondComponent />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```py
+frontend/src/components/FirstComponent.jsx:
 
+```jsx
+import React from "react";
+
+const FirstComponent = () => {
+  return <h2>This is our FirstComponent.</h2>;
+};
+
+export default FirstComponent;
 ```
 
-```py
+frontend/src/components/SecondComponent.jsx:
 
-```
+```jsx
+import React from "react";
 
-```py
+const SecondComponent = () => {
+  return <h2>This is our SecondComponent.</h2>;
+};
 
-```
-
-```py
-
+export default SecondComponent;
 ```
 
 </details>
