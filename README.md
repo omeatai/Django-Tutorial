@@ -15116,21 +15116,71 @@ export default ClassFirstComponent;
 </details>
 
 <details>
-  <summary>109. </summary>
+  <summary>109. Event Handling </summary>
 
-```py
+frontend/src/App.js:
+
+```js
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+
+function App() {
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent name="Ben James" />
+      <ClassFirstComponent email="ben@gmail.com" />
+    </div>
+  );
+}
+
+export default App;
+```
+
+frontend/src/components/FirstComponent.jsx:
+
+```jsx
+import React from "react";
+
+const FirstComponent = (props) => {
+  function clickMe() {
+    alert("Button was clicked");
+  }
+
+  return (
+    <>
+      <h2>This is our FirstComponent.</h2>
+      <h3>Name: {props.name}</h3>
+      <button onClick={clickMe}>Click Me</button>
+    </>
+  );
+};
+
+export default FirstComponent;
+```
+
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
 
 ```
 
@@ -15139,19 +15189,35 @@ export default ClassFirstComponent;
 <details>
   <summary>110. </summary>
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
 
 ```
 
@@ -15181,19 +15247,35 @@ export default ClassFirstComponent;
 <details>
   <summary>112. </summary>
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
 
 ```
 
@@ -15223,19 +15305,35 @@ export default ClassFirstComponent;
 <details>
   <summary>114. </summary>
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
 
 ```
 
@@ -15244,19 +15342,35 @@ export default ClassFirstComponent;
 <details>
   <summary>115. </summary>
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
 
 ```
 
-```py
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
+
+```
+
+```jsx
 
 ```
 
