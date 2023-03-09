@@ -14925,11 +14925,6 @@ https://omeatai.pythonanywhere.com/
   <summary>106. ReactJS Introduction </summary>
 
 ```pybs
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<h1>Hello, world!</h1>);
-```
-
-```pybs
 npx create-react-app my-app
 cd my-app
 npm start
@@ -14940,9 +14935,36 @@ npx create-react-app frontend
 npm run start
 ```
 
+frontend/src/index.js:
+
+```pybs
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Hello, world!</h1>);
+```
+
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
 frontend/src/App.js:
 
-```jsx
+```js
 import React from "react";
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
@@ -14983,9 +15005,8 @@ const SecondComponent = () => {
 
 export default SecondComponent;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/223979668-2af4c2d3-c0da-4cc6-8707-70af0bcff1d8.png)
-	
 
 </details>
 
