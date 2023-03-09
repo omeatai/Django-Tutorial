@@ -15047,11 +15047,11 @@ class ClassFirstComponent extends Component {
 }
 export default ClassFirstComponent;
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/223984194-1214c285-eee3-414c-bd46-db87739839a4.png)		
 
 </details>
 	
-![](https://user-images.githubusercontent.com/32337103/223984194-1214c285-eee3-414c-bd46-db87739839a4.png)	
-
 <details>
   <summary>108. </summary>
 
