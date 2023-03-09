@@ -15255,26 +15255,85 @@ export default ClassFirstComponent;
 </details>
 
 <details>
-  <summary>110. </summary>
+  <summary>110. Install Bootstrap </summary>
 
-```jsx
-
+```pybs
+npm install bootstrap
 ```
 
-```jsx
+frontend/src/index.js:
 
+```pybs
+import 'bootstrap/dist/css/bootstrap.min.css';
 ```
 
-```jsx
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
 ```
 
-```jsx
+frontend/src/App.js:
 
+```js
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent name="Ben James" clickMe={clickMe} />
+      {/* <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} /> */}
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
+frontend/src/components/FirstComponent.jsx:
 
+```jsx
+import React from "react";
+
+const FirstComponent = (props) => {
+  // function clickMe() {
+  //   alert("Button was clicked");
+  // }
+
+  return (
+    <div className="container mt-5">
+      <h2>This is our FirstComponent.</h2>
+      <h3>Name: {props.name}</h3>
+      <button className="btn btn-success" onClick={props.clickMe}>
+        Click Me
+      </button>
+    </div>
+  );
+};
+
+export default FirstComponent;
 ```
 
 ```jsx
