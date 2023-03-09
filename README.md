@@ -15388,21 +15388,69 @@ export default ClassFirstComponent;
 </details>
 
 <details>
-  <summary>111. </summary>
+  <summary>111. React State </summary>
 
-```py
+frontend/src/App.js:
 
+```js
+import React from "react";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <h2>Welcome to DRF.</h2>
+      <FirstComponent name="Ben James" clickMe={clickMe} />
+      <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```py
+frontend/src/components/ClassFirstComponent.jsx:
 
+```jsx
+import { Component } from "react";
+
+class ClassFirstComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "Ifeanyi",
+    };
+  }
+
+  changeName = () => {
+    // this.setState({ name: "Ben" });
+    this.setState({ name: this.state.name === "Ifeanyi" ? "Ben" : "Ifeanyi" });
+  };
+
+  render() {
+    return (
+      <div className="container mt-5">
+        <h2>My name is {this.state.name}.</h2>
+        <h3>Email: {this.props.email}</h3>
+        <button className="btn btn-danger" onClick={this.props.clickMe}>
+          Click Me
+        </button>
+        <button onClick={() => this.changeName()} className="btn btn-primary">
+          Change Name
+        </button>
+      </div>
+    );
+  }
+}
+export default ClassFirstComponent;
 ```
 
-```py
-
-```
-
-```py
+```jsx
 
 ```
 
