@@ -15508,18 +15508,75 @@ export default MapFunc;
 </details>
 
 <details>
-  <summary>113. </summary>
+  <summary>113. Forms </summary>
 
-```py
+frontend/src/App.js:
 
+```js
+import React from "react";
+// import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+import MapFunc from "./components/MapFunc";
+import Forms from "./components/Forms";
+
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+      <MapFunc names={["Python", "Java", "C#", "C++"]} />
+      <Forms />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```py
+frontend/src/components/Forms.jsx:
 
-```
+```jsx
+import { Component } from "react";
 
-```py
+class Forms extends Component {
+  constructor() {
+    super();
 
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Please Enter Name"
+          value={this.state.username}
+          onChange={(e) => this.setState({ username: e.target.value })}
+        />
+        <input
+          type="password"
+          className="form-control"
+          placeholder="Please Enter Password"
+          value={this.state.password}
+          onChange={(e) => this.setState({ password: e.target.value })}
+        />
+        <button className="btn btn-primary">Login</button>
+        <div>{this.state.username}</div>
+        <div>{this.state.password}</div>
+      </div>
+    );
+  }
+}
+
+export default Forms;
 ```
 
 ```py
