@@ -15773,12 +15773,11 @@ const Home = () => {
 
 export default Home;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/224306678-33fc0bb4-30e9-4ec8-a2bc-d68adba3df62.png)
 ![](https://user-images.githubusercontent.com/32337103/224306815-123e0779-fba3-4858-b53d-c6066bf78885.png)
 ![](https://user-images.githubusercontent.com/32337103/224306894-1d6b4ad7-cac0-478e-9ecd-469dcf3f0cf8.png)
 ![](https://user-images.githubusercontent.com/32337103/224306963-bff64f32-1866-4702-9e74-709e308314ea.png)
-	
 
 ```jsx
 
