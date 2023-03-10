@@ -15579,9 +15579,7 @@ class Forms extends Component {
 export default Forms;
 ```
 
-```py
-
-```
+![](https://user-images.githubusercontent.com/32337103/224298477-7472c60c-47ce-43db-b7a2-0fd9873a13c1.png)
 
 </details>
 
