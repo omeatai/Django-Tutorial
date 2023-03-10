@@ -15584,38 +15584,92 @@ export default Forms;
 </details>
 
 <details>
-  <summary>114. </summary>
+  <summary>114. Lifecycle Methods </summary>
+
+frontend/src/App.js:
 
 ```jsx
+import React from "react";
+// import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+import MapFunc from "./components/MapFunc";
+import Forms from "./components/Forms";
 
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+      <MapFunc names={["Python", "Java", "C#", "C++"]} />
+      <Forms />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
-
-```
+frontend/src/components/Forms.jsx:
 
 ```jsx
+import { Component } from "react";
 
-```
+class Forms extends Component {
+  constructor() {
+    super();
 
-```jsx
+    this.state = {
+      username: "",
+      password: "",
+      posts: [],
+    };
+  }
 
-```
+  componentDidMount() {
+    this.setState({ username: "Adam" });
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((resp) => resp.json())
+      .then((result) => {
+        this.setState({ posts: result });
+      });
+  }
 
-```jsx
+  render() {
+    const { posts } = this.state;
+    return (
+      <div className="container mt-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Please Enter Name"
+          value={this.state.username}
+          onChange={(e) => this.setState({ username: e.target.value })}
+        />
+        <input
+          type="password"
+          className="form-control"
+          placeholder="Please Enter Password"
+          value={this.state.password}
+          onChange={(e) => this.setState({ password: e.target.value })}
+        />
+        <button className="btn btn-primary">Login</button>
+        <div>
+          <h2>{this.state.username}</h2>
+        </div>
+        <div>
+          {posts.map((post) => (
+            <p key={post.id}>{post.title}</p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
 
-```
-
-```jsx
-
-```
-
-```jsx
-
-```
-
-```jsx
-
+export default Forms;
 ```
 
 </details>
