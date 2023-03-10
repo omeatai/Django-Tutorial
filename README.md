@@ -15671,37 +15671,107 @@ class Forms extends Component {
 
 export default Forms;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/224302978-f05b0869-628c-48fa-aaa4-ef17c600a476.png)
-	
 
 </details>
 
 <details>
-  <summary>115. </summary>
+  <summary>115. React Router </summary>
 
-```jsx
-
+```pybs
+npm install react-router-dom
+npm i react-router-dom
 ```
 
-```jsx
+frontend/src/index.js:
 
+```jsbs
+import { BrowserRouter } from "react-router-dom";
+
+<BrowserRouter>
+    <App />
+</BrowserRouter>
 ```
 
-```jsx
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter } from "react-router-dom";
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
 ```
 
-```jsx
+frontend/src/App.js:
 
+```jsbs
+import { Routes, Route } from "react-router-dom";
+
+<Routes>
+    <Route path="/" element={<Home />}></Route>
+</Routes>
 ```
 
-```jsx
+```js
+import React from "react";
+import Home from "./components/Home";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+import Forms from "./components/Forms";
+import { Routes, Route } from "react-router-dom";
 
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/classfirstcomp"
+          element={
+            <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+          }
+        ></Route>
+        <Route
+          path="/firstcomp"
+          element={<FirstComponent name="Mike" clickMe={clickMe} />}
+        ></Route>
+        <Route path="/forms" element={<Forms />}></Route>
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
+frontend/src/components/Home.jsx:
 
+```jsx
+import React from "react";
+
+const Home = () => {
+  return (
+    <div className="container mt-5">
+      <h2>This is the Home Page.</h2>
+    </div>
+  );
+};
+
+export default Home;
 ```
 
 ```jsx
