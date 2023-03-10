@@ -15927,9 +15927,7 @@ const ComponentB = () => {
 export default ComponentB;
 ```
 
-```js
-
-```
+![](https://user-images.githubusercontent.com/32337103/224346781-85f46388-ad4b-44bf-9350-342052a61f06.png)
 
 </details>
 
