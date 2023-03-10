@@ -15779,12 +15779,77 @@ export default Home;
 ![](https://user-images.githubusercontent.com/32337103/224306894-1d6b4ad7-cac0-478e-9ecd-469dcf3f0cf8.png)
 ![](https://user-images.githubusercontent.com/32337103/224306963-bff64f32-1866-4702-9e74-709e308314ea.png)
 
-```jsx
+frontend/src/App.js:
 
+```jsx
+import React from "react";
+import Home from "./components/Home";
+import FirstComponent from "./components/FirstComponent";
+import ClassFirstComponent from "./components/ClassFirstComponent";
+import Forms from "./components/Forms";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+function App() {
+  function clickMe() {
+    alert("Button was clicked - Using Events as Props.");
+  }
+
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/classfirstcomp"
+          element={
+            <ClassFirstComponent email="ben@gmail.com" clickMe={clickMe} />
+          }
+        ></Route>
+        <Route
+          path="/firstcomp"
+          element={<FirstComponent name="Mike" clickMe={clickMe} />}
+        ></Route>
+        <Route path="/forms" element={<Forms />}></Route>
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```jsx
+frontend/src/components/Navbar.jsx:
 
+```jsx
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Navbar = () => {
+  return (
+    <div className="navbar navbar-expand-lg navbar-light bg-light">
+      <h2>Navbar</h2>
+      <div className="container ">
+        <ul className="navbar-nav">
+          <li className="nav-item mx-3">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="nav-item mx-3">
+            <Link to="/classfirstcomp">Class-First-Component</Link>
+          </li>
+          <li className="nav-item mx-3">
+            <Link to="/firstcomp">Functional-First-Component</Link>
+          </li>
+          <li className="nav-item mx-3">
+            <Link to="/forms">Forms</Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
 ```
 
 </details>
