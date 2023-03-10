@@ -15851,6 +15851,9 @@ const Navbar = () => {
 
 export default Navbar;
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/224341742-967e8a0e-6459-4dc8-b033-09f0140e1db5.png)
+	
 
 </details>
 
