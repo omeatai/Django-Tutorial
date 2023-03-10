@@ -15851,28 +15851,83 @@ const Navbar = () => {
 
 export default Navbar;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/224341742-967e8a0e-6459-4dc8-b033-09f0140e1db5.png)
-	
 
 </details>
 
 <details>
-  <summary>116. </summary>
+  <summary>116. React Context </summary>
 
-```py
+frontend/src/App.js:
 
+```js
+import React from "react";
+// import Home from "./components/Home";
+// import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+// import Forms from "./components/Forms";
+// import { Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar";
+import ComponentA from "./components/ComponentA";
+
+export const MyContext = React.createContext();
+
+function App() {
+  return (
+    <div>
+      <MyContext.Provider
+        value={{ name: "Alex", comment: "This is the data from context." }}
+      >
+        <ComponentA />
+      </MyContext.Provider>
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```py
+frontend/src/components/ComponentA.jsx:
 
+```js
+import React from "react";
+import ComponentB from "./ComponentB";
+
+const ComponentA = () => {
+  return <ComponentB />;
+};
+
+export default ComponentA;
 ```
 
-```py
+frontend/src/components/ComponentB.jsx:
 
+```js
+import React from "react";
+import { MyContext } from "../App";
+
+const ComponentB = () => {
+  return (
+    <div>
+      <MyContext.Consumer>
+        {(data) => {
+          return (
+            <>
+              <h2>Author: {data.name}</h2>
+              <h2>Comment: {data.comment}</h2>
+            </>
+          );
+        }}
+      </MyContext.Consumer>
+    </div>
+  );
+};
+
+export default ComponentB;
 ```
 
-```py
+```js
 
 ```
 
@@ -15881,19 +15936,19 @@ export default Navbar;
 <details>
   <summary>117. </summary>
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
@@ -15902,19 +15957,19 @@ export default Navbar;
 <details>
   <summary>118. </summary>
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
@@ -15923,19 +15978,19 @@ export default Navbar;
 <details>
   <summary>119. </summary>
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
@@ -15944,19 +15999,19 @@ export default Navbar;
 <details>
   <summary>120. </summary>
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
-```py
+```js
 
 ```
 
