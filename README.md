@@ -16341,7 +16341,7 @@ export default CounterFunctional;
 </details>
 
 <details>
-  <summary>118. </summary>
+  <summary>118. useEffect Hooks </summary>
 
 ```js
 
