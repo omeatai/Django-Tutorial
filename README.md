@@ -16055,16 +16055,70 @@ const CounterFunctional = () => {
 
 export default CounterFunctional;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/224509526-c9892aec-9804-412a-a68c-920e8c970b6b.png)
-	
+
+frontend/src/App.js:
 
 ```js
+import React from "react";
+// import Home from "./components/Home";
+// import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+// import Forms from "./components/Forms";
+// import { Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar";
+// import ComponentA from "./components/ComponentA";
+// export const MyContext = React.createContext();
+// import Counter from "./components/Counter";
+import CounterFunctional from "./components/CounterFunctional";
 
+function App() {
+  return (
+    <div>
+      <CounterFunctional />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```js
+frontend/src/components/CounterFunctional.jsx:
 
+```js
+import React, { useState } from "react";
+
+const CounterFunctional = () => {
+  const [counter, setCounter] = useState(0);
+  const [text, setText] = useState("Ifeanyi");
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <h2>{text}</h2>
+      <button
+        className="btn btn-primary"
+        onClick={() => setCounter((prev) => prev + 1)}
+      >
+        Increase
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={() => setCounter((prev) => prev - 1)}
+      >
+        Decrease
+      </button>
+      <button
+        className="btn btn-success"
+        onClick={() => setText(text === "Ifeanyi" ? "James" : "Ifeanyi")}
+      >
+        Change Text
+      </button>
+    </div>
+  );
+};
+
+export default CounterFunctional;
 ```
 
 ```js
