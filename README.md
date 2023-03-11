@@ -16327,7 +16327,7 @@ const CounterFunctional = () => {
         })}
       </div>
       <button className="btn btn-primary" onClick={addArticle}>
-        Change Text
+        Add Article
       </button>
     </div>
   );
