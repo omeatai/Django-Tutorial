@@ -16212,7 +16212,11 @@ const CounterFunctional = () => {
 
 export default CounterFunctional;
 ```
-
+	
+![](https://user-images.githubusercontent.com/32337103/224510221-bfd15279-986b-42de-beeb-d0a78297bae0.png)
+	
+Using ARRAY values for Hooks -
+	
 ```js
 
 ```
