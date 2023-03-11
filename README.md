@@ -15998,7 +15998,26 @@ class Counter extends Component {
 
 export default Counter;
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/224479623-92b039ba-f030-4825-8127-b70d8bdaf20e.png)
+	
 
+```js
+
+```
+
+```js
+
+```
+	
+```js
+
+```
+
+```js
+
+```
+	
 ```js
 
 ```
