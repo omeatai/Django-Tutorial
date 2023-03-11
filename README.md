@@ -16212,17 +16212,103 @@ const CounterFunctional = () => {
 
 export default CounterFunctional;
 ```
-	
-![](https://user-images.githubusercontent.com/32337103/224510221-bfd15279-986b-42de-beeb-d0a78297bae0.png)
-	
-Using ARRAY values for Hooks -
-	
-```js
 
+![](https://user-images.githubusercontent.com/32337103/224510221-bfd15279-986b-42de-beeb-d0a78297bae0.png)
+
+Using ARRAY values for Hooks -
+
+frontend/src/App.js:
+
+```js
+import React from "react";
+// import Home from "./components/Home";
+// import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+// import Forms from "./components/Forms";
+// import { Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar";
+// import ComponentA from "./components/ComponentA";
+// export const MyContext = React.createContext();
+// import Counter from "./components/Counter";
+import CounterFunctional from "./components/CounterFunctional";
+
+function App() {
+  return (
+    <div>
+      <CounterFunctional />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```js
+frontend/src/components/CounterFunctional.jsx:
 
+```js
+import React, { useState } from "react";
+
+const CounterFunctional = () => {
+  const [counter, setCounter] = useState(0);
+  const [text, setText] = useState("Ifeanyi");
+  const [info, setInfo] = useState({ name: "", email: "" });
+  const [articles, setArticles] = useState([
+    "Article One",
+    "Article Two",
+    "Article Three",
+  ]);
+
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <h2>{text}</h2>
+      <button
+        className="btn btn-primary"
+        onClick={() => setCounter((prev) => prev + 1)}
+      >
+        Increase
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={() => setCounter((prev) => prev - 1)}
+      >
+        Decrease
+      </button>
+      <button
+        className="btn btn-success"
+        onClick={() => setText(text === "Ifeanyi" ? "James" : "Ifeanyi")}
+      >
+        Change Text
+      </button>
+
+      <br />
+      <br />
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Please enter name"
+        value={info.name}
+        onChange={(e) => setInfo({ ...info, name: e.target.value })}
+      />
+      <input
+        type="email"
+        className="form-control"
+        placeholder="Please enter email"
+        value={info.email}
+        onChange={(e) => setInfo({ ...info, email: e.target.value })}
+      />
+      <h2>Name is : {info.name}</h2>
+      <h2>Email is : {info.email}</h2>
+      <div>
+        {articles.map((article) => {
+          return <h3>{article}</h3>;
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default CounterFunctional;
 ```
 
 ```js
