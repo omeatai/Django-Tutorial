@@ -15932,14 +15932,71 @@ export default ComponentB;
 </details>
 
 <details>
-  <summary>117. </summary>
+  <summary>117. useState Hooks </summary>
+
+frontend/src/App.js:
 
 ```js
+import React from "react";
+// import Home from "./components/Home";
+// import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+// import Forms from "./components/Forms";
+// import { Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar";
+// import ComponentA from "./components/ComponentA";
+// export const MyContext = React.createContext();
+import Counter from "./components/Counter";
 
+function App() {
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-```js
+frontend/src/components/Counter.jsx:
 
+```js
+import React, { Component } from "react";
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+
+  increase = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  decrease = () => {
+    this.setState({ count: this.state.count - 1 });
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <h2>{this.state.count}</h2>
+        <button onClick={this.increase} className="btn btn-primary">
+          Increase
+        </button>
+        <button onClick={this.decrease} className="btn btn-danger">
+          Decrease
+        </button>
+      </div>
+    );
+  }
+}
+
+export default Counter;
 ```
 
 ```js
