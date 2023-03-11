@@ -15998,26 +15998,72 @@ class Counter extends Component {
 
 export default Counter;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/224479623-92b039ba-f030-4825-8127-b70d8bdaf20e.png)
-	
+
+frontend/src/App.js:
 
 ```js
+import React from "react";
+// import Home from "./components/Home";
+// import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+// import Forms from "./components/Forms";
+// import { Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar";
+// import ComponentA from "./components/ComponentA";
+// export const MyContext = React.createContext();
+// import Counter from "./components/Counter";
+import CounterFunctional from "./components/CounterFunctional";
 
+function App() {
+  return (
+    <div>
+      <CounterFunctional />
+    </div>
+  );
+}
+
+export default App;
+```
+
+frontend/src/components/CounterFunctional.jsx:
+
+```js
+import React, { useState } from "react";
+
+const CounterFunctional = () => {
+  const [counter, setCounter] = useState(0);
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <button
+        className="btn btn-primary"
+        onClick={() => setCounter((prev) => prev + 1)}
+      >
+        Increase
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={() => setCounter((prev) => prev - 1)}
+      >
+        Decrease
+      </button>
+    </div>
+  );
+};
+
+export default CounterFunctional;
 ```
 
 ```js
 
 ```
-	
-```js
-
-```
 
 ```js
 
 ```
-	
+
 ```js
 
 ```
