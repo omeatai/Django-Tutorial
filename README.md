@@ -16517,13 +16517,7 @@ function FetchData() {
 export default FetchData;
 ```
 
-```js
-
-```
-
-```js
-
-```
+![](https://user-images.githubusercontent.com/32337103/224565372-45ca1aaf-3cb2-4f3d-b656-5313b99a68bc.png)
 
 </details>
 
