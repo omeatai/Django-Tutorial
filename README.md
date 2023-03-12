@@ -16249,7 +16249,7 @@ const CounterFunctional = () => {
       <h2>Email is : {info.email}</h2>
       <div>
         {articles.map((article) => {
-          return <h3>{article}</h3>;
+          return <h3 key={article}>{article}</h3>;
         })}
       </div>
     </div>
@@ -16323,7 +16323,7 @@ const CounterFunctional = () => {
       <h2>Email is : {info.email}</h2>
       <div>
         {articles.map((article) => {
-          return <h3>{article}</h3>;
+          return <h3 key={article}>{article}</h3>;
         })}
       </div>
       <button className="btn btn-primary" onClick={addArticle}>
@@ -16343,16 +16343,117 @@ export default CounterFunctional;
 <details>
   <summary>118. useEffect Hooks </summary>
 
-```js
+frontend/src/App.js:
 
+```js
+import React from "react";
+// import Home from "./components/Home";
+// import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+// import Forms from "./components/Forms";
+// import { Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar";
+// import ComponentA from "./components/ComponentA";
+// export const MyContext = React.createContext();
+// import Counter from "./components/Counter";
+import CounterFunctional from "./components/CounterFunctional";
+
+function App() {
+  return (
+    <div>
+      <CounterFunctional />
+    </div>
+  );
+}
+
+export default App;
+```
+
+frontend/src/components/CounterFunctional.jsx:
+
+```jsbs
+useEffect(() => {
+    document.title = `You have clicked ${counter} times`;
+    console.log("useEffect is called");
+  }, [info, counter]);
 ```
 
 ```js
+import React, { useState, useEffect } from "react";
 
-```
+const CounterFunctional = () => {
+  const [counter, setCounter] = useState(0);
+  const [text, setText] = useState("Ifeanyi");
+  const [info, setInfo] = useState({ name: "", email: "" });
+  const [articles, setArticles] = useState([
+    "Article One",
+    "Article Two",
+    "Article Three",
+  ]);
 
-```js
+  const addArticle = () => {
+    setArticles([...articles, `Article ${articles.length + 1}`]);
+  };
 
+  useEffect(() => {
+    document.title = `You have clicked ${counter} times`;
+    console.log("useEffect is called");
+  }, [info, counter]);
+
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <h2>{text}</h2>
+      <button
+        className="btn btn-primary"
+        onClick={() => setCounter((prev) => prev + 1)}
+      >
+        Increase
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={() => setCounter((prev) => prev - 1)}
+      >
+        Decrease
+      </button>
+      <button
+        className="btn btn-success"
+        onClick={() => setText(text === "Ifeanyi" ? "James" : "Ifeanyi")}
+      >
+        Change Text
+      </button>
+
+      <br />
+      <br />
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Please enter name"
+        value={info.name}
+        onChange={(e) => setInfo({ ...info, name: e.target.value })}
+      />
+      <input
+        type="email"
+        className="form-control"
+        placeholder="Please enter email"
+        value={info.email}
+        onChange={(e) => setInfo({ ...info, email: e.target.value })}
+      />
+      <h2>Name is : {info.name}</h2>
+      <h2>Email is : {info.email}</h2>
+      <div>
+        {articles.map((article) => {
+          return <h3 key={article}>{article}</h3>;
+        })}
+      </div>
+      <button className="btn btn-primary" onClick={addArticle}>
+        Add Article
+      </button>
+    </div>
+  );
+};
+
+export default CounterFunctional;
 ```
 
 ```js
