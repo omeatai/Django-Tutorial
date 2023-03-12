@@ -16455,9 +16455,71 @@ const CounterFunctional = () => {
 
 export default CounterFunctional;
 ```
-	
+
 ![](https://user-images.githubusercontent.com/32337103/224563900-c5085a15-2c87-4adf-815d-2ec330f94334.png)
-	
+
+frontend/src/App.js:
+
+```js
+import React from "react";
+// import Home from "./components/Home";
+// import FirstComponent from "./components/FirstComponent";
+// import ClassFirstComponent from "./components/ClassFirstComponent";
+// import Forms from "./components/Forms";
+// import { Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar";
+// import ComponentA from "./components/ComponentA";
+// export const MyContext = React.createContext();
+// import Counter from "./components/Counter";
+// import CounterFunctional from "./components/CounterFunctional";
+import FetchData from "./components/FetchData";
+
+function App() {
+  return (
+    <div>
+      <FetchData />
+    </div>
+  );
+}
+
+export default App;
+```
+
+frontend/src/components/FetchData.jsx:
+
+```js
+import React, { useState, useEffect } from "react";
+
+function FetchData() {
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((resp) => resp.json())
+      .then((result) => {
+        // console.log(result);
+        setArticles(result);
+      });
+  }, []);
+
+  return (
+    <div>
+      {articles.map((article) => {
+        return (
+          <div key={article.id}>
+            <h1>{article.title}</h1>
+            <p>{article.body}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+export default FetchData;
+```
+
+```js
+
+```
 
 ```js
 
