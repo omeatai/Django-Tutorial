@@ -16455,6 +16455,9 @@ const CounterFunctional = () => {
 
 export default CounterFunctional;
 ```
+	
+![](https://user-images.githubusercontent.com/32337103/224563900-c5085a15-2c87-4adf-815d-2ec330f94334.png)
+	
 
 ```js
 
